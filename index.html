@@ -462,7 +462,7 @@
   // e.g. 'Waterflo': '/catalogs/waterflo.pdf'
   // or   'Waterflo': 'https://example.com/waterflo-catalog.pdf'
   const CATALOG_URLS = {
-    'Waterflo':        null,
+    'Waterflo':        'waterflo.html',
     'Dutron':          null,
     'Finolex':         null,
     'Texmo':           null,
@@ -478,7 +478,11 @@
   function openCatalog(brand) {
     const url = CATALOG_URLS[brand];
     if (url) {
-      window.open(url, '_blank');
+      if (url.endsWith('.html')) {
+        window.location.href = url;
+      } else {
+        window.open(url, '_blank');
+      }
     } else {
       document.getElementById('modal-brand-name').textContent = brand + ' — Catalog';
       document.getElementById('catalog-modal').classList.add('open');
