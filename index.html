@@ -28,7 +28,7 @@
   .nav-cta:hover { background: var(--terracotta-light) !important; }
 
   /* HERO */
-  .hero { background: var(--brown-deep); padding: 90px 5% 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; min-height: 520px; position: relative; overflow: hidden; }
+  .hero { background: var(--brown-deep); padding: 90px 5% 80px; display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: center; min-height: 520px; position: relative; overflow: hidden; }
   .hero::before { content: ''; position: absolute; right: -80px; top: -80px; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(196,98,45,0.18) 0%, transparent 70%); }
   .hero-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--terracotta-light); margin-bottom: 16px; }
   .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(36px, 5vw, 58px); font-weight: 900; line-height: 1.12; color: var(--cream); margin-bottom: 20px; }
@@ -40,14 +40,11 @@
   .btn-secondary { border: 1px solid var(--brown-light); color: var(--sand); padding: 13px 28px; border-radius: 4px; text-decoration: none; font-weight: 400; font-size: 14px; letter-spacing: 0.03em; transition: border-color 0.2s, color 0.2s; display: inline-block; }
   .btn-secondary:hover { border-color: var(--sand); color: var(--cream); }
   .hero-visual { display: flex; gap: 16px; justify-content: flex-end; align-items: center; }
-  .stat-pill { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 20px 24px; text-align: center; min-width: 120px; }
-  .stat-pill .num { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; color: var(--terracotta-light); line-height: 1; }
-  .stat-pill .label { font-size: 12px; color: var(--sand); margin-top: 6px; letter-spacing: 0.04em; }
+  .stat-pill { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 10px; padding: 28px 32px; text-align: center; min-width: 150px; }
+  .stat-pill .num { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 700; color: var(--terracotta-light); line-height: 1; }
+  .stat-pill .label { font-size: 13px; color: var(--sand); margin-top: 8px; letter-spacing: 0.04em; }
 
-  /* TRUST STRIP */
-  .trust-strip { background: var(--terracotta); padding: 14px 5%; display: flex; gap: 28px; align-items: center; justify-content: center; flex-wrap: wrap; }
-  .trust-item { display: flex; align-items: center; gap: 7px; color: var(--cream); font-size: 12px; font-weight: 500; letter-spacing: 0.03em; white-space: nowrap; }
-  .trust-icon { width: 16px; height: 16px; background: rgba(255,255,255,0.25); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; flex-shrink: 0; }
+  /* TRUST STRIP - removed, using msp-bar only */
 
   /* MSP BADGES */
   .msp-bar { background: var(--sand-light); padding: 12px 5%; display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; border-bottom: 1px solid var(--sand); }
@@ -68,15 +65,15 @@
 
   /* PRODUCTS */
   #products { background: var(--cream); }
-  .category-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px; }
-  .tab-btn { padding: 8px 18px; border-radius: 40px; border: 1px solid var(--sand); background: transparent; font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--text-secondary); cursor: pointer; transition: all 0.2s; }
+  .category-tabs { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 36px; }
+  .tab-btn { padding: 11px 24px; border-radius: 40px; border: 1px solid var(--sand); background: transparent; font-family: 'DM Sans', sans-serif; font-size: 15px; color: var(--text-secondary); cursor: pointer; transition: all 0.2s; }
   .tab-btn:hover, .tab-btn.active { background: var(--brown-deep); border-color: var(--brown-deep); color: var(--cream); }
-  .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
-  .product-card { background: var(--warm-white); border-radius: 10px; padding: 24px; border: 1px solid var(--sand-light); transition: border-color 0.2s, transform 0.2s; }
+  .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
+  .product-card { background: var(--warm-white); border-radius: 12px; padding: 30px; border: 1px solid var(--sand-light); transition: border-color 0.2s, transform 0.2s; }
   .product-card:hover { border-color: var(--terracotta); transform: translateY(-3px); }
-  .product-icon { width: 44px; height: 44px; background: var(--terracotta-pale); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; font-size: 20px; }
-  .product-card h3 { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--brown-deep); margin-bottom: 6px; }
-  .product-card p { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; line-height: 1.6; }
+  .product-icon { width: 54px; height: 54px; background: var(--terracotta-pale); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 18px; font-size: 24px; }
+  .product-card h3 { font-family: 'Playfair Display', serif; font-size: 21px; font-weight: 700; color: var(--brown-deep); margin-bottom: 8px; }
+  .product-card p { font-size: 14px; color: var(--text-muted); margin-bottom: 16px; line-height: 1.6; }
   .brand-tags { display: flex; flex-wrap: wrap; gap: 6px; }
   .brand-tag { background: var(--sand-light); border-radius: 3px; padding: 3px 9px; font-size: 11px; color: var(--brown-mid); font-weight: 500; letter-spacing: 0.03em; text-decoration: none; transition: background 0.18s, color 0.18s; cursor: pointer; }
   .brand-tag:hover { background: var(--terracotta); color: var(--cream); }
@@ -169,7 +166,7 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-content">
-    <p class="hero-eyebrow">Jabalpur's Trusted Distributor Since Day One</p>
+    <p class="hero-eyebrow">Madhya Pradesh's Preferred Plumbing Partner</p>
     <h1>Plumbing &amp; Sanitary<br>Solutions You Can <em>Rely On</em></h1>
     <p>Supplying premium pipes, fittings, HDPE, PVC, sprinkler systems and bath & sanitary products to builders, contractors, farmers and retailers across Madhya Pradesh.</p>
     <div class="hero-btns">
@@ -179,7 +176,7 @@
   </div>
   <div class="hero-visual">
     <div class="stat-pill">
-      <div class="num">500+</div>
+      <div class="num">1500+</div>
       <div class="label">Products in Stock</div>
     </div>
     <div style="display:flex;flex-direction:column;gap:16px;">
@@ -195,27 +192,15 @@
   </div>
 </section>
 
-<!-- TRUST STRIP -->
-<div class="trust-strip">
-  <div class="trust-item"><div class="trust-icon">✓</div> MSME Registered</div>
-  <div class="trust-item"><div class="trust-icon">✓</div> Govt. Supplier</div>
-  <div class="trust-item"><div class="trust-icon">✓</div> Bulk & Project Orders</div>
-  <div class="trust-item"><div class="trust-icon">✓</div> Quality Assured</div>
-  <div class="trust-item"><div class="trust-icon">✓</div> Wide Retailer Network</div>
-  <div class="trust-item"><div class="trust-icon">✓</div> Prompt Availability</div>
-</div>
-
 <!-- MSP BADGES -->
 <div class="msp-bar">
+  <span class="msp-badge"><span class="dot"></span>Quality Assured</span>
+  <span class="msp-badge"><span class="dot"></span>Best Market Rates</span>
+  <span class="msp-badge"><span class="dot"></span>Always In Stock</span>
   <span class="msp-badge"><span class="dot"></span>MSME Registered</span>
   <span class="msp-badge"><span class="dot"></span>Authentic Govt. Supplier</span>
-  <span class="msp-badge"><span class="dot"></span>Bulk Orders Welcome</span>
-  <span class="msp-badge"><span class="dot"></span>Project Orders</span>
-  <span class="msp-badge"><span class="dot"></span>Quality Assured</span>
-  <span class="msp-badge"><span class="dot"></span>Reasonable Range</span>
-  <span class="msp-badge"><span class="dot"></span>Wide Network</span>
-  <span class="msp-badge"><span class="dot"></span>Big Retailer Chain</span>
-  <span class="msp-badge"><span class="dot"></span>Prompt Availability</span>
+  <span class="msp-badge"><span class="dot"></span>Bulk Orders Accepted</span>
+  <span class="msp-badge"><span class="dot"></span>Pan-MP Distribution Network</span>
 </div>
 
 <!-- WHO WE SERVE -->
@@ -376,15 +361,29 @@
     <div class="contact-info">
       <div class="contact-detail">
         <div class="contact-detail-icon">📍</div>
-        <div class="contact-detail-text"><div class="ctitle">Address</div><div class="cval">5 Anjuman Market, Marhatal, Jabalpur, Madhya Pradesh</div></div>
+        <div class="contact-detail-text">
+          <div class="ctitle">Address</div>
+          <div class="cval">4 &amp; 5 Anjuman Market, Marhatal<br>Jabalpur, Madhya Pradesh 482001</div>
+          <a href="https://maps.app.goo.gl/YJqPVN8XAv8VZDPh6" target="_blank" style="display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-size:13px;color:var(--terracotta-light);text-decoration:none;border:1px solid rgba(196,98,45,0.4);border-radius:4px;padding:4px 10px;transition:background 0.2s;" onmouseover="this.style.background='rgba(196,98,45,0.15)'" onmouseout="this.style.background='transparent'">
+            <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2C5.79 2 4 3.79 4 6c0 3.5 4 8 4 8s4-4.5 4-8c0-2.21-1.79-4-4-4zm0 5.5a1.5 1.5 0 110-3 1.5 1.5 0 010 3z"/></svg>
+            View on Google Maps
+          </a>
+        </div>
       </div>
       <div class="contact-detail">
         <div class="contact-detail-icon">📞</div>
-        <div class="contact-detail-text"><div class="ctitle">Phone</div><div class="cval">+91 XXXXX XXXXX</div></div>
+        <div class="contact-detail-text">
+          <div class="ctitle">Phone</div>
+          <div class="cval"><a href="tel:+919425066923" style="color:var(--cream);text-decoration:none;">+91 94250 66923</a></div>
+          <div class="cval" style="margin-top:4px;"><a href="tel:+917566866923" style="color:var(--cream);text-decoration:none;">+91 75668 66923</a></div>
+        </div>
       </div>
       <div class="contact-detail">
         <div class="contact-detail-icon">💬</div>
-        <div class="contact-detail-text"><div class="ctitle">WhatsApp</div><div class="cval">+91 XXXXX XXXXX</div></div>
+        <div class="contact-detail-text">
+          <div class="ctitle">WhatsApp</div>
+          <div class="cval"><a href="https://wa.me/919425066923" target="_blank" style="color:var(--cream);text-decoration:none;">+91 94250 66923</a></div>
+        </div>
       </div>
       <div class="contact-detail">
         <div class="contact-detail-icon">🕐</div>
@@ -394,12 +393,12 @@
     <div class="enquiry-form">
       <h3>Send an Enquiry</h3>
       <div class="form-row">
-        <div class="form-group"><label>Your Name</label><input type="text" placeholder="Ramesh Kumar"></div>
-        <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="+91 98765 43210"></div>
+        <div class="form-group"><label>Your Name</label><input id="enq-name" type="text" placeholder="Ramesh Kumar"></div>
+        <div class="form-group"><label>Phone Number</label><input id="enq-phone" type="tel" placeholder="+91 98765 43210"></div>
       </div>
       <div class="form-group">
         <label>Product Category</label>
-        <select>
+        <select id="enq-category">
           <option value="">Select a category...</option>
           <option>PVC Pipes & Fittings</option>
           <option>HDPE Pipes</option>
@@ -410,8 +409,8 @@
           <option>Accessories & Fittings</option>
         </select>
       </div>
-      <div class="form-group"><label>Message / Requirements</label><textarea placeholder="Describe your requirements, quantity, preferred brands, etc."></textarea></div>
-      <button class="submit-btn" onclick="handleSubmit()">Send Enquiry →</button>
+      <div class="form-group"><label>Message / Requirements</label><textarea id="enq-message" placeholder="Describe your requirements, quantity, preferred brands, etc."></textarea></div>
+      <button class="submit-btn" onclick="handleSubmit()">Send Enquiry on WhatsApp →</button>
     </div>
   </div>
 </section>
@@ -419,11 +418,11 @@
 <footer>
   <div class="logo">Market<span>Movers</span></div>
   <p>© 2025 Market Movers, Jabalpur. All rights reserved.</p>
-  <p style="color: var(--brown-light); font-size: 12px;">Plumbing & Sanitary Distributors, Madhya Pradesh</p>
+  <p style="color: var(--brown-light); font-size: 12px;">4 & 5 Anjuman Market, Marhatal, Jabalpur MP 482001</p>
 </footer>
 
 <!-- WHATSAPP FLOAT -->
-<a class="whatsapp-float" href="https://wa.me/91XXXXXXXXXX" target="_blank" title="Chat on WhatsApp">
+<a class="whatsapp-float" href="https://wa.me/919425066923" target="_blank" title="Chat on WhatsApp">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="white">
     <path d="M16 2C8.268 2 2 8.268 2 16c0 2.47.643 4.79 1.77 6.8L2 30l7.382-1.735A13.92 13.92 0 0 0 16 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm7.37 19.37c-.31.87-1.54 1.59-2.52 1.8-.67.14-1.54.25-4.48-1.02-3.77-1.61-6.2-5.43-6.39-5.68-.18-.25-1.5-2-.1-3.96.26-.36.68-.72 1.21-.72.19 0 .37.01.53.02.47.02.71.05.99.72.34.82 1.16 2.83 1.26 3.04.1.21.17.46.03.72-.13.27-.2.43-.39.66-.2.23-.41.51-.58.69-.19.2-.39.41-.17.81.22.39.99 1.63 2.12 2.64 1.46 1.3 2.67 1.7 3.07 1.89.39.19.62.16.85-.1.24-.27.99-1.15 1.25-1.55.26-.39.52-.33.87-.2.36.14 2.26 1.07 2.65 1.26.39.2.65.29.74.46.1.17.1.99-.2 1.86z"/>
   </svg>
@@ -504,10 +503,19 @@
   }
 
   function handleSubmit() {
-    const btn = document.querySelector('.submit-btn');
-    btn.textContent = '✓ Enquiry Sent! We\'ll contact you shortly.';
-    btn.style.background = '#4CAF50';
-    setTimeout(() => { btn.textContent = 'Send Enquiry →'; btn.style.background = ''; }, 4000);
+    const name = document.getElementById('enq-name').value.trim();
+    const phone = document.getElementById('enq-phone').value.trim();
+    const category = document.getElementById('enq-category').value;
+    const message = document.getElementById('enq-message').value.trim();
+
+    if (!name || !phone) {
+      alert('Please enter your name and phone number.');
+      return;
+    }
+
+    const text = `Hello Market Movers! 👋\n\n*New Enquiry*\n\n*Name:* ${name}\n*Phone:* ${phone}\n*Category:* ${category || 'Not specified'}\n*Requirements:* ${message || 'Not specified'}`;
+    const url = `https://wa.me/919425066923?text=${encodeURIComponent(text)}`;
+    window.open(url, '_blank');
   }
 </script>
 </body>
