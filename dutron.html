@@ -55,7 +55,7 @@ nav{background:var(--brown-deep);padding:0 5%;display:flex;align-items:center;ju
 .info-tab-content{display:none;padding:24px 0 20px}
 .info-tab-content.active{display:block}
 .product-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
-.product-hero-img{width:100%;border-radius:10px;background:var(--sand-light);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:13px}
+.product-hero-img{width:100%;border-radius:10px;background:var(--sand-light);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:13px;overflow:hidden}.product-hero-img img{width:100%;height:100%;object-fit:contain;padding:16px}
 .info-content h2{font-family:'Playfair Display',serif;font-size:21px;font-weight:700;color:var(--brown-deep);margin-bottom:10px}
 .info-content p{font-size:14px;color:var(--text-secondary);line-height:1.75;margin-bottom:10px}
 .info-list{list-style:none;padding:0}
@@ -164,7 +164,7 @@ footer p{font-size:13px;color:var(--brown-light)}
     <button class="info-tab-btn" onclick="switchInfoTab(this,'cpvc-app')">Applications</button>
   </div>
   <div class="info-tab-content active" id="cpvc-desc">
-    <div class="product-info-grid"><div class="product-hero-img">📷 Product Image</div>
+    <div class="product-info-grid"><div class="product-hero-img"><img src="https://dutronindia.com/wp-content/uploads/CPVC-PNG.png" alt="panel-cpvc" loading="lazy"></div>
       <div class="info-content">
         <h2>Dutron CPVC Pipes &amp; Fittings</h2>
         <p>Dutron CPVC Pipes &amp; Fittings are manufactured using CPVC compound sourced from Sekisui Chemical Ltd., Japan — certified by NSF International (USA). Compatible with hot and cold water and can sustain up to 93°C. A dependable, cost-effective and long-lasting alternative to conventional GI and copper plumbing systems.</p>
@@ -225,7 +225,7 @@ footer p{font-size:13px;color:var(--brown-light)}
     <button class="info-tab-btn" onclick="switchInfoTab(this,'upvc-app')">Applications</button>
   </div>
   <div class="info-tab-content active" id="upvc-desc">
-    <div class="product-info-grid"><div class="product-hero-img">📷 Product Image</div>
+    <div class="product-info-grid"><div class="product-hero-img"><img src="https://dutronindia.com/wp-content/uploads/hiflo-logo.png" alt="panel-upvc" loading="lazy"></div>
       <div class="info-content">
         <h2>Hiflo — uPVC Plumbing System</h2>
         <p>Dutron Hiflo uPVC white high pressure water distribution plumbing system is manufactured from state-of-art machinery using lead-free, non-toxic compound. UV-stabilized, corrosion resistant and durable — ideal for transporting and distributing potable water. Preferred by plumbers, contractors, MEP consultants, builders and architects.</p>
@@ -280,7 +280,7 @@ footer p{font-size:13px;color:var(--brown-light)}
     <button class="info-tab-btn" onclick="switchInfoTab(this,'agri-app')">Applications</button>
   </div>
   <div class="info-tab-content active" id="agri-desc">
-    <div class="product-info-grid"><div class="product-hero-img">📷 Product Image</div>
+    <div class="product-info-grid"><div class="product-hero-img"><img src="https://dutronindia.com/wp-content/uploads/uPVC-PRESSURE-PIPE.png" alt="panel-agri" loading="lazy"></div>
       <div class="info-content">
         <h2>Dutron Agriculture Pipes &amp; Fittings</h2>
         <p>Dutron uPVC Agriculture Pipes are manufactured conforming to IS 4985:2000, available from 20mm to 400mm O.D. in 5 pressure classes. Fittings conform to IS 7834. Available in both solvent cement and rubber ring-fit joints for easy, leak-proof connections. Self-extinguishing and lead-free.</p>
@@ -337,7 +337,7 @@ footer p{font-size:13px;color:var(--brown-light)}
     <button class="info-tab-btn" onclick="switchInfoTab(this,'swr-app')">Applications</button>
   </div>
   <div class="info-tab-content active" id="swr-desc">
-    <div class="product-info-grid"><div class="product-hero-img">📷 Product Image</div>
+    <div class="product-info-grid"><div class="product-hero-img"><img src="https://dutronindia.com/wp-content/uploads/uPVC-SWR-PIPE.png" alt="panel-swr" loading="lazy"></div>
       <div class="info-content">
         <h2>Dutron SWR Pipes &amp; Fittings</h2>
         <p>Dutron SWR (Soil, Waste and Rainwater) Pipes &amp; Fittings are manufactured from premium grade raw material and tested at a well-equipped QA laboratory. UV-stabilized, light weight, non-corrosive and durable. Available in both Self-Fit (pasting type) and Rubber Ring Fit. First choice of contractors, MEP consultants, architects and plumbers.</p>
@@ -387,7 +387,7 @@ footer p{font-size:13px;color:var(--brown-light)}
     <button class="info-tab-btn" onclick="switchInfoTab(this,'cas-app')">Applications</button>
   </div>
   <div class="info-tab-content active" id="cas-desc">
-    <div class="product-info-grid"><div class="product-hero-img">📷 Product Image</div>
+    <div class="product-info-grid"><div class="product-hero-img"><img src="https://dutronindia.com/wp-content/uploads/uPVC-CASDSING-PIPE.png" alt="panel-casing" loading="lazy"></div>
       <div class="info-content">
         <h2>Dutron uPVC Casing &amp; Column Pipes</h2>
         <p>Dutron uPVC Casing Pipes (IS 12818) are manufactured from 100% lead-free material, stronger and corrosion resistant — ideal for transportation of hard, salty, sandy and chemically aggressive water in borewells. Dutron Submersible Column Pipes are designed with square threads for excellent grip and accepted in over 20 countries worldwide.</p>
@@ -435,7 +435,7 @@ footer p{font-size:13px;color:var(--brown-light)}
     <button class="info-tab-btn" onclick="switchInfoTab(this,'hdpe-app')">Applications</button>
   </div>
   <div class="info-tab-content active" id="hdpe-desc">
-    <div class="product-info-grid"><div class="product-hero-img">📷 Product Image</div>
+    <div class="product-info-grid"><div class="product-hero-img"><img src="https://dutronindia.com/wp-content/uploads/HDPE-PNG.png" alt="panel-hdpe" loading="lazy"></div>
       <div class="info-content">
         <h2>Dutron HDPE Pipes &amp; Fittings</h2>
         <p>Dutron HDPE Pipes &amp; Fittings are manufactured at a state-of-the-art plant under ISO 9001:2015. Chemically inert to most chemicals, acids and alkalies. Flexible pipes available in coil form up to 140mm diameter. Available in PE 63, PE 80 and PE 100 grades as per IS 4984:2016. Includes HDPE Sprinkler System per IS 14151.</p>
@@ -490,7 +490,7 @@ footer p{font-size:13px;color:var(--brown-light)}
     <button class="info-tab-btn" onclick="switchInfoTab(this,'suc-app')">Applications</button>
   </div>
   <div class="info-tab-content active" id="suc-desc">
-    <div class="product-info-grid"><div class="product-hero-img">📷 Product Image</div>
+    <div class="product-info-grid"><div class="product-hero-img"><img src="https://dutronindia.com/wp-content/uploads/kANAFLEX-PNG.png" alt="panel-suction" loading="lazy"></div>
       <div class="info-content">
         <h2>Kanaflex — Suction &amp; Delivery Hose</h2>
         <p>Dutron Kanaflex is the most trusted name in flexible PVC hose pipes in India and worldwide. Manufactured with technical know-how from Totaku Industries Inc., Japan since the 1970s. Most suited for suction and delivery of liquids and gases across agriculture, industrial and general applications. Lighter and more flexible than rubber hose.</p>
@@ -543,7 +543,7 @@ footer p{font-size:13px;color:var(--brown-light)}
     <button class="info-tab-btn" onclick="switchInfoTab(this,'brd-app')">Applications</button>
   </div>
   <div class="info-tab-content active" id="brd-desc">
-    <div class="product-info-grid"><div class="product-hero-img">📷 Product Image</div>
+    <div class="product-info-grid"><div class="product-hero-img"><img src="https://dutronindia.com/wp-content/uploads/duplon-logo.png" alt="panel-braided" loading="lazy"></div>
       <div class="info-content">
         <h2>Duplon — Braided &amp; Garden Hose</h2>
         <p>Dutron Duplon Braided Hoses are designed for high pressure water, air, welding and industrial applications. The range includes 6 distinct products — from everyday garden hoses to steel wire reinforced heavy-duty industrial hoses. Known for kink resistance, flexibility and durability.</p>

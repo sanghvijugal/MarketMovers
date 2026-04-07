@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Texmo – Product Range | Market Movers</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--cream:#F7F2EA;--warm-white:#FDF9F3;--terracotta:#C4622D;--terracotta-light:#E8845A;--terracotta-pale:#F5DDD0;--brown-deep:#3D2B1F;--brown-mid:#6B4835;--brown-light:#A07060;--sand:#D9C9B0;--sand-light:#EDE4D6;--text-primary:#2C1A0E;--text-secondary:#6B4835;--text-muted:#9A7B6A}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text-primary);font-size:15px;line-height:1.7}
+nav{background:var(--brown-deep);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:100}
+.logo{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--cream);text-decoration:none}
+.logo span{color:var(--terracotta-light)}
+.nav-back{color:var(--sand);font-size:13px;text-decoration:none;display:flex;align-items:center;gap:6px;transition:color .2s;white-space:nowrap}
+.nav-back:hover{color:var(--terracotta-light)}
+.brand-hero{background:var(--brown-deep);padding:44px 5% 36px;display:flex;align-items:center;gap:28px;border-bottom:3px solid var(--terracotta);position:relative;overflow:hidden}
+.brand-hero::before{content:'';position:absolute;right:-60px;top:-60px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(196,98,45,0.15) 0%,transparent 70%)}
+.brand-logo-box{width:86px;height:86px;background:var(--warm-white);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Playfair Display',serif;font-size:12px;font-weight:700;color:var(--brown-deep);text-align:center;line-height:1.3;padding:8px}
+.brand-hero-text h1{font-family:'Playfair Display',serif;font-size:30px;font-weight:900;color:var(--cream);line-height:1.15}
+.brand-hero-text h1 span{color:var(--terracotta-light);font-style:italic}
+.brand-hero-text p{color:var(--sand);font-size:13px;margin-top:5px}
+.brand-hero-badges{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+.hero-badge{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:3px 11px;font-size:11px;color:var(--sand)}
+.product-lines-section{background:var(--warm-white);padding:36px 5% 0}
+.section-label{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--terracotta);margin-bottom:6px}
+.section-title{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--brown-deep);margin-bottom:20px}
+.carousel-wrapper{position:relative;display:flex;align-items:center;gap:8px}
+.carousel-arrow{flex-shrink:0;width:36px;height:36px;background:var(--warm-white);border:1px solid var(--sand);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .18s;color:var(--brown-mid)}
+.carousel-arrow:hover{background:var(--brown-deep);color:var(--cream);border-color:var(--brown-deep)}
+.carousel-arrow.hidden{opacity:0;pointer-events:none}
+.carousel-arrow svg{width:14px;height:14px}
+.product-lines-scroll{display:flex;gap:12px;overflow-x:auto;padding:4px 2px;scrollbar-width:none;-ms-overflow-style:none;scroll-snap-type:x mandatory;flex:1}
+.product-lines-scroll::-webkit-scrollbar{display:none}
+.product-line-card{flex:0 0 160px;scroll-snap-align:start;background:var(--cream);border:2px solid var(--sand-light);border-radius:12px;padding:16px 14px 14px;cursor:pointer;transition:all .22s;text-align:center;position:relative}
+.product-line-card:hover{border-color:var(--terracotta-light);transform:translateY(-2px)}
+.product-line-card.active{border-color:var(--terracotta);background:var(--brown-deep);transform:translateY(-3px);box-shadow:0 8px 24px rgba(61,43,31,.18)}
+.product-line-card.active::after{content:'';position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:10px solid transparent;border-right:10px solid transparent;border-top:10px solid var(--brown-deep)}
+.pl-icon{font-size:22px;margin-bottom:8px;display:block}
+.pl-industry{font-size:13px;font-weight:600;color:var(--brown-deep);line-height:1.3;margin-bottom:2px}
+.product-line-card.active .pl-industry{color:var(--cream)}
+.pl-brand{font-size:11px;color:var(--text-muted);font-style:italic}
+.product-line-card.active .pl-brand{color:var(--sand)}
+.pl-badge{display:inline-block;margin-top:7px;background:var(--terracotta-pale);border-radius:10px;padding:2px 8px;font-size:10px;color:var(--terracotta);font-weight:600}
+.product-line-card.active .pl-badge{background:rgba(196,98,45,.3);color:var(--terracotta-light)}
+.product-detail{background:var(--warm-white);padding:0 5% 60px}
+.detail-panel{display:none}
+.detail-panel.active{display:block}
+.info-tabs-bar{display:flex;border-bottom:2px solid var(--sand);overflow-x:auto;scrollbar-width:none}
+.info-tabs-bar::-webkit-scrollbar{display:none}
+.info-tab-btn{padding:13px 20px;border:none;background:transparent;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;color:var(--text-muted);cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .18s}
+.info-tab-btn:hover{color:var(--brown-mid)}
+.info-tab-btn.active{color:var(--terracotta);border-bottom-color:var(--terracotta);font-weight:600}
+.info-tab-content{display:none;padding:24px 0 20px}
+.info-tab-content.active{display:block}
+.product-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+.product-hero-img{width:100%;border-radius:10px;background:var(--sand-light);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:13px;overflow:hidden}.product-hero-img img{width:100%;height:100%;object-fit:contain;padding:16px}
+.info-content h2{font-family:'Playfair Display',serif;font-size:21px;font-weight:700;color:var(--brown-deep);margin-bottom:10px}
+.info-content p{font-size:14px;color:var(--text-secondary);line-height:1.75;margin-bottom:10px}
+.info-list{list-style:none;padding:0}
+.info-list li{font-size:13px;color:var(--text-secondary);padding:6px 0;border-bottom:1px solid var(--sand-light);display:flex;gap:8px;align-items:flex-start;line-height:1.5}
+.info-list li::before{content:'▸';color:var(--terracotta);flex-shrink:0;margin-top:1px;font-size:11px}
+.spec-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:10px}
+.spec-table th{background:var(--brown-deep);color:var(--cream);padding:7px 10px;text-align:left;font-weight:500;font-size:11px}
+.spec-table td{padding:6px 10px;border-bottom:1px solid var(--sand-light);color:var(--text-secondary)}
+.spec-table tr:nth-child(even) td{background:var(--sand-light)}
+.spec-table tr:last-child td{border-bottom:none}
+.table-scroll{overflow-x:auto;margin-top:10px}
+.download-btn{display:inline-flex;align-items:center;gap:7px;background:var(--terracotta);color:var(--cream);padding:10px 20px;border-radius:6px;text-decoration:none;font-size:13px;font-weight:600;margin-top:14px;margin-right:8px;transition:background .2s}
+.download-btn:hover{background:var(--terracotta-light)}
+.download-btn svg{width:14px;height:14px}
+.download-btn.secondary{background:transparent;border:1px solid var(--terracotta);color:var(--terracotta)}
+.download-btn.secondary:hover{background:var(--terracotta);color:var(--cream)}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:9px;margin-top:14px}
+.feature-chip{background:var(--cream);border:1px solid var(--sand);border-radius:8px;padding:9px 12px;font-size:13px;color:var(--text-secondary);display:flex;align-items:flex-start;gap:7px;line-height:1.5}
+.feature-chip::before{content:'✓';color:var(--terracotta);font-weight:700;flex-shrink:0}
+.prod-section-title{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:var(--brown-deep);margin:28px 0 14px;padding-top:22px;border-top:2px solid var(--sand-light)}
+.prod-tabs-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.prod-tab-btn{padding:7px 16px;border-radius:40px;border:1px solid var(--sand);background:transparent;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text-secondary);cursor:pointer;transition:all .18s}
+.prod-tab-btn:hover,.prod-tab-btn.active{background:var(--brown-deep);border-color:var(--brown-deep);color:var(--cream)}
+.prod-tab-content{display:none}
+.prod-tab-content.active{display:block}
+.prod-item{background:var(--cream);border:1px solid var(--sand-light);border-radius:10px;margin-bottom:10px;overflow:hidden}
+.prod-item-header{display:flex;align-items:center;gap:14px;padding:15px 18px;cursor:pointer;user-select:none;transition:background .18s}
+.prod-item-header:hover{background:var(--sand-light)}
+.prod-item-icon{width:42px;height:42px;background:var(--terracotta-pale);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.prod-item-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:var(--brown-deep)}
+.prod-item-std{font-size:11px;color:var(--text-muted);margin-top:2px}
+.prod-item-chevron{margin-left:auto;width:18px;height:18px;color:var(--brown-light);transition:transform .25s;flex-shrink:0}
+.prod-item.open .prod-item-chevron{transform:rotate(180deg)}
+.prod-item-body{display:none;padding:4px 18px 18px}
+.prod-item.open .prod-item-body{display:block}
+.fittings-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:8px;margin-top:10px}
+.fitting-chip{background:var(--warm-white);border:1px solid var(--sand-light);border-radius:8px;padding:8px 10px;font-size:12px;color:var(--text-secondary);text-align:center}
+.compare-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:12px}
+.compare-table th{background:var(--brown-deep);color:var(--cream);padding:7px 10px;text-align:left;font-size:11px;font-weight:500}
+.compare-table td{padding:6px 10px;border-bottom:1px solid var(--sand-light);color:var(--text-secondary);font-size:12px}
+.compare-table tr:nth-child(even) td{background:var(--sand-light)}
+footer{background:#1E0F08;padding:22px 5%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+footer p{font-size:13px;color:var(--brown-light)}
+.whatsapp-float{position:fixed;bottom:26px;right:26px;width:52px;height:52px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:999;transition:transform .2s;text-decoration:none}
+.whatsapp-float:hover{transform:scale(1.08)}
+.whatsapp-float svg{width:26px;height:26px}
+@media(max-width:768px){.product-info-grid{grid-template-columns:1fr}.brand-hero{flex-direction:column;gap:14px;padding:28px 5%}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Market<span>Movers</span></a>
+  <a href="index.html" class="nav-back">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0"><path d="M10 4L6 8l4 4"/></svg>
+    Back to all brands
+  </a>
+</nav>
+
+<div class="brand-hero">
+  <div class="brand-logo-box">TEX<br>MO</div>
+  <div class="brand-hero-text">
+    <h1>Texmo <span>Pipes &amp; Products</span></h1>
+    <p>Listed Manufacturer — Burhanpur, Madhya Pradesh | Est. 1988</p>
+    <div class="brand-hero-badges">
+      <span class="hero-badge">BIS / ISI Certified</span>
+      <span class="hero-badge">IS &amp; ASTM Standards</span>
+      <span class="hero-badge">BSE &amp; NSE Listed</span>
+      <span class="hero-badge">Made in MP</span>
+      <span class="hero-badge">Available at Market Movers, Jabalpur</span>
+    </div>
+  </div>
+</div>
+
+<div class="product-lines-section">
+  <p class="section-label">Product Range</p>
+  <p class="section-title">Choose a Product Line</p>
+  <div class="carousel-wrapper">
+    <button class="carousel-arrow hidden" id="arrowLeft" onclick="scrollCarousel(-1)">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 4L6 8l4 4"/></svg>
+    </button>
+    <div class="product-lines-scroll" id="plScroll">
+      <div class="product-line-card active" onclick="selectLine('cpvc',this)"><span class="pl-icon">🔴</span><div class="pl-industry">CPVC Pipes &amp; Fittings</div><div class="pl-brand">AQUA TEMPº Guard</div><span class="pl-badge">Hot &amp; Cold Water</span></div>
+      <div class="product-line-card" onclick="selectLine('upvc',this)"><span class="pl-icon">🔵</span><div class="pl-industry">uPVC Plumbing System</div><div class="pl-brand">Texmo Plumbing</div><span class="pl-badge">ASTM SCH 40/80</span></div>
+      <div class="product-line-card" onclick="selectLine('swr',this)"><span class="pl-icon">🟢</span><div class="pl-industry">SWR Drainage System</div><div class="pl-brand">Texmo SWR</div><span class="pl-badge">IS 13592</span></div>
+      <div class="product-line-card" onclick="selectLine('agri',this)"><span class="pl-icon">🌾</span><div class="pl-industry">Rigid PVC Agriculture</div><div class="pl-brand">Texmo Agri</div><span class="pl-badge">IS 4985</span></div>
+      <div class="product-line-card" onclick="selectLine('fittings',this)"><span class="pl-icon">🔧</span><div class="pl-industry">Agriculture Fittings</div><div class="pl-brand">Texmo Fittings</div><span class="pl-badge">IS 7834</span></div>
+      <div class="product-line-card" onclick="selectLine('column',this)"><span class="pl-icon">🔩</span><div class="pl-industry">Column Pipes</div><div class="pl-brand">Texmo Column</div><span class="pl-badge">Submersible</span></div>
+      <div class="product-line-card" onclick="selectLine('casing',this)"><span class="pl-icon">⚙️</span><div class="pl-industry">Casing Pipes</div><div class="pl-brand">Texmo Bore</div><span class="pl-badge">IS 12818</span></div>
+      <div class="product-line-card" onclick="selectLine('hdpe',this)"><span class="pl-icon">🟤</span><div class="pl-industry">HDPE Coils &amp; Pipes</div><div class="pl-brand">Texmo HDPE</div><span class="pl-badge">IS 4984</span></div>
+      <div class="product-line-card" onclick="selectLine('suction',this)"><span class="pl-icon">🌀</span><div class="pl-industry">Suction Hose Pipes</div><div class="pl-brand">Texmo Suction</div><span class="pl-badge">IS 15265</span></div>
+      <div class="product-line-card" onclick="selectLine('garden',this)"><span class="pl-icon">💧</span><div class="pl-industry">Garden Hose Pipes</div><div class="pl-brand">Texmo Garden</div><span class="pl-badge">Flexible</span></div>
+      <div class="product-line-card" onclick="selectLine('drip',this)"><span class="pl-icon">🌿</span><div class="pl-industry">Drip Irrigation System</div><div class="pl-brand">Texmo Drip</div><span class="pl-badge">IS 12786</span></div>
+      <div class="product-line-card" onclick="selectLine('sprinkler',this)"><span class="pl-icon">🌦️</span><div class="pl-industry">Sprinkler Pipes &amp; Fittings</div><div class="pl-brand">Texmo Sprinkler</div><span class="pl-badge">IS 17425</span></div>
+      <div class="product-line-card" onclick="selectLine('gas',this)"><span class="pl-icon">🔥</span><div class="pl-industry">Gaseous Fuels Pipes &amp; Coils</div><div class="pl-brand">Texmo Gas</div><span class="pl-badge">IS 14885</span></div>
+      <div class="product-line-card" onclick="selectLine('plb',this)"><span class="pl-icon">📡</span><div class="pl-industry">PLB HDPE Ducts</div><div class="pl-brand">Texmo PLB</div><span class="pl-badge">Telecom</span></div>
+      <div class="product-line-card" onclick="selectLine('tanks',this)"><span class="pl-icon">🏺</span><div class="pl-industry">Water Storage Tanks</div><div class="pl-brand">Texmo Tanks</div><span class="pl-badge">Blow &amp; Roto</span></div>
+    </div>
+    <button class="carousel-arrow" id="arrowRight" onclick="scrollCarousel(1)">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 4l4 4-4 4"/></svg>
+    </button>
+  </div>
+</div>
+
+<div class="product-detail">
+
+<!-- ═══ CPVC ═══ -->
+<div class="detail-panel active" id="panel-cpvc">
+  <div class="info-tabs-bar">
+    <button class="info-tab-btn active" onclick="switchInfoTab(this,'cpvc-desc')">Description</button>
+    <button class="info-tab-btn" onclick="switchInfoTab(this,'cpvc-feat')">Key Features</button>
+    <button class="info-tab-btn" onclick="switchInfoTab(this,'cpvc-spec')">Specifications</button>
+    <button class="info-tab-btn" onclick="switchInfoTab(this,'cpvc-app')">Applications</button>
+  </div>
+  <div class="info-tab-content active" id="cpvc-desc">
+    <div class="product-info-grid"><div class="product-hero-img"><img src="https://texmopipe.com/wp-content/uploads/2025/09/CPVC-Pipe-2.png" alt="panel-cpvc" loading="lazy"></div>
+      <div class="info-content">
+        <h2>Texmo CPVC AQUA TEMPº Guard</h2>
+        <p>Texmo CPVC Plumbing Pipes &amp; Fittings are manufactured under strict quality control conforming to IS-15778 (Pipes) and ASTM-D-2846 (Fittings). Pipes produced in SDR 11 &amp; 13.5, fittings in SDR 11. Capable of conveying hot water up to 100°C with no change in physical condition. The right choice over copper, GI or any other plastic system. Over 50 years of trouble-free performance.</p>
+        <div class="features-grid"><div class="feature-chip">Hot Water up to 100°C</div><div class="feature-chip">IS 15778 &amp; ASTM Certified</div><div class="feature-chip">Corrosion Resistant</div><div class="feature-chip">Fire Safe — LOI 60</div><div class="feature-chip">Lead Free</div><div class="feature-chip">Energy Efficient</div><div class="feature-chip">Leak Proof</div><div class="feature-chip">50+ Year Life</div></div>
+        <a href="https://texmopipe.com/wp-content/uploads/2025/10/CPVC-PIPES-AND-FITTINGS-1.pdf" target="_blank" class="download-btn"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v8M5 7l3 3 3-3M3 13h10"/></svg>Download PDF Catalogue</a>
+      </div>
+    </div>
+  </div>
+  <div class="info-tab-content" id="cpvc-feat"><div class="info-content"><h2>Key Features</h2><ul class="info-list"><li>Hot &amp; Cold water compatible — withstands temperatures up to 100°C</li><li>Unaffected by chlorine in potable water supply</li><li>Excellent chemical resistance to strong mineral acids and bases</li><li>Limiting Oxygen Index (LOI) of 60 — does not support combustion in air</li><li>Superior insulation — no heat loss or thermal expansion</li><li>Over 50 years of trouble-free performance</li><li>Easy cold welding process using solvent cement — simple and inexpensive</li><li>WHO accepted and recommended for water applications</li></ul></div></div>
+  <div class="info-tab-content" id="cpvc-spec"><div class="info-content"><h2>Specifications</h2>
+    <div class="table-scroll"><table class="spec-table"><tr><th>Parameter</th><th>SDR 11</th><th>SDR 13.5</th><th>SCH 40 / SCH 80</th></tr><tr><td>Pipe Standard</td><td colspan="2">IS 15778 / ASTM D-2846</td><td>ASTM F441</td></tr><tr><td>Fitting Standard</td><td colspan="3">ASTM D-2846 (SDR 11) / ASTM F439 (SCH 80)</td></tr><tr><td>Sizes</td><td colspan="2">½" to 2" (CTS)</td><td>2" to 6"</td></tr><tr><td>Pressure @23°C</td><td>400 psi (28.1 kg/cm²)</td><td>320 psi (22.5 kg/cm²)</td><td>—</td></tr><tr><td>Pressure @82°C</td><td>100 psi (7 kg/cm²)</td><td>80 psi (5.6 kg/cm²)</td><td>—</td></tr><tr><td>Colour</td><td colspan="3">Tan / Cream</td></tr><tr><td>Joint Type</td><td colspan="3">Solvent cement (cold welding)</td></tr></table></div>
+  </div></div>
+  <div class="info-tab-content" id="cpvc-app"><div class="info-content"><h2>Applications</h2><ul class="info-list"><li>High rise residential complexes, societies — bathrooms, kitchens, sinks and water distribution</li><li>Hotels, office complexes and commercial buildings</li><li>Industrial — transportation of chemicals &amp; gases, milk in dairies, laboratories</li><li>Villas, farm-houses and individual homes</li><li>Solar water heaters and geysers</li></ul></div></div>
+
+  <p class="prod-section-title">Product Details</p>
+  <div class="prod-tabs-bar">
+    <button class="prod-tab-btn active" onclick="switchProdTab(this,'cpvc-pipes')">Pipes</button>
+    <button class="prod-tab-btn" onclick="switchProdTab(this,'cpvc-fittings')">Fittings</button>
+    <button class="prod-tab-btn" onclick="switchProdTab(this,'cpvc-solvent')">Solvent Cement</button>
+  </div>
+  <div class="prod-tab-content active" id="cpvc-pipes">
+    <div class="prod-item"><div class="prod-item-header" onclick="toggleItem(this)"><div class="prod-item-icon">🔴</div><div><div class="prod-item-name">CPVC Pipes — SDR 11 &amp; SDR 13.5 (CTS)</div><div class="prod-item-std">IS 15778 / ASTM D-2846 | ½" to 2" | Tan colour</div></div><svg class="prod-item-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg></div>
+      <div class="prod-item-body"><p style="font-size:13px;color:var(--text-secondary);margin-bottom:8px"><strong>SDR 11:</strong> 400 psi @ 23°C / 100 psi @ 82°C</p><p style="font-size:13px;color:var(--text-secondary);margin-bottom:8px"><strong>SDR 13.5:</strong> 320 psi @ 23°C / 80 psi @ 82°C</p><p style="font-size:13px;color:var(--text-secondary)"><strong>Sizes:</strong> ½" (15mm), ¾" (20mm), 1" (25mm), 1¼" (32mm), 1½" (40mm), 2" (50mm)</p></div>
+    </div>
+    <div class="prod-item"><div class="prod-item-header" onclick="toggleItem(this)"><div class="prod-item-icon">🔴</div><div><div class="prod-item-name">CPVC Pipes — SCH 40 &amp; SCH 80</div><div class="prod-item-std">ASTM F441 | 2" to 6" | Higher sizes</div></div><svg class="prod-item-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg></div>
+      <div class="prod-item-body"><p style="font-size:13px;color:var(--text-secondary)"><strong>Sizes:</strong> 2½" (65mm), 3" (80mm), 4" (100mm), 6" (150mm)<br>Fittings: SCH 80 per ASTM F439. Used for larger diameter CPVC hot &amp; cold water systems.</p></div>
+    </div>
+  </div>
+  <div class="prod-tab-content" id="cpvc-fittings">
+    <div class="prod-item"><div class="prod-item-header" onclick="toggleItem(this)"><div class="prod-item-icon">🔧</div><div><div class="prod-item-name">CPVC Fittings — Full Range (SDR 11)</div><div class="prod-item-std">ASTM D-2846 | 16mm to 2" (CTS) | SCH 80: 2½"–4" per ASTM F439</div></div><svg class="prod-item-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg></div>
+      <div class="prod-item-body">
+        <div class="fittings-grid"><div class="fitting-chip">Coupler</div><div class="fitting-chip">Elbow 90°</div><div class="fitting-chip">Elbow 90° – Brass Insert</div><div class="fitting-chip">Elbow 45°</div><div class="fitting-chip">Tee</div><div class="fitting-chip">Cross Tee</div><div class="fitting-chip">Tee – Brass Insert</div><div class="fitting-chip">End Cap</div><div class="fitting-chip">M.T.A. – Brass Insert</div><div class="fitting-chip">F.T.A. – Brass Insert</div><div class="fitting-chip">Union</div><div class="fitting-chip">Reducer Bush</div><div class="fitting-chip">Reducing Tee</div><div class="fitting-chip">Reducing Elbow</div><div class="fitting-chip">Ball Valve</div><div class="fitting-chip">Step Over Bend</div><div class="fitting-chip">Tank Nipple</div><div class="fitting-chip">Pipe Clip</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="prod-tab-content" id="cpvc-solvent">
+    <div class="prod-item"><div class="prod-item-header" onclick="toggleItem(this)"><div class="prod-item-icon">🧴</div><div><div class="prod-item-name">CPVC Solvent Cement</div><div class="prod-item-std">Specially formulated for CPVC hot &amp; cold water systems</div></div><svg class="prod-item-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg></div>
+      <div class="prod-item-body"><p style="font-size:13px;color:var(--text-secondary)">Heavy duty CPVC solvent cement (joints tested up to 35 kg/cm²). Ensures fast, strong, cold-welded joints for CPVC pipe and fitting connections.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ uPVC PLUMBING ═══ -->
+<div class="detail-panel" id="panel-upvc">
+  <div class="info-tabs-bar">
+    <button class="info-tab-btn active" onclick="switchInfoTab(this,'upvc-desc')">Description</button>
+    <button class="info-tab-btn" onclick="switchInfoTab(this,'upvc-feat')">Key Features</button>
+    <button class="info-tab-btn" onclick="switchInfoTab(this,'upvc-spec')">Specifications</button>
+    <button class="info-tab-btn" onclick="switchInfoTab(this,'upvc-join')">Jointing Procedure</button>
+    <button class="info-tab-btn" onclick="switchInfoTab(this,'upvc-app')">Applications</button>
+  </div>
+  <div class="info-tab-content active" id="upvc-desc">
+    <div class="product-info-grid"><div class="product-hero-img"><img src="https://texmopipe.com/wp-content/uploads/2025/09/UPVC-Pipes-Fittings.png" alt="panel-upvc" loading="lazy"></div>
+      <div class="info-content">
+        <h2>Texmo uPVC Plumbing System</h2>
+        <p>Texmo Solvent Joint Plumbing System for cold water conveyance up to 60°C. Made from PVC compound with specified quantity of chemical stabilisers and additives for extrusion. Manufactured as per ASTM standards. Available in SCH 40 and SCH 80, in 3 and 6 metre lengths with plain or threaded ends, in sizes up to 4". WHO accepted for water applications.</p>
+        <div class="features-grid"><div class="feature-chip">ASTM D 1785 Certified</div><div class="feature-chip">SCH 40 &amp; SCH 80</div><div class="feature-chip">Blue &amp; White UV Stabilized</div><div class="feature-chip">Up to 60°C</div><div class="feature-chip">Lead Free</div><div class="feature-chip">Corrosion Resistant</div><div class="feature-chip">3 &amp; 6 Metre Lengths</div><div class="feature-chip">WHO Approved</div></div>
+        <a href="https://texmopipe.com/wp-content/uploads/2025/10/UPVC-PIPES-AND-FITTINGS.pdf" target="_blank" class="download-btn"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v8M5 7l3 3 3-3M3 13h10"/></svg>Download PDF Catalogue</a>
+      </div>
+    </div>
+  </div>
+  <div class="info-tab-content" id="upvc-feat"><div class="info-content"><h2>Key Features</h2><ul class="info-list"><li>Strong and durable — strong, impact-resistant, unaffected by weather conditions</li><li>Light weight — easy to handle, transport and install</li><li>Convenient for jointing — simple and inexpensive tools required</li><li>Better flow characteristic — smooth internal surface, rust proof, no deposit formation</li><li>Leak proof — close dimensional tolerance and precise design</li><li>Energy saving — smooth surface = low frictional loss = lower power consumption</li><li>Resistant to moisture, corrosion, chemicals, abrasion and wearing</li><li>UV stabilized — blue and white colour</li></ul></div></div>
+  <div class="info-tab-content" id="upvc-spec"><div class="info-content"><h2>Specifications</h2>
+    <div class="table-scroll"><table class="spec-table"><tr><th>Parameter</th><th>Detail</th></tr><tr><td>Pipe Standard</td><td>ASTM D 1785</td></tr><tr><td>Pressure Class</td><td>Pipes: SCH 40 &amp; SCH 80 | Fittings: SCH 80</td></tr><tr><td>Standard Lengths</td><td>3 metres and 6 metres</td></tr><tr><td>End Types</td><td>Plain ends and threaded ends</td></tr><tr><td>Size Range</td><td>½" to 4" (pipes and fittings)</td></tr><tr><td>Colour</td><td>Blue and White with UV stabilization</td></tr><tr><td>Material</td><td>PVC Compound</td></tr><tr><td>Solvent Cement</td><td>Heavy Duty (joints tested up to 35 kg/cm²)</td></tr><tr><td>Max Temperature</td><td>60°C continuous service</td></tr></table></div>
+  </div></div>
+  <div class="info-tab-content" id="upvc-join"><div class="info-content"><h2>Jointing Procedure</h2><ul class="info-list"><li><strong>Cut:</strong> Cut pipe square using a cutter; de-burr the cut end. Ensure clean, right-angle cuts.</li><li><strong>Clean:</strong> Clean and dry the pipe and fitting surfaces before jointing.</li><li><strong>Scrub:</strong> Scrub the OD of the pipe and ID of fitting with sandpaper and wipe clean with cloth.</li><li><strong>Apply Solvent Cement:</strong> Apply gently and uniformly to scrubbed fitting ID and pipe OD. Apply second coat to pipe OD. Avoid excess cement.</li><li><strong>Assemble:</strong> Within 20 seconds, insert pipe OD into fitting ID and give a quarter turn for uniform distribution. Hold tightly for 15 secs to 3 min depending on size.</li><li><strong>Cure:</strong> Allow minimum 12 hours curing per joint before pressure testing. Longer for cold temperatures.</li><li><strong>Pressure Test:</strong> Must be carried out before concealing pipes.</li></ul></div></div>
+  <div class="info-tab-content" id="upvc-app"><div class="info-content"><h2>Applications</h2><ul class="info-list"><li>High rise buildings and residential complexes — cold water plumbing</li><li>Hotels, hospitals, offices and commercial buildings</li><li>Industrial water distribution systems</li><li>Potable water supply systems</li></ul></div></div>
+
+  <p class="prod-section-title">Product Details</p>
+  <div class="prod-tabs-bar">
+    <button class="prod-tab-btn active" onclick="switchProdTab(this,'upvc-pipes')">Pipes</button>
+    <button class="prod-tab-btn" onclick="switchProdTab(this,'upvc-fittings')">Fittings (SCH 80)</button>
+    <button class="prod-tab-btn" onclick="switchProdTab(this,'upvc-solvent')">Solvent Cement</button>
+  </div>
+  <div class="prod-tab-content active" id="upvc-pipes">
+    <div class="prod-item"><div class="prod-item-header" onclick="toggleItem(this)"><div class="prod-item-icon">🔵</div><div><div class="prod-item-name">uPVC Plumbing Pipes — SCH 40 &amp; SCH 80</div><div class="prod-item-std">ASTM D 1785 | ½" to 4" | 3 &amp; 6 mtr lengths</div></div><svg class="prod-item-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg></div>
+      <div class="prod-item-body">
+        <div class="table-scroll"><table class="spec-table"><tr><th>Size (in.)</th><th>Size (mm)</th><th>SCH 40 OD (mm)</th><th>SCH 40 Pressure</th><th>SCH 80 Pressure</th></tr><tr><td>½"</td><td>15</td><td>21.3</td><td>41.4 kg/cm²</td><td>58.6 kg/cm²</td></tr><tr><td>¾"</td><td>20</td><td>26.7</td><td>33.1 kg/cm²</td><td>47.6 kg/cm²</td></tr><tr><td>1"</td><td>25</td><td>33.4</td><td>31.1 kg/cm²</td><td>43.4 kg/cm²</td></tr><tr><td>1¼"</td><td>32</td><td>42.2</td><td>25.5 kg/cm²</td><td>35.9 kg/cm²</td></tr><tr><td>1½"</td><td>40</td><td>48.3</td><td>22.8 kg/cm²</td><td>32.4 kg/cm²</td></tr><tr><td>2"</td><td>50</td><td>60.3</td><td>19.3 kg/cm²</td><td>27.6 kg/cm²</td></tr><tr><td>2½"</td><td>65</td><td>73.0</td><td>20.7 kg/cm²</td><td>29.0 kg/cm²</td></tr><tr><td>3"</td><td>80</td><td>88.9</td><td>17.9 kg/cm²</td><td>25.5 kg/cm²</td></tr><tr><td>4"</td><td>100</td><td>114.3</td><td>15.2 kg/cm²</td><td>22.1 kg/cm²</td></tr></table></div>
+        <p style="font-size:12px;color:var(--text-muted);margin-top:8px">Blue and White colour with UV stabilisation. Available in plain or threaded ends.</p>
+      </div>
+    </div>
+  </div>
+  <div class="prod-tab-content" id="upvc-fittings">
+    <div class="prod-item"><div class="prod-item-header" onclick="toggleItem(this)"><div class="prod-item-icon">🔧</div><div><div class="prod-item-name">uPVC Plumbing Fittings — SCH 80</div><div class="prod-item-std">ASTM D 2467 | ½" to 4"</div></div><svg class="prod-item-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg></div>
+      <div class="prod-item-body">
+        <div class="fittings-grid"><div class="fitting-chip">Coupler</div><div class="fitting-chip">Elbow 90° (Plain/Threaded)</div><div class="fitting-chip">Elbow 90° – Brass Insert</div><div class="fitting-chip">Elbow 45°</div><div class="fitting-chip">Tee (Plain/Threaded)</div><div class="fitting-chip">Cross Tee</div><div class="fitting-chip">End Cap</div><div class="fitting-chip">Threaded End Plug</div><div class="fitting-chip">M.T.A. – Brass Insert</div><div class="fitting-chip">F.T.A.</div><div class="fitting-chip">Union</div><div class="fitting-chip">Step Over Bend</div><div class="fitting-chip">Tank Nipple</div><div class="fitting-chip">Tank Nipple – Socket End</div><div class="fitting-chip">Pipe Clip</div><div class="fitting-chip">Ball Valve</div><div class="fitting-chip">Reducing Bush</div><div class="fitting-chip">Reducing Tee</div><div class="fitting-chip">Reducer</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="prod-tab-content" id="upvc-solvent">
+    <div class="prod-item"><div class="prod-item-header" onclick="toggleItem(this)"><div class="prod-item-icon">🧴</div><div><div class="prod-item-name">Heavy Duty uPVC Solvent Cement</div><div class="prod-item-std">Joints tested up to 35 kg/cm²</div></div><svg class="prod-item-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg></div>
+      <div class="prod-item-body"><p style="font-size:13px;color:var(--text-secondary)">Heavy duty solvent cement for Texmo uPVC plumbing pipes and fittings. A colourless solution produced by dissolving suspension grade PVC resin with ketonic solvents. Joints tested up to 35 kg/cm². Also available: Texmo Solvent Cement for agriculture pipes conforming to ASTM D-2564.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SWR ═══ -->
+<div class="detail-panel" id="panel-swr">
+  <div class="info-tabs-bar">
+    <button class="info-tab-btn active" onclick="switchInfoTab(this,'swr-desc')">Description</button>
+    <button class="info-tab-btn" onclick="switchInfoTab(this,'swr-feat')">Key Features</button>
+    <button class="info-tab-btn" onclick="switchInfoTab(this,'swr-spec')">Specifications</button>
+    <button class="info-tab-btn" onclick="switchInfoTab(this,'swr-compare')">Comparison</button>
+    <button class="info-tab-btn" onclick="switchInfoTab(this,'swr-app')">Applications</button>
+  </div>
+  <div class="info-tab-content active" id="swr-desc">
+    <div class="product-info-grid"><div class="product-hero-img"><img src="https://texmopipe.com/wp-content/uploads/2025/09/SWR-Pipes-Fittings.png" alt="panel-swr" loading="lazy"></div>
+      <div class="info-content">
+        <h2>Texmo SWR Pipes &amp; Fittings</h2>
+        <p>Texmo SWR Pipes &amp; Fittings are manufactured under strict quality control conforming to IS-13592 and IS-15328 (Pipes) and IS-14735 (Fittings). Available in Solfit Socket (solvent cement, 40–160mm) and Pushfit Socket (rubber ring, 75–160mm). Preferred for drainage in homes, offices, hotels, commercial complexes, chemical plants, power plants and public areas. Pipes rated for 50+ years life with UV stabilisers.</p>
+        <div class="features-grid"><div class="feature-chip">IS 13592 Certified</div><div class="feature-chip">IS 15328 (Sewerage)</div><div class="feature-chip">IS 14735 Fittings</div><div class="feature-chip">Solfit &amp; Pushfit</div><div class="feature-chip">40mm to 160mm</div><div class="feature-chip">50+ Year Life</div><div class="feature-chip">UV Stabilized</div><div class="feature-chip">Fire Resistant</div></div>
+        <a href="https://texmopipe.com/wp-content/uploads/2025/10/SWR-PIPES-AND-FITTINGS.pdf" target="_blank" class="download-btn"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v8M5 7l3 3 3-3M3 13h10"/></svg>Download PDF Catalogue</a>
+      </div>
+    </div>
+  </div>
+  <div class="info-tab-content" id="swr-feat"><div class="info-content"><h2>Key Features</h2><ul class="info-list"><li>Strong and durable — unaffected by weather, termites, bacteria and fungi</li><li>Easy to handle and join — lightweight construction</li><li>Better flow characteristic — smooth internal surface ensures unobstructed flow</li><li>Energy saving — low frictional loss reduces pump power consumption</li><li>Leak proof — precision design prevents any leakage</li><li>Safe — fire resistant and non-conductive</li><li>Resistant to rust, UV radiation and most chemicals</li><li>Economical and maintenance free — no rusting or environmental damage</li><li>Self-coloured — no need for painting</li><li>50+ year durability with UV stabilisers</li></ul></div></div>
+  <div class="info-tab-content" id="swr-spec"><div class="info-content"><h2>Specifications</h2><ul class="info-list"><li><strong>Pipe Standard:</strong> IS 13592 (SWR) &amp; IS 15328 (Sewerage)</li><li><strong>Fittings Standard:</strong> IS 14735</li><li><strong>Solfit Socket:</strong> 40mm to 160mm — solvent cement joint</li><li><strong>Pushfit Socket:</strong> 75mm, 90mm, 110mm, 160mm — rubber ring joint</li><li><strong>Fittings (Solfit &amp; Pushfit):</strong> 40mm to 200mm</li><li><strong>Lengths:</strong> 3 metres and 6 metres</li></ul></div></div>
+  <div class="info-tab-content" id="swr-compare"><div class="info-content"><h2>Comparison with Alternative Materials</h2>
+    <div class="table-scroll"><table class="compare-table"><tr><th>Particulars</th><th>Texmo SWR</th><th>Cast Iron</th><th>Asbestos Cement</th></tr><tr><td>Durability</td><td>50 years (UV stabilized)</td><td>20 years</td><td>No guarantee</td></tr><tr><td>Chemical Resistance</td><td>Excellent</td><td>Gets oxidized</td><td>Moderate</td></tr><tr><td>Fungus Growth</td><td>Does not support</td><td>Supports</td><td>Supports</td></tr><tr><td>Labour</td><td>Less labour</td><td>More labour</td><td>More labour</td></tr><tr><td>Maintenance</td><td>Easy to inspect/open</td><td>Difficult</td><td>Difficult</td></tr><tr><td>Fire Resistance</td><td>Fire resistant</td><td>Fire retardant</td><td>Fire retardant</td></tr><tr><td>Aesthetics</td><td>Far superior</td><td>Not aesthetic</td><td>Not aesthetic</td></tr></table></div>
+  </div></div>
+  <div class="info-tab-content" id="swr-app"><div class="info-content"><h2>Applications</h2><ul class="info-list"><li>Domestic — homes, offices, hotels, residential and commercial buildings, hospitals</li><li>Industrial — chemical plants, power plants, chemical waste and overflow lines</li><li>Public — airports, railway stations, bus stands, hospitals, drainage systems</li><li>Vent lines and rainwater harvesting systems</li></ul></div></div>
+
+  <p class="prod-section-title">Product Details</p>
+  <div class="prod-tabs-bar">
+    <button class="prod-tab-btn active" onclick="switchProdTab(this,'swr-pipes')">Pipes</button>
+    <button class="prod-tab-btn" onclick="switchProdTab(this,'swr-fittings')">Fittings</button>
+    <button class="prod-tab-btn" onclick="switchProdTab(this,'swr-lubricant')">Rubber Lubricant</button>
+  </div>
+  <div class="prod-tab-content active" id="swr-pipes">
+    <div class="prod-item"><div class="prod-item-header" onclick="toggleItem(this)"><div class="prod-item-icon">🟢</div><div><div class="prod-item-name">SWR Solfit Socket Pipes</div><div class="prod-item-std">IS 13592 | Solvent cement joint | 40mm to 160mm</div></div><svg class="prod-item-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg></div>
+      <div class="prod-item-body"><p style="font-size:13px;color:var(--text-secondary);margin-bottom:8px">Bell type socket at one end. Joined using Texmo SWR Solvent Cement.</p><p style="font-size:13px;color:var(--text-secondary)"><strong>Sizes:</strong> 40mm, 75mm, 90mm, 110mm, 160mm | <strong>Lengths:</strong> 3 mtr &amp; 6 mtr<br>Pipes with ring type sockets at both ends also available on request.</p></div>
+    </div>
+    <div class="prod-item"><div class="prod-item-header" onclick="toggleItem(this)"><div class="prod-item-icon">🟢</div><div><div class="prod-item-name">SWR Pushfit Socket Pipes</div><div class="prod-item-std">IS 13592 | Rubber ring joint | 75mm to 160mm</div></div><svg class="prod-item-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg></div>
+      <div class="prod-item-body"><p style="font-size:13px;color:var(--text-secondary);margin-bottom:8px">Bell type socket at one end with pre-fitted rubber ring. No solvent cement required — push spigot into socket. Use Texmo Rubber Lubricant for easy insertion.</p><p style="font-size:13px;color:var(--text-secondary)"><strong>Sizes:</strong> 75mm, 90mm, 110mm, 160mm | <strong>Lengths:</strong> 3 mtr &amp; 6 mtr</p></div>
+    </div>
+  </div>
+  <div class="prod-tab-content" id="swr-fittings">
+    <div class="prod-item"><div class="prod-item-header" onclick="toggleItem(this)"><div class="prod-item-icon">🔧</div><div><div class="prod-item-name">SWR Fittings — Solfit &amp; Pushfit</div><div class="prod-item-std">IS 14735 | 40mm to 200mm</div></div><svg class="prod-item-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg></div>
+      <div class="prod-item-body">
+        <p style="font-size:13px;color:var(--text-secondary);margin-bottom:10px">Available in both Solfit (solvent cement) and Pushfit (rubber ring) socket types, 40mm to 200mm per IS 14735:</p>
+        <div class="fittings-grid"><div class="fitting-chip">Coupler</div><div class="fitting-chip">Bend 87.5°</div><div class="fitting-chip">Bend 45°</div><div class="fitting-chip">Bend – Double Socket</div><div class="fitting-chip">Tee – Plain</div><div class="fitting-chip">Tee – Door</div><div class="fitting-chip">Cross Tee</div><div class="fitting-chip">Cleaning Pipe</div><div class="fitting-chip">Reducing Bush</div><div class="fitting-chip">Single Y – Plain</div><div class="fitting-chip">Single Y – Door</div><div class="fitting-chip">Equal Y – Plain</div><div class="fitting-chip">Double Y – Plain</div><div class="fitting-chip">Double Y – Door</div><div class="fitting-chip">Reducing Y</div><div class="fitting-chip">Swept Tee – Door</div><div class="fitting-chip">Gully Trap</div><div class="fitting-chip">Nahani Trap</div><div class="fitting-chip">Multi Floor Trap</div><div class="fitting-chip">P / Q Trap</div><div class="fitting-chip">Vent Cowl</div><div class="fitting-chip">WC Connector</div><div class="fitting-chip">Height Raiser</div><div class="fitting-chip">Pipe Clip</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="prod-tab-content" id="swr-lubricant">
+    <div class="prod-item"><div class="prod-item-header" onclick="toggleItem(this)"><div class="prod-item-icon">🧴</div><div><div class="prod-item-name">Rubber Lubricant</div><div class="prod-item-std">For Pushfit SWR pipe jointing</div></div><svg class="prod-item-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg></div>
+      <div class="prod-item-body"><p style="font-size:13px;color:var(--text-secondary)">Applied to rubber ring and spigot end before pushing Pushfit SWR joints together. Ensures easy insertion, protects rubber rings and guarantees a leak-proof seal. Also used for Ringfit agriculture pipes.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ RIGID PVC / AGRI ═══ -->
+<div class="detail-panel" id="panel-agri">
+  <div class="info-tabs-bar">
+    <button class="info-tab-btn active" onclick="switchInfoTab(this,'agri-desc')">Description</button>
+    <button class="info-tab-btn" onclick="switchInfoTab(this,'agri-feat')">Key Features</button>
+    <button class="info-tab-btn" onclick="switchInfoTab(this,'agri-compare')">Comparison</button>
+    <button class="info-tab-btn" onclick="switchInfoTab(this,'agri-app')">Applications</button>
+  </div>
+  <div class="info-tab-content active" id="agri-desc">
+    <div class="product-info-grid"><div class="product-hero-img"><img src="https://texmopipe.com/wp-content/uploads/2025/09/Texmo-Rigid-PVC-Pipes.png" alt="panel-agri" loading="lazy"></div>
+      <div class="info-content">
+        <h2>Texmo Rigid PVC Agriculture Pipes</h2>
+        <p>Texmo Rigid PVC Pipes are manufactured under strict quality control conforming to IS-4985:2021. Preferred for irrigation in agriculture, potable water supply, chemical effluent disposal, acid and slurry transportation, and telecommunication cable ducting. Smooth internal surface gives 25% more flow than GI pipes and provides constant full flow from the initial stage.</p>
+        <div class="features-grid"><div class="feature-chip">IS 4985:2021 Certified</div><div class="feature-chip">25% More Flow vs GI</div><div class="feature-chip">6 Metre Lengths</div><div class="feature-chip">Rust Proof</div><div class="feature-chip">Self-Extinguishing</div><div class="feature-chip">Termite Proof</div><div class="feature-chip">UV Resistant</div><div class="feature-chip">Maintenance Free</div></div>
+        <a href="https://texmopipe.com/projects/texmo-rigid-pvc-pipes/" target="_blank" class="download-btn secondary"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v9M2 14h12"/></svg>View Product Page</a>
+      </div>
+    </div>
+  </div>
+  <div class="info-tab-content" id="agri-feat"><div class="info-content"><h2>Key Features</h2><ul class="info-list"><li>Strong and durable — impact-resistant, unaffected by weather conditions</li><li>Light weight — easy to handle, transport and install even on difficult terrain</li><li>Leak proof — precision design, completely free from leaks</li><li>Better flow characteristic — no deposit formation = constant flow</li><li>Energy saving — smooth internal surface = low frictional loss</li><li>Resistant to fire — self-extinguishing with good thermal and electric insulation</li><li>Termite proof and UV resistant — resistant to moisture, corrosion, chemicals, abrasion</li><li>Available in 6 metre lengths — fewer joints and couplers needed, more economical</li><li>Rust proof — long-lasting, uniform flow permanently</li></ul></div></div>
+  <div class="info-tab-content" id="agri-compare"><div class="info-content"><h2>Comparison with Conventional Pipe Materials</h2>
+    <div class="table-scroll"><table class="compare-table"><tr><th>Property</th><th>Texmo PVC</th><th>Galvanized</th><th>AC Pipe</th><th>Cast Iron</th></tr><tr><td>Weight</td><td>Light</td><td>Heavy</td><td>Heavy</td><td>Very Heavy</td></tr><tr><td>Surface</td><td>Very Smooth</td><td>Rough</td><td>Light Rough</td><td>Rough</td></tr><tr><td>Length</td><td>6 Metre</td><td>5–6 Metre</td><td>3–4 Metre</td><td>3–4 Metre</td></tr><tr><td>Rust</td><td>Rust Proof</td><td>Gets rusted</td><td>No rust</td><td>Rapid rust</td></tr><tr><td>Flow</td><td>25% more, constant</td><td>Reduces over time</td><td>40% more initially</td><td>Reduces 40–50%</td></tr><tr><td>Joints</td><td>Easy, quick, leakproof</td><td>Threading required</td><td>Easy</td><td>Laborious</td></tr></table></div>
+  </div></div>
+  <div class="info-tab-content" id="agri-app"><div class="info-content"><h2>Applications</h2><ul class="info-list"><li>Agriculture — irrigation schemes for farms</li><li>Domestic — potable water supply in urban areas</li><li>Industrial — disposal of chemical effluent waste, acid &amp; slurry transportation, salt water handling</li><li>Gas, natural gas distribution and oil distribution lines</li><li>Telecommunication cable ducting</li></ul></div></div>
+
+  <p class="prod-section-title">Product Details</p>
+  <div class="prod-tabs-bar">
+    <button class="prod-tab-btn active" onclick="switchProdTab(this,'agri-pipes')">Pipes by Class</button>
+    <button class="prod-tab-btn" onclick="switchProdTab(this,'agri-solvent')">Solvent Cement</button>
+  </div>
+  <div class="prod-tab-content active" id="agri-pipes">
+    <div class="prod-item"><div class="prod-item-header" onclick="toggleItem(this)"><div class="prod-item-icon">🌾</div><div><div class="prod-item-name">Rigid PVC Pipes — All Pressure Classes</div><div class="prod-item-std">IS 4985:2021 | 20mm to 400mm O.D. | Selfit &amp; Ringfit</div></div><svg class="prod-item-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg></div>
+      <div class="prod-item-body">
+        <div class="table-scroll"><table class="spec-table"><tr><th>Class</th><th>Pressure</th><th>Size Range (OD)</th><th>Colour Marking</th></tr><tr><td>Class 1</td><td>2.5 kg/cm²</td><td>90mm to 400mm</td><td>Red stripe</td></tr><tr><td>Class 2</td><td>4 kg/cm²</td><td>63mm to 400mm</td><td>Blue stripe</td></tr><tr><td>Class 3</td><td>6 kg/cm²</td><td>40mm to 400mm</td><td>Green stripe</td></tr><tr><td>Class 4</td><td>8 kg/cm²</td><td>25mm to 400mm</td><td>Brown stripe</td></tr><tr><td>Class 5</td><td>10 kg/cm²</td><td>20mm to 315mm</td><td>Yellow stripe</td></tr><tr><td>Plumbing</td><td>16 kg/cm²</td><td>20mm to 50mm</td><td>—</td></tr></table></div>
+        <p style="font-size:12px;color:var(--text-muted);margin-top:8px">Available in Selfit (solvent cement) and Ringfit (rubber ring) joint types. Standard length: 6 metres.</p>
+      </div>
+    </div>
+  </div>
+  <div class="prod-tab-content" id="agri-solvent">
+    <div class="prod-item"><div class="prod-item-header" onclick="toggleItem(this)"><div class="prod-item-icon">🧴</div><div><div class="prod-item-name">Texmo Solvent Cement (Agriculture)</div><div class="prod-item-std">ASTM D-2564 | For Selfit rigid PVC pipes &amp; fittings</div></div><svg class="prod-item-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg></div>
+      <div class="prod-item-body"><p style="font-size:13px;color:var(--text-secondary)">Texmo Solvent Cement — a colourless solution produced by dissolving suspension grade PVC resin with a suitable K-value in ketonic solvents. Manufactured per ASTM D-2564. Available in various pack sizes for Selfit agriculture pipe and fitting connections.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ AGRICULTURE FITTINGS ═══ -->
+<div class="detail-panel" id="panel-fittings">
+  <div class="info-tabs-bar">
+    <button class="info-tab-btn active" onclick="switchInfoTab(this,'fit-desc')">Description</button>
+    <button class="info-tab-btn" onclick="switchInfoTab(this,'fit-feat')">Key Features</button>
+    <button class="info-tab-btn" onclick="switchInfoTab(this,'fit-app')">Applications</button>
+  </div>
+  <div class="info-tab-content active" id="fit-desc">
+    <div class="product-info-grid"><div class="product-hero-img"><img src="https://texmopipe.com/wp-content/uploads/2025/09/Agriculture-Fittings.png" alt="panel-fittings" loading="lazy"></div>
+      <div class="info-content">
+        <h2>Texmo Moulded Agriculture Fittings</h2>
+        <p>Manufactured under strict quality control with latest technology conforming to IS-7834/1975. Popular among PVC pipe users across rural and urban India for over a decade. Designed to fit snugly with standard pipe sizes. Widest product range in the category, supported by a reliable dealer network. Ideal for agriculture, industrial liquid transport, building construction and potable water supply.</p>
+        <div class="features-grid"><div class="feature-chip">IS 7834/1975 Certified</div><div class="feature-chip">Leak Proof</div><div class="feature-chip">Strong &amp; Unbreakable</div><div class="feature-chip">Rust Proof</div><div class="feature-chip">Light Weight</div><div class="feature-chip">Odourless &amp; Hygienic</div><div class="feature-chip">Widest Product Range</div><div class="feature-chip">22+ Fitting Types</div></div>
+        <a href="https://texmopipe.com/projects/moulded-agriculture-fittings/" target="_blank" class="download-btn secondary"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v9M2 14h12"/></svg>View Product Page</a>
+      </div>
+    </div>
+  </div>
+  <div class="info-tab-content" id="fit-feat"><div class="info-content"><h2>Key Features</h2><ul class="info-list"><li>Leak proof — close dimensional tolerance and precision design</li><li>Strong fitting — accurate dimensions ensure secure and reliable fitting</li><li>Rust proof — dimensions remain constant, unaffected by corrosion</li><li>Unbreakable — excellent impact strength and durability</li><li>Light weight — easy to handle, transport and install</li><li>Odourless and hygienic — ideal for potable water supply</li><li>All round economy — consistent performance, reduced maintenance costs</li><li>Manufactured per IS-7834/1975 — stringent quality control</li></ul></div></div>
+  <div class="info-tab-content" id="fit-app"><div class="info-content"><h2>Applications</h2><ul class="info-list"><li>Agriculture — irrigation and village water distribution systems</li><li>Industrial — chemical, sugar and dairy industries for liquid transport</li><li>Building construction and potable water supply</li></ul></div></div>
+
+  <p class="prod-section-title">Product Details</p>
+  <div class="prod-tabs-bar">
+    <button class="prod-tab-btn active" onclick="switchProdTab(this,'fit-moulded')">Moulded Fittings</button>
+  </div>
+  <div class="prod-tab-content active" id="fit-moulded">
+    <div class="prod-item"><div class="prod-item-header" onclick="toggleItem(this)"><div class="prod-item-icon">🔧</div><div><div class="prod-item-name">Moulded Agriculture Fittings — Full Range</div><div class="prod-item-std">IS 7834/1975 | All pressure classes</div></div><svg class="prod-item-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg></div>
+      <div class="prod-item-body">
+        <div class="fittings-grid"><div class="fitting-chip">Coupler</div><div class="fitting-chip">Elbow 90°</div><div class="fitting-chip">Elbow 45°</div><div class="fitting-chip">Tee</div><div class="fitting-chip">Reducing Tee</div><div class="fitting-chip">Reducing Bush</div><div class="fitting-chip">Reducing Elbow 90°</div><div class="fitting-chip">Single Y</div><div class="fitting-chip">Reducing Single Y</div><div class="fitting-chip">Saddle Strip</div><div class="fitting-chip">Flange</div><div class="fitting-chip">Butterfly Valve – Gear Type</div><div class="fitting-chip">Butterfly Valve – Handle Type</div><div class="fitting-chip">Ball Valve</div><div class="fitting-chip">End Cap (Plain/Threaded)</div><div class="fitting-chip">Foot Valve</div><div class="fitting-chip">F.T.A. (Plain)</div><div class="fitting-chip">F.T.A. – Brass Insert</div><div class="fitting-chip">M.T.A.</div><div class="fitting-chip">Tee – Brass Insert</div><div class="fitting-chip">Tail Piece</div><div class="fitting-chip">Tank Connector</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ COLUMN PIPES ═══ -->
+<div class="detail-panel" id="panel-column">
+  <div class="info-tabs-bar">
+    <button class="info-tab-btn active" onclick="switchInfoTab(this,'col-desc')">Description</button>
+    <button class="info-tab-btn" onclick="switchInfoTab(this,'col-feat')">Key Features</button>
+    <button class="info-tab-btn" onclick="switchInfoTab(this,'col-spec')">Classes &amp; Sizes</button>
+    <button class="info-tab-btn" onclick="switchInfoTab(this,'col-app')">Applications</button>
+  </div>
+  <div class="info-tab-content active" id="col-desc">
+    <div class="product-info-grid"><div class="product-hero-img"><img src="https://texmopipe.com/wp-content/uploads/2025/09/Column-Pipes.png" alt="panel-column" loading="lazy"></div>
+      <div class="info-content">
+        <h2>Texmo uPVC Column Pipes</h2>
+        <p>Texmo is a pioneer in designing and marketing uPVC Column Pipes for submersible borewell pump setups down to 290 metres (1200 feet) depth. With over 400,000 successful installations across India. Features Texmo's unique wire locking system — aluminium wire inter-placed between coupler and pipe prevents joints from opening during pump installation and removal. Special silicone rubber ring for leak-proof performance.</p>
+        <div class="features-grid"><div class="feature-chip">Pioneer in Column Pipes</div><div class="feature-chip">400,000+ Installations</div><div class="feature-chip">Up to 290 Mtr Depth</div><div class="feature-chip">Wire Locking System</div><div class="feature-chip">Silicone Rubber Ring</div><div class="feature-chip">Lead Free</div><div class="feature-chip">Smooth Inner Surface</div><div class="feature-chip">24x7 Technical Service</div></div>
+        <a href="https://texmopipe.com/projects/column-pipe/" target="_blank" class="download-btn secondary"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v9M2 14h12"/></svg>View Product Page</a>
+      </div>
+    </div>
+  </div>
+  <div class="info-tab-content" id="col-feat"><div class="info-content"><h2>Key Features</h2><ul class="info-list"><li>Pioneer design — 400,000+ successful installations across India</li><li>Wire locking system — aluminium wire prevents pipe-coupler joints from opening during pump installation/removal</li><li>Special silicone rubber ring — leak-proof performance</li><li>Lead Free and non-hazardous — safe for drinking water</li><li>Non-corrosive — does not rust or corrode</li><li>Smooth inner surface — less friction loss = energy saving</li><li>Lightweight — suitable for all types of users</li><li>24x7 technical service from Texmo</li></ul></div></div>
+  <div class="info-tab-content" id="col-spec"><div class="info-content"><h2>Classes &amp; Sizes</h2>
+    <div class="table-scroll"><table class="spec-table"><tr><th>Class</th><th>Colour</th><th>Pump Head</th><th>Sizes Available</th></tr><tr><td>VX Class</td><td>Yellow</td><td>50 metres</td><td>1", 1¼", 1½", 2"</td></tr><tr><td>Medium Class</td><td>Blue</td><td>70 metres</td><td>1", 1¼", 1½", 2", 2½"</td></tr><tr><td>Standard Class</td><td>Red</td><td>180 metres</td><td>1", 1¼", 1½", 2", 2½", 3"</td></tr><tr><td>Heavy Class</td><td>Green</td><td>370 metres</td><td>1", 1¼", 1½", 2", 2½", 3", 4"</td></tr></table></div>
+    <p style="font-size:12px;color:var(--text-muted);margin-top:8px">All sizes in coupler type. Available in 1.5 mtr and 3 mtr standard lengths. Complete system includes couplers, top adaptor, bottom adaptor and pump guard.</p>
+  </div></div>
+  <div class="info-tab-content" id="col-app"><div class="info-content"><h2>Applications</h2><ul class="info-list"><li>Water rising for submersible and jet pumps for irrigation</li><li>Domestic water extraction from borewells</li><li>Industrial mining water supply</li><li>Chemical distribution from borewells</li></ul></div></div>
+
+  <p class="prod-section-title">Product Details</p>
+  <div class="prod-tabs-bar">
+    <button class="prod-tab-btn active" onclick="switchProdTab(this,'col-pipes')">Column Pipe Classes</button>
+  </div>
+  <div class="prod-tab-content active" id="col-pipes">
+    <div class="prod-item"><div class="prod-item-header" onclick="toggleItem(this)"><div class="prod-item-icon">🔩</div><div><div class="prod-item-name">VX Class — Yellow | 50 Mtr Pump Head</div><div class="prod-item-std">Sizes: 1" to 2" | Entry level | 1.5 &amp; 3 mtr lengths</div></div><svg class="prod-item-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg></div>
+      <div class="prod-item-body"><p style="font-size:13px;color:var(--text-secondary)">For shallow borewells up to 50 metre pump head. Yellow colour for identification. Sizes: 1" (25mm), 1¼" (32mm), 1½" (40mm), 2" (50mm).</p></div>
+    </div>
+    <div class="prod-item"><div class="prod-item-header" onclick="toggleItem(this)"><div class="prod-item-icon">🔩</div><div><div class="prod-item-name">Medium Class — Blue | 70 Mtr Pump Head</div><div class="prod-item-std">Sizes: 1" to 2½" | 1.5 &amp; 3 mtr lengths</div></div><svg class="prod-item-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg></div>
+      <div class="prod-item-body"><p style="font-size:13px;color:var(--text-secondary)">For medium-depth borewells up to 70 metre pump head. Blue colour. Sizes: 1", 1¼", 1½", 2", 2½".</p></div>
+    </div>
+    <div class="prod-item"><div class="prod-item-header" onclick="toggleItem(this)"><div class="prod-item-icon">🔩</div><div><div class="prod-item-name">Standard Class — Red | 180 Mtr Pump Head</div><div class="prod-item-std">Sizes: 1" to 3" | 1.5 &amp; 3 mtr lengths</div></div><svg class="prod-item-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg></div>
+      <div class="prod-item-body"><p style="font-size:13px;color:var(--text-secondary)">For borewells up to 180 metre pump head. Red colour. Sizes: 1", 1¼", 1½", 2", 2½", 3".</p></div>
+    </div>
+    <div class="prod-item"><div class="prod-item-header" onclick="toggleItem(this)"><div class="prod-item-icon">🔩</div><div><div class="prod-item-name">Heavy Class — Green | 370 Mtr Pump Head</div><div class="prod-item-std">Sizes: 1" to 4" | Up to 1200 ft depth</div></div><svg class="prod-item-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg></div>
+      <div class="prod-item-body"><p style="font-size:13px;color:var(--text-secondary)">For deep borewells up to 370 metre pump head (1200 feet). Green colour. Sizes: 1", 1¼", 1½", 2", 2½", 3", 4". All include aluminium wire locking and silicone rubber sealing ring.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CASING PIPES ═══ -->
+<div class="detail-panel" id="panel-casing">
+  <div class="info-tabs-bar">
+    <button class="info-tab-btn active" onclick="switchInfoTab(this,'cas-desc')">Description</button>
+    <button class="info-tab-btn" onclick="switchInfoTab(this,'cas-feat')">Key Features</button>
+    <button class="info-tab-btn" onclick="switchInfoTab(this,'cas-spec')">Types &amp; Sizes</button>
+    <button class="info-tab-btn" onclick="switchInfoTab(this,'cas-compare')">vs Metal Casing</button>
+  </div>
+  <div class="info-tab-content active" id="cas-desc">
+    <div class="product-info-grid"><div class="product-hero-img"><img src="https://texmopipe.com/wp-content/uploads/2025/09/Casing-Pipes.png" alt="panel-casing" loading="lazy"></div>
+      <div class="info-content">
+        <h2>Texmo Casing Pipes</h2>
+        <p>Texmo Casing Pipes are manufactured under strict quality control as per IS-12818/2010, DIN: 4925 and ASTM-F480. Made in different sizes and ranges to meet maximum site conditions. Replace metallic MS casing with horizontal CNC-machined slot openings that reduce entrance resistance. Inert uPVC material — unaffected by corrosive soil. Available in CS, CM, CD, RMS and RDS types for depths from 80 to 450+ metres.</p>
+        <div class="features-grid"><div class="feature-chip">IS 12818/2010 Certified</div><div class="feature-chip">DIN 4925 &amp; ASTM F480</div><div class="feature-chip">CS / CM / CD Types</div><div class="feature-chip">35mm to 400mm</div><div class="feature-chip">Trapezoidal Threads</div><div class="feature-chip">Rust &amp; Corrosion Free</div><div class="feature-chip">CNC Slotted</div><div class="feature-chip">1/5th Weight of Steel</div></div>
+        <a href="https://texmopipe.com/projects/texmo-casing-pipes/" target="_blank" class="download-btn secondary"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v9M2 14h12"/></svg>View Product Page</a>
+      </div>
+    </div>
+  </div>
+  <div class="info-tab-content" id="cas-feat"><div class="info-content"><h2>Key Features</h2><ul class="info-list"><li>Strong, durable and inert to corroding factors</li><li>Light weight — 1/5th weight of steel, easy to handle and install</li><li>High precision trapezoidal threads for easy joining — no special tools or sets needed</li><li>Better flow characteristic — smooth internal surface</li><li>Low frictional loss — lower power consumption</li><li>Resistant to: chemical reaction, bacterial growth, corrosion, rusting</li><li>Horizontal CNC slot openings — reduce entrance resistance, prevent collapse</li><li>Ribs keep gravel pack 2mm away from slot — increased permeability</li><li>Available in slot widths 0.2mm to 3mm to suit different aquifer conditions</li></ul></div></div>
+  <div class="info-tab-content" id="cas-spec"><div class="info-content"><h2>Types &amp; Sizes</h2>
+    <div class="table-scroll"><table class="spec-table"><tr><th>Type</th><th>Description</th><th>Sizes</th><th>Depth</th></tr><tr><td>CS</td><td>Shallow Well Casing</td><td>150mm to 400mm</td><td>Up to 80 mtr</td></tr><tr><td>CM</td><td>Medium Well Casing</td><td>35mm to 400mm</td><td>80 to 250 mtr</td></tr><tr><td>CD</td><td>Deep Well Casing</td><td>100mm to 400mm</td><td>250 to 450 mtr</td></tr><tr><td>RMS</td><td>Ribs Medium Well Screen</td><td>35mm to 400mm</td><td>Filtration zone</td></tr><tr><td>RDS</td><td>Ribs Deep Well Screen</td><td>100mm to 400mm</td><td>Filtration zone</td></tr></table></div>
+    <p style="font-size:12px;color:var(--text-muted);margin-top:8px">All types available in plain and slotted variants. Slot widths 0.2mm to 3mm to suit aquifer sieve analysis. Trapezoidal threaded ends for easy installation without special equipment.</p>
+  </div></div>
+  <div class="info-tab-content" id="cas-compare"><div class="info-content"><h2>Texmo uPVC vs Metal Casing</h2>
+    <div class="table-scroll"><table class="compare-table"><tr><th>Issue with Metal</th><th>Texmo uPVC Solution</th></tr><tr><td>Metal casings are costly</td><td>Cost-effective installation vs conventional MS casing</td></tr><tr><td>Vertical slots increase entrance resistance</td><td>Horizontal slots reduce entrance resistance and prevent collapse</td></tr><tr><td>50%+ slot opening obstructed by gravel pack</td><td>Rib keeps gravel pack 2mm away — increases permeability</td></tr><tr><td>Corrosive soil reduces tube well life</td><td>Inert uPVC — unaffected by soil corrosion</td></tr><tr><td>Slot enlarges due to erosion</td><td>uPVC slots not subject to erosion</td></tr><tr><td>Cumbersome to install — needs special tools</td><td>1/5th weight of steel — simple spigot ends and trapezoidal threads</td></tr><tr><td>Different screens needed for different aquifers</td><td>Slot widths 0.2mm to 3mm — suits any aquifer condition</td></tr></table></div>
+  </div></div>
+
+  <p class="prod-section-title">Product Details</p>
+  <div class="prod-tabs-bar">
+    <button class="prod-tab-btn active" onclick="switchProdTab(this,'cas-types')">All Types</button>
+  </div>
+  <div class="prod-tab-content active" id="cas-types">
+    <div class="prod-item"><div class="prod-item-header" onclick="toggleItem(this)"><div class="prod-item-icon">⚙️</div><div><div class="prod-item-name">CS — Shallow Well Casing | Up to 80 mtr</div><div class="prod-item-std">IS 12818/2010 | 150mm to 400mm | Plain &amp; Slotted</div></div><svg class="prod-item-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg></div>
+      <div class="prod-item-body"><p style="font-size:13px;color:var(--text-secondary)">For shallow borewells up to 80 metres. Sizes 150mm to 400mm OD. Available in plain and slotted (horizontal CNC slot) types. Trapezoidal threaded ends for easy interlocking without cement.</p></div>
+    </div>
+    <div class="prod-item"><div class="prod-item-header" onclick="toggleItem(this)"><div class="prod-item-icon">⚙️</div><div><div class="prod-item-name">CM — Medium Well Casing | 80 to 250 mtr</div><div class="prod-item-std">IS 12818/2010 | 35mm to 400mm | Plain &amp; Slotted</div></div><svg class="prod-item-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg></div>
+      <div class="prod-item-body"><p style="font-size:13px;color:var(--text-secondary)">For medium-depth borewells 80 to 250 metres. Sizes 35mm to 400mm OD. Heavier wall for additional hydraulic pressure resistance at depth.</p></div>
+    </div>
+    <div class="prod-item"><div class="prod-item-header" onclick="toggleItem(this)"><div class="prod-item-icon">⚙️</div><div><div class="prod-item-name">CD — Deep Well Casing | 250 to 450 mtr</div><div class="prod-item-std">IS 12818/2010 / DIN 4925 / ASTM F480 | 100mm to 400mm</div></div><svg class="prod-item-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg></div>
+      <div class="prod-item-body"><p style="font-size:13px;color:var(--text-secondary)">For deep borewells 250 to 450 metres. Sizes 100mm to 400mm OD. Maximum wall thickness for extreme depth hydraulic pressure. Available in plain and slotted types.</p></div>
+    </div>
+    <div class="prod-item"><div class="prod-item-header" onclick="toggleItem(this)"><div class="prod-item-icon">⚙️</div><div><div class="prod-item-name">RMS &amp; RDS — Ribbed Screen Pipes</div><div class="prod-item-std">Medium &amp; Deep Well Screen | 35mm to 400mm</div></div><svg class="prod-item-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg></div>
+      <div class="prod-item-body"><p style="font-size:13px;color:var(--text-secondary)">Ribbed Medium (RMS) and Ribbed Deep (RDS) Screen Pipes. Continuous ribs keep gravel pack 2mm away from slot openings — maximises permeability. Slot widths 0.2mm to 3mm available. Used in the filtration/aquifer zone of borewells.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ HDPE ═══ -->
+<div class="detail-panel" id="panel-hdpe">
+  <div class="info-tabs-bar">
+    <button class="info-tab-btn active" onclick="switchInfoTab(this,'hdpe-desc')">Description</button>
+    <button class="info-tab-btn" onclick="switchInfoTab(this,'hdpe-feat')">Key Features</button>
+    <button class="info-tab-btn" onclick="switchInfoTab(this,'hdpe-spec')">Specifications</button>
+    <button class="info-tab-btn" onclick="switchInfoTab(this,'hdpe-app')">Applications</button>
+  </div>
+  <div class="info-tab-content active" id="hdpe-desc">
+    <div class="product-info-grid"><div class="product-hero-img"><img src="https://texmopipe.com/wp-content/uploads/2025/09/HDPE-Pipe-Colis.png" alt="panel-hdpe" loading="lazy"></div>
+      <div class="info-content">
+        <h2>Texmo HDPE Coils &amp; Pipes</h2>
+        <p>Texmo HDPE Pipes are manufactured conforming to IS-4984/2016 and DIN 8074. Also available as HDPE Pressure Pipes in coil form, manufactured via co-extrusion with a highly conductive copper wire encased along the length — allowing underground pipes to be located using a hand-held duct locator. Available in 20mm to 315mm in multiple pressure classes up to 20 kg/cm².</p>
+        <div class="features-grid"><div class="feature-chip">IS 4984/2016 Certified</div><div class="feature-chip">DIN 8074 Standard</div><div class="feature-chip">20mm to 315mm</div><div class="feature-chip">Up to 20 kg/cm²</div><div class="feature-chip">Copper Wire Locating</div><div class="feature-chip">Coil &amp; Straight Lengths</div><div class="feature-chip">Chemically Inert</div><div class="feature-chip">10x Longer than GI</div></div>
+        <a href="https://texmopipe.com/projects/hdpe-coils/" target="_blank" class="download-btn secondary"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v9M2 14h12"/></svg>View Product Page</a>
+      </div>
+    </div>
+  </div>
+  <div class="info-tab-content" id="hdpe-feat"><div class="info-content"><h2>Key Features</h2><ul class="info-list"><li>Strong, resilient and impact-resistant</li><li>Available in straight and coil lengths — reduces joints and couplers</li><li>No deposit formation — internal diameter remains the same, ensuring better flow</li><li>Hygienic and odourless — resistant to scale, chemical and biological formation</li><li>Energy saving — smooth internal surface = low friction loss</li><li>Totally inert to all chemicals</li><li>Lasts 10 times longer than GI or rubber pipes</li><li>Copper wire in coil form — pipe can be located underground using duct locator</li></ul></div></div>
+  <div class="info-tab-content" id="hdpe-spec"><div class="info-content"><h2>Specifications &amp; Pressure Recommendations</h2><ul class="info-list"><li><strong>Standards:</strong> IS 4984/2016 &amp; DIN 8074</li><li><strong>Size Range:</strong> 20mm to 315mm</li><li><strong>Pressure Ratings:</strong> 2, 2.5, 3, 3.2, 4, 5, 6, 8, 10, 12.5, 16, 20 kg/cm²</li><li><strong>Special Feature:</strong> Copper wire co-extrusion available for underground pipe location</li></ul>
+    <div class="table-scroll"><table class="spec-table" style="margin-top:14px"><tr><th>Bore Depth</th><th>Recommended Pressure Class</th></tr><tr><td>Up to 50 metres</td><td>4.0 kg/cm²</td></tr><tr><td>Up to 90 metres</td><td>6.0 kg/cm²</td></tr><tr><td>Up to 150 metres</td><td>10.0 kg/cm²</td></tr><tr><td>Up to 200 metres</td><td>16.0 kg/cm²</td></tr><tr><td>Above 200 metres</td><td>20.0 kg/cm²</td></tr></table></div>
+  </div></div>
+  <div class="info-tab-content" id="hdpe-app"><div class="info-content"><h2>Applications</h2><ul class="info-list"><li>Potable water supply — rural and urban</li><li>Irrigation schemes</li><li>Chemical effluent disposal — petrochemical, paper, dye, paint, cement industries</li><li>Gas pipeline networks — biogas, CNG, natural gas distribution</li><li>Submarine and underwater pipelines</li><li>Suction, delivery and jet pump applications</li><li>Acid and alkali transportation</li><li>Compressed gas supply and external/internal drainage systems</li></ul></div></div>
+
+  <p class="prod-section-title">Product Details</p>
+  <div class="prod-tabs-bar">
+    <button class="prod-tab-btn active" onclick="switchProdTab(this,'hdpe-pipes')">HDPE Pipes &amp; Coils</button>
+  </div>
+  <div class="prod-tab-content active" id="hdpe-pipes">
+    <div class="prod-item"><div class="prod-item-header" onclick="toggleItem(this)"><div class="prod-item-icon">🟤</div><div><div class="prod-item-name">HDPE Pipes — Standard</div><div class="prod-item-std">IS 4984/2016 | 20mm to 315mm | Multiple pressure classes</div></div><svg class="prod-item-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg></div>
+      <div class="prod-item-body"><p style="font-size:13px;color:var(--text-secondary);margin-bottom:8px"><strong>Sizes:</strong> 20mm to 315mm O.D.</p><p style="font-size:13px;color:var(--text-secondary);margin-bottom:8px"><strong>Pressure Classes:</strong> 2, 2.5, 3, 3.2, 4, 5, 6, 8, 10, 12.5, 16, 20 kg/cm²</p><p style="font-size:13px;color:var(--text-secondary)"><strong>Suction/Pump Range:</strong> 25mm to 110mm for suction, submersible and jet pump applications</p></div>
+    </div>
+    <div class="prod-item"><div class="prod-item-header" onclick="toggleItem(this)"><div class="prod-item-icon">🟤</div><div><div class="prod-item-name">HDPE Pressure Pipes in Coil Form</div><div class="prod-item-std">With copper wire — underground locating capability</div></div><svg class="prod-item-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg></div>
+      <div class="prod-item-body"><p style="font-size:13px;color:var(--text-secondary);margin-bottom:8px">Manufactured by co-extrusion with a highly conductive copper wire encased along the full length of the pipe. Transmits signal receivable by hand-held duct locator — gives exact depth and location of buried pipe. Supplied in coil form for flexible installation.</p><p style="font-size:13px;color:var(--text-secondary)"><strong>Sizes:</strong> 25mm to 110mm in coil form. Suitable for all pressure classes.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SUCTION HOSE ═══ -->
+<div class="detail-panel" id="panel-suction">
+  <div class="info-tabs-bar">
+    <button class="info-tab-btn active" onclick="switchInfoTab(this,'suc-desc')">Description</button>
+    <button class="info-tab-btn" onclick="switchInfoTab(this,'suc-feat')">Key Features</button>
+    <button class="info-tab-btn" onclick="switchInfoTab(this,'suc-app')">Applications</button>
+  </div>
+  <div class="info-tab-content active" id="suc-desc">
+    <div class="product-info-grid"><div class="product-hero-img"><img src="https://texmopipe.com/wp-content/uploads/2025/09/Suction-Hose-Pipes.png" alt="panel-suction" loading="lazy"></div>
+      <div class="info-content">
+        <h2>Texmo Suction Hose Pipes</h2>
+        <p>Texmo Suction Pipes are manufactured under strict quality control conforming to IS-15265. Best preferred for suction and delivery in agriculture, domestic and industrial applications. Four product variants available — from commercial grade to ISI certified Super Plus, covering 20mm to 200mm. Safe for drinking water — no contamination.</p>
+        <div class="features-grid"><div class="feature-chip">IS 15265 Certified</div><div class="feature-chip">4 Variants</div><div class="feature-chip">20mm to 200mm</div><div class="feature-chip">ISI Grade Available</div><div class="feature-chip">Corrosion Free</div><div class="feature-chip">Rust Proof</div><div class="feature-chip">Drinking Water Safe</div><div class="feature-chip">Maintenance Free</div></div>
+        <a href="https://texmopipe.com/projects/suction-hose/" target="_blank" class="download-btn secondary"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v9M2 14h12"/></svg>View Product Page</a>
+      </div>
+    </div>
+  </div>
+  <div class="info-tab-content" id="suc-feat"><div class="info-content"><h2>Key Features</h2><ul class="info-list"><li>Strong and breakage free</li><li>Light weight — easy to handle, transport and install</li><li>Better flow characteristic — smooth internal surface, rust proof, no deposit formation</li><li>Energy saving — low frictional loss, lower power consumption</li><li>Safe — water flow is safe for drinking, no contamination</li><li>Resistant to rusting, chemicals, corrosion, scale and biological formation</li><li>Longer lasting and maintenance free — lifetime investment</li></ul></div></div>
+  <div class="info-tab-content" id="suc-app"><div class="info-content"><h2>Applications</h2><ul class="info-list"><li>Suction and delivery lines for agriculture</li><li>Domestic water suction and delivery</li><li>Industrial suction and delivery applications</li></ul></div></div>
+
+  <p class="prod-section-title">Product Details</p>
+  <div class="prod-tabs-bar">
+    <button class="prod-tab-btn active" onclick="switchProdTab(this,'suc-variants')">All Variants</button>
+  </div>
+  <div class="prod-tab-content active" id="suc-variants">
+    <div class="prod-item"><div class="prod-item-header" onclick="toggleItem(this)"><div class="prod-item-icon">🌀</div><div><div class="prod-item-name">Texmo Super Plus ISI</div><div class="prod-item-std">IS 15265 ISI marked | 20mm to 200mm | Premium grade</div></div><svg class="prod-item-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg></div>
+      <div class="prod-item-body"><p style="font-size:13px;color:var(--text-secondary)">Premium ISI marked suction hose. Full range 20mm to 200mm. Best quality for demanding applications. ISI certification ensures conformance to IS 15265.</p></div>
+    </div>
+    <div class="prod-item"><div class="prod-item-header" onclick="toggleItem(this)"><div class="prod-item-icon">🌀</div><div><div class="prod-item-name">Texmo Plus ISI</div><div class="prod-item-std">IS 15265 ISI marked | 20mm to 200mm</div></div><svg class="prod-item-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg></div>
+      <div class="prod-item-body"><p style="font-size:13px;color:var(--text-secondary)">ISI marked suction hose, full range 20mm to 200mm. Reliable quality for agriculture and domestic suction and delivery applications.</p></div>
+    </div>
+    <div class="prod-item"><div class="prod-item-header" onclick="toggleItem(this)"><div class="prod-item-icon">🌀</div><div><div class="prod-item-name">Texmo Terming ISI</div><div class="prod-item-std">IS 15265 ISI marked | 20mm to 200mm</div></div><svg class="prod-item-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg></div>
+      <div class="prod-item-body"><p style="font-size:13px;color:var(--text-secondary)">ISI marked suction hose, 20mm to 200mm. Conforming to IS 15265 for suction and delivery applications in agriculture, domestic and industrial use.</p></div>
+    </div>
+    <div class="prod-item"><div class="prod-item-header" onclick="toggleItem(this)"><div class="prod-item-icon">🌀</div><div><div class="prod-item-name">Texmo Commercial</div><div class="prod-item-std">20mm to 200mm | Economy grade</div></div><svg class="prod-item-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg></div>
+      <div class="prod-item-body"><p style="font-size:13px;color:var(--text-secondary)">Commercial grade suction hose, 20mm to 200mm. Cost-effective option for general purpose suction and delivery in agriculture and domestic applications.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ GARDEN HOSE ═══ -->
+<div class="detail-panel" id="panel-garden">
+  <div class="info-tabs-bar">
+    <button class="info-tab-btn active" onclick="switchInfoTab(this,'gar-desc')">Description</button>
+    <button class="info-tab-btn" onclick="switchInfoTab(this,'gar-feat')">Key Features</button>
+    <button class="info-tab-btn" onclick="switchInfoTab(this,'gar-app')">Applications</button>
+  </div>
+  <div class="info-tab-content active" id="gar-desc">
+    <div class="product-info-grid"><div class="product-hero-img"><img src="https://texmopipe.com/wp-content/uploads/2025/07/Garden-Pipe.png" alt="panel-garden" loading="lazy"></div>
+      <div class="info-content">
+        <h2>Texmo Garden Hose Pipes</h2>
+        <p>Texmo Garden Pipes are manufactured under strict quality control using the latest technology. Best preferred for suction and delivery in agriculture, domestic and industrial applications. Flexible, light weight and resistant to corrosion, rusting, chemicals, scale and biological formation. A long-lasting and maintenance-free option for everyday garden and agricultural use.</p>
+        <div class="features-grid"><div class="feature-chip">Corrosion Free</div><div class="feature-chip">Rust Proof</div><div class="feature-chip">Chemical Resistant</div><div class="feature-chip">Light &amp; Flexible</div><div class="feature-chip">Better Flow</div><div class="feature-chip">Safe for Drinking Water</div><div class="feature-chip">Long Lasting</div><div class="feature-chip">Maintenance Free</div></div>
+        <a href="https://texmopipe.com/projects/garden-pipe/" target="_blank" class="download-btn secondary"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v9M2 14h12"/></svg>View Product Page</a>
+      </div>
+    </div>
+  </div>
+  <div class="info-tab-content" id="gar-feat"><div class="info-content"><h2>Key Features</h2><ul class="info-list"><li>Corrosion free — resistant to rusting, chemicals, scale and biological formation</li><li>Light and flexible — easy to handle and manoeuvre in gardens and fields</li><li>Better flow characteristic — smooth internal surface, no deposit formation</li><li>Safe for drinking water — no contamination of water flow</li><li>Energy saving — low frictional loss</li><li>Long lasting and maintenance free — lifetime investment</li></ul></div></div>
+  <div class="info-tab-content" id="gar-app"><div class="info-content"><h2>Applications</h2><ul class="info-list"><li>Garden and lawn watering</li><li>Agricultural suction and delivery</li><li>Domestic water delivery</li><li>Industrial water delivery</li></ul></div></div>
+
+  <p class="prod-section-title">Product Details</p>
+  <div class="prod-tabs-bar">
+    <button class="prod-tab-btn active" onclick="switchProdTab(this,'gar-pipes')">Garden Pipes</button>
+  </div>
+  <div class="prod-tab-content active" id="gar-pipes">
+    <div class="prod-item"><div class="prod-item-header" onclick="toggleItem(this)"><div class="prod-item-icon">💧</div><div><div class="prod-item-name">Texmo Garden Hose Pipes</div><div class="prod-item-std">Flexible PVC | Multiple sizes | Colourful variants</div></div><svg class="prod-item-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg></div>
+      <div class="prod-item-body"><p style="font-size:13px;color:var(--text-secondary);margin-bottom:8px">Available in multiple sizes and colour variants for garden and agricultural water delivery. Flexible construction for easy manoeuvrability.</p><p style="font-size:13px;color:var(--text-secondary)"><strong>Common Sizes:</strong> ½", ¾", 1", 1¼", 1½"<br><strong>Available as:</strong> Plain hose, reinforced hose and braided variants</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ DRIP IRRIGATION ═══ -->
+<div class="detail-panel" id="panel-drip">
+  <div class="info-tabs-bar">
+    <button class="info-tab-btn active" onclick="switchInfoTab(this,'drip-desc')">Description</button>
+    <button class="info-tab-btn" onclick="switchInfoTab(this,'drip-feat')">Features &amp; Benefits</button>
+    <button class="info-tab-btn" onclick="switchInfoTab(this,'drip-app')">Applications</button>
+  </div>
+  <div class="info-tab-content active" id="drip-desc">
+    <div class="product-info-grid"><div class="product-hero-img"><img src="https://texmopipe.com/wp-content/uploads/2025/09/Drip-Irrigations-System.png" alt="panel-drip" loading="lazy"></div>
+      <div class="info-content">
+        <h2>Texmo Drip Irrigation System</h2>
+        <p>Texmo Drip Irrigation System is manufactured conforming to IS-12786 &amp; IS-13488 (Laterals) and IS-12785 &amp; IS-13487 (Fittings). Delivers water drop by drop near the roots. Saves 50–70% water vs traditional irrigation. Increases crop yield by 1.5 to 2 times. Used for banana, grapes, oranges, cotton, soybean, wheat, groundnut, pulses and garden maintenance.</p>
+        <div class="features-grid"><div class="feature-chip">IS 12786 &amp; IS 13488</div><div class="feature-chip">50–70% Water Saving</div><div class="feature-chip">1.5–2x Better Yield</div><div class="feature-chip">Uniform Fertiliser Delivery</div><div class="feature-chip">Weed Prevention</div><div class="feature-chip">Works on Uneven Land</div><div class="feature-chip">2, 4, 8 LPH Drippers</div><div class="feature-chip">12mm &amp; 16mm Laterals</div></div>
+        <a href="https://texmopipe.com/projects/drip-irrigation-systems/" target="_blank" class="download-btn secondary"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v9M2 14h12"/></svg>View Product Page</a>
+      </div>
+    </div>
+  </div>
+  <div class="info-tab-content" id="drip-feat"><div class="info-content"><h2>Features &amp; Benefits</h2><ul class="info-list"><li>50–70% water savings compared to traditional irrigation</li><li>Increases crop yield by 1.5 to 2 times</li><li>Uniform distribution of fertilisers, pesticides and manure without wastage</li><li>Prevents weed growth — no excess surface water spill</li><li>Can be installed on any uneven land surface</li><li>Trained engineers design system tailored to plant type and water flow</li><li>Drippers deliver 2, 4 or 8 litres per hour per plant</li><li>Screen/sand filters prevent clogging of drippers and micro-tubes</li></ul></div></div>
+  <div class="info-tab-content" id="drip-app"><div class="info-content"><h2>Applications</h2><ul class="info-list"><li>Irrigation of banana, grapes, oranges, cotton, soybean, wheat, gram, groundnut, pulses</li><li>Garden and land maintenance and beautification</li><li>Safety of crops and reduction of soil erosion</li></ul></div></div>
+  <p class="prod-section-title">System Components</p>
+  <div class="prod-tabs-bar"><button class="prod-tab-btn active" onclick="switchProdTab(this,'drip-comp')">Components</button></div>
+  <div class="prod-tab-content active" id="drip-comp">
+    <div class="prod-item"><div class="prod-item-header" onclick="toggleItem(this)"><div class="prod-item-icon">🌿</div><div><div class="prod-item-name">Complete Drip Irrigation System</div><div class="prod-item-std">IS 12786/13488 (Laterals) | IS 12785/13487 (Fittings)</div></div><svg class="prod-item-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg></div>
+      <div class="prod-item-body">
+        <div class="table-scroll"><table class="spec-table"><tr><th>Component</th><th>Function</th></tr><tr><td>Screen Filter / Sand Filter</td><td>Filters sand &amp; debris from water to prevent dripper clogging</td></tr><tr><td>Control Valve</td><td>Regulates water flow through the system</td></tr><tr><td>Pressure Gauge</td><td>Measures water pressure in the pipeline</td></tr><tr><td>PVC Pipeline</td><td>Distributes water from main source to sub-lines</td></tr><tr><td>Venturi</td><td>Proportionately distributes fertilisers &amp; manure with water</td></tr><tr><td>Drip Laterals</td><td>12mm &amp; 16mm — fixed near plants for water &amp; nutrient delivery</td></tr><tr><td>Drippers</td><td>Deliver 2, 4 or 8 litres/hour per plant (cone-shaped)</td></tr><tr><td>Flush Valve</td><td>Cleans pipelines and maintains fresh water flow</td></tr></table></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SPRINKLER ═══ -->
+<div class="detail-panel" id="panel-sprinkler">
+  <div class="info-tabs-bar">
+    <button class="info-tab-btn active" onclick="switchInfoTab(this,'spr-desc')">Description</button>
+    <button class="info-tab-btn" onclick="switchInfoTab(this,'spr-feat')">Features &amp; Benefits</button>
+    <button class="info-tab-btn" onclick="switchInfoTab(this,'spr-app')">Applications</button>
+  </div>
+  <div class="info-tab-content active" id="spr-desc">
+    <div class="product-info-grid"><div class="product-hero-img"><img src="https://texmopipe.com/wp-content/uploads/2025/09/Sprinkler-Mini-Sprinkler.png" alt="panel-sprinkler" loading="lazy"></div>
+      <div class="info-content">
+        <h2>Texmo HDPE Sprinkler Pipes &amp; Fittings</h2>
+        <p>Texmo HDPE Sprinkler Pipes &amp; Fittings in "M" Type, "T" Type and "Matka" Type are manufactured conforming to IS-17425 (Pipes) and IS-12322 (Fittings). 80–90% irrigation efficiency — saves up to 60% water. Also includes Mini Sprinkler System conforming to IS-12786 (Pipes) and IS-12232 (Fittings). Sprinkler spacing: 8–12 metres.</p>
+        <div class="features-grid"><div class="feature-chip">IS 17425 Certified</div><div class="feature-chip">M / T / Matka Types</div><div class="feature-chip">Mini Sprinkler (IS 12786)</div><div class="feature-chip">80–90% Irrigation Efficiency</div><div class="feature-chip">Up to 60% Water Saving</div><div class="feature-chip">8–12m Sprinkler Spacing</div><div class="feature-chip">UV Stabilized HDPE</div><div class="feature-chip">Easy Install &amp; Dismantle</div></div>
+        <a href="https://texmopipe.com/projects/sprinkler-pipes-fittings/" target="_blank" class="download-btn secondary"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v9M2 14h12"/></svg>View Product Page</a>
+      </div>
+    </div>
+  </div>
+  <div class="info-tab-content" id="spr-feat"><div class="info-content"><h2>Features &amp; Benefits</h2><ul class="info-list"><li>Strong, adaptable and impervious to aggressive soils and climatic conditions</li><li>Light weight and flexible — ideal for undulated hilly and plain lands</li><li>80–90% irrigation efficiency — saves up to 60% water</li><li>Uniform water application — optimum soil moisture, uniform germination</li><li>Prevents leaching of soil and fertilisers into groundwater</li><li>Easy to install and dismantle — 2–3 crop cycles per year</li><li>Made with UV-stabilized HDPE and antioxidants</li><li>Low pressure design — energy saving</li></ul></div></div>
+  <div class="info-tab-content" id="spr-app"><div class="info-content"><h2>Applications</h2><ul class="info-list"><li>Agriculture — cotton, soybean, wheat, gram, groundnut, pulses, banana, grapes, potato, onion, ginger, garlic, cabbage, cauliflower, strawberry, mustard, tea, nursery</li><li>Industrial — dust pollution control in cement industries and mining pits</li><li>Playground and golf course maintenance</li><li>Home gardens and grass watering</li></ul></div></div>
+  <p class="prod-section-title">Product Details</p>
+  <div class="prod-tabs-bar">
+    <button class="prod-tab-btn active" onclick="switchProdTab(this,'spr-main')">Sprinkler System</button>
+    <button class="prod-tab-btn" onclick="switchProdTab(this,'spr-mini')">Mini Sprinkler</button>
+  </div>
+  <div class="prod-tab-content active" id="spr-main">
+    <div class="prod-item"><div class="prod-item-header" onclick="toggleItem(this)"><div class="prod-item-icon">🌦️</div><div><div class="prod-item-name">HDPE Sprinkler Pipes &amp; Fittings — M / T / Matka Types</div><div class="prod-item-std">IS 17425 (Pipes) | IS 12322 (Fittings)</div></div><svg class="prod-item-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg></div>
+      <div class="prod-item-body"><p style="font-size:13px;color:var(--text-secondary)"><strong>Types:</strong> "M" Type, "T" Type, "Matka" Type | <strong>Spacing:</strong> 8–12 metres | <strong>Best for:</strong> Cotton, soybean, wheat, groundnut, banana, grapes — field crops requiring overhead irrigation</p></div>
+    </div>
+  </div>
+  <div class="prod-tab-content" id="spr-mini">
+    <div class="prod-item"><div class="prod-item-header" onclick="toggleItem(this)"><div class="prod-item-icon">🌦️</div><div><div class="prod-item-name">Mini Sprinkler System</div><div class="prod-item-std">IS 12786 (Pipes) | IS 12232 (Fittings)</div></div><svg class="prod-item-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg></div>
+      <div class="prod-item-body"><p style="font-size:13px;color:var(--text-secondary)">Mini sprinkler for vegetables and small horticulture crops. <strong>Best for:</strong> Potato, onion, ginger, garlic, cabbage, cauliflower, strawberry, mustard, pulses, tea and nursery crops</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ GASEOUS FUELS ═══ -->
+<div class="detail-panel" id="panel-gas">
+  <div class="info-tabs-bar">
+    <button class="info-tab-btn active" onclick="switchInfoTab(this,'gas-desc')">Description</button>
+    <button class="info-tab-btn" onclick="switchInfoTab(this,'gas-feat')">Key Features</button>
+    <button class="info-tab-btn" onclick="switchInfoTab(this,'gas-spec')">Specifications</button>
+    <button class="info-tab-btn" onclick="switchInfoTab(this,'gas-app')">Applications</button>
+  </div>
+  <div class="info-tab-content active" id="gas-desc">
+    <div class="product-info-grid"><div class="product-hero-img"><img src="https://texmopipe.com/wp-content/uploads/2025/09/Gaseous-Fuels-Pipes-Coils.png" alt="panel-gas" loading="lazy"></div>
+      <div class="info-content">
+        <h2>Texmo Gaseous Fuels Pipes &amp; Coils</h2>
+        <p>Texmo Gaseous Fuels Pipes &amp; Coils are manufactured conforming to IS-14885/2001. Available in coil and straight form with a highly conductive copper wire co-extruded along the length — enabling precise underground location using a hand-held duct locator. Available as PE-80 (Yellow) and PE-100 (Orange). Sizes 20mm–315mm.</p>
+        <div class="features-grid"><div class="feature-chip">IS 14885/2001 Certified</div><div class="feature-chip">PE-80 Yellow</div><div class="feature-chip">PE-100 Orange</div><div class="feature-chip">Copper Wire Locating</div><div class="feature-chip">20mm to 315mm</div><div class="feature-chip">SDR 17.6 / 13.6 / 11 / 9</div><div class="feature-chip">Coil &amp; Straight Form</div><div class="feature-chip">Chemical Resistant</div></div>
+        <a href="https://texmopipe.com/projects/gaseous-fuels-pipes-coils/" target="_blank" class="download-btn secondary"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v9M2 14h12"/></svg>View Product Page</a>
+      </div>
+    </div>
+  </div>
+  <div class="info-tab-content" id="gas-feat"><div class="info-content"><h2>Key Features</h2><ul class="info-list"><li>Copper wire co-extrusion — transmits signal for underground tracing via duct locator</li><li>PE-80 (Yellow) and PE-100 (Orange) — different pressure grades</li><li>SDR 17.6, 13.6, 11, 9 — multiple pressure class options</li><li>Light weight — easy to handle and install</li><li>Smooth internal surface — better flow</li><li>Completely leak-proof precision design</li><li>Fire resistant and non-conductive</li><li>Resistant to rust, UV radiation and most chemicals</li><li>Maintenance free</li></ul></div></div>
+  <div class="info-tab-content" id="gas-spec"><div class="info-content"><h2>Specifications &amp; Product Range</h2>
+    <div class="table-scroll"><table class="spec-table"><tr><th>Size Range</th><th>Form</th><th>Standard Lengths</th></tr><tr><td>20mm to 90mm</td><td>Coil form</td><td>100m, 200m, 300m coils</td></tr><tr><td>110mm</td><td>Coil or straight</td><td>50m, 100m, 200m, 300m coils | 6 &amp; 12 mtr straight</td></tr><tr><td>110mm to 315mm</td><td>Straight</td><td>6 metres and 12 metres</td></tr></table></div>
+    <p style="font-size:12px;color:var(--text-muted);margin-top:8px">Grades: PE-80 Yellow / PE-100 Orange | SDR: 17.6, 13.6, 11, 9 | Standard: IS 14885/2001</p>
+  </div></div>
+  <div class="info-tab-content" id="gas-app"><div class="info-content"><h2>Applications</h2><ul class="info-list"><li>Domestic — biogas, CNG and natural gas distribution; fuel supply in rural and urban areas</li><li>Industrial — gas pipeline networks; petrochemical, paper, dye, paint, cement industries for effluent disposal; acid and alkali transportation</li><li>Compressed gas supply</li><li>Submarine and underwater pipelines</li><li>Water jet loading</li></ul></div></div>
+</div>
+
+<!-- ═══ PLB HDPE DUCTS ═══ -->
+<div class="detail-panel" id="panel-plb">
+  <div class="info-tabs-bar">
+    <button class="info-tab-btn active" onclick="switchInfoTab(this,'plb-desc')">Description</button>
+    <button class="info-tab-btn" onclick="switchInfoTab(this,'plb-feat')">Key Features</button>
+    <button class="info-tab-btn" onclick="switchInfoTab(this,'plb-spec')">Specifications</button>
+  </div>
+  <div class="info-tab-content active" id="plb-desc">
+    <div class="product-info-grid"><div class="product-hero-img"><img src="https://texmopipe.com/wp-content/uploads/2025/09/PLB-HDPE-Duct.png" alt="panel-plb" loading="lazy"></div>
+      <div class="info-content">
+        <h2>Texmo PLB HDPE Ducts</h2>
+        <p>Texmo PLB (Permanently Lubricated) HDPE Ducts are manufactured as per TEC/GR/TX/CDS-008/03 MAR-2011 and DR/MDS-01/04 FEB-2010. Used for housing fiber optic cable (OFC) and metal cable — the backbone of communication infrastructure. Co-extruded permanently lubricated inner layer (friction coeff. max 0.06) for smooth cable insertion. Anticipated life: 50 years. Also includes MDPE Pipes per ISO 4427.</p>
+        <div class="features-grid"><div class="feature-chip">TEC/GR Standard</div><div class="feature-chip">Permanently Lubricated</div><div class="feature-chip">Friction Max 0.06</div><div class="feature-chip">50 Year Life</div><div class="feature-chip">Fiber Optic Cable (OFC)</div><div class="feature-chip">Main Duct &amp; Sub Duct</div><div class="feature-chip">-5°C to +50°C Range</div><div class="feature-chip">MDPE Pipes Available</div></div>
+        <a href="https://texmopipe.com/projects/texmo-plb-hdpe-duct/" target="_blank" class="download-btn secondary"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v9M2 14h12"/></svg>View Product Page</a>
+      </div>
+    </div>
+  </div>
+  <div class="info-tab-content" id="plb-feat"><div class="info-content"><h2>Key Features</h2><ul class="info-list"><li>Ductile and tough construction</li><li>Low internal coefficient of friction (max 0.06) — smooth cable insertion, avoids damage</li><li>Temperature range: -5°C to +50°C (recommended install: 5°C to 50°C)</li><li>Resistant to UV and chemicals</li><li>Protects cables during tectonic ground movement</li><li>Protection against later excavation damage</li><li>Minimum bending radius: 10 × outside diameter</li><li>Anticipated lifetime: 50 years</li></ul></div></div>
+  <div class="info-tab-content" id="plb-spec"><div class="info-content"><h2>Product Range</h2>
+    <p style="font-size:13px;font-weight:600;color:var(--brown-deep);margin-bottom:8px">Main Duct (for direct burial):</p>
+    <div class="table-scroll"><table class="spec-table"><tr><th>Size</th><th>OD</th><th>Wall Thickness</th></tr><tr><td>50/42mm</td><td>50mm</td><td>4.0mm ± 0.3mm</td></tr><tr><td>40/32mm</td><td>40mm</td><td>3.5mm ± 0.2mm</td></tr><tr><td>32/26mm</td><td>32mm</td><td>3.0mm ± 0.2mm</td></tr></table></div>
+    <p style="font-size:13px;font-weight:600;color:var(--brown-deep);margin:14px 0 8px">Sub Duct:</p>
+    <div class="table-scroll"><table class="spec-table"><tr><th>Size</th><th>OD</th><th>Wall Thickness</th></tr><tr><td>40/33mm</td><td>40mm</td><td>2.5mm or 3.0mm ± 0.2mm</td></tr><tr><td>32/28mm</td><td>32mm</td><td>2.0mm ± 0.2mm</td></tr><tr><td>32/27mm</td><td>32mm</td><td>2.5mm ± 0.2mm</td></tr></table></div>
+    <p style="font-size:13px;color:var(--text-secondary);margin-top:14px"><strong>MDPE Pipes</strong> (ISO 4427) — Blue/Black | 16mm–315mm | PE-63, PE-80 &amp; PE-100 | 2.5 to 25 kg/cm²</p>
+  </div></div>
+</div>
+
+<!-- ═══ WATER TANKS ═══ -->
+<div class="detail-panel" id="panel-tanks">
+  <div class="info-tabs-bar">
+    <button class="info-tab-btn active" onclick="switchInfoTab(this,'tank-desc')">Description</button>
+    <button class="info-tab-btn" onclick="switchInfoTab(this,'tank-feat')">Key Features</button>
+    <button class="info-tab-btn" onclick="switchInfoTab(this,'tank-spec')">Specifications</button>
+    <button class="info-tab-btn" onclick="switchInfoTab(this,'tank-app')">Applications</button>
+  </div>
+  <div class="info-tab-content active" id="tank-desc">
+    <div class="product-info-grid"><div class="product-hero-img"><img src="https://texmopipe.com/wp-content/uploads/2025/09/Roto-Moulded-Water-Tank.png" alt="panel-tanks" loading="lazy"></div>
+      <div class="info-content">
+        <h2>Texmo Water Storage Tanks</h2>
+        <p>Texmo offers two tank types — Blow Moulded (HDPE, 500–2500 litres, 30% more economical) and Roto Moulded (LLDPE, 200–5000 litres, 1.5× stronger than blow moulded). Both are multi-layered, anti-bacterial, food grade, UV stabilized and lead free with an Anti-Micro layer that is 99%+ effective against harmful viruses and microbes.</p>
+        <div class="features-grid"><div class="feature-chip">Anti-Bacterial</div><div class="feature-chip">Food Grade Material</div><div class="feature-chip">UV Stabilized</div><div class="feature-chip">Lead Free</div><div class="feature-chip">Anti-Micro Layer (99%+)</div><div class="feature-chip">Easy to Clean</div><div class="feature-chip">Eco Friendly</div><div class="feature-chip">500L to 5000L</div></div>
+        <a href="https://texmopipe.com/wp-content/uploads/2025/10/BLOW-MOULDED-DIAMANTION.pdf" target="_blank" class="download-btn"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v8M5 7l3 3 3-3M3 13h10"/></svg>Blow Moulded PDF</a>
+        <a href="https://texmopipe.com/wp-content/uploads/2025/10/ROTO-MOULDED-DIAMANTION.pdf" target="_blank" class="download-btn"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v8M5 7l3 3 3-3M3 13h10"/></svg>Roto Moulded PDF</a>
+      </div>
+    </div>
+  </div>
+  <div class="info-tab-content" id="tank-feat"><div class="info-content"><h2>Key Features</h2><ul class="info-list"><li>Strong and durable — unaffected by weather conditions</li><li>Food Grade material — water remains fresh, smell-free and drinkable</li><li>Easy to clean inside — smooth inner surface</li><li>UV Stabilization — prevents degradation, cracking and chalking</li><li>Anti-Micro Layer — 99%+ effective against harmful viruses and microbes</li><li>Blow Moulded: 30% more economical than roto-moulded</li><li>Roto Moulded: 1.5× stronger than blow moulded</li><li>Lead Free and Eco Friendly — maintenance free</li></ul></div></div>
+  <div class="info-tab-content" id="tank-spec"><div class="info-content"><h2>Specifications</h2>
+    <p style="font-size:13px;font-weight:600;color:var(--brown-deep);margin-bottom:8px">Blow Moulded Round Tanks (HDPE) — 500L to 2500L:</p>
+    <div class="table-scroll"><table class="spec-table"><tr><th>Capacity (L)</th><th>Diameter (mm)</th><th>Height (mm)</th></tr><tr><td>500</td><td>870</td><td>1030</td></tr><tr><td>750</td><td>930</td><td>1045</td></tr><tr><td>1000</td><td>1030</td><td>1140</td></tr><tr><td>1500</td><td>1210</td><td>1360</td></tr><tr><td>2000</td><td>1320</td><td>1460</td></tr><tr><td>2500</td><td>1320</td><td>1560</td></tr></table></div>
+    <p style="font-size:13px;font-weight:600;color:var(--brown-deep);margin:14px 0 8px">Roto Moulded Round Tanks (LLDPE) — 300L to 5000L:</p>
+    <div class="table-scroll"><table class="spec-table"><tr><th>Capacity (L)</th><th>Diameter (mm)</th><th>Height (mm)</th><th>Manhole (mm)</th></tr><tr><td>300</td><td>750</td><td>810</td><td>460</td></tr><tr><td>500</td><td>915</td><td>1055</td><td>460</td></tr><tr><td>750</td><td>1030</td><td>1135</td><td>460</td></tr><tr><td>1000</td><td>1150</td><td>1290</td><td>460</td></tr><tr><td>1500</td><td>1320</td><td>1438</td><td>460</td></tr><tr><td>2000</td><td>1430</td><td>1613</td><td>460</td></tr><tr><td>5000</td><td>1960</td><td>2115</td><td>460</td></tr></table></div>
+    <p style="font-size:12px;color:var(--text-muted);margin-top:8px">Roto Loft Tanks also available: 200L (970mm dia, 720mm H) and 300L (1160mm dia, 800mm H) with 305mm manhole</p>
+  </div></div>
+  <div class="info-tab-content" id="tank-app"><div class="info-content"><h2>Applications</h2><ul class="info-list"><li>High rise residential complexes and individual homes</li><li>Rural areas domestic water storage</li><li>Commercial and industrial — milk storage in dairies, etc.</li><li>Schools, hotels and institutions</li></ul></div></div>
+</div>
+
+</div><!-- /product-detail -->
+
+<footer>
+  <a href="index.html" class="logo">Market<span>Movers</span></a>
+  <p>Authorised Distributor — Texmo Pipes &amp; Products, Jabalpur</p>
+  <p style="font-size:12px;color:var(--brown-light)">© 2025 Market Movers. All rights reserved.</p>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/919425066923" target="_blank">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="white"><path d="M16 2C8.268 2 2 8.268 2 16c0 2.47.643 4.79 1.77 6.8L2 30l7.382-1.735A13.92 13.92 0 0 0 16 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm7.37 19.37c-.31.87-1.54 1.59-2.52 1.8-.67.14-1.54.25-4.48-1.02-3.77-1.61-6.2-5.43-6.39-5.68-.18-.25-1.5-2-.1-3.96.26-.36.68-.72 1.21-.72.19 0 .37.01.53.02.47.02.71.05.99.72.34.82 1.16 2.83 1.26 3.04.1.21.17.46.03.72-.13.27-.2.43-.39.66-.2.23-.41.51-.58.69-.19.2-.39.41-.17.81.22.39.99 1.63 2.12 2.64 1.46 1.3 2.67 1.7 3.07 1.89.39.19.62.16.85-.1.24-.27.99-1.15 1.25-1.55.26-.39.52-.33.87-.2.36.14 2.26 1.07 2.65 1.26.39.2.65.29.74.46.1.17.1.99-.2 1.86z"/></svg>
+</a>
+
+<script>
+function selectLine(id, card) {
+  document.querySelectorAll('.product-line-card').forEach(c => c.classList.remove('active'));
+  card.classList.add('active');
+  document.querySelectorAll('.detail-panel').forEach(p => p.classList.remove('active'));
+  const panel = document.getElementById('panel-' + id);
+  if (panel) { panel.classList.add('active'); panel.scrollIntoView({behavior:'smooth',block:'start'}); }
+}
+function switchInfoTab(btn, contentId) {
+  const panel = btn.closest('.detail-panel');
+  panel.querySelectorAll('.info-tab-btn').forEach(b => b.classList.remove('active'));
+  panel.querySelectorAll('.info-tab-content').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(contentId).classList.add('active');
+}
+function switchProdTab(btn, contentId) {
+  const panel = btn.closest('.detail-panel');
+  panel.querySelectorAll('.prod-tab-btn').forEach(b => b.classList.remove('active'));
+  panel.querySelectorAll('.prod-tab-content').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(contentId).classList.add('active');
+}
+function toggleItem(header) {
+  header.parentElement.classList.toggle('open');
+}
+const plScrollEl = document.getElementById('plScroll');
+const leftArrow = document.getElementById('arrowLeft');
+const rightArrow = document.getElementById('arrowRight');
+function scrollCarousel(dir) { plScrollEl.scrollBy({left: dir * 180, behavior:'smooth'}); }
+function updateArrows() {
+  leftArrow.classList.toggle('hidden', plScrollEl.scrollLeft <= 10);
+  rightArrow.classList.toggle('hidden', plScrollEl.scrollLeft + plScrollEl.clientWidth >= plScrollEl.scrollWidth - 10);
+}
+plScrollEl.addEventListener('scroll', updateArrows);
+window.addEventListener('resize', updateArrows);
+updateArrows();
+</script>
+</body>
+</html>

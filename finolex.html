@@ -55,7 +55,7 @@ nav{background:var(--brown-deep);padding:0 5%;display:flex;align-items:center;ju
 .info-tab-content{display:none;padding:24px 0 20px}
 .info-tab-content.active{display:block}
 .product-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
-.product-hero-img{width:100%;border-radius:10px;background:var(--sand-light);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:13px}
+.product-hero-img{width:100%;border-radius:10px;background:var(--sand-light);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:13px;overflow:hidden}.product-hero-img img{width:100%;height:100%;object-fit:contain;padding:16px}
 .info-content h2{font-family:'Playfair Display',serif;font-size:21px;font-weight:700;color:var(--brown-deep);margin-bottom:10px}
 .info-content p{font-size:14px;color:var(--text-secondary);line-height:1.75;margin-bottom:10px}
 .info-list{list-style:none;padding:0}
@@ -164,7 +164,7 @@ footer p{font-size:13px;color:var(--brown-light)}
     <button class="info-tab-btn" onclick="switchInfoTab(this,'agri-app')">Applications</button>
   </div>
   <div class="info-tab-content active" id="agri-desc">
-    <div class="product-info-grid"><div class="product-hero-img">📷 Product Image</div>
+    <div class="product-info-grid"><div class="product-hero-img"><img src="https://www.finolexpipes.com/site/assets/files/1135/agri_pipe_v4_new_solvent_1.png" alt="panel-agri" loading="lazy"></div>
       <div class="info-content">
         <h2>Finolex Agriculture Pipes &amp; Fittings</h2>
         <p>Finolex PVC-U agriculture pressure pipes and fittings cover varied pressure and gravity flow applications in agriculture, irrigation, swimming pools and domestic water supply including potable water. Available from 20mm to 400mm O.D. in 5 pressure classes conforming to IS 4985:2000. Both Selfit (solvent cement) and Ringfit (rubber ring) joints available.</p>
@@ -219,7 +219,7 @@ footer p{font-size:13px;color:var(--brown-light)}
     <button class="info-tab-btn" onclick="switchInfoTab(this,'cas-app')">Applications</button>
   </div>
   <div class="info-tab-content active" id="cas-desc">
-    <div class="product-info-grid"><div class="product-hero-img">📷 Product Image</div>
+    <div class="product-info-grid"><div class="product-hero-img"><img src="https://www.finolexpipes.com/site/assets/files/1136/casing_pipe_new.png" alt="panel-casing" loading="lazy"></div>
       <div class="info-content">
         <h2>Finolex Casing Pipes</h2>
         <p>Finolex PVC-U casing and ribbed screen pipes are manufactured using a special Lead Free PVC-U compound — ideal for transportation of hard, salty, sandy or chemically aggressive water. Specially designed to protect water lines from soil conditions in domestic, industrial and mining wells. Better than conventional metal pipes — lightweight, corrosion free and long lasting. CNC horizontal slotting ensures strength is maintained.</p>
@@ -267,7 +267,7 @@ footer p{font-size:13px;color:var(--brown-light)}
     <button class="info-tab-btn" onclick="switchInfoTab(this,'col-install')">Installation Tips</button>
   </div>
   <div class="info-tab-content active" id="col-desc">
-    <div class="product-info-grid"><div class="product-hero-img">📷 Product Image</div>
+    <div class="product-info-grid"><div class="product-hero-img"><img src="https://www.finolexpipes.com/site/assets/files/1137/column_pipes_new.png" alt="panel-column" loading="lazy"></div>
       <div class="info-content">
         <h2>Finolex Column Pipes</h2>
         <p>Finolex PVC-U column pipes are suitable for water extraction from borewells. Manufactured using lead-free compound on state-of-the-art CNC machines. Designed to withstand the combined system load of pump weight, water and pipes with an adequate safety factor. Square threaded coupling joint ensures ease of joining and optimum load holding capacity.</p>
@@ -302,7 +302,7 @@ footer p{font-size:13px;color:var(--brown-light)}
     <button class="info-tab-btn" onclick="switchInfoTab(this,'cpvc-app')">Applications</button>
   </div>
   <div class="info-tab-content active" id="cpvc-desc">
-    <div class="product-info-grid"><div class="product-hero-img">📷 Product Image</div>
+    <div class="product-info-grid"><div class="product-hero-img"><img src="https://www.finolexpipes.com/site/assets/files/144693/frame_1171281540.png" alt="panel-cpvc" loading="lazy"></div>
       <div class="info-content">
         <h2>Finolex CPVC Pipes &amp; Fittings</h2>
         <p>Finolex CPVC Pipes are the premium offering — manufactured using high-quality raw materials and advanced technology. Perfect for hot and cold water applications, withstanding higher temperatures than other plastic piping systems. Certified by BIS, CIPET and CFTRI. Lead-free, UV stabilized, and corrosion free.</p>
@@ -343,7 +343,7 @@ footer p{font-size:13px;color:var(--brown-light)}
     <button class="info-tab-btn" onclick="switchInfoTab(this,'astm-app')">Applications</button>
   </div>
   <div class="info-tab-content active" id="astm-desc">
-    <div class="product-info-grid"><div class="product-hero-img">📷 Product Image</div>
+    <div class="product-info-grid"><div class="product-hero-img"><img src="https://www.finolexpipes.com/site/assets/files/1143/astm_revised-brighter-2.png" alt="panel-astm" loading="lazy"></div>
       <div class="info-content">
         <h2>Finolex ASTM Pipes &amp; Fittings</h2>
         <p>Finolex ASTM Pipes are manufactured using the latest technology and high-grade raw material. Manufactured per ASTM D 1785, available in Schedule 40 &amp; 80 in 3 and 6 metre lengths with plain or threaded ends. Also includes Heavy Pressure Plumbing Pipes (15 kg/cm²) conforming to IS 4985. Lead-free and environment friendly.</p>
@@ -390,7 +390,7 @@ footer p{font-size:13px;color:var(--brown-light)}
     <button class="info-tab-btn" onclick="switchInfoTab(this,'swr-app')">Applications</button>
   </div>
   <div class="info-tab-content active" id="swr-desc">
-    <div class="product-info-grid"><div class="product-hero-img">📷 Product Image</div>
+    <div class="product-info-grid"><div class="product-hero-img"><img src="https://www.finolexpipes.com/site/assets/files/1141/swr_new_solvents_1_1-1.png" alt="panel-swr" loading="lazy"></div>
       <div class="info-content">
         <h2>Finolex SWR Pipes &amp; Fittings</h2>
         <p>Finolex SWR pipes and fittings are specially designed for efficient removal of waste in drainage systems. Available in two systems: Selfit (solvent cement, IS 13592) and Integrated Ring (push-fit, no solvent required). Both pipe types conform to IS 13592, fittings conform to IS 14735. Sizes from 40mm to 160mm.</p>
@@ -444,7 +444,7 @@ footer p{font-size:13px;color:var(--brown-light)}
     <button class="info-tab-btn" onclick="switchInfoTab(this,'sew-app')">Applications</button>
   </div>
   <div class="info-tab-content active" id="sew-desc">
-    <div class="product-info-grid"><div class="product-hero-img">📷 Product Image</div>
+    <div class="product-info-grid"><div class="product-hero-img"><img src="https://www.finolexpipes.com/site/assets/files/1140/sewerage_group_03_new.png" alt="panel-sewerage" loading="lazy"></div>
       <div class="info-content">
         <h2>Finolex Underground Drainage &amp; Sewerage Pipes</h2>
         <p>Finolex underground drainage and sewerage pipes carry soil and waste from buildings to sewers or drains and then to treatment plants. Designed for underground non-pressure applications — gravity drainage, sewer flow and transportation of soil &amp; waste discharge. Available in sizes 110mm to 315mm in stiffness classes SN-2, SN-4 and SN-8 conforming to IS 15328.</p>
@@ -478,7 +478,7 @@ footer p{font-size:13px;color:var(--brown-light)}
     <button class="info-tab-btn" onclick="switchInfoTab(this,'sol-app')">Applications</button>
   </div>
   <div class="info-tab-content active" id="sol-desc">
-    <div class="product-info-grid"><div class="product-hero-img">📷 Product Image</div>
+    <div class="product-info-grid"><div class="product-hero-img"><img src="https://www.finolexpipes.com/site/assets/files/1139/revised_group_shot_solvent-1.png" alt="panel-solvent" loading="lazy"></div>
       <div class="info-content">
         <h2>Finolex Solvent Cement, Lubricant &amp; Primer</h2>
         <p>Finolex offers a complete range of solvent cements and accessories to complement all Finolex pipe systems. Available in two ranges — Agriculture (for PVC-U agriculture pipes and fittings) and Plumbing (for ASTM, CPVC and SWR systems). Lubricant for Ringfit and Integrated Ring pipe jointing also available.</p>
