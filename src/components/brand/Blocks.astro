@@ -1,0 +1,91 @@
+---
+// Renders the content blocks from src/data/brands/*.json.
+import type { Block, Cell } from "@/data/brands";
+import Icon from "../Icon.astro";
+import { buttonVariants } from "../ui/button-variants";
+import { Download01Icon, LinkSquare02Icon } from "@hugeicons/core-free-icons";
+
+interface Props {
+  blocks: Block[];
+  /** Heading level for in-content headings. */
+  level?: 4 | 5;
+  /** Drop a heading that only repeats the surrounding title. */
+  skipHeading?: string;
+}
+const { blocks, level = 4, skipHeading } = Astro.props;
+const H = `h${level}` as "h4" | "h5";
+const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
+const visible = blocks.filter(
+  (b) => b.type !== "image" && !(b.type === "heading" && skipHeading && norm(b.text) === norm(skipHeading)),
+);
+const cell = (c: Cell) => (typeof c === "string" ? { v: c, span: 1 } : c);
+---
+<div class="space-y-4 text-[15px] leading-relaxed">
+  {visible.map((b) => {
+    switch (b.type) {
+      case "heading":
+        return <H class="pt-2 font-semibold">{b.text}</H>;
+      case "text":
+        return <p class:list={[b.note ? "text-sm text-muted-foreground" : "text-foreground/90"]} set:html={b.html} />;
+      case "list":
+        return (
+          <ul class="list-disc space-y-1.5 pl-5 marker:text-muted-foreground">
+            {b.items.map((i) => <li set:html={i} />)}
+          </ul>
+        );
+      case "chips":
+        return (
+          <ul class="flex flex-wrap gap-2" aria-label={b.kind === "features" ? "Features" : "Items"}>
+            {b.items.map((i) => (
+              <li class:list={["rounded-md border px-2.5 py-1 text-sm", b.kind === "features" ? "bg-accent/60 border-transparent text-accent-foreground" : "bg-card"]}>{i}</li>
+            ))}
+          </ul>
+        );
+      case "table":
+        return (
+          <figure>
+            {b.label && <figcaption class="mb-2 text-sm font-medium">{b.label}</figcaption>}
+            <div class="overflow-x-auto rounded-md border bg-card" tabindex="0" role="region" aria-label={b.label ?? "Table"}>
+              <table class="w-full text-left text-sm tabular-nums">
+                {b.header && (
+                  <thead class="bg-muted text-muted-foreground">
+                    <tr>
+                      {b.header.map((c) => { const x = cell(c); return <th scope="col" colspan={x.span > 1 ? x.span : undefined} class="px-3 py-2.5 font-medium whitespace-nowrap" set:html={x.v} />; })}
+                    </tr>
+                  </thead>
+                )}
+                <tbody class="divide-y">
+                  {b.rows.map((r) => (
+                    <tr>
+                      {r.map((c, i) => { const x = cell(c); return <td colspan={x.span > 1 ? x.span : undefined} class:list={["px-3 py-2 align-top", i === 0 && "font-medium whitespace-nowrap"]} set:html={x.v} />; })}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </figure>
+        );
+      case "series":
+        return (
+          <dl class="grid gap-x-6 gap-y-3 sm:grid-cols-2 lg:grid-cols-3">
+            {b.items.map((s) => (
+              <div class="rounded-md border bg-card px-3 py-2.5">
+                <dt class="font-medium">{s.name}</dt>
+                <dd class="text-sm text-muted-foreground">{s.text}</dd>
+              </div>
+            ))}
+          </dl>
+        );
+      case "link":
+        return (
+          <p>
+            <a href={b.href} target="_blank" rel="noopener" class={buttonVariants({ variant: "outline", size: "sm" })}>
+              <Icon icon={b.kind === "pdf" ? Download01Icon : LinkSquare02Icon} size={16} />
+              {b.label}
+              {b.kind === "page" && <span class="sr-only">(opens manufacturer website)</span>}
+            </a>
+          </p>
+        );
+    }
+  })}
+</div>

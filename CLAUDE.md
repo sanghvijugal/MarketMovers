@@ -1,70 +1,63 @@
 # Market Movers website
 
-Static HTML site for Market Movers (plumbing & sanitary distributor, Jabalpur, MP),
-hosted on GitHub Pages at https://marketmovers.co.in (see `CNAME`). No build step:
-each `*.html` file in the repo root is a public page.
-
-- `index.html`: homepage (products, brands, contact form → WhatsApp)
-- `<brand>.html`: one page per brand (dutron, finolex, johnson, texmo, waterflo)
-- `assets/`: OG share image and favicons
-- `sitemap.xml`, `robots.txt`: generated/maintained for Google
-- `tools/seo.py`: sitemap generator + SEO checker (runs in CI via `.github/workflows/seo.yml`)
-
-## SEO rules: keep these true on every change
-
-After any edit, run:
+Marketing and catalogue site for Market Movers (plumbing & sanitary distributor, Jabalpur, MP).
+Astro (static output) + Tailwind CSS v4 + shadcn/ui components (React islands only where
+interactive) + Hugeicons. Deployed to GitHub Pages at https://marketmovers.co.in by
+`.github/workflows/deploy.yml` on every push to `main`.
 
 ```
-python3 tools/seo.py sitemap
-python3 tools/seo.py check
+npm run dev      # local dev server
+npm run build    # build into dist/ AND run the SEO checks (must pass)
+npm run check    # TypeScript / Astro type check
 ```
 
-`check` must report 0 errors before committing. It enforces the rules below.
+## Where things live
 
-Every public page must have, in `<head>`:
-- a unique `<title>` of 60 characters or fewer, in the form "<Brand/topic> … Jabalpur | Market Movers"
-- a unique `<meta name="description">`, 50–160 characters, describing that page's actual content
-- `<link rel="canonical" href="https://marketmovers.co.in/<file>.html">` (homepage: `https://marketmovers.co.in/`)
-- Open Graph + Twitter tags (`og:title`, `og:description`, `og:url`, `og:type`,
-  `og:image` = `https://marketmovers.co.in/assets/og-image.jpg`, `twitter:card`)
-- JSON-LD schema: the homepage has the `HardwareStore` business (address, phone, hours,
-  brands). Brand pages have a `WebPage` that is `about` the `Brand`. Keep the business
-  details in JSON-LD in sync with the visible contact section if the address, phone or hours change.
-- never `noindex`
+- `src/data/site.ts`: business details (phones, WhatsApp, address, hours), brand list, product
+  categories. The contact section, footer, WhatsApp links and JSON-LD all read from here.
+- `src/data/brands/<slug>.json`: one file per brand page (product lines, specs, tables,
+  PDF links). `src/pages/[brand].astro` renders every brand from these files.
+- `src/pages/index.astro`: homepage. `src/pages/404.astro`: not-found page.
+- `src/components/`: `Header`, `Footer`, `Logo` (placeholder), `Placeholder` (photo
+  placeholders), `Icon` (Hugeicons → inline SVG), `EnquiryForm.tsx` (React island),
+  `brand/*` (brand page parts), `ui/*` (shadcn components).
+- `src/styles/global.css`: design tokens and the transitions.dev recipes. See `DESIGN.md`.
+- `public/`: files served as-is (`robots.txt`, `CNAME`, `assets/` OG image and favicons).
+- `tools/seo.py`: SEO checker that runs on `dist/` after every build.
 
-In the body:
-- exactly one `<h1>`; don't skip heading levels (h2 → h3, never h2 → h4). Use CSS for size,
-  not a smaller heading tag.
-- every `<img>` has a descriptive `alt` (what the image shows, e.g. "Texmo HDPE Coils & Pipes",
-  not "panel-hdpe") plus `width`/`height`. The image shown on first load gets
-  `fetchpriority="high"`; all others `loading="lazy"`.
-- links between pages must be real `<a href="page.html">` links. Google does not follow
-  `href="#"` + `onclick` navigation.
-- only `https://` URLs; no placeholder numbers such as `91XXXXXXXXXX`. The WhatsApp number is
-  `919425066923`.
+## Adding a brand page
 
-## Adding a new brand page
+1. Add `src/data/brands/<slug>.json` (copy an existing one; lowercase, hyphenated slug).
+   Fill `seo.title` (≤ 60 chars, "<Brand> … Jabalpur | Market Movers") and a unique
+   `seo.description` (50–160 chars).
+2. Set `slug: "<slug>"` for that brand in `brands` in `src/data/site.ts`. Links from the homepage,
+   footer, other brand pages and the sitemap then appear automatically.
+3. `npm run build` and fix anything the SEO check reports.
 
-1. Copy an existing brand page (e.g. `texmo.html`) to `<brand>.html`, using a lowercase,
-   hyphenated file name with no spaces.
-2. Update its title, description, canonical, og:*, JSON-LD and alt texts for the new brand.
-3. Link to it with a real href from `index.html` (the brand tags/pills and the footer
-   `.footer-links`) and from the "Also at Market Movers" block on every other brand page.
-   Remove the brand from `CATALOG_PDFS` in `index.html` if it was listed there.
-4. Run `python3 tools/seo.py sitemap && python3 tools/seo.py check`.
+## SEO rules (enforced by `npm run build`)
 
-Don't rename or delete an existing page: Google has it indexed. GitHub Pages can't do server
-redirects, so if a page must move, keep the old file as a stub with
-`<meta http-equiv="refresh" content="0; url=new.html">` and a canonical pointing to the new URL,
-and add the stub's name to `NOT_PAGES` in `tools/seo.py`.
-`404.html` is the not-found page (intentionally `noindex`, excluded from the sitemap).
+- Never change an existing URL: `/`, `/dutron.html`, `/finolex.html`, `/johnson.html`,
+  `/texmo.html`, `/waterflo.html` are indexed by Google (`build.format: "file"` keeps `.html`).
+- Every page goes through `src/layouts/Base.astro` with a unique `title`, `description` and
+  `path`. The layout adds canonical, Open Graph, Twitter and JSON-LD tags.
+- One `<h1>` per page; don't skip heading levels. Style size with CSS, not a smaller tag.
+- Every `<img>` needs descriptive `alt`, `width` and `height`. Only the first visible image
+  gets `fetchpriority="high"`; the rest `loading="lazy"`.
+- Links between pages are real `<a href>`s, never `href="#"` + JavaScript.
+- Only `https://` URLs. The WhatsApp number comes from `site.ts`; never hard-code it.
 
-## UI work
+## UI rules
 
 Design and UI skills are vendored in `.claude/skills/` (sources in `.claude/skills/SOURCES.md`).
-For any change to how the site looks or moves:
-- follow `baseline-ui` as the default constraints (no gradients/glow, one accent colour,
-  `text-balance` headings, only animate `transform`/`opacity`, respect reduced motion)
-- use `emil-design-eng` / `animate` before adding any animation, `mobile-native` for touch/mobile
-  behaviour, and `fixing-accessibility` for dialogs, forms and keyboard focus
-- run `review-animations` / `improve-ui` for a review pass before shipping a redesign
+Read `DESIGN.md` before changing how anything looks.
+- Follow `baseline-ui`: no gradients or glow, one accent colour (cobalt `primary`), Tailwind
+  defaults, `text-balance` on headings, `tabular-nums` for numbers, `h-dvh` not `h-screen`.
+- Use the shadcn components in `src/components/ui/` for form controls and buttons. Use
+  `buttonVariants()` for links that look like buttons in `.astro` files.
+- Icons: Hugeicons only (`@hugeicons/core-free-icons`), rendered with `Icon.astro` (or
+  `HugeiconsIcon` inside React). Don't mix in other icon sets.
+- Motion: use `emil-design-eng` / `animate` before adding any animation. Reuse the
+  transitions.dev recipes in `global.css`; only animate `transform` and `opacity` (the accordion's
+  grid-rows height is the one exception); always respect `prefers-reduced-motion`.
+- Use `mobile-native` for touch behaviour and `fixing-accessibility` for dialogs, forms and focus.
+- Run `review-animations` / `improve-ui` for a review pass before shipping a redesign.

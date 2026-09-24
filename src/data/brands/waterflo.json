@@ -1,0 +1,3679 @@
+{
+ "slug": "waterflo",
+ "name": "Waterflo",
+ "tagline": "Pipes & Fittings",
+ "origin": "Always Ahead In Quality — Rajkot, Gujarat",
+ "badges": [
+  "ISI Certified",
+  "ASTM Standards",
+  "IS Standards",
+  "7 Product Lines",
+  "Available at Market Movers, Jabalpur"
+ ],
+ "seo": {
+  "title": "Waterflo Pipes & Fittings Dealer in Jabalpur | Market Movers",
+  "description": "Waterflo CPVC, uPVC, SWR, agriculture, column/borewell and HDPE pipes in Jabalpur. Sizes, specs and the Waterflo price list from Market Movers, MP."
+ },
+ "about": "Waterflo",
+ "lines": [
+  {
+   "id": "cpvc",
+   "name": "CPVC Pipes & Fittings",
+   "series": "Strongfit",
+   "tag": "Hot & Cold Water",
+   "sections": [
+    {
+     "title": "Description",
+     "blocks": [
+      {
+       "type": "image",
+       "src": "https://waterflo.in/wp-content/uploads/2020/12/cpvc.jpg",
+       "alt": "Waterflo Strongfit — CPVC Pipes & Fittings"
+      },
+      {
+       "type": "heading",
+       "text": "Strongfit — CPVC Pipes & Fittings"
+      },
+      {
+       "type": "text",
+       "html": "Made from Chlorinated Poly Vinyl Chloride (CPVC). Meets cell class D.P.10-2-3-2 per IS 15778 and 23447-B per ASTM D 1784, with max service temperature up to 93°C."
+      },
+      {
+       "type": "chips",
+       "kind": "features",
+       "items": [
+        "Non Corrosive",
+        "Chemical Resistant",
+        "Fire Safety",
+        "Prevents Bacterial Growth",
+        "Low Thermal Expansion",
+        "50+ Year Life",
+        "Chlorine Resistant",
+        "Tough & Reliable"
+       ]
+      },
+      {
+       "type": "link",
+       "label": "Download Catalogue",
+       "href": "https://waterflo.in/wp-content/uploads/2021/12/Waterflo_Pricelist.pdf",
+       "kind": "pdf"
+      }
+     ]
+    },
+    {
+     "title": "Standards & Specifications",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Standards & Specifications"
+      },
+      {
+       "type": "list",
+       "items": [
+        "<strong>ASTM D 1784:</strong> Rigid CPVC Compounds",
+        "<strong>ASTM D 2846:</strong> CPVC Pipes &amp; Fittings for Hot &amp; Cold Water Distribution",
+        "<strong>ASTM F 493:</strong> Solvent Cements for CPVC Plastic Pipe &amp; Fittings",
+        "<strong>IS 15778 : 2007:</strong> CPVC Pipes for Potable Hot &amp; Cold Water Distribution",
+        "<strong>ASTM F 441:</strong> CPVC Plastic Pipe Schedule 40 &amp; 80",
+        "<strong>ASTM F 439:</strong> Socket-type CPVC Plastic Pipe Fittings Schedule 80"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Available Sizes",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Available Sizes"
+      },
+      {
+       "type": "list",
+       "items": [
+        "<strong>Pipes:</strong> Class 1 (SDR 11) &amp; Class 2 (SDR 13.5) from 15mm–50mm CTS per IS 15778; SCH 40 &amp; 80 from 65mm–100mm per ASTM F 441",
+        "<strong>Fittings:</strong> SDR 11 from 15mm–50mm per ASTM D 2846; SCH 80 from 65mm–100mm per ASTM F 439"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Marking & Uniformity",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Marking & Uniformity"
+      },
+      {
+       "type": "table",
+       "header": [
+        "Product",
+        "Colour"
+       ],
+       "rows": [
+        [
+         "SDR 11 Pipe",
+         "Tan with red stripe"
+        ],
+        [
+         "SDR 13.5 Pipe",
+         "Tan with brown stripe"
+        ],
+        [
+         "SDR 11 Fittings",
+         "Tan"
+        ],
+        [
+         "SCH 40 &amp; 80 Pipe",
+         "Tan"
+        ],
+        [
+         "SCH 80 Fittings",
+         "Tan"
+        ]
+       ]
+      }
+     ]
+    }
+   ],
+   "products": [
+    {
+     "title": "Pipes",
+     "items": [
+      {
+       "name": "Pipe SDR 11 & SDR 13.5 (CTS)",
+       "std": "as per ASTM D 2846 / IS 15778",
+       "blocks": [
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size",
+          "mm",
+          "Qty/Bundle"
+         ],
+         "rows": [
+          [
+           "CP1115",
+           "½\"",
+           "15",
+           "75"
+          ],
+          [
+           "CP1120",
+           "¾\"",
+           "20",
+           "50"
+          ],
+          [
+           "CP1125",
+           "1\"",
+           "25",
+           "30"
+          ],
+          [
+           "CP1132",
+           "1¼\"",
+           "32",
+           "15"
+          ],
+          [
+           "CP1140",
+           "1½\"",
+           "40",
+           "10"
+          ],
+          [
+           "CP1150",
+           "2\"",
+           "50",
+           "8"
+          ]
+         ],
+         "label": "SDR 11"
+        },
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size",
+          "mm",
+          "Qty/Bundle"
+         ],
+         "rows": [
+          [
+           "CP13515",
+           "½\"",
+           "15",
+           "75"
+          ],
+          [
+           "CP13520",
+           "¾\"",
+           "20",
+           "50"
+          ],
+          [
+           "CP13525",
+           "1\"",
+           "25",
+           "30"
+          ],
+          [
+           "CP13532",
+           "1¼\"",
+           "32",
+           "15"
+          ],
+          [
+           "CP13540",
+           "1½\"",
+           "40",
+           "10"
+          ],
+          [
+           "CP13550",
+           "2\"",
+           "50",
+           "8"
+          ]
+         ],
+         "label": "SDR 13.5"
+        }
+       ]
+      },
+      {
+       "name": "Pipe SCH 40 & SCH 80",
+       "std": "as per ASTM F-441",
+       "blocks": [
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size",
+          "mm",
+          "Qty/Bundle"
+         ],
+         "rows": [
+          [
+           "CP4065",
+           "2½\"",
+           "65",
+           "5"
+          ],
+          [
+           "CP4080",
+           "3\"",
+           "80",
+           "4"
+          ],
+          [
+           "CP40100",
+           "4\"",
+           "100",
+           "2"
+          ]
+         ],
+         "label": "SCH 40"
+        },
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size",
+          "mm",
+          "Qty/Bundle"
+         ],
+         "rows": [
+          [
+           "CP8065",
+           "2½\"",
+           "65",
+           "5"
+          ],
+          [
+           "CP8080",
+           "3\"",
+           "80",
+           "4"
+          ],
+          [
+           "CP80100",
+           "4\"",
+           "100",
+           "2"
+          ]
+         ],
+         "label": "SCH 80"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Fittings",
+     "items": [
+      {
+       "name": "Elbow",
+       "std": "CTS ASTM D 2846 / SCH 80 ASTM F-439",
+       "blocks": [
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size",
+          "mm",
+          "Qty/Box"
+         ],
+         "rows": [
+          [
+           "CFE15",
+           "½\"",
+           "15",
+           "1200"
+          ],
+          [
+           "CFE20",
+           "¾\"",
+           "20",
+           "500"
+          ],
+          [
+           "CFE25",
+           "1\"",
+           "25",
+           "250"
+          ],
+          [
+           "CFE32",
+           "1¼\"",
+           "32",
+           "125"
+          ],
+          [
+           "CFE40",
+           "1½\"",
+           "40",
+           "75"
+          ],
+          [
+           "CFE50",
+           "2\"",
+           "50",
+           "40"
+          ]
+         ],
+         "label": "CTS"
+        },
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size",
+          "mm",
+          "Qty/Box"
+         ],
+         "rows": [
+          [
+           "CFE65",
+           "2½\"",
+           "65",
+           "6"
+          ],
+          [
+           "CFE80",
+           "3\"",
+           "80",
+           "4"
+          ],
+          [
+           "CFE100",
+           "4\"",
+           "100",
+           "3"
+          ]
+         ],
+         "label": "SCH 80"
+        }
+       ]
+      },
+      {
+       "name": "Elbow 45°",
+       "std": "CTS ASTM D 2846 / SCH 80 ASTM F-439",
+       "blocks": [
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size",
+          "mm",
+          "Qty/Box"
+         ],
+         "rows": [
+          [
+           "CFE4515",
+           "½\"",
+           "15",
+           "1500"
+          ],
+          [
+           "CFE4520",
+           "¾\"",
+           "20",
+           "600"
+          ],
+          [
+           "CFE4525",
+           "1\"",
+           "25",
+           "300"
+          ],
+          [
+           "CFE4532",
+           "1¼\"",
+           "32",
+           "150"
+          ],
+          [
+           "CFE4540",
+           "1½\"",
+           "40",
+           "105"
+          ],
+          [
+           "CFE4550",
+           "2\"",
+           "50",
+           "48"
+          ]
+         ],
+         "label": "CTS"
+        },
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size",
+          "mm",
+          "Qty/Box"
+         ],
+         "rows": [
+          [
+           "CFE4565",
+           "2½\"",
+           "65",
+           "6"
+          ],
+          [
+           "CFE4580",
+           "3\"",
+           "80",
+           "4"
+          ],
+          [
+           "CFE45100",
+           "4\"",
+           "100",
+           "3"
+          ]
+         ],
+         "label": "SCH 80"
+        }
+       ]
+      },
+      {
+       "name": "Tee",
+       "std": "CTS ASTM D 2846 / SCH 80 ASTM F-439",
+       "blocks": [
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size",
+          "mm",
+          "Qty/Box"
+         ],
+         "rows": [
+          [
+           "CFT15",
+           "½\"",
+           "15",
+           "800"
+          ],
+          [
+           "CFT20",
+           "¾\"",
+           "20",
+           "300"
+          ],
+          [
+           "CFT25",
+           "1\"",
+           "25",
+           "150"
+          ],
+          [
+           "CFT32",
+           "1¼\"",
+           "32",
+           "90"
+          ],
+          [
+           "CFT40",
+           "1½\"",
+           "40",
+           "60"
+          ],
+          [
+           "CFT50",
+           "2\"",
+           "50",
+           "25"
+          ]
+         ],
+         "label": "CTS"
+        },
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size",
+          "mm",
+          "Qty/Box"
+         ],
+         "rows": [
+          [
+           "CFT65",
+           "2½\"",
+           "65",
+           "6"
+          ],
+          [
+           "CFT80",
+           "3\"",
+           "80",
+           "4"
+          ],
+          [
+           "CFT100",
+           "4\"",
+           "100",
+           "2"
+          ]
+         ],
+         "label": "SCH 80"
+        }
+       ]
+      },
+      {
+       "name": "Coupler",
+       "std": "CTS ASTM D 2846 / SCH 80 ASTM F-439",
+       "blocks": [
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size",
+          "mm",
+          "Qty/Box"
+         ],
+         "rows": [
+          [
+           "CFC15",
+           "½\"",
+           "15",
+           "2000"
+          ],
+          [
+           "CFC20",
+           "¾\"",
+           "20",
+           "800"
+          ],
+          [
+           "CFC25",
+           "1\"",
+           "25",
+           "400"
+          ],
+          [
+           "CFC32",
+           "1¼\"",
+           "32",
+           "200"
+          ],
+          [
+           "CFC40",
+           "1½\"",
+           "40",
+           "120"
+          ],
+          [
+           "CFC50",
+           "2\"",
+           "50",
+           "60"
+          ]
+         ],
+         "label": "CTS"
+        },
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size",
+          "mm",
+          "Qty/Box"
+         ],
+         "rows": [
+          [
+           "CFC65",
+           "2½\"",
+           "65",
+           "20"
+          ],
+          [
+           "CFC80",
+           "3\"",
+           "80",
+           "6"
+          ],
+          [
+           "CFC100",
+           "4\"",
+           "100",
+           "4"
+          ]
+         ],
+         "label": "SCH 80"
+        }
+       ]
+      },
+      {
+       "name": "Ball Valve",
+       "std": "CTS / SCH 80",
+       "blocks": [
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size",
+          "mm",
+          "Qty/Box"
+         ],
+         "rows": [
+          [
+           "CFBV15",
+           "½\"",
+           "15",
+           "255"
+          ],
+          [
+           "CFBV20",
+           "¾\"",
+           "20",
+           "120"
+          ],
+          [
+           "CFBV25",
+           "1\"",
+           "25",
+           "60"
+          ],
+          [
+           "CFBV32",
+           "1¼\"",
+           "32",
+           "45"
+          ],
+          [
+           "CFBV40",
+           "1½\"",
+           "40",
+           "32"
+          ],
+          [
+           "CFBV50",
+           "2\"",
+           "50",
+           "18"
+          ],
+          [
+           "CFBV65",
+           "2½\"",
+           "65",
+           "6"
+          ],
+          [
+           "CFBV80",
+           "3\"",
+           "80",
+           "2"
+          ],
+          [
+           "CFBV100",
+           "4\"",
+           "100",
+           "1"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "name": "F.T.A., M.T.A., Union, End Cap, Cross Tee & Reducer Fittings",
+       "std": "CTS / SCH 80 — Full range ½\" to 4\"",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "Full range available — see downloadable catalogue for complete product codes and quantities."
+        },
+        {
+         "type": "link",
+         "label": "Download Catalogue",
+         "href": "https://waterflo.in/wp-content/uploads/2021/12/Waterflo_Pricelist.pdf",
+         "kind": "pdf"
+        }
+       ]
+      },
+      {
+       "name": "3-in-1 Mixer Adaptors",
+       "std": "6\" & 7\" series — ¾\"x½\"",
+       "blocks": [
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Type",
+          "Length",
+          "Qty/Box"
+         ],
+         "rows": [
+          [
+           "CFAT62015",
+           "All Top",
+           "6\"",
+           "30"
+          ],
+          [
+           "CFTB62015",
+           "Top &amp; Bottom",
+           "6\"",
+           "30"
+          ],
+          [
+           "CFTS62015",
+           "Top &amp; Side",
+           "6\"",
+           "30"
+          ],
+          [
+           "CFUD62015",
+           "Hot Up Cold Down",
+           "6\"",
+           "30"
+          ],
+          [
+           "CFSD62015",
+           "Hot Side Cold Down",
+           "6\"",
+           "30"
+          ],
+          [
+           "CFAT72015",
+           "All Top",
+           "7\"",
+           "30"
+          ],
+          [
+           "CFTB72015",
+           "Top &amp; Bottom",
+           "7\"",
+           "30"
+          ],
+          [
+           "CFTS72015",
+           "Top &amp; Side",
+           "7\"",
+           "30"
+          ],
+          [
+           "CFUD72015",
+           "Hot Up Cold Down",
+           "7\"",
+           "30"
+          ],
+          [
+           "CFSD72015",
+           "Hot Side Cold Down",
+           "7\"",
+           "30"
+          ],
+          [
+           "CFKMA2015",
+           "Kitchen Mixer Down",
+           "—",
+           "30"
+          ]
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Solvent Cement",
+     "items": [
+      {
+       "name": "CPVC Solvent Cement",
+       "std": "Tube & Tin",
+       "blocks": [
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size",
+          "Pack",
+          "Qty/Box"
+         ],
+         "rows": [
+          [
+           "CFSC15",
+           "15ml",
+           "Tube",
+           "600"
+          ],
+          [
+           "CFSC29",
+           "29ml",
+           "Tube",
+           "384"
+          ],
+          [
+           "CFSC59",
+           "59ml",
+           "Tube",
+           "240"
+          ],
+          [
+           "CFSCT59",
+           "59ml",
+           "Tin",
+           "—"
+          ],
+          [
+           "CFSC118",
+           "118ml",
+           "Tin",
+           "144"
+          ],
+          [
+           "CFSC237",
+           "237ml",
+           "Tin",
+           "96"
+          ],
+          [
+           "CFSC473",
+           "473ml",
+           "Tin",
+           "48"
+          ],
+          [
+           "CFSC946",
+           "946ml",
+           "Tin",
+           "24"
+          ]
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Accessories",
+     "items": [
+      {
+       "name": "Primer",
+       "std": "473ml Tin",
+       "blocks": [
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size",
+          "Pack",
+          "Qty/Box"
+         ],
+         "rows": [
+          [
+           "CUFP473",
+           "473ml",
+           "Tin",
+           "48"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "name": "PTFE Tape",
+       "std": "Thread seal tape",
+       "blocks": [
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Length",
+          "Width",
+          "Qty/Box"
+         ],
+         "rows": [
+          [
+           "PTY12",
+           "10 mtr",
+           "12mm",
+           "1000"
+          ],
+          [
+           "PTY19",
+           "10 mtr",
+           "19mm",
+           "1000"
+          ],
+          [
+           "PTW12",
+           "10 mtr",
+           "12mm",
+           "1000"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "name": "Clips — Plastic & Metal",
+       "std": "Pipe support clips ½\" to 2\"",
+       "blocks": [
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size",
+          "Qty/Box"
+         ],
+         "rows": [
+          [
+           "CFPC15",
+           "½\"",
+           "2100"
+          ],
+          [
+           "CFPC20",
+           "¾\"",
+           "1500"
+          ],
+          [
+           "CFPC25",
+           "1\"",
+           "1000"
+          ],
+          [
+           "CFPC32",
+           "1¼\"",
+           "750"
+          ],
+          [
+           "CFPC40",
+           "1½\"",
+           "600"
+          ],
+          [
+           "CFPC50",
+           "2\"",
+           "350"
+          ]
+         ],
+         "label": "Plastic Clip"
+        },
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size",
+          "Qty/Box"
+         ],
+         "rows": [
+          [
+           "CFMC15",
+           "½\"",
+           "1400"
+          ],
+          [
+           "CFMC20",
+           "¾\"",
+           "1200"
+          ],
+          [
+           "CFMC25",
+           "1\"",
+           "800"
+          ],
+          [
+           "CFMC32",
+           "1¼\"",
+           "700"
+          ],
+          [
+           "CFMC40",
+           "1½\"",
+           "700"
+          ],
+          [
+           "CFMC50",
+           "2\"",
+           "400"
+          ]
+         ],
+         "label": "Metal Clip"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "upvc",
+   "name": "uPVC Plumbing System",
+   "series": "Surefit",
+   "tag": "ASTM",
+   "sections": [
+    {
+     "title": "Description",
+     "blocks": [
+      {
+       "type": "image",
+       "src": "https://waterflo.in/wp-content/uploads/2021/12/upvc_ttl.png",
+       "alt": "Waterflo Surefit — uPVC Plumbing System"
+      },
+      {
+       "type": "heading",
+       "text": "Surefit — uPVC Plumbing System"
+      },
+      {
+       "type": "text",
+       "html": "Lead Free, non-toxic uPVC ASTM Plumbing system for lifetime trouble-free service. Max service temperature 60°C. Conforms to ASTM Cell Classification 12454-B of ASTM D 1784."
+      },
+      {
+       "type": "chips",
+       "kind": "features",
+       "items": [
+        "Lead Free & Non-Toxic",
+        "Lifetime Service",
+        "SCH 40 & SCH 80",
+        "Easy Installation"
+       ]
+      },
+      {
+       "type": "link",
+       "label": "Download Catalogue",
+       "href": "https://waterflo.in/wp-content/uploads/2021/12/Waterflo_Pricelist.pdf",
+       "kind": "pdf"
+      }
+     ]
+    },
+    {
+     "title": "Standards & Specifications",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Standards & Specifications"
+      },
+      {
+       "type": "list",
+       "items": [
+        "<strong>ASTM D 1784:</strong> Rigid PVC Compounds",
+        "<strong>ASTM D 1785:</strong> PVC Plastic Pipes SCH 40 &amp; SCH 80",
+        "<strong>ASTM D 2466:</strong> Socket Type PVC Fittings SCH 40",
+        "<strong>ASTM D 2467:</strong> Socket Type PVC Fittings SCH 80",
+        "<strong>ASTM D 2564:</strong> Solvent Cements",
+        "<strong>ASTM D 2774:</strong> Underground Installation of Thermoplastic Pipes"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Available Sizes",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Available Sizes"
+      },
+      {
+       "type": "list",
+       "items": [
+        "<strong>Pipes SCH 40 &amp; SCH 80:</strong> 15mm (½\") to 150mm (6\") per ASTM D 1785",
+        "<strong>Fittings SCH 40:</strong> 15mm (½\") to 50mm (2\") per ASTM D 2466",
+        "<strong>Fittings SCH 80:</strong> 15mm (½\") to 100mm (4\") per ASTM D 2467"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Marking & Uniformity",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Marking & Uniformity"
+      },
+      {
+       "type": "table",
+       "header": [
+        "Product",
+        "Colour"
+       ],
+       "rows": [
+        [
+         "SCH 40 Pipe",
+         "White with blue stripe"
+        ],
+        [
+         "SCH 80 Pipe",
+         "White with red stripe"
+        ],
+        [
+         "SCH 40 Fittings",
+         "White"
+        ],
+        [
+         "SCH 80 Fittings",
+         "White"
+        ]
+       ]
+      }
+     ]
+    }
+   ],
+   "products": [
+    {
+     "title": "Pipes",
+     "items": [
+      {
+       "name": "Pipe SCH 40 & SCH 80",
+       "std": "as per ASTM D-1785 — ½\" to 6\"",
+       "blocks": [
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size",
+          "mm",
+          "Qty/Bundle"
+         ],
+         "rows": [
+          [
+           "UP4015",
+           "½\"",
+           "15",
+           "50"
+          ],
+          [
+           "UP4020",
+           "¾\"",
+           "20",
+           "40"
+          ],
+          [
+           "UP4025",
+           "1\"",
+           "25",
+           "25"
+          ],
+          [
+           "UP4032",
+           "1¼\"",
+           "32",
+           "15"
+          ],
+          [
+           "UP4040",
+           "1½\"",
+           "40",
+           "10"
+          ],
+          [
+           "UP4050",
+           "2\"",
+           "50",
+           "7"
+          ],
+          [
+           "UP4065",
+           "2½\"",
+           "65",
+           "4"
+          ],
+          [
+           "UP4080",
+           "3\"",
+           "80",
+           "4"
+          ],
+          [
+           "UP40100",
+           "4\"",
+           "100",
+           "2"
+          ],
+          [
+           "UP40150",
+           "6\"",
+           "150",
+           "1"
+          ]
+         ],
+         "label": "SCH 40"
+        },
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size",
+          "mm",
+          "Qty/Bundle"
+         ],
+         "rows": [
+          [
+           "UP8015",
+           "½\"",
+           "15",
+           "50"
+          ],
+          [
+           "UP8020",
+           "¾\"",
+           "20",
+           "40"
+          ],
+          [
+           "UP8025",
+           "1\"",
+           "25",
+           "25"
+          ],
+          [
+           "UP8032",
+           "1¼\"",
+           "32",
+           "15"
+          ],
+          [
+           "UP8040",
+           "1½\"",
+           "40",
+           "10"
+          ],
+          [
+           "UP8050",
+           "2\"",
+           "50",
+           "7"
+          ],
+          [
+           "UP8065",
+           "2½\"",
+           "65",
+           "4"
+          ],
+          [
+           "UP8080",
+           "3\"",
+           "80",
+           "4"
+          ],
+          [
+           "UP80100",
+           "4\"",
+           "100",
+           "2"
+          ],
+          [
+           "UP80150",
+           "6\"",
+           "150",
+           "1"
+          ]
+         ],
+         "label": "SCH 80"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Fittings",
+     "items": [
+      {
+       "name": "Elbow",
+       "std": "SCH 40 ASTM D-2466 / SCH 80 ASTM D-2467",
+       "blocks": [
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size",
+          "Qty/Box"
+         ],
+         "rows": [
+          [
+           "UFE4015",
+           "½\"",
+           "600"
+          ],
+          [
+           "UFE4020",
+           "¾\"",
+           "300"
+          ],
+          [
+           "UFE4025",
+           "1\"",
+           "175"
+          ],
+          [
+           "UFE4032",
+           "1¼\"",
+           "105"
+          ],
+          [
+           "UFE4040",
+           "1½\"",
+           "75"
+          ],
+          [
+           "UFE4050",
+           "2\"",
+           "45"
+          ]
+         ],
+         "label": "SCH 40"
+        },
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size",
+          "Qty/Box"
+         ],
+         "rows": [
+          [
+           "UFE8015",
+           "½\"",
+           "350"
+          ],
+          [
+           "UFE8020",
+           "¾\"",
+           "200"
+          ],
+          [
+           "UFE8025",
+           "1\"",
+           "120"
+          ],
+          [
+           "UFE8032",
+           "1¼\"",
+           "70"
+          ],
+          [
+           "UFE8040",
+           "1½\"",
+           "60"
+          ],
+          [
+           "UFE8050",
+           "2\"",
+           "32"
+          ],
+          [
+           "UFE65",
+           "2½\"",
+           "6"
+          ],
+          [
+           "UFE80",
+           "3\"",
+           "4"
+          ],
+          [
+           "UFE100",
+           "4\"",
+           "3"
+          ]
+         ],
+         "label": "SCH 80"
+        }
+       ]
+      },
+      {
+       "name": "Tee",
+       "std": "SCH 40 ASTM D-2466 / SCH 80 ASTM D-2467",
+       "blocks": [
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size",
+          "Qty/Box"
+         ],
+         "rows": [
+          [
+           "UFT4015",
+           "½\"",
+           "350"
+          ],
+          [
+           "UFT4020",
+           "¾\"",
+           "200"
+          ],
+          [
+           "UFT4025",
+           "1\"",
+           "125"
+          ],
+          [
+           "UFT4032",
+           "1¼\"",
+           "70"
+          ],
+          [
+           "UFT4040",
+           "1½\"",
+           "53"
+          ],
+          [
+           "UFT4050",
+           "2\"",
+           "53"
+          ]
+         ],
+         "label": "SCH 40"
+        },
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size",
+          "Qty/Box"
+         ],
+         "rows": [
+          [
+           "UFT8015",
+           "½\"",
+           "220"
+          ],
+          [
+           "UFT8020",
+           "¾\"",
+           "120"
+          ],
+          [
+           "UFT8025",
+           "1\"",
+           "75"
+          ],
+          [
+           "UFT8032",
+           "1¼\"",
+           "50"
+          ],
+          [
+           "UFT8040",
+           "1½\"",
+           "38"
+          ],
+          [
+           "UFT8050",
+           "2\"",
+           "22"
+          ],
+          [
+           "UFT65",
+           "2½\"",
+           "6"
+          ],
+          [
+           "UFT80",
+           "3\"",
+           "4"
+          ],
+          [
+           "UFT100",
+           "4\"",
+           "2"
+          ]
+         ],
+         "label": "SCH 80"
+        }
+       ]
+      },
+      {
+       "name": "Coupler",
+       "std": "SCH 40 ASTM D-2466 / SCH 80 ASTM D-2467",
+       "blocks": [
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size",
+          "Qty/Box"
+         ],
+         "rows": [
+          [
+           "UFC4015",
+           "½\"",
+           "800"
+          ],
+          [
+           "UFC4020",
+           "¾\"",
+           "400"
+          ],
+          [
+           "UFC4025",
+           "1\"",
+           "250"
+          ],
+          [
+           "UFC4032",
+           "1¼\"",
+           "150"
+          ],
+          [
+           "UFC4040",
+           "1½\"",
+           "100"
+          ],
+          [
+           "UFC4050",
+           "2\"",
+           "60"
+          ]
+         ],
+         "label": "SCH 40"
+        },
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size",
+          "Qty/Box"
+         ],
+         "rows": [
+          [
+           "UFC8015",
+           "½\"",
+           "500"
+          ],
+          [
+           "UFC8020",
+           "¾\"",
+           "300"
+          ],
+          [
+           "UFC8025",
+           "1\"",
+           "180"
+          ],
+          [
+           "UFC8032",
+           "1¼\"",
+           "100"
+          ],
+          [
+           "UFC8040",
+           "1½\"",
+           "100"
+          ],
+          [
+           "UFC8050",
+           "2\"",
+           "56"
+          ]
+         ],
+         "label": "SCH 80"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "clickfit",
+   "name": "SWR Drainage System",
+   "series": "Clickfit",
+   "tag": "Push-fit",
+   "sections": [
+    {
+     "title": "Description",
+     "blocks": [
+      {
+       "type": "image",
+       "src": "https://waterflo.in/wp-content/uploads/2021/12/clickfit.png",
+       "alt": "Waterflo Clickfit — SWR Drainage System"
+      },
+      {
+       "type": "heading",
+       "text": "Clickfit — SWR Drainage System"
+      },
+      {
+       "type": "text",
+       "html": "Push-fit uPVC drainage system for Soil, Waste and Rain water. A Co-moulded Yellow rubber ring ensures leak-proof joints, withstands high pressure, prevents choking and allows thermal expansion. No pasting or threading required."
+      },
+      {
+       "type": "chips",
+       "kind": "features",
+       "items": [
+        "Push-fit — no paste/thread",
+        "Co-moulded rubber seal",
+        "Leak proof joints",
+        "Allows thermal expansion"
+       ]
+      },
+      {
+       "type": "link",
+       "label": "Download Catalogue",
+       "href": "https://waterflo.in/wp-content/uploads/2021/12/Waterflo_Pricelist.pdf",
+       "kind": "pdf"
+      }
+     ]
+    },
+    {
+     "title": "Standards & Specifications",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Standards & Specifications"
+      },
+      {
+       "type": "list",
+       "items": [
+        "<strong>IS 13592:</strong> uPVC Pipes for Soil and Waste Discharge System inside and outside Buildings",
+        "<strong>IS 14735:</strong> uPVC Injection Moulded Fittings for Soil and Waste Discharge System"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Available Sizes",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Available Sizes"
+      },
+      {
+       "type": "list",
+       "items": [
+        "<strong>Pipes:</strong> 75mm, 90mm, 110mm &amp; 160mm — Type A &amp; Type B",
+        "<strong>Fittings:</strong> 75mm, 90mm, 110mm &amp; 160mm"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Tests",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Tests on Pipes & Fittings"
+      },
+      {
+       "type": "chips",
+       "kind": "features",
+       "items": [
+        "Reversion Test",
+        "Stress Relief Test",
+        "Impact Strength",
+        "Tensile Strength",
+        "Axial Shrinkage",
+        "Water Tightness of Joint",
+        "Vicat Softening Temperature",
+        "Resistance to H₂SO₄",
+        "Effect of Sunlight",
+        "Resistance to Dichloromethane"
+       ]
+      }
+     ]
+    }
+   ],
+   "products": [
+    {
+     "title": "Pipes",
+     "items": [
+      {
+       "name": "SWR Pipes — Type A",
+       "std": "75mm–160mm, S/S & D/S, multiple lengths",
+       "blocks": [
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Length",
+          "Socket"
+         ],
+         "rows": [
+          [
+           "CSPAS1075",
+           "3 mtr",
+           "S/S"
+          ],
+          [
+           "CSPAS2075",
+           "6 mtr",
+           "S/S"
+          ],
+          [
+           "CSPAS675",
+           "6 ft",
+           "S/S"
+          ],
+          [
+           "CSPAD1075",
+           "3 mtr",
+           "D/S"
+          ],
+          [
+           "CSPAD2075",
+           "6 mtr",
+           "D/S"
+          ],
+          [
+           "CSPAD675",
+           "6 ft",
+           "D/S"
+          ],
+          [
+           "CSPAD475",
+           "4 ft",
+           "D/S"
+          ],
+          [
+           "CSPAD375",
+           "3 ft",
+           "D/S"
+          ],
+          [
+           "CSPAD275",
+           "2 ft",
+           "D/S"
+          ]
+         ],
+         "label": "75mm (2½\")"
+        },
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Length",
+          "Socket"
+         ],
+         "rows": [
+          [
+           "CSPAS1090",
+           "3 mtr",
+           "S/S"
+          ],
+          [
+           "CSPAS2090",
+           "6 mtr",
+           "S/S"
+          ],
+          [
+           "CSPAS690",
+           "6 ft",
+           "S/S"
+          ],
+          [
+           "CSPAD1090",
+           "3 mtr",
+           "D/S"
+          ],
+          [
+           "CSPAD2090",
+           "6 mtr",
+           "D/S"
+          ],
+          [
+           "CSPAD690",
+           "6 ft",
+           "D/S"
+          ],
+          [
+           "CSPAD490",
+           "4 ft",
+           "D/S"
+          ],
+          [
+           "CSPAD390",
+           "3 ft",
+           "D/S"
+          ],
+          [
+           "CSPAD290",
+           "2 ft",
+           "D/S"
+          ]
+         ],
+         "label": "90mm (3\")"
+        },
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Length",
+          "Socket"
+         ],
+         "rows": [
+          [
+           "CSPAS10110",
+           "3 mtr",
+           "S/S"
+          ],
+          [
+           "CSPAS20110",
+           "6 mtr",
+           "S/S"
+          ],
+          [
+           "CSPAS6110",
+           "6 ft",
+           "S/S"
+          ],
+          [
+           "CSPAD10110",
+           "3 mtr",
+           "D/S"
+          ],
+          [
+           "CSPAD20110",
+           "6 mtr",
+           "D/S"
+          ],
+          [
+           "CSPAD4110",
+           "4 ft",
+           "D/S"
+          ],
+          [
+           "CSPAD3110",
+           "3 ft",
+           "D/S"
+          ],
+          [
+           "CSPAD2110",
+           "2 ft",
+           "D/S"
+          ]
+         ],
+         "label": "110mm (4\")"
+        },
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Length",
+          "Socket"
+         ],
+         "rows": [
+          [
+           "CSPAS10160",
+           "3 mtr",
+           "S/S"
+          ],
+          [
+           "CSPAS20160",
+           "6 mtr",
+           "S/S"
+          ],
+          [
+           "CSPAS6160",
+           "6 ft",
+           "S/S"
+          ],
+          [
+           "CSPAD10160",
+           "3 mtr",
+           "D/S"
+          ],
+          [
+           "CSPAD20160",
+           "6 mtr",
+           "D/S"
+          ],
+          [
+           "CSPAD4160",
+           "4 ft",
+           "D/S"
+          ],
+          [
+           "CSPAD3160",
+           "3 ft",
+           "D/S"
+          ],
+          [
+           "CSPAD2160",
+           "2 ft",
+           "D/S"
+          ]
+         ],
+         "label": "160mm (6\")"
+        }
+       ]
+      },
+      {
+       "name": "SWR Pipes — Type B",
+       "std": "75mm–160mm, S/S & D/S",
+       "blocks": [
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size",
+          "Length",
+          "Socket"
+         ],
+         "rows": [
+          [
+           "CSPBS1075",
+           "75mm",
+           "3 mtr",
+           "S/S"
+          ],
+          [
+           "CSPBS2075",
+           "75mm",
+           "6 mtr",
+           "S/S"
+          ],
+          [
+           "CSPBD1075",
+           "75mm",
+           "3 mtr",
+           "D/S"
+          ],
+          [
+           "CSPBS1090",
+           "90mm",
+           "3 mtr",
+           "S/S"
+          ],
+          [
+           "CSPBS2090",
+           "90mm",
+           "6 mtr",
+           "S/S"
+          ],
+          [
+           "CSPBD1090",
+           "90mm",
+           "3 mtr",
+           "D/S"
+          ]
+         ],
+         "label": "75mm & 90mm"
+        },
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size",
+          "Length",
+          "Socket"
+         ],
+         "rows": [
+          [
+           "CSPBS10110",
+           "110mm",
+           "3 mtr",
+           "S/S"
+          ],
+          [
+           "CSPBS20110",
+           "110mm",
+           "6 mtr",
+           "S/S"
+          ],
+          [
+           "CSPBD10110",
+           "110mm",
+           "3 mtr",
+           "D/S"
+          ],
+          [
+           "CSPBS10160",
+           "160mm",
+           "3 mtr",
+           "S/S"
+          ],
+          [
+           "CSPBS20160",
+           "160mm",
+           "6 mtr",
+           "S/S"
+          ],
+          [
+           "CSPBD10160",
+           "160mm",
+           "3 mtr",
+           "D/S"
+          ]
+         ],
+         "label": "110mm & 160mm"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Fittings",
+     "items": [
+      {
+       "name": "Bend 87.5°",
+       "std": "Clickfit SWR Fittings (HSN: 3917)",
+       "blocks": [
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size mm (in.)",
+          "Qty/Box"
+         ],
+         "rows": [
+          [
+           "CSFB75",
+           "75 (2½\")",
+           "50"
+          ],
+          [
+           "CSFB90",
+           "90 (3\")",
+           "29"
+          ],
+          [
+           "CSFB110",
+           "110 (4\")",
+           "32"
+          ],
+          [
+           "CSFB160",
+           "160 (6\")",
+           "8"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "name": "Bend 87.5° with Door",
+       "std": "Clickfit SWR Fittings",
+       "blocks": [
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size mm (in.)",
+          "Qty/Box"
+         ],
+         "rows": [
+          [
+           "CSFDB75",
+           "75 (2½\")",
+           "39"
+          ],
+          [
+           "CSFDB90",
+           "90 (3\")",
+           "26"
+          ],
+          [
+           "CSFDB110",
+           "110 (4\")",
+           "19"
+          ],
+          [
+           "CSFDB160",
+           "160 (6\")",
+           "8"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "name": "Single Tee",
+       "std": "Clickfit SWR Fittings",
+       "blocks": [
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size mm (in.)",
+          "Qty/Box"
+         ],
+         "rows": [
+          [
+           "CSFST75",
+           "75 (2½\")",
+           "34"
+          ],
+          [
+           "CSFST90",
+           "90 (3\")",
+           "24"
+          ],
+          [
+           "CSFST110",
+           "110 (4\")",
+           "24"
+          ],
+          [
+           "CSFST160",
+           "160 (6\")",
+           "6"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "name": "Single Tee with Door",
+       "std": "Clickfit SWR Fittings",
+       "blocks": [
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size mm (in.)",
+          "Qty/Box"
+         ],
+         "rows": [
+          [
+           "CSFDST75",
+           "75 (2½\")",
+           "34"
+          ],
+          [
+           "CSFDST90",
+           "90 (3\")",
+           "21"
+          ],
+          [
+           "CSFDST110",
+           "110 (4\")",
+           "20"
+          ],
+          [
+           "CSFDST160",
+           "160 (6\")",
+           "6"
+          ]
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "selfit",
+   "name": "SWR Pipes & Fittings",
+   "series": "Selfit",
+   "tag": "IS 13592",
+   "sections": [
+    {
+     "title": "Description",
+     "blocks": [
+      {
+       "type": "image",
+       "src": "https://waterflo.in/wp-content/uploads/2021/12/4-Selfit.png",
+       "alt": "Waterflo Selfit — SWR Pipes & Fittings"
+      },
+      {
+       "type": "heading",
+       "text": "Selfit — SWR Pipes & Fittings"
+      },
+      {
+       "type": "text",
+       "html": "uPVC SWR drainage system with solvent-cement jointing. Available in Type A (40mm–200mm) and Type B (75mm–160mm) pipes, plus 2.5 kg series in Ringfit and Selfit variants."
+      },
+      {
+       "type": "chips",
+       "kind": "features",
+       "items": [
+        "IS 13592 Certified",
+        "40mm to 200mm",
+        "Type A & Type B",
+        "Ringfit variant available"
+       ]
+      },
+      {
+       "type": "link",
+       "label": "Download Catalogue",
+       "href": "https://waterflo.in/wp-content/uploads/2021/12/Waterflo_Pricelist.pdf",
+       "kind": "pdf"
+      }
+     ]
+    },
+    {
+     "title": "Standards & Specifications",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Standards & Specifications"
+      },
+      {
+       "type": "list",
+       "items": [
+        "<strong>IS 13592:</strong> uPVC Pipes for Soil and Waste Discharge System",
+        "<strong>IS 14735:</strong> uPVC Injection Moulded Fittings for Soil and Waste Discharge System"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Available Sizes",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Available Sizes"
+      },
+      {
+       "type": "list",
+       "items": [
+        "<strong>Type A Pipes:</strong> 40mm–200mm, 3 &amp; 6 mtr S/S",
+        "<strong>Type B Pipes:</strong> 75mm–160mm, 3 &amp; 6 mtr S/S",
+        "<strong>2.5 kg Pipes:</strong> 75mm &amp; 110mm — Ringfit &amp; Selfit variants",
+        "<strong>Fittings:</strong> 75mm–160mm"
+       ]
+      }
+     ]
+    }
+   ],
+   "products": [
+    {
+     "title": "Pipes",
+     "items": [
+      {
+       "name": "Pipe Type A",
+       "std": "40mm–200mm, 3 mtr & 6 mtr S/S",
+       "blocks": [
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size mm (in.)"
+         ],
+         "rows": [
+          [
+           "SSPA1040",
+           "40 (1¼\")"
+          ],
+          [
+           "SSPA1050",
+           "50 (1½\")"
+          ],
+          [
+           "SSPA1063",
+           "63 (2\")"
+          ],
+          [
+           "SSPA1075",
+           "75 (2½\")"
+          ],
+          [
+           "SSPA1090",
+           "90 (3\")"
+          ],
+          [
+           "SSPA10110",
+           "110 (4\")"
+          ],
+          [
+           "SSPA10140",
+           "140 (5\")"
+          ],
+          [
+           "SSPA10160",
+           "160 (6\")"
+          ],
+          [
+           "SSPA10200",
+           "200 (8\")*"
+          ]
+         ],
+         "label": "3 mtr S/S"
+        },
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size mm (in.)"
+         ],
+         "rows": [
+          [
+           "SSPA2040",
+           "40 (1¼\")"
+          ],
+          [
+           "SSPA2050",
+           "50 (1½\")"
+          ],
+          [
+           "SSPA2063",
+           "63 (2\")"
+          ],
+          [
+           "SSPA2075",
+           "75 (2½\")"
+          ],
+          [
+           "SSPA2090",
+           "90 (3\")"
+          ],
+          [
+           "SSPA20110",
+           "110 (4\")"
+          ],
+          [
+           "SSPA20140",
+           "140 (5\")"
+          ],
+          [
+           "SSPA20160",
+           "160 (6\")"
+          ],
+          [
+           "SSPA20200",
+           "200 (8\")*"
+          ]
+         ],
+         "label": "6 mtr S/S"
+        }
+       ]
+      },
+      {
+       "name": "Pipe Type B",
+       "std": "75mm–160mm",
+       "blocks": [
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size"
+         ],
+         "rows": [
+          [
+           "SSPB1075",
+           "75mm (2½\")"
+          ],
+          [
+           "SSPB1090",
+           "90mm (3\")"
+          ],
+          [
+           "SSPB10110",
+           "110mm (4\")"
+          ],
+          [
+           "SSPB10160",
+           "160mm (6\")"
+          ]
+         ],
+         "label": "3 mtr S/S"
+        },
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size"
+         ],
+         "rows": [
+          [
+           "SSPB2075",
+           "75mm (2½\")"
+          ],
+          [
+           "SSPB2090",
+           "90mm (3\")"
+          ],
+          [
+           "SSPB20110",
+           "110mm (4\")"
+          ],
+          [
+           "SSPB20160",
+           "160mm (6\")"
+          ]
+         ],
+         "label": "6 mtr S/S"
+        }
+       ]
+      },
+      {
+       "name": "2.5 kg Pipes — Ringfit & Selfit",
+       "std": "75mm & 110mm",
+       "blocks": [
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size"
+         ],
+         "rows": [
+          [
+           "RSP251075",
+           "75mm (2½\")"
+          ],
+          [
+           "RSP2510110",
+           "110mm (4\")"
+          ]
+         ],
+         "label": "Ringfit — 3 mtr"
+        },
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size",
+          "Length"
+         ],
+         "rows": [
+          [
+           "SSP251075",
+           "75mm (2½\")",
+           "3 mtr"
+          ],
+          [
+           "SSP2510110",
+           "110mm (4\")",
+           "3 mtr"
+          ],
+          [
+           "SSP252075",
+           "75mm (2½\")",
+           "6 mtr"
+          ],
+          [
+           "SSP2520110",
+           "110mm (4\")",
+           "6 mtr"
+          ]
+         ],
+         "label": "Selfit — 3 & 6 mtr"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Fittings",
+     "items": [
+      {
+       "name": "Bend 87.5°",
+       "std": "uPVC SWR Selfit Fittings",
+       "blocks": [
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size mm (in.)",
+          "Qty/Box"
+         ],
+         "rows": [
+          [
+           "SSFB75",
+           "75 (2½\")",
+           "60"
+          ],
+          [
+           "SSFB90",
+           "90 (3\")",
+           "29"
+          ],
+          [
+           "SSFB110",
+           "110 (4\")",
+           "27"
+          ],
+          [
+           "SSFB160",
+           "160 (6\")",
+           "8"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "name": "Bend 45°",
+       "std": "uPVC SWR Selfit Fittings",
+       "blocks": [
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size mm (in.)",
+          "Qty/Box"
+         ],
+         "rows": [
+          [
+           "SSFB4575",
+           "75 (2½\")",
+           "55"
+          ],
+          [
+           "SSFB4590",
+           "90 (3\")",
+           "50"
+          ],
+          [
+           "SSFB45110",
+           "110 (4\")",
+           "32"
+          ],
+          [
+           "SSFB45160",
+           "160 (6\")",
+           "10"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "name": "Single Tee",
+       "std": "uPVC SWR Selfit Fittings",
+       "blocks": [
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size mm (in.)",
+          "Qty/Box"
+         ],
+         "rows": [
+          [
+           "SSFST75",
+           "75 (2½\")",
+           "44"
+          ],
+          [
+           "SSFST90",
+           "90 (3\")",
+           "24"
+          ],
+          [
+           "SSFST110",
+           "110 (4\")",
+           "26"
+          ],
+          [
+           "SSFST160",
+           "160 (6\")",
+           "6"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "name": "Coupler",
+       "std": "uPVC SWR Selfit Fittings",
+       "blocks": [
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size mm (in.)",
+          "Qty/Box"
+         ],
+         "rows": [
+          [
+           "SSFC75",
+           "75 (2½\")",
+           "60"
+          ],
+          [
+           "SSFC90",
+           "90 (3\")",
+           "48"
+          ],
+          [
+           "SSFC110",
+           "110 (4\")",
+           "38"
+          ],
+          [
+           "SSFC160",
+           "160 (6\")",
+           "16"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "name": "Single-Y / Reducer-Y / Double-Y / Swept Tee",
+       "std": "uPVC SWR Selfit Fittings",
+       "blocks": [
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size mm",
+          "Qty/Box"
+         ],
+         "rows": [
+          [
+           "SSFSY75",
+           "75 (2½\")",
+           "20"
+          ],
+          [
+           "SSFSY90",
+           "90 (3\")",
+           "15"
+          ],
+          [
+           "SSFSY110",
+           "110 (4\")",
+           "12"
+          ]
+         ],
+         "label": "Single-Y"
+        },
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size mm",
+          "Qty/Box"
+         ],
+         "rows": [
+          [
+           "SSFRY11063",
+           "110x63",
+           "20"
+          ],
+          [
+           "SSFRY11075",
+           "110x75",
+           "16"
+          ]
+         ],
+         "label": "Reducer-Y"
+        },
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size mm",
+          "Qty/Box"
+         ],
+         "rows": [
+          [
+           "SSFDBY75",
+           "75 (2½\")",
+           "20"
+          ],
+          [
+           "SSFDBY110",
+           "110 (4\")",
+           "8"
+          ]
+         ],
+         "label": "Double-Y"
+        },
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size mm",
+          "Qty/Box"
+         ],
+         "rows": [
+          [
+           "SSFSPT110",
+           "110 (4\")",
+           "12"
+          ]
+         ],
+         "label": "Swept Tee"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "agrimaster",
+   "name": "Agriculture Pipes",
+   "series": "AgriMaster",
+   "tag": "IS 4985",
+   "sections": [
+    {
+     "title": "Description",
+     "blocks": [
+      {
+       "type": "image",
+       "src": "https://waterflo.in/wp-content/uploads/2021/12/5-agri_master-1.png",
+       "alt": "Waterflo AgriMaster — Agriculture Pipes & Fittings"
+      },
+      {
+       "type": "heading",
+       "text": "AgriMaster — Agriculture Pipes & Fittings"
+      },
+      {
+       "type": "text",
+       "html": "uPVC Pressure Pipes and Fittings for Agriculture and Water Distribution. Manufactured per IS 4985 covering 20mm–315mm in 5 pressure classes. Colour-coded by pressure class for easy identification."
+      },
+      {
+       "type": "chips",
+       "kind": "features",
+       "items": [
+        "IS 4985 Certified",
+        "5 Pressure Classes",
+        "20mm to 315mm",
+        "Ideal for Irrigation",
+        "Colour-coded by class"
+       ]
+      },
+      {
+       "type": "link",
+       "label": "Download Catalogue",
+       "href": "https://waterflo.in/wp-content/uploads/2021/12/Waterflo_Pricelist.pdf",
+       "kind": "pdf"
+      }
+     ]
+    },
+    {
+     "title": "Standards & Specifications",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Standards & Specifications"
+      },
+      {
+       "type": "list",
+       "items": [
+        "<strong>IS 4985:</strong> uPVC Pipes for Potable Water Supplies",
+        "<strong>IS 7834:</strong> Injection Moulded PVC Socket Fittings for Water Supplies"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Available Sizes",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Available Sizes"
+      },
+      {
+       "type": "list",
+       "items": [
+        "<strong>Class 1 (2.5 kg/cm²):</strong> 90mm–315mm",
+        "<strong>Class 2 (4 kg/cm²):</strong> 63mm–315mm",
+        "<strong>Class 3 (6 kg/cm²):</strong> 40mm–315mm",
+        "<strong>Class 4 (8 kg/cm²):</strong> 25mm–315mm",
+        "<strong>Class 5 (10 kg/cm²):</strong> 20mm–315mm"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Marking & Uniformity",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Marking & Uniformity"
+      },
+      {
+       "type": "table",
+       "header": [
+        "Class",
+        "Pressure",
+        "Colour"
+       ],
+       "rows": [
+        [
+         "Class 1",
+         "2.5 kg/cm²",
+         "Red"
+        ],
+        [
+         "Class 2",
+         "4 kg/cm²",
+         "Blue"
+        ],
+        [
+         "Class 3",
+         "6 kg/cm²",
+         "Green"
+        ],
+        [
+         "Class 4",
+         "8 kg/cm²",
+         "Brown"
+        ],
+        [
+         "Class 5",
+         "10 kg/cm²",
+         "Yellow"
+        ]
+       ]
+      }
+     ]
+    }
+   ],
+   "products": [
+    {
+     "title": "Pipes",
+     "items": [
+      {
+       "name": "Class 1 — 2.5 kg/cm²",
+       "std": "90mm–315mm per IS 4985",
+       "blocks": [
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size (in.)",
+          "mm"
+         ],
+         "rows": [
+          [
+           "AP2590",
+           "3\"",
+           "90"
+          ],
+          [
+           "AP25110",
+           "4\"",
+           "110"
+          ],
+          [
+           "AP25125",
+           "4½\"",
+           "125"
+          ],
+          [
+           "AP25140",
+           "5\"",
+           "140"
+          ],
+          [
+           "AP25160",
+           "6\"",
+           "160"
+          ],
+          [
+           "AP25180",
+           "7\"",
+           "180"
+          ],
+          [
+           "AP25200",
+           "8\"",
+           "200"
+          ],
+          [
+           "AP25225",
+           "9\"",
+           "225"
+          ],
+          [
+           "AP25250",
+           "10\"",
+           "250"
+          ],
+          [
+           "AP25280",
+           "11\"",
+           "280"
+          ],
+          [
+           "AP25315",
+           "12\"",
+           "315"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "name": "Class 2 — 4 kg/cm²",
+       "std": "63mm–315mm per IS 4985",
+       "blocks": [
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size (in.)",
+          "mm"
+         ],
+         "rows": [
+          [
+           "AP463",
+           "2\"",
+           "63"
+          ],
+          [
+           "AP475",
+           "2½\"",
+           "75"
+          ],
+          [
+           "AP490",
+           "3\"",
+           "90"
+          ],
+          [
+           "AP4110",
+           "4\"",
+           "110"
+          ],
+          [
+           "AP4160",
+           "6\"",
+           "160"
+          ],
+          [
+           "AP4200",
+           "8\"",
+           "200"
+          ],
+          [
+           "AP4315",
+           "12\"",
+           "315"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "name": "Class 4 — 8 kg/cm²",
+       "std": "25mm–315mm per IS 4985",
+       "blocks": [
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size (in.)",
+          "mm"
+         ],
+         "rows": [
+          [
+           "AP825",
+           "¾\"",
+           "25"
+          ],
+          [
+           "AP832",
+           "1\"",
+           "32"
+          ],
+          [
+           "AP840",
+           "1¼\"",
+           "40"
+          ],
+          [
+           "AP850",
+           "1½\"",
+           "50"
+          ],
+          [
+           "AP863",
+           "2\"",
+           "63"
+          ],
+          [
+           "AP890",
+           "3\"",
+           "90"
+          ],
+          [
+           "AP8110",
+           "4\"",
+           "110"
+          ],
+          [
+           "AP8315",
+           "12\"",
+           "315"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "name": "Class 5 — 10 kg/cm²",
+       "std": "20mm–160mm per IS 4985",
+       "blocks": [
+        {
+         "type": "table",
+         "header": [
+          "Code",
+          "Size (in.)",
+          "mm"
+         ],
+         "rows": [
+          [
+           "AP1020",
+           "½\"",
+           "20"
+          ],
+          [
+           "AP1025",
+           "¾\"",
+           "25"
+          ],
+          [
+           "AP1032",
+           "1\"",
+           "32"
+          ],
+          [
+           "AP1040",
+           "1¼\"",
+           "40"
+          ],
+          [
+           "AP1050",
+           "1½\"",
+           "50"
+          ],
+          [
+           "AP1063",
+           "2\"",
+           "63"
+          ],
+          [
+           "AP1075",
+           "2½\"",
+           "75"
+          ],
+          [
+           "AP1090",
+           "3\"",
+           "90"
+          ],
+          [
+           "AP10110",
+           "4\"",
+           "110"
+          ],
+          [
+           "AP10125",
+           "4½\"",
+           "125"
+          ],
+          [
+           "AP10140",
+           "5\"",
+           "140"
+          ],
+          [
+           "AP10160",
+           "6\"",
+           "160"
+          ]
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Fittings",
+     "items": [
+      {
+       "name": "AgriMaster Fittings (IS 7834)",
+       "std": "20mm–250mm, 16 kg/cm² plumbing class",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "Full fittings range 20mm–250mm. See downloadable catalogue for complete product codes."
+        },
+        {
+         "type": "link",
+         "label": "Download Catalogue",
+         "href": "https://waterflo.in/wp-content/uploads/2021/12/Waterflo_Pricelist.pdf",
+         "kind": "pdf"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "boreline",
+   "name": "Column / Borewell Pipes",
+   "series": "Boreline",
+   "tag": "Submersible",
+   "sections": [
+    {
+     "title": "Benefits",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Boreline — Column / Borewell Pipes"
+      },
+      {
+       "type": "text",
+       "html": "uPVC Column Pipes designed for borewell and submersible pump installations. A reliable alternative to Galvanized, M.S. &amp; HDPE pipes. Available in 10 series from Eco Bore to Super Heavy Bore."
+      },
+      {
+       "type": "chips",
+       "kind": "features",
+       "items": [
+        "Long Life",
+        "Non Corrosive",
+        "Light Weight",
+        "Easy to Install",
+        "Continuous Flow",
+        "Low Electricity Cost",
+        "Chemical Resistant",
+        "Prevents Bacterial Growth",
+        "Non-Conductor of Heat & Electricity",
+        "Non Toxic"
+       ]
+      },
+      {
+       "type": "link",
+       "label": "Download Catalogue",
+       "href": "https://waterflo.in/wp-content/uploads/2021/12/Waterflo_Pricelist.pdf",
+       "kind": "pdf"
+      }
+     ]
+    },
+    {
+     "title": "Fields of Application",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Fields of Application"
+      },
+      {
+       "type": "list",
+       "items": [
+        "Drinking Water Supply",
+        "Lifting Water for Agriculture",
+        "Obtain Water Through Pumps",
+        "Industrial Disposal of Chemical Effluent",
+        "Transportation of Aggressive Fluids, Chemicals and Acid"
+       ]
+      }
+     ]
+    }
+   ],
+   "products": [
+    {
+     "title": "Column Pipes",
+     "items": [
+      {
+       "name": "Column Pipes — All Series",
+       "std": "1\" to 6\" | HSN: 3917 — Qty per bundle",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "Qty per bundle. — = not available in that size for that series.",
+         "note": true
+        },
+        {
+         "type": "table",
+         "header": [
+          "Series",
+          "1\"",
+          "1¼\"",
+          "1½\"",
+          "2\"",
+          "2¼\"",
+          "2½\"",
+          "3\"",
+          "4\"",
+          "5\"",
+          "6\""
+         ],
+         "rows": [
+          [
+           "Eco Bore",
+           "25",
+           "25",
+           "20",
+           "12",
+           "—",
+           "—",
+           "—",
+           "—",
+           "—",
+           "—"
+          ],
+          [
+           "Easy Bore",
+           "25",
+           "25",
+           "20",
+           "12",
+           "—",
+           "—",
+           "—",
+           "—",
+           "—",
+           "—"
+          ],
+          [
+           "Medium Bore",
+           "—",
+           "—",
+           "—",
+           "12",
+           "—",
+           "8",
+           "5",
+           "4",
+           "—",
+           "—"
+          ],
+          [
+           "Ultra Bore",
+           "25",
+           "25",
+           "20",
+           "12",
+           "—",
+           "—",
+           "—",
+           "—",
+           "—",
+           "—"
+          ],
+          [
+           "Standard Bore",
+           "25",
+           "25",
+           "20",
+           "12",
+           "—",
+           "8",
+           "5",
+           "4",
+           "3",
+           "1"
+          ],
+          [
+           "Heavy Bore",
+           "25",
+           "20",
+           "15",
+           "12",
+           "10",
+           "8",
+           "5",
+           "4",
+           "3",
+           "1"
+          ],
+          [
+           "Heavy Plus",
+           "—",
+           "—",
+           "—",
+           "—",
+           "10",
+           "—",
+           "—",
+           "—",
+           "—",
+           "—"
+          ],
+          [
+           "Super Heavy",
+           "—",
+           "—",
+           "—",
+           "8",
+           "—",
+           "5",
+           "4",
+           "3",
+           "—",
+           "—"
+          ],
+          [
+           "Eco Bore (Bell)",
+           "25",
+           "25",
+           "20",
+           "—",
+           "—",
+           "—",
+           "—",
+           "—",
+           "—",
+           "—"
+          ],
+          [
+           "Easy Bore (Bell)",
+           "25",
+           "25",
+           "20",
+           "—",
+           "—",
+           "—",
+           "—",
+           "—",
+           "—",
+           "—"
+          ]
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hdpe",
+   "name": "HDPE Pipes",
+   "series": "Waterflo HDPE",
+   "tag": "IS 4984",
+   "sections": [
+    {
+     "title": "Benefits",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "HDPE Pipes"
+      },
+      {
+       "type": "text",
+       "html": "Available in PE-63, PE-80 and PE-100 grades as per IS 4984-2016, covering 20mm–110mm in multiple SDR pressure classes."
+      },
+      {
+       "type": "chips",
+       "kind": "features",
+       "items": [
+        "Long Life",
+        "Non Corrosive",
+        "Low Friction",
+        "Weather Resistant",
+        "Cost Effective",
+        "Light Weight",
+        "Easy to Install",
+        "Non Toxic",
+        "Hard & Unbreakable",
+        "Low Thermal Conductivity"
+       ]
+      },
+      {
+       "type": "link",
+       "label": "Download Catalogue",
+       "href": "https://waterflo.in/wp-content/uploads/2021/12/Waterflo_Pricelist.pdf",
+       "kind": "pdf"
+      }
+     ]
+    },
+    {
+     "title": "Fields of Application",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Fields of Application"
+      },
+      {
+       "type": "list",
+       "items": [
+        "Drinking Water Supply",
+        "Lifting Water for Agriculture",
+        "Obtain Water Through Pumps",
+        "Industrial Disposal of Chemical Effluent",
+        "Transportation of Aggressive Fluids, Chemicals and Acid"
+       ]
+      }
+     ]
+    }
+   ],
+   "products": [
+    {
+     "title": "Pipes",
+     "items": [
+      {
+       "name": "HDPE Pipes PE-63",
+       "std": "as per IS 4984-2016 (HSN: 3917) — Rate per mtr (₹)",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "20mm &amp; 25mm are Non-ISI.",
+         "note": true
+        },
+        {
+         "type": "table",
+         "header": [
+          "Size (mm)",
+          "SDR 21 PN-4",
+          "SDR 17 PN-5",
+          "SDR 13.6 PN-6",
+          "SDR 11 PN-8"
+         ],
+         "rows": [
+          [
+           "20",
+           "—",
+           "—",
+           "—",
+           "26.00"
+          ],
+          [
+           "25",
+           "—",
+           "—",
+           "—",
+           "39.00"
+          ],
+          [
+           "32",
+           "—",
+           "41.00",
+           "50.00",
+           "60.00"
+          ],
+          [
+           "40",
+           "52.00",
+           "65.00",
+           "78.00",
+           "95.00"
+          ],
+          [
+           "50",
+           "81.00",
+           "100.00",
+           "121.00",
+           "147.00"
+          ],
+          [
+           "63",
+           "127.00",
+           "155.00",
+           "193.00",
+           "233.00"
+          ],
+          [
+           "75",
+           "182.00",
+           "224.00",
+           "273.00",
+           "329.00"
+          ],
+          [
+           "90",
+           "259.00",
+           "315.00",
+           "392.00",
+           "468.00"
+          ],
+          [
+           "110",
+           "432.00",
+           "474.00",
+           "577.00",
+           "698.00"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "name": "HDPE Pipes PE-80",
+       "std": "as per IS 4984-2016 — Rate per mtr (₹)",
+       "blocks": [
+        {
+         "type": "table",
+         "header": [
+          "Size (mm)",
+          "SDR 21 PN-5",
+          "SDR 17 PN-6",
+          "SDR 13.6 PN-8",
+          "SDR 11 PN-10",
+          "SDR 9 PN-12.5",
+          "SDR 7.4 PN-16"
+         ],
+         "rows": [
+          [
+           "32",
+           "—",
+           "42.00",
+           "51.00",
+           "61.00",
+           "73.00",
+           "86.00"
+          ],
+          [
+           "40",
+           "53.00",
+           "66.00",
+           "80.00",
+           "96.00",
+           "114.00",
+           "132.00"
+          ],
+          [
+           "50",
+           "82.00",
+           "101.00",
+           "123.00",
+           "150.00",
+           "178.00",
+           "209.00"
+          ],
+          [
+           "63",
+           "130.00",
+           "158.00",
+           "196.00",
+           "237.00",
+           "279.00",
+           "332.00"
+          ],
+          [
+           "75",
+           "186.00",
+           "228.00",
+           "278.00",
+           "335.00",
+           "397.00",
+           "468.00"
+          ],
+          [
+           "90",
+           "263.00",
+           "320.00",
+           "399.00",
+           "477.00",
+           "568.00",
+           "672.00"
+          ],
+          [
+           "110",
+           "439.00",
+           "482.00",
+           "588.00",
+           "711.00",
+           "852.00",
+           "1003.00"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "name": "HDPE Pipes PE-100",
+       "std": "as per IS 4984-2016 — Rate per mtr (₹)",
+       "blocks": [
+        {
+         "type": "table",
+         "header": [
+          "Size (mm)",
+          "SDR 21 PN-6",
+          "SDR 17 PN-8",
+          "SDR 13.6 PN-10",
+          "SDR 11 PN-12.5",
+          "SDR 9 PN-16",
+          "SDR 7.4 PN-20"
+         ],
+         "rows": [
+          [
+           "32",
+           "—",
+           "42.00",
+           "52.00",
+           "62.00",
+           "74.00",
+           "87.00"
+          ],
+          [
+           "40",
+           "53.00",
+           "67.00",
+           "81.00",
+           "98.00",
+           "116.00",
+           "134.00"
+          ],
+          [
+           "50",
+           "83.00",
+           "103.00",
+           "125.00",
+           "152.00",
+           "180.00",
+           "212.00"
+          ],
+          [
+           "63",
+           "131.00",
+           "160.00",
+           "199.00",
+           "240.00",
+           "282.00",
+           "337.00"
+          ],
+          [
+           "75",
+           "188.00",
+           "231.00",
+           "282.00",
+           "339.00",
+           "402.00",
+           "474.00"
+          ],
+          [
+           "90",
+           "267.00",
+           "324.00",
+           "404.00",
+           "483.00",
+           "575.00",
+           "681.00"
+          ],
+          [
+           "110",
+           "445.00",
+           "488.00",
+           "595.00",
+           "720.00",
+           "863.00",
+           "1016.00"
+          ]
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

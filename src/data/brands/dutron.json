@@ -1,0 +1,2131 @@
+{
+ "slug": "dutron",
+ "name": "Dutron",
+ "tagline": "Pipes & Fittings",
+ "origin": "Pioneer in PVC Hose Pipes since 1962 — Ahmedabad, Gujarat",
+ "badges": [
+  "ISI Certified",
+  "ISO 9001:2015",
+  "Since 1962",
+  "8 Product Lines",
+  "Available at Market Movers, Jabalpur"
+ ],
+ "seo": {
+  "title": "Dutron Pipes & Fittings Dealer in Jabalpur | Market Movers",
+  "description": "Dutron CPVC, Hiflo uPVC, SWR, agriculture, casing and HDPE pipes plus Kanaflex suction and Duplon hoses in Jabalpur. Specs, sizes and brochures."
+ },
+ "about": "Dutron",
+ "lines": [
+  {
+   "id": "cpvc",
+   "name": "CPVC Pipes & Fittings",
+   "series": "Dutron CPVC",
+   "tag": "Hot & Cold Water",
+   "sections": [
+    {
+     "title": "Description",
+     "blocks": [
+      {
+       "type": "image",
+       "src": "https://dutronindia.com/wp-content/uploads/CPVC-PNG.png",
+       "alt": "Dutron CPVC Pipes & Fittings"
+      },
+      {
+       "type": "heading",
+       "text": "Dutron CPVC Pipes & Fittings"
+      },
+      {
+       "type": "text",
+       "html": "Dutron CPVC Pipes &amp; Fittings are manufactured using CPVC compound sourced from Sekisui Chemical Ltd., Japan — certified by NSF International (USA). Compatible with hot and cold water and can sustain up to 93°C. A dependable, cost-effective and long-lasting alternative to conventional GI and copper plumbing systems."
+      },
+      {
+       "type": "chips",
+       "kind": "features",
+       "items": [
+        "Withstands up to 93°C",
+        "Lead Free & Non-Toxic",
+        "Corrosion Resistant",
+        "Fire Resistant",
+        "Low Friction Loss",
+        "Light Weight",
+        "IS 15778 & ASTM Certified",
+        "Solvent Cement Joints"
+       ]
+      },
+      {
+       "type": "link",
+       "label": "View Product Page",
+       "href": "https://www.dutronindia.com/pipes/cpvc-pipes-and-fittings-india/",
+       "kind": "page"
+      }
+     ]
+    },
+    {
+     "title": "Key Features",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Key Features"
+      },
+      {
+       "type": "list",
+       "items": [
+        "Can withstand high and low temperatures — up to 93°C",
+        "Resistant to everyday household chemicals",
+        "Long maintenance-free service life — corrosion resistant",
+        "Does not support combustion — ideal for fire safety systems",
+        "Complete range of pipes per IS 15778 &amp; fittings per ASTM D 2846",
+        "Easy to install using solvent cement",
+        "CPVC compound sourced from Sekisui Chemical Ltd., Japan — NSF certified",
+        "Economical and long lasting replacement to GI/copper piping"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Specifications",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Specifications"
+      },
+      {
+       "type": "table",
+       "header": [
+        "Parameter",
+        "SDR 11",
+        "SDR 13.5"
+       ],
+       "rows": [
+        [
+         "Standard",
+         {
+          "v": "IS 15778 / ASTM D 2846",
+          "span": 2
+         }
+        ],
+        [
+         "Sizes",
+         {
+          "v": "15mm (½\") to 50mm (2\") CTS",
+          "span": 2
+         }
+        ],
+        [
+         "Pressure @23°C",
+         "28.1 kg/cm²",
+         "22.5 kg/cm²"
+        ],
+        [
+         "Pressure @82°C",
+         "7.0 kg/cm²",
+         "5.6 kg/cm²"
+        ],
+        [
+         "SCH 40 &amp; 80",
+         {
+          "v": "65mm–100mm per ASTM F 441 / F 439",
+          "span": 2
+         }
+        ],
+        [
+         "Colour",
+         {
+          "v": "Tan / Cream",
+          "span": 2
+         }
+        ],
+        [
+         "Joint Type",
+         {
+          "v": "Solvent cement",
+          "span": 2
+         }
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Applications",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Applications"
+      },
+      {
+       "type": "list",
+       "items": [
+        "Hot &amp; Cold potable water distribution in residential, commercial &amp; institutional buildings",
+        "Fire suppression systems (sprinklers) — due to fire resistance",
+        "Corrosive fluid handling in industries",
+        "Swimming pools and salt water lines"
+       ]
+      }
+     ]
+    }
+   ],
+   "products": [
+    {
+     "title": "Pipes",
+     "items": [
+      {
+       "name": "CPVC Pipes — SDR 11 & SDR 13.5",
+       "std": "as per IS 15778 / ASTM D 2846 | 15mm–50mm CTS",
+       "blocks": [
+        {
+         "type": "table",
+         "header": [
+          "Size (in.)",
+          "Size (mm)",
+          "SDR 11 Pressure",
+          "SDR 13.5 Pressure"
+         ],
+         "rows": [
+          [
+           "½\"",
+           "15",
+           "28.1 kg/cm²",
+           "22.5 kg/cm²"
+          ],
+          [
+           "¾\"",
+           "20",
+           "28.1 kg/cm²",
+           "22.5 kg/cm²"
+          ],
+          [
+           "1\"",
+           "25",
+           "28.1 kg/cm²",
+           "22.5 kg/cm²"
+          ],
+          [
+           "1¼\"",
+           "32",
+           "28.1 kg/cm²",
+           "22.5 kg/cm²"
+          ],
+          [
+           "1½\"",
+           "40",
+           "28.1 kg/cm²",
+           "22.5 kg/cm²"
+          ],
+          [
+           "2\"",
+           "50",
+           "28.1 kg/cm²",
+           "22.5 kg/cm²"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "name": "CPVC Pipes — SCH 40 & SCH 80",
+       "std": "as per ASTM F 441 | 65mm–100mm",
+       "blocks": [
+        {
+         "type": "table",
+         "header": [
+          "Size (in.)",
+          "Size (mm)",
+          "SCH 40 Pressure",
+          "SCH 80 Pressure"
+         ],
+         "rows": [
+          [
+           "2½\"",
+           "65",
+           "—",
+           "—"
+          ],
+          [
+           "3\"",
+           "80",
+           "—",
+           "—"
+          ],
+          [
+           "4\"",
+           "100",
+           "—",
+           "—"
+          ]
+         ]
+        },
+        {
+         "type": "text",
+         "html": "Working pressures available in product datasheet. Fittings per ASTM F 439.",
+         "note": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Fittings",
+     "items": [
+      {
+       "name": "CPVC Fittings — Full Range",
+       "std": "as per ASTM D 2846 (CTS) & ASTM F 439 (SCH 80)",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "All fittings available in CTS (15mm–50mm) and SCH 80 (65mm–100mm):"
+        },
+        {
+         "type": "chips",
+         "kind": "items",
+         "items": [
+          "Elbow 90°",
+          "Elbow 45°",
+          "Equal Tee",
+          "Reducer Tee",
+          "Coupler",
+          "Reducer",
+          "End Cap",
+          "Union",
+          "Ball Valve",
+          "M.T.A.",
+          "F.T.A.",
+          "Tee Metal Insert",
+          "Elbow 90° Metal Insert",
+          "Flange with Tail Piece",
+          "Step Over Bend",
+          "Tank Adapter",
+          "Tank Connector"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Solvent Cement",
+     "items": [
+      {
+       "name": "CPVC Solvent Cement",
+       "std": "High quality solvent cement for CPVC systems",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "Specially formulated CPVC solvent cement available in various pack sizes for use with Dutron CPVC pipes and fittings. Ensures strong, leak-proof joints."
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "upvc",
+   "name": "uPVC Plumbing System",
+   "series": "Hiflo",
+   "tag": "ASTM D1785",
+   "sections": [
+    {
+     "title": "Description",
+     "blocks": [
+      {
+       "type": "image",
+       "src": "https://dutronindia.com/wp-content/uploads/hiflo-logo.png",
+       "alt": "Dutron Hiflo — uPVC Plumbing System"
+      },
+      {
+       "type": "heading",
+       "text": "Hiflo — uPVC Plumbing System"
+      },
+      {
+       "type": "text",
+       "html": "Dutron Hiflo uPVC white high pressure water distribution plumbing system is manufactured from state-of-art machinery using lead-free, non-toxic compound. UV-stabilized, corrosion resistant and durable — ideal for transporting and distributing potable water. Preferred by plumbers, contractors, MEP consultants, builders and architects."
+      },
+      {
+       "type": "chips",
+       "kind": "features",
+       "items": [
+        "Lead Free & Non-Toxic",
+        "UV Stabilized",
+        "Corrosion Resistant",
+        "No Scaling / Deposits",
+        "Excellent Tensile Strength",
+        "Leak Proof Joints",
+        "GI Pipe Replacement",
+        "100% Hygienic"
+       ]
+      },
+      {
+       "type": "link",
+       "label": "Download PDF Leaflet",
+       "href": "https://dutronindia.com/wp-content/uploads/Hiflo-Plumbing-System-Leaflet.pdf",
+       "kind": "pdf"
+      }
+     ]
+    },
+    {
+     "title": "Key Features",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Key Features"
+      },
+      {
+       "type": "list",
+       "items": [
+        "Complete range of pipes as per ASTM D1785",
+        "Excellent tensile and impact strength",
+        "Non Corrosive &amp; Lead Free",
+        "Longer service life — excellent replacement to GI Pipe system",
+        "No scaling or deposition due to smooth inner surface",
+        "Easy installation with leak-proof solvent cement joints",
+        "100% Lead free — completely hygienic",
+        "UV Stabilized — ideal for outdoor application",
+        "High quality solvent cement available"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Specifications",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Pipe Specifications (ASTM D1785)"
+      },
+      {
+       "type": "table",
+       "header": [
+        "Size (in.)",
+        "Size (mm)",
+        "OD (mm)",
+        "SCH 40 WT (mm)",
+        "SCH 40 Pressure",
+        "SCH 80 WT (mm)",
+        "SCH 80 Pressure"
+       ],
+       "rows": [
+        [
+         "½\"",
+         "15",
+         "21.2–21.5",
+         "2.8–3.3",
+         "41.4 kg/cm²",
+         "3.7–4.2",
+         "58.6 kg/cm²"
+        ],
+        [
+         "¾\"",
+         "20",
+         "26.6–26.8",
+         "2.9–3.4",
+         "33.1 kg/cm²",
+         "3.9–4.4",
+         "47.6 kg/cm²"
+        ],
+        [
+         "1\"",
+         "25",
+         "33.3–33.6",
+         "3.4–3.9",
+         "31.1 kg/cm²",
+         "4.6–5.0",
+         "43.4 kg/cm²"
+        ],
+        [
+         "1¼\"",
+         "32",
+         "42.0–42.3",
+         "3.6–4.1",
+         "25.5 kg/cm²",
+         "4.9–5.4",
+         "35.9 kg/cm²"
+        ],
+        [
+         "1½\"",
+         "40",
+         "48.1–48.4",
+         "3.7–4.2",
+         "22.8 kg/cm²",
+         "5.1–5.7",
+         "32.4 kg/cm²"
+        ],
+        [
+         "2\"",
+         "50",
+         "60.2–60.6",
+         "3.9–4.4",
+         "19.3 kg/cm²",
+         "5.5–6.2",
+         "27.6 kg/cm²"
+        ],
+        [
+         "2½\"",
+         "63",
+         "72.8–73.2",
+         "5.2–5.8",
+         "20.7 kg/cm²",
+         "7.0–7.8",
+         "29.0 kg/cm²"
+        ],
+        [
+         "3\"",
+         "75",
+         "88.7–89.1",
+         "5.5–6.1",
+         "17.9 kg/cm²",
+         "7.6–8.5",
+         "25.5 kg/cm²"
+        ],
+        [
+         "4\"",
+         "100",
+         "114.1–114.5",
+         "6.0–6.7",
+         "15.2 kg/cm²",
+         "8.6–9.6",
+         "22.1 kg/cm²"
+        ],
+        [
+         "6\"",
+         "150",
+         "168.3–168.5",
+         "7.1–7.9",
+         "12.4 kg/cm²",
+         "11.0–12.3",
+         "19.3 kg/cm²"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Applications",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Applications"
+      },
+      {
+       "type": "list",
+       "items": [
+        "High pressure water distribution in residential, commercial and industrial buildings",
+        "Swimming pool plumbing",
+        "Industrial water distribution and saltwater lines",
+        "Potable water supply systems"
+       ]
+      }
+     ]
+    }
+   ],
+   "products": [
+    {
+     "title": "Pipes",
+     "items": [
+      {
+       "name": "Hiflo uPVC Pipes — SCH 40 & SCH 80",
+       "std": "as per ASTM D1785 | 15mm (½\") to 150mm (6\")",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "Available in SCH 40 (white with blue stripe) and SCH 80 (white with red stripe). Full dimension table shown in Specifications tab above."
+        },
+        {
+         "type": "text",
+         "html": "<strong>Sizes:</strong> ½\" (15mm), ¾\" (20mm), 1\" (25mm), 1¼\" (32mm), 1½\" (40mm), 2\" (50mm), 2½\" (63mm), 3\" (75mm), 4\" (100mm), 6\" (150mm)"
+        },
+        {
+         "type": "text",
+         "html": "<strong>Solvent Cement Consumption:</strong> ½\"=274 joints/ltr | 1\"=148 | 2\"=42 | 3\"=32 | 4\"=21 | 6\"=6 joints/ltr",
+         "note": true
+        },
+        {
+         "type": "link",
+         "label": "Download PDF Leaflet",
+         "href": "https://dutronindia.com/wp-content/uploads/Hiflo-Plumbing-System-Leaflet.pdf",
+         "kind": "pdf"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Fittings",
+     "items": [
+      {
+       "name": "Hiflo uPVC Fittings — Full Range (SCH 80)",
+       "std": "as per ASTM D2467 | 15mm–100mm",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "All fittings SCH 80 per ASTM D2467, sizes 15mm to 100mm:"
+        },
+        {
+         "type": "chips",
+         "kind": "items",
+         "items": [
+          "Coupler",
+          "Elbow 90°",
+          "Elbow 45°",
+          "Equal Tee",
+          "Ball Valve",
+          "Union",
+          "Reducer",
+          "End Cap",
+          "M.T.A.",
+          "F.T.A.",
+          "Tee Metal Insert",
+          "Elbow 90° Metal Insert",
+          "Flange with Tail Piece",
+          "Step Over Bend",
+          "Tank Adapter",
+          "Tank Connector"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Solvent Cement",
+     "items": [
+      {
+       "name": "uPVC Solvent Cement",
+       "std": "For Hiflo uPVC plumbing system",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "High quality solvent cement specially formulated for uPVC plumbing pipes and fittings. Available in various pack sizes."
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "agri",
+   "name": "Agriculture Pipes & Fittings",
+   "series": "Dutron Agri",
+   "tag": "IS 4985",
+   "sections": [
+    {
+     "title": "Description",
+     "blocks": [
+      {
+       "type": "image",
+       "src": "https://dutronindia.com/wp-content/uploads/uPVC-PRESSURE-PIPE.png",
+       "alt": "Dutron Agriculture Pipes & Fittings"
+      },
+      {
+       "type": "heading",
+       "text": "Dutron Agriculture Pipes & Fittings"
+      },
+      {
+       "type": "text",
+       "html": "Dutron uPVC Agriculture Pipes are manufactured conforming to IS 4985:2000, available from 20mm to 400mm O.D. in 5 pressure classes. Fittings conform to IS 7834. Available in both solvent cement and rubber ring-fit joints for easy, leak-proof connections. Self-extinguishing and lead-free."
+      },
+      {
+       "type": "chips",
+       "kind": "features",
+       "items": [
+        "IS 4985:2000 Certified",
+        "Lead Free",
+        "Light Weight",
+        "Maintenance Free",
+        "Self-Extinguishing",
+        "Ring-Fit Available",
+        "20mm to 400mm",
+        "5 Pressure Classes"
+       ]
+      },
+      {
+       "type": "link",
+       "label": "Download PDF Leaflet",
+       "href": "https://dutronindia.com/wp-content/uploads/uPVC-Pressure-Pipe-Final-2.pdf",
+       "kind": "pdf"
+      }
+     ]
+    },
+    {
+     "title": "Key Features",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Key Features"
+      },
+      {
+       "type": "list",
+       "items": [
+        "Light weight — easy to transport and install",
+        "Lead Free — safe for conveying potable water",
+        "Maintenance Free — resistant to all types of corrosion",
+        "Self-extinguishing quality",
+        "Available in solvent cement and rubber ring-fit joints",
+        "Conforming to IS 4985:2000",
+        "Wide size range: 20mm to 400mm O.D.",
+        "Fittings conforming to IS 7834"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Specifications",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Wall Thickness Specifications (IS 4985:2000)"
+      },
+      {
+       "type": "table",
+       "header": [
+        "OD (mm)",
+        "Class 1 (2.5 kg)",
+        "Class 2 (4 kg)",
+        "Class 3 (6 kg)",
+        "Class 5 (10 kg)",
+        "Plumbing"
+       ],
+       "rows": [
+        [
+         "20",
+         "—",
+         "—",
+         "—",
+         "1.1–1.5",
+         "2.8–3.3"
+        ],
+        [
+         "25",
+         "—",
+         "—",
+         "—",
+         "1.4–1.8",
+         "2.9–3.4"
+        ],
+        [
+         "32",
+         "—",
+         "—",
+         "—",
+         "1.8–2.2",
+         "3.4–3.9"
+        ],
+        [
+         "40",
+         "—",
+         "—",
+         "1.4–1.8",
+         "2.2–2.7",
+         "3.6–4.2"
+        ],
+        [
+         "63",
+         "—",
+         "1.5–1.9",
+         "2.2–2.7",
+         "3.5–4.1",
+         "—"
+        ],
+        [
+         "90",
+         "1.3–1.7",
+         "2.1–2.6",
+         "3.1–3.7",
+         "5.0–5.7",
+         "—"
+        ],
+        [
+         "110",
+         "1.6–2.0",
+         "2.5–3.0",
+         "3.7–4.3",
+         "6.1–7.1",
+         "—"
+        ],
+        [
+         "160",
+         "2.3–2.8",
+         "3.7–4.3",
+         "5.4–6.2",
+         "8.8–10.2",
+         "—"
+        ],
+        [
+         "200",
+         "2.9–3.4",
+         "4.6–5.3",
+         "6.8–7.9",
+         "11.0–12.7",
+         "—"
+        ],
+        [
+         "315",
+         "4.6–5.3",
+         "7.2–8.3",
+         "10.7–12.4",
+         "17.3–19.9",
+         "—"
+        ],
+        [
+         "400",
+         "5.8–6.7",
+         "9.1–10.5",
+         "13.5–15.6",
+         "22.0–25.3",
+         "—"
+        ]
+       ]
+      },
+      {
+       "type": "text",
+       "html": "Wall thickness in mm. Pressure classes: Class 1=2.5 kg/cm², Class 2=4, Class 3=6, Class 5=10 kg/cm²",
+       "note": true
+      }
+     ]
+    },
+    {
+     "title": "Applications",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Applications"
+      },
+      {
+       "type": "list",
+       "items": [
+        "Irrigation in agriculture",
+        "Potable water supply systems",
+        "Conveying water under pressure",
+        "Canal and water distribution networks"
+       ]
+      }
+     ]
+    }
+   ],
+   "products": [
+    {
+     "title": "Pipes",
+     "items": [
+      {
+       "name": "Class 1 — 2.5 kg/cm² (Red marking)",
+       "std": "IS 4985:2000 | 90mm to 400mm O.D.",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "<strong>Sizes:</strong> 90mm, 110mm, 125mm, 140mm, 160mm, 180mm, 200mm, 225mm, 250mm, 280mm, 315mm, 355mm, 400mm"
+        },
+        {
+         "type": "text",
+         "html": "<strong>Joint:</strong> Solvent cement &amp; rubber ring-fit available"
+        }
+       ]
+      },
+      {
+       "name": "Class 2 — 4 kg/cm² (Blue marking)",
+       "std": "IS 4985:2000 | 63mm to 400mm O.D.",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "<strong>Sizes:</strong> 63mm, 75mm, 90mm, 110mm, 125mm, 140mm, 160mm, 180mm, 200mm, 225mm, 250mm, 280mm, 315mm, 355mm, 400mm"
+        }
+       ]
+      },
+      {
+       "name": "Class 3 — 6 kg/cm² (Green marking)",
+       "std": "IS 4985:2000 | 40mm to 400mm O.D.",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "<strong>Sizes:</strong> 40mm, 50mm, 63mm, 75mm, 90mm, 110mm, 125mm, 140mm, 160mm, 180mm, 200mm, 225mm, 250mm, 280mm, 315mm, 355mm, 400mm"
+        }
+       ]
+      },
+      {
+       "name": "Class 5 — 10 kg/cm² (Yellow marking)",
+       "std": "IS 4985:2000 | 20mm to 315mm O.D.",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "<strong>Sizes:</strong> 20mm, 25mm, 32mm, 40mm, 50mm, 63mm, 75mm, 90mm, 110mm, 125mm, 140mm, 160mm, 180mm, 200mm, 225mm, 250mm, 280mm, 315mm"
+        }
+       ]
+      },
+      {
+       "name": "Plumbing Pipes — 16 kg/cm²",
+       "std": "IS 4985:2000 | 20mm to 50mm O.D.",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "<strong>Sizes:</strong> 20mm (½\"), 25mm (¾\"), 32mm (1\"), 40mm (1¼\"), 50mm (1½\")"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Fittings",
+     "items": [
+      {
+       "name": "uPVC Agriculture Fittings (IS 7834)",
+       "std": "20mm to 250mm | Plumbing class 16 kg/cm²",
+       "blocks": [
+        {
+         "type": "chips",
+         "kind": "items",
+         "items": [
+          "Elbow 90°",
+          "Elbow 45°",
+          "Equal Tee",
+          "Reducer Tee",
+          "Coupler",
+          "Reducer Bush",
+          "End Cap",
+          "Ball Valve",
+          "M.T.A.",
+          "F.T.A.",
+          "Union",
+          "Tank Connector"
+         ]
+        },
+        {
+         "type": "link",
+         "label": "Download Full PDF",
+         "href": "https://dutronindia.com/wp-content/uploads/uPVC-Pressure-Pipe-Final-2.pdf",
+         "kind": "pdf"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "swr",
+   "name": "SWR Drainage System",
+   "series": "Dutron SWR",
+   "tag": "IS 13592",
+   "sections": [
+    {
+     "title": "Description",
+     "blocks": [
+      {
+       "type": "image",
+       "src": "https://dutronindia.com/wp-content/uploads/uPVC-SWR-PIPE.png",
+       "alt": "Dutron SWR Pipes & Fittings"
+      },
+      {
+       "type": "heading",
+       "text": "Dutron SWR Pipes & Fittings"
+      },
+      {
+       "type": "text",
+       "html": "Dutron SWR (Soil, Waste and Rainwater) Pipes &amp; Fittings are manufactured from premium grade raw material and tested at a well-equipped QA laboratory. UV-stabilized, light weight, non-corrosive and durable. Available in both Self-Fit (pasting type) and Rubber Ring Fit. First choice of contractors, MEP consultants, architects and plumbers."
+      },
+      {
+       "type": "chips",
+       "kind": "features",
+       "items": [
+        "IS 13592 Certified",
+        "UV Stabilized",
+        "Light Weight",
+        "Non-Corrosive",
+        "Self-Fit & Ring-Fit",
+        "75mm to 160mm",
+        "Durable & Economical",
+        "Fittings: 63–160mm"
+       ]
+      },
+      {
+       "type": "link",
+       "label": "Download PDF Leaflet",
+       "href": "https://dutronindia.com/wp-content/uploads/SWR-uPVC-Pipes-Fittings-Leaflet-Final-1.pdf",
+       "kind": "pdf"
+      }
+     ]
+    },
+    {
+     "title": "Key Features",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Key Features"
+      },
+      {
+       "type": "list",
+       "items": [
+        "Light weight — easy to handle and install",
+        "Resistant to any type of corrosion",
+        "Solvent joint (pasting) as well as rubber ring joints available",
+        "Complete range per IS 13592 — single or double socket",
+        "UV-stabilized for outdoor use",
+        "Fittings include traps, gully traps, vents — complete drainage solution"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Specifications",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Pipe Specifications (IS 13592)"
+      },
+      {
+       "type": "table",
+       "header": [
+        "Size (mm)",
+        "OD Min (mm)",
+        "OD Max (mm)",
+        "Type A WT (mm)",
+        "Type B WT (mm)"
+       ],
+       "rows": [
+        [
+         "75",
+         "75.0",
+         "75.3",
+         "1.8–2.2",
+         "3.2–3.8"
+        ],
+        [
+         "90",
+         "90.0",
+         "90.3",
+         "1.9–2.3",
+         "3.2–3.8"
+        ],
+        [
+         "110",
+         "110.0",
+         "110.4",
+         "2.2–2.7",
+         "3.2–3.8"
+        ],
+        [
+         "160",
+         "160.0",
+         "160.5",
+         "3.2–3.8",
+         "4.0–4.6"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Applications",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Applications"
+      },
+      {
+       "type": "list",
+       "items": [
+        "Drainage of soil, waste and rainwater in residential buildings",
+        "Commercial and industrial building drainage",
+        "Waste water management systems",
+        "Ventilation pipe systems"
+       ]
+      }
+     ]
+    }
+   ],
+   "products": [
+    {
+     "title": "Pipes",
+     "items": [
+      {
+       "name": "SWR Pipes Type A & Type B",
+       "std": "as per IS 13592 | 75mm, 90mm, 110mm, 160mm",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "<strong>Sizes:</strong> 75mm (2½\"), 90mm (3\"), 110mm (4\"), 160mm (6\")"
+        },
+        {
+         "type": "text",
+         "html": "<strong>Type A (lighter wall):</strong> General drainage applications"
+        },
+        {
+         "type": "text",
+         "html": "<strong>Type B (heavier wall):</strong> More demanding drainage applications"
+        },
+        {
+         "type": "text",
+         "html": "<strong>Lengths:</strong> 3 mtr (S/S), 6 mtr (S/S) — single and double socket options. Self-Fit (solvent) or Rubber Ring-Fit jointing."
+        },
+        {
+         "type": "link",
+         "label": "Download PDF",
+         "href": "https://dutronindia.com/wp-content/uploads/SWR-uPVC-Pipes-Fittings-Leaflet-Final-1.pdf",
+         "kind": "pdf"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Fittings",
+     "items": [
+      {
+       "name": "SWR Fittings — Complete Range",
+       "std": "as per IS 14735 | 63mm to 160mm",
+       "blocks": [
+        {
+         "type": "chips",
+         "kind": "items",
+         "items": [
+          "Plain Tee",
+          "Door Tee",
+          "Bend 87.5°",
+          "Door Bend",
+          "Plain Y",
+          "Door Y",
+          "Coupler",
+          "Double Y",
+          "Bend 45°",
+          "Reducer Tee",
+          "Swept Tee",
+          "Swept Tee with Door",
+          "Nahani Trap",
+          "P / S / Q Trap",
+          "Vent Cowl",
+          "Jali (Strainer)",
+          "Square Jali",
+          "Multi Floor Trap",
+          "Height Raiser",
+          "Cleaning Pipe",
+          "Square Gully Trap"
+         ]
+        },
+        {
+         "type": "link",
+         "label": "Download PDF",
+         "href": "https://dutronindia.com/wp-content/uploads/SWR-uPVC-Pipes-Fittings-Leaflet-Final-1.pdf",
+         "kind": "pdf"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "casing",
+   "name": "Casing & Column Pipes",
+   "series": "Dutron Bore",
+   "tag": "IS 12818",
+   "sections": [
+    {
+     "title": "Description",
+     "blocks": [
+      {
+       "type": "image",
+       "src": "https://dutronindia.com/wp-content/uploads/uPVC-CASDSING-PIPE.png",
+       "alt": "Dutron uPVC Casing & Column Pipes"
+      },
+      {
+       "type": "heading",
+       "text": "Dutron uPVC Casing & Column Pipes"
+      },
+      {
+       "type": "text",
+       "html": "Dutron uPVC Casing Pipes (IS 12818) are manufactured from 100% lead-free material, stronger and corrosion resistant — ideal for transportation of hard, salty, sandy and chemically aggressive water in borewells. Dutron Submersible Column Pipes are designed with square threads for excellent grip and accepted in over 20 countries worldwide."
+      },
+      {
+       "type": "chips",
+       "kind": "features",
+       "items": [
+        "100% Lead Free",
+        "IS 12818 Certified",
+        "Corrosion Resistant",
+        "Chemical Resistant",
+        "Square Thread Design",
+        "Multiple Classes",
+        "Slotted Pipes Available",
+        "Exported to 20+ Countries"
+       ]
+      },
+      {
+       "type": "link",
+       "label": "Casing Pipe PDF",
+       "href": "https://dutronindia.com/wp-content/uploads/uPVC-Casing-Pipe.pdf",
+       "kind": "pdf"
+      },
+      {
+       "type": "link",
+       "label": "Column Pipe PDF",
+       "href": "https://dutronindia.com/wp-content/uploads/uPVC-Column-Pipe-Brochure.pdf",
+       "kind": "pdf"
+      }
+     ]
+    },
+    {
+     "title": "Key Features",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Key Features"
+      },
+      {
+       "type": "list",
+       "items": [
+        "100% lead free — completely safe for drinking water",
+        "Non-corrosive — ideal for hard, salty, sandy water",
+        "Convenient 3 metre length with threaded ends — easy installation",
+        "Slotted/perforated screen pipes also available",
+        "Column pipes: square threads for excellent tensile strength",
+        "Complete system with top/bottom adapters and pump guard",
+        "Rubber ring sealing for leak-proof joints",
+        "Smooth inner surface — lowest friction loss, high flow rate"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Specifications",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Casing Pipe Specifications (IS 12818)"
+      },
+      {
+       "type": "table",
+       "header": [
+        "DN (mm)",
+        "DN (in.)",
+        "OD (mm)",
+        "Type CM WT (mm)",
+        "Type CS WT (mm)"
+       ],
+       "rows": [
+        [
+         "40",
+         "1½\"",
+         "48.0–48.2",
+         "3.50–4.00",
+         "—"
+        ],
+        [
+         "50",
+         "2\"",
+         "60.0–60.2",
+         "4.00–4.60",
+         "—"
+        ],
+        [
+         "80",
+         "3\"",
+         "88.0–88.3",
+         "4.00–4.60",
+         "—"
+        ],
+        [
+         "100",
+         "4\"",
+         "113.0–113.3",
+         "5.00–5.70",
+         "4.00–4.40"
+        ],
+        [
+         "125",
+         "5\"",
+         "140.0–140.4",
+         "6.50–7.30",
+         "4.90–5.40"
+        ],
+        [
+         "150",
+         "6\"",
+         "165.0–165.4",
+         "7.50–8.50",
+         "5.70–6.50"
+        ],
+        [
+         "175",
+         "7\"",
+         "200.0–200.5",
+         "8.80–9.80",
+         "7.00–7.80"
+        ],
+        [
+         "200",
+         "8\"",
+         "225.0–225.5",
+         "10.00–11.20",
+         "7.60–8.80"
+        ],
+        [
+         "250",
+         "10\"",
+         "280.0–280.5",
+         "12.50–14.00",
+         "9.60–11.00"
+        ]
+       ]
+      },
+      {
+       "type": "text",
+       "html": "CM = deep borewells (above 80m depth) | CS = shallow borewells (up to 80m depth). Also available: SDR 35 (110–180mm OD) and SDR 52 (110–200mm OD) in 6 metre lengths.",
+       "note": true
+      }
+     ]
+    },
+    {
+     "title": "Applications",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Applications"
+      },
+      {
+       "type": "list",
+       "items": [
+        "Domestic borewell casing (shallow &amp; deep)",
+        "Industrial and mining wells",
+        "Public water supply borewells",
+        "Submersible pump column pipe installations",
+        "Lifting water for agriculture",
+        "Transportation of chemically aggressive water"
+       ]
+      }
+     ]
+    }
+   ],
+   "products": [
+    {
+     "title": "Casing Pipes",
+     "items": [
+      {
+       "name": "uPVC Borewell Casing Pipes — Type CM & CS",
+       "std": "as per IS 12818 | 40mm to 250mm I.D.",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "<strong>Type CM:</strong> For deep borewells (above 80 metres depth) — all sizes 40mm to 250mm I.D."
+        },
+        {
+         "type": "text",
+         "html": "<strong>Type CS:</strong> For shallow borewells (up to 80 metres depth) — sizes 100mm to 250mm I.D."
+        },
+        {
+         "type": "text",
+         "html": "<strong>Also Available:</strong> Plain casing, Ribbed casing, Slotted/Screen pipes, SDR 35, SDR 52"
+        },
+        {
+         "type": "text",
+         "html": "<strong>Length:</strong> 3 metres standard (SDR 35/52 available in 6 metres)"
+        },
+        {
+         "type": "link",
+         "label": "Download PDF",
+         "href": "https://dutronindia.com/wp-content/uploads/uPVC-Casing-Pipe.pdf",
+         "kind": "pdf"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Column Pipes",
+     "items": [
+      {
+       "name": "uPVC Submersible Column Pipes",
+       "std": "25mm to 100mm I.D. | V4 12.5 to Super Heavy",
+       "blocks": [
+        {
+         "type": "table",
+         "header": [
+          "Size",
+          "Class",
+          "Colour",
+          "Pressure (kg/cm²)",
+          "Safe Head (Mtr.)",
+          "Pack (Nos.)"
+         ],
+         "rows": [
+          [
+           "25mm",
+           "V4 12.5",
+           "Orange",
+           "12.5",
+           "125",
+           "25"
+          ],
+          [
+           "25mm",
+           "V4 15",
+           "Purple",
+           "15",
+           "150",
+           "25"
+          ],
+          [
+           "32mm",
+           "V4 12.5",
+           "Orange",
+           "12.5",
+           "125",
+           "20"
+          ],
+          [
+           "32mm",
+           "V4 15",
+           "Purple",
+           "15",
+           "150",
+           "20"
+          ],
+          [
+           "32mm",
+           "Medium",
+           "Blue",
+           "21",
+           "210",
+           "20"
+          ],
+          [
+           "32mm",
+           "Standard",
+           "Red",
+           "25",
+           "250",
+           "20"
+          ],
+          [
+           "32mm",
+           "Heavy",
+           "Green",
+           "35",
+           "350",
+           "20"
+          ],
+          [
+           "32mm",
+           "Super Heavy",
+           "Black",
+           "40",
+           "400",
+           "20"
+          ],
+          [
+           "40mm",
+           "V4 12.5",
+           "Orange",
+           "12.5",
+           "125",
+           "20"
+          ],
+          [
+           "40mm",
+           "Medium",
+           "Blue",
+           "21",
+           "210",
+           "20"
+          ],
+          [
+           "40mm",
+           "Standard",
+           "Red",
+           "26",
+           "260",
+           "20"
+          ],
+          [
+           "40mm",
+           "Heavy",
+           "Green",
+           "35",
+           "350",
+           "20"
+          ],
+          [
+           "40mm",
+           "Super Heavy",
+           "Black",
+           "40",
+           "400",
+           "20"
+          ],
+          [
+           "50mm",
+           "Eco Medium",
+           "Orange",
+           "10",
+           "100",
+           "10"
+          ],
+          [
+           "50mm",
+           "Medium",
+           "Blue",
+           "13",
+           "130",
+           "10"
+          ],
+          [
+           "50mm",
+           "Standard",
+           "Red",
+           "20",
+           "200",
+           "10"
+          ],
+          [
+           "50mm",
+           "Heavy",
+           "Green",
+           "27",
+           "270",
+           "10"
+          ],
+          [
+           "50mm",
+           "Super Heavy",
+           "Black",
+           "35",
+           "350",
+           "10"
+          ],
+          [
+           "65mm+",
+           "Various",
+           "—",
+           {
+            "v": "Medium, Standard, Heavy — see PDF",
+            "span": 3
+           }
+          ]
+         ]
+        },
+        {
+         "type": "link",
+         "label": "Download Full Brochure",
+         "href": "https://dutronindia.com/wp-content/uploads/uPVC-Column-Pipe-Brochure.pdf",
+         "kind": "pdf"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hdpe",
+   "name": "HDPE Pipes & Fittings",
+   "series": "Dutron HDPE",
+   "tag": "IS 4984",
+   "sections": [
+    {
+     "title": "Description",
+     "blocks": [
+      {
+       "type": "image",
+       "src": "https://dutronindia.com/wp-content/uploads/HDPE-PNG.png",
+       "alt": "Dutron HDPE Pipes & Fittings"
+      },
+      {
+       "type": "heading",
+       "text": "Dutron HDPE Pipes & Fittings"
+      },
+      {
+       "type": "text",
+       "html": "Dutron HDPE Pipes &amp; Fittings are manufactured at a state-of-the-art plant under ISO 9001:2015. Chemically inert to most chemicals, acids and alkalies. Flexible pipes available in coil form up to 140mm diameter. Available in PE 63, PE 80 and PE 100 grades as per IS 4984:2016. Includes HDPE Sprinkler System per IS 14151."
+      },
+      {
+       "type": "chips",
+       "kind": "features",
+       "items": [
+        "IS 4984:2016 Certified",
+        "ISO 9001:2015",
+        "PE 63 / PE 80 / PE 100",
+        "Flexible — Coil Form",
+        "Chemically Inert",
+        "Abrasion Resistant",
+        "Up to 710mm OD",
+        "Sprinkler System Available"
+       ]
+      },
+      {
+       "type": "link",
+       "label": "Download HDPE Brochure",
+       "href": "https://dutronindia.com/wp-content/uploads/HDPE-Brochure.pdf",
+       "kind": "pdf"
+      }
+     ]
+    },
+    {
+     "title": "Key Features",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Key Features"
+      },
+      {
+       "type": "list",
+       "items": [
+        "Lightweight and flexible — pipes up to 140mm available in coil form",
+        "Excellent resistance to stress cracking and long-term stress crack propagation",
+        "Can be safely used down to -40°C",
+        "Chemically resistant to most corrosive chemicals, acids and alkalies",
+        "Abrasion resistant",
+        "All types of fabricated fittings for butt welding available",
+        "Also available per ISO 4437, ASTM D 3350 and other international standards",
+        "Sewage and solid waste management pipes with ISI (IS 14333) mark available"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Specifications",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Specifications"
+      },
+      {
+       "type": "list",
+       "items": [
+        "<strong>Standard:</strong> IS 4984:2016",
+        "<strong>Grades:</strong> PE 63, PE 80, PE 100",
+        "<strong>Size Range:</strong> 20mm to 710mm O.D.",
+        "<strong>Pressure Ratings:</strong> PN 2.5 to PN 20 (various SDR classes)",
+        "<strong>Colour:</strong> Black with blue stripes (water) / Yellow (gas)",
+        "<strong>Joint Type:</strong> Butt fusion welding / Electrofusion / Compression fittings",
+        "<strong>Also Available:</strong> IS 14333 (sewage &amp; solid waste management pipes)"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Applications",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Applications"
+      },
+      {
+       "type": "list",
+       "items": [
+        "Agriculture — submersible column pipes, suction/delivery, sprinkler &amp; drip/lift irrigation",
+        "Potable water supply — rural &amp; urban",
+        "Industrial corrosive effluent conveyance",
+        "Sewage and solid waste management pipelines",
+        "Underground pipe lines and cable duct lines",
+        "Gas distribution, air conditioning and ducting",
+        "Compressed air supply",
+        "Onshore and offshore dredging pipelines"
+       ]
+      }
+     ]
+    }
+   ],
+   "products": [
+    {
+     "title": "HDPE Pipes",
+     "items": [
+      {
+       "name": "HDPE Pipes — PE 63, PE 80, PE 100",
+       "std": "as per IS 4984:2016 | 20mm to 710mm O.D.",
+       "blocks": [
+        {
+         "type": "table",
+         "header": [
+          "Grade",
+          "SDR Range",
+          "PN Range",
+          "Size Range"
+         ],
+         "rows": [
+          [
+           "PE 63",
+           "SDR 11 to SDR 21",
+           "PN 4 to PN 8",
+           "20mm to 110mm (and larger)"
+          ],
+          [
+           "PE 80",
+           "SDR 6 to SDR 21",
+           "PN 5 to PN 20",
+           "32mm to 710mm"
+          ],
+          [
+           "PE 100",
+           "SDR 6 to SDR 21",
+           "PN 6 to PN 20",
+           "32mm to 710mm"
+          ]
+         ]
+        },
+        {
+         "type": "text",
+         "html": "Pipes up to 140mm OD available in coil form. Standard sizes: 20, 25, 32, 40, 50, 63, 75, 90, 110, 125, 140, 160, 180, 200, 250, 315, 400, 500, 630, 710mm",
+         "note": true
+        },
+        {
+         "type": "link",
+         "label": "Download Brochure",
+         "href": "https://dutronindia.com/wp-content/uploads/HDPE-Brochure.pdf",
+         "kind": "pdf"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "HDPE Fittings",
+     "items": [
+      {
+       "name": "HDPE Fabricated Fittings",
+       "std": "Butt fusion welded | PE 80 & PE 100",
+       "blocks": [
+        {
+         "type": "chips",
+         "kind": "items",
+         "items": [
+          "Elbow 90°",
+          "Elbow 45°",
+          "Equal Tee",
+          "Reducer Tee",
+          "Reducer",
+          "End Cap",
+          "Flange Adaptor",
+          "Coupler",
+          "Cross Tee",
+          "Saddle"
+         ]
+        },
+        {
+         "type": "text",
+         "html": "All fittings fabricated from pipes. Butt fusion welding services available on site. Sizes match available pipe range.",
+         "note": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Sprinkler System",
+     "items": [
+      {
+       "name": "HDPE Sprinkler System",
+       "std": "as per IS 14151 | 63mm to 110mm",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "Complete water sprinkler system with ISI mark per IS 14151. Provides economy and better irrigation efficiency."
+        },
+        {
+         "type": "text",
+         "html": "<strong>Pipe Sizes:</strong> 63mm to 110mm"
+        },
+        {
+         "type": "text",
+         "html": "<strong>Fittings / Components:</strong>"
+        },
+        {
+         "type": "chips",
+         "kind": "items",
+         "items": [
+          "Latch",
+          "Tee",
+          "Bend",
+          "Pipe",
+          "Connecting Nipples (PCN)",
+          "Sprinkler Adaptor",
+          "Garden Sprinkler (¾\")",
+          "Quick Release Coupler"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "suction",
+   "name": "Suction Hose",
+   "series": "Kanaflex",
+   "tag": "Flexible PVC",
+   "sections": [
+    {
+     "title": "Description",
+     "blocks": [
+      {
+       "type": "image",
+       "src": "https://dutronindia.com/wp-content/uploads/kANAFLEX-PNG.png",
+       "alt": "Dutron Kanaflex — Suction & Delivery Hose"
+      },
+      {
+       "type": "heading",
+       "text": "Kanaflex — Suction & Delivery Hose"
+      },
+      {
+       "type": "text",
+       "html": "Dutron Kanaflex is the most trusted name in flexible PVC hose pipes in India and worldwide. Manufactured with technical know-how from Totaku Industries Inc., Japan since the 1970s. Most suited for suction and delivery of liquids and gases across agriculture, industrial and general applications. Lighter and more flexible than rubber hose."
+      },
+      {
+       "type": "chips",
+       "kind": "features",
+       "items": [
+        "Japanese Technology",
+        "Light & Flexible",
+        "No Kinking/Bursting",
+        "Chemical Resistant",
+        "6 Variants Available",
+        "20mm to 200mm ID"
+       ]
+      },
+      {
+       "type": "link",
+       "label": "Download Kanaflex Brochure",
+       "href": "https://dutronindia.com/wp-content/uploads/Kanaflex-Brochure-03.pdf",
+       "kind": "pdf"
+      }
+     ]
+    },
+    {
+     "title": "Applications",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Applications"
+      },
+      {
+       "type": "list",
+       "items": [
+        "Suction and delivery of water for agriculture irrigation",
+        "Saline water, light acids, alkalies and chemicals (except solvents)",
+        "Industrial fluid transfer — abrasive materials, slurries, aggregates",
+        "Oil suction and discharge (petroleum products)",
+        "Duct and ventilation systems",
+        "Food, beverage and potable water (non-toxic variant)"
+       ]
+      }
+     ]
+    }
+   ],
+   "products": [
+    {
+     "title": "M.D. Green",
+     "items": [
+      {
+       "name": "M.D. (Green) — Medium Duty Suction & Delivery Hose",
+       "std": "20mm to 100mm I.D. | Working pressure 3.5–7 kg/cm²",
+       "blocks": [
+        {
+         "type": "table",
+         "header": [
+          "Size (in.)",
+          "ID (mm)",
+          "OD (mm)",
+          "Working P (kg/cm²)",
+          "Bursting P (kg/cm²)",
+          "Std Lengths (mtr)"
+         ],
+         "rows": [
+          [
+           "¾\"",
+           "19.0±0.5",
+           "23.6±1.0",
+           "7.0",
+           "24.0",
+           "30/50"
+          ],
+          [
+           "1\"",
+           "25.4±0.5",
+           "30.0±1.0",
+           "7.0",
+           "23.0",
+           "30/50"
+          ],
+          [
+           "1¼\"",
+           "31.8±0.5",
+           "36.8±1.0",
+           "6.5",
+           "20.0",
+           "30/50"
+          ],
+          [
+           "1½\"",
+           "38.0±0.5",
+           "43.3±1.0",
+           "5.0",
+           "16.0",
+           "30/50"
+          ],
+          [
+           "2\"",
+           "50.8±0.5",
+           "57.8±1.5",
+           "4.0",
+           "16.0",
+           "30/45/50"
+          ],
+          [
+           "2½\"",
+           "63.5±1.0",
+           "72.0±1.5",
+           "4.0",
+           "16.0",
+           "30/45"
+          ],
+          [
+           "3\"",
+           "76.2±1.0",
+           "85.0±1.5",
+           "3.5",
+           "15.0",
+           "30/36"
+          ],
+          [
+           "4\"",
+           "101.2±1.0",
+           "112.2±2.0",
+           "3.5",
+           "11.0",
+           "15/18/30"
+          ]
+         ]
+        },
+        {
+         "type": "text",
+         "html": "Colour: Green | Max working temperature: 60/70°C",
+         "note": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Heavy Duty",
+     "items": [
+      {
+       "name": "Heavy Duty Suction Hose",
+       "std": "For industrial abrasive applications | 25mm to 200mm ID",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "For industrial suction of abrasive materials, slurries, aggregates. Sizes 1\" to 8\" (25mm to 200mm ID)."
+        },
+        {
+         "type": "text",
+         "html": "<strong>Available as:</strong> Standard Heavy Duty or PU Lined (higher abrasion resistance)"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Other Variants",
+     "items": [
+      {
+       "name": "Non-Toxic Hose (Transparent & with Copper Wire)",
+       "std": "For food, beverage & potable water",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "Transparent non-toxic hose — safe for food, beverage and potable water applications. Available with copper wire for static discharge."
+        }
+       ]
+      },
+      {
+       "name": "Oil Hose / Oil Hose with Copper Wire",
+       "std": "For petroleum product suction & discharge",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "Designed for suction and discharge of petroleum products. Copper wire variant available for static electricity discharge."
+        }
+       ]
+      },
+      {
+       "name": "Duct Hose (Flexible PVC)",
+       "std": "For ducting, ventilation & dust extraction",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "Flexible PVC duct hose for ventilation, dust extraction and air/fume handling in industrial applications."
+        }
+       ]
+      },
+      {
+       "name": "Dutron Line — High Pressure Suction Hose",
+       "std": "For higher pressure suction applications",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "For applications requiring higher pressure ratings than standard MD Green. Suitable for demanding agricultural and industrial suction tasks."
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "braided",
+   "name": "Braided & Garden Hose",
+   "series": "Duplon",
+   "tag": "High Pressure",
+   "sections": [
+    {
+     "title": "Description",
+     "blocks": [
+      {
+       "type": "image",
+       "src": "https://dutronindia.com/wp-content/uploads/duplon-logo.png",
+       "alt": "Dutron Duplon — Braided & Garden Hose"
+      },
+      {
+       "type": "heading",
+       "text": "Duplon — Braided & Garden Hose"
+      },
+      {
+       "type": "text",
+       "html": "Dutron Duplon Braided Hoses are designed for high pressure water, air, welding and industrial applications. The range includes 6 distinct products — from everyday garden hoses to steel wire reinforced heavy-duty industrial hoses. Known for kink resistance, flexibility and durability."
+      },
+      {
+       "type": "chips",
+       "kind": "features",
+       "items": [
+        "High Pressure Rated",
+        "Braided & Reinforced",
+        "Kink Resistant",
+        "6 Product Variants",
+        "Garden to Industrial",
+        "Welding Grade Available"
+       ]
+      },
+      {
+       "type": "link",
+       "label": "View Product Page",
+       "href": "https://www.dutronindia.com/braided-hose/",
+       "kind": "page"
+      }
+     ]
+    },
+    {
+     "title": "Applications",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Applications"
+      },
+      {
+       "type": "list",
+       "items": [
+        "Garden and lawn watering",
+        "Construction site water supply",
+        "Compressed air lines and pneumatic tools",
+        "Welding equipment (oxygen &amp; LPG/acetylene)",
+        "Car wash, spray and surface cleaning",
+        "Rock drilling and mining",
+        "Industrial high-pressure fluid transfer"
+       ]
+      }
+     ]
+    }
+   ],
+   "products": [
+    {
+     "title": "Water / Garden Hose",
+     "items": [
+      {
+       "name": "Water / Garden / Construction Water Hose",
+       "std": "½\" to 2\" (12mm to 50mm) | Up to 10 kg/cm²",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "For garden watering, construction site water delivery and general water distribution."
+        },
+        {
+         "type": "text",
+         "html": "<strong>Sizes:</strong> ½\", ¾\", 1\", 1¼\", 1½\", 2\""
+        },
+        {
+         "type": "text",
+         "html": "<strong>Working Pressure:</strong> Up to 10 kg/cm²"
+        }
+       ]
+      },
+      {
+       "name": "Super Spray and Car Washing Hose",
+       "std": "High pressure spray & car wash applications",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "Heavy-duty braided hose for super spray, car washing, pressure cleaning and surface treatment applications."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Air Hose",
+     "items": [
+      {
+       "name": "High Pressure Air Hose (Transparent)",
+       "std": "¼\" to 1\" (6mm to 25mm) | Up to 20 kg/cm²",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "Transparent high pressure hose for compressed air lines, pneumatic tools and general air delivery."
+        },
+        {
+         "type": "text",
+         "html": "<strong>Sizes:</strong> ¼\", ⅜\", ½\", ¾\", 1\" | <strong>Working Pressure:</strong> Up to 20 kg/cm²"
+        }
+       ]
+      },
+      {
+       "name": "Spray / CW Power / Super High Pressure Air / Rock Drill Hose",
+       "std": "Very high pressure — industrial & mining",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "Super high pressure braided hose for car wash power cleaning, rock drills and demanding mining/construction applications."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Welding & Other",
+     "items": [
+      {
+       "name": "Welding Hose — Red & Blue",
+       "std": "For welding equipment (oxygen & LPG/acetylene)",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "<strong>Red Hose:</strong> For oxygen supply to welding equipment"
+        },
+        {
+         "type": "text",
+         "html": "<strong>Blue Hose:</strong> For LPG/acetylene supply to welding equipment"
+        }
+       ]
+      },
+      {
+       "name": "Steel Wire Hose (Thunder Hose)",
+       "std": "Extremely high pressure — steel wire reinforced",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "Reinforced with steel wire helix for extremely high pressure applications in industrial, mining and heavy construction environments. Maximum pressure and durability."
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

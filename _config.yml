@@ -1,7 +1,0 @@
-# GitHub Pages (Jekyll) settings. The site itself is plain HTML; this only
-# keeps repo tooling and notes from being published as public pages.
-exclude:
-  - tools
-  - CLAUDE.md
-  - SEO.md
-  - README.md

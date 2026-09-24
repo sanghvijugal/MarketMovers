@@ -1,0 +1,63 @@
+---
+import type { Brand, ProductLine } from "@/data/brands";
+import Blocks from "./Blocks.astro";
+import Accordion from "./Accordion.astro";
+
+interface Props {
+  brand: Brand;
+  line: ProductLine;
+  /** The first line's image is visible on load, so it isn't lazy-loaded. */
+  priority?: boolean;
+}
+const { brand, line, priority = false } = Astro.props;
+const [overview, ...details] = line.sections;
+const image = overview?.blocks.find((b) => b.type === "image");
+const heading = overview?.blocks.find((b) => b.type === "heading");
+const title = heading?.text ?? `${brand.name} ${line.name}`;
+---
+<section id={line.id} class="scroll-mt-32 border-t py-12 first:border-t-0 first:pt-0 lg:scroll-mt-24" aria-labelledby={`${line.id}-title`}>
+  <p class="text-sm text-muted-foreground">{line.series}{line.tag && ` · ${line.tag}`}</p>
+  <h2 id={`${line.id}-title`} class="mt-1 text-2xl font-semibold">{title}</h2>
+
+  <div class:list={["mt-6 grid gap-8", image && "md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]"]}>
+    {image && (
+      <div class="aspect-[4/3] overflow-hidden rounded-lg border bg-white">
+        <img
+          src={image.src}
+          alt={image.alt}
+          width="800"
+          height="600"
+          class="size-full object-contain p-6"
+          decoding="async"
+          loading={priority ? "eager" : "lazy"}
+          fetchpriority={priority ? "high" : undefined}
+        />
+      </div>
+    )}
+    {overview && <Blocks blocks={overview.blocks} skipHeading={heading?.text} />}
+  </div>
+
+  {details.length > 0 && (
+    <div class="mt-8 border-t">
+      {details.map((s, i) => (
+        <Accordion id={`${line.id}-s${i}`} title={s.title} level={3}>
+          <Blocks blocks={s.blocks} skipHeading={s.title} level={4} />
+        </Accordion>
+      ))}
+    </div>
+  )}
+
+  {line.products.map((g, gi) => (
+    <div class="mt-10">
+      <h3 class="text-sm font-medium text-muted-foreground">{g.title}</h3>
+      {g.intro && <div class="mt-3"><Blocks blocks={g.intro} level={4} /></div>}
+      <div class="mt-2 border-t">
+        {g.items.map((it, ii) => (
+          <Accordion id={`${line.id}-p${gi}-${ii}`} title={it.name} subtitle={it.std} level={4}>
+            <Blocks blocks={it.blocks} level={5} />
+          </Accordion>
+        ))}
+      </div>
+    </div>
+  ))}
+</section>

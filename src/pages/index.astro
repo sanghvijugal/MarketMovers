@@ -1,0 +1,235 @@
+---
+import Base from "@/layouts/Base.astro";
+import Icon from "@/components/Icon.astro";
+import Placeholder from "@/components/Placeholder.astro";
+import EnquiryForm from "@/components/EnquiryForm";
+import { buttonVariants } from "@/components/ui/button-variants";
+import { business, brands, categories, customers, whatsappUrl } from "@/data/site";
+import { brandPages } from "@/data/brands";
+import { homeSchema } from "@/lib/schema";
+import {
+  ArrowRight01Icon,
+  Call02Icon,
+  Clock01Icon,
+  DropletIcon,
+  Leaf01Icon,
+  Location01Icon,
+  PipelineIcon,
+  PlantIcon,
+  ShowerHeadIcon,
+  Tick02Icon,
+  WaterPumpIcon,
+  WhatsappIcon,
+  Wrench01Icon,
+} from "@hugeicons/core-free-icons";
+
+const categoryIcons = {
+  pvc: PipelineIcon,
+  hdpe: DropletIcon,
+  sprinkler: PlantIcon,
+  bath: ShowerHeadIcon,
+  casing: WaterPumpIcon,
+  suction: Leaf01Icon,
+  fittings: Wrench01Icon,
+} as const;
+
+const slugFor = (name: string) => brands.find((b) => b.name === name)?.slug;
+const featured = brands
+  .filter((b) => b.slug)
+  .map((b) => ({ ...b, page: brandPages.find((p) => p.slug === b.slug)! }));
+const others = brands.filter((b) => !b.slug);
+const phone = business.phones[0];
+const a = business.address;
+
+const reasons = [
+  { title: "Ready stock", text: "A large inventory, so bulk and project orders go out without waiting on the factory." },
+  { title: "Same-day or next-day supply", text: "Across Jabalpur and nearby districts." },
+  { title: "Distributor pricing", text: "Bought direct from the brands, with no middlemen in between." },
+  { title: "MSME registered government supplier", text: "Trusted for institutional and public-sector projects." },
+  { title: "Retailer network", text: "Partner retailers across Jabalpur and Madhya Pradesh keep our range within reach." },
+  { title: "Agriculture know-how", text: "From HDPE mains to sprinkler and drip systems for farms and irrigation projects." },
+];
+---
+<Base
+  title="Pipes & Sanitary Distributor in Jabalpur, MP | Market Movers"
+  description="Market Movers, Jabalpur: distributor of Finolex, Dutron, Texmo, Waterflo & Johnson. PVC, CPVC, HDPE pipes, sprinklers & sanitaryware across Madhya Pradesh."
+  path="/"
+  jsonLd={homeSchema()}>
+
+  <!-- Hero -->
+  <section class="mx-auto grid max-w-6xl items-center gap-10 px-4 pt-12 pb-16 sm:px-6 md:grid-cols-[1.1fr_1fr] md:pt-20 md:pb-24">
+    <div>
+      <p class="text-sm text-muted-foreground">Wholesale distributor · Jabalpur, Madhya Pradesh</p>
+      <h1 class="mt-4 text-4xl leading-[1.1] font-semibold sm:text-5xl">
+        Pipes, fittings and sanitaryware from stock in Jabalpur
+      </h1>
+      <p class="mt-5 max-w-xl text-lg text-muted-foreground">
+        We supply Finolex, Dutron, Texmo, Waterflo, Johnson Bathrooms and five more brands to contractors,
+        builders, retailers and farmers across Madhya Pradesh.
+      </p>
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+        <a href={whatsappUrl("Hello Market Movers, I'd like a quote.")} target="_blank" rel="noopener" class={buttonVariants({ size: "lg" })}>
+          <Icon icon={WhatsappIcon} />Get a quote on WhatsApp
+        </a>
+        <a href={`tel:${phone.tel}`} class={buttonVariants({ variant: "outline", size: "lg" })}>
+          <Icon icon={Call02Icon} /><span class="tabular-nums">Call {phone.display}</span>
+        </a>
+      </div>
+      <dl class="mt-10 grid max-w-lg grid-cols-3 gap-6 border-t pt-6">
+        <div>
+          <dt class="text-sm text-muted-foreground">Products in stock</dt>
+          <dd class="mt-1 text-xl font-semibold tabular-nums">1,500+</dd>
+        </div>
+        <div>
+          <dt class="text-sm text-muted-foreground">Brands</dt>
+          <dd class="mt-1 text-xl font-semibold tabular-nums">{brands.length}</dd>
+        </div>
+        <div>
+          <dt class="text-sm text-muted-foreground">Open</dt>
+          <dd class="mt-1 text-xl font-semibold">{business.hours.short}</dd>
+        </div>
+      </dl>
+    </div>
+    <Placeholder label="shop front or warehouse stock" class="aspect-[4/3] w-full" />
+  </section>
+
+  <!-- Brands -->
+  <section id="brands" class="bg-muted">
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
+      <div class="max-w-2xl">
+        <h2 class="text-3xl font-semibold">Brands we distribute</h2>
+        <p class="mt-3 text-muted-foreground">Open a brand for its full product range, sizes and specifications.</p>
+      </div>
+      <ul class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {featured.map((b) => (
+          <li>
+            <a href={`/${b.slug}.html`} class="group flex h-full flex-col rounded-lg border bg-card p-6 transition-[border-color] duration-150 hover:border-input">
+              <h3 class="text-xl font-semibold">{b.name}</h3>
+              <p class="mt-1 text-sm text-muted-foreground">{b.page.tagline} · {b.page.lines.length} product lines</p>
+              <p class="mt-4 line-clamp-2 text-sm text-muted-foreground">{b.page.lines.slice(0, 4).map((l) => l.name).join(", ")}</p>
+              <span class="mt-auto inline-flex items-center gap-1 pt-6 text-sm font-medium text-primary">
+                View range
+                <Icon icon={ArrowRight01Icon} size={16} class="transition-transform duration-150 ease-out group-hover:translate-x-0.5" />
+              </span>
+            </a>
+          </li>
+        ))}
+        <li class="flex flex-col rounded-lg border border-dashed border-input p-6">
+          <h3 class="text-xl font-semibold">Also in stock</h3>
+          <p class="mt-1 text-sm text-muted-foreground">{others.map((b) => b.name).join(", ")}</p>
+          <p class="mt-4 text-sm text-muted-foreground">Catalogues for these brands aren't online yet. Ask us for sizes and prices.</p>
+          <a href={whatsappUrl(`Hello Market Movers, I'd like prices for ${others.map((b) => b.name).join(" / ")} products.`)} target="_blank" rel="noopener" class="mt-auto inline-flex items-center gap-1 pt-6 text-sm font-medium text-primary hover:underline underline-offset-4">
+            Ask on WhatsApp
+            <Icon icon={ArrowRight01Icon} size={16} />
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section id="products" class="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
+    <div class="max-w-2xl">
+      <h2 class="text-3xl font-semibold">What we supply</h2>
+      <p class="mt-3 text-muted-foreground">Plumbing, drainage, agriculture and bathroom products for homes, projects and farms.</p>
+    </div>
+    <ul class="mt-10 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+      {categories.map((c) => (
+        <li class="flex gap-4">
+          <span class="grid size-10 shrink-0 place-items-center rounded-md bg-accent text-accent-foreground">
+            <Icon icon={categoryIcons[c.id]} />
+          </span>
+          <div>
+            <h3 class="font-semibold">{c.name}</h3>
+            <p class="mt-1 text-sm text-muted-foreground">{c.text}</p>
+            <p class="mt-2 text-sm">
+              {c.brands.length === 0 ? (
+                <span class="text-muted-foreground">All brands</span>
+              ) : (
+                c.brands.map((name, i) => {
+                  const slug = slugFor(name);
+                  return (
+                    <>
+                      {i > 0 && <span class="text-muted-foreground">, </span>}
+                      {slug ? <a href={`/${slug}.html`} class="text-primary underline decoration-primary/30 underline-offset-4 hover:decoration-primary">{name}</a> : <span class="text-muted-foreground">{name}</span>}
+                    </>
+                  );
+                })
+              )}
+            </p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="border-t">
+    <div class="mx-auto grid max-w-6xl gap-12 px-4 py-16 sm:px-6 md:py-24 lg:grid-cols-[1fr_1.2fr]">
+      <div>
+        <h2 class="text-3xl font-semibold">About Market Movers</h2>
+        <p class="mt-4 text-muted-foreground">
+          We're a plumbing and sanitary distributor based at Anjuman Market, Marhatal, in Jabalpur. We carry
+          certified, brand-standard products only, and keep enough stock to fill project orders the same week.
+        </p>
+        <h3 class="mt-8 text-sm font-medium">Who we supply</h3>
+        <ul class="mt-3 grid grid-cols-2 gap-x-6 gap-y-2 text-sm">
+          {customers.map((c) => (
+            <li class="flex items-center gap-2">
+              <Icon icon={Tick02Icon} size={16} class="shrink-0 text-primary" />{c}
+            </li>
+          ))}
+        </ul>
+        <Placeholder label="team, godown or delivery vehicle" class="mt-10 aspect-[16/10] w-full" />
+      </div>
+      <dl class="grid content-start gap-x-8 gap-y-8 sm:grid-cols-2">
+        {reasons.map((r) => (
+          <div class="border-t pt-5">
+            <dt class="font-semibold">{r.title}</dt>
+            <dd class="mt-1.5 text-sm text-muted-foreground">{r.text}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="bg-muted">
+    <div class="mx-auto grid max-w-6xl gap-12 px-4 py-16 sm:px-6 md:py-24 lg:grid-cols-[1fr_1.3fr]">
+      <div>
+        <h2 class="text-3xl font-semibold">Get prices and availability</h2>
+        <p class="mt-3 text-muted-foreground">Send your requirement and we'll reply with rates and stock, usually the same day.</p>
+        <ul class="mt-8 space-y-6">
+          <li class="flex gap-4">
+            <Icon icon={Location01Icon} class="mt-0.5 shrink-0 text-muted-foreground" />
+            <div>
+              <p class="font-medium">{a.street}</p>
+              <p class="text-muted-foreground">{a.city}, {a.region} {a.postalCode}</p>
+              <a href={business.mapUrl} target="_blank" rel="noopener" class="mt-1 inline-block text-sm text-primary underline-offset-4 hover:underline">Open in Google Maps</a>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <Icon icon={Call02Icon} class="mt-0.5 shrink-0 text-muted-foreground" />
+            <div class="space-y-1">
+              {business.phones.map((p) => <p><a href={`tel:${p.tel}`} class="font-medium tabular-nums hover:text-primary">{p.display}</a></p>)}
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <Icon icon={WhatsappIcon} class="mt-0.5 shrink-0 text-muted-foreground" />
+            <a href={whatsappUrl()} target="_blank" rel="noopener" class="font-medium tabular-nums hover:text-primary">WhatsApp {phone.display}</a>
+          </li>
+          <li class="flex gap-4">
+            <Icon icon={Clock01Icon} class="mt-0.5 shrink-0 text-muted-foreground" />
+            <p><span class="font-medium">{business.hours.days}</span><br /><span class="text-muted-foreground">{business.hours.display}</span></p>
+          </li>
+        </ul>
+      </div>
+      <div class="rounded-lg border bg-card p-6 sm:p-8">
+        <h3 class="text-lg font-semibold">Send an enquiry</h3>
+        <div class="mt-6">
+          <EnquiryForm client:idle whatsapp={business.whatsapp} categories={categories.map((c) => c.name)} />
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

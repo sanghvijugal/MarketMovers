@@ -1,0 +1,125 @@
+---
+import MorphIcon from "morphicons/astro";
+import { Menu01Icon, Call02Icon, WhatsappIcon } from "@hugeicons/core-free-icons";
+import Icon from "./Icon.astro";
+import Logo from "./Logo.astro";
+import { buttonVariants } from "./ui/button-variants";
+import { business, whatsappUrl } from "@/data/site";
+
+const nav = [
+  { href: "/#products", label: "Products" },
+  { href: "/#brands", label: "Brands" },
+  { href: "/#about", label: "About" },
+  { href: "/#contact", label: "Contact" },
+];
+const phone = business.phones[0];
+const wa = whatsappUrl("Hello Market Movers, I have an enquiry.");
+---
+<header class="sticky top-0 z-40 border-b bg-background">
+  <div class="mx-auto flex h-16 max-w-6xl items-center justify-between gap-6 px-4 sm:px-6">
+    <a href="/" class="rounded-md">
+      <Logo />
+    </a>
+
+    <nav aria-label="Main" class="hidden md:block">
+      <ul class="flex items-center gap-1">
+        {nav.map((l) => (
+          <li>
+            <a href={l.href} class="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors duration-150 hover:text-foreground">{l.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <a href={`tel:${phone.tel}`} class={buttonVariants({ variant: "ghost", class: "hidden lg:inline-flex" })}>
+        <Icon icon={Call02Icon} />
+        <span class="tabular-nums">{phone.display}</span>
+      </a>
+      <a href={wa} target="_blank" rel="noopener" class={buttonVariants({ class: "hidden sm:inline-flex" })}>
+        <Icon icon={WhatsappIcon} />
+        WhatsApp us
+      </a>
+      <a href={wa} target="_blank" rel="noopener" class={buttonVariants({ size: "icon", class: "sm:hidden" })} aria-label="WhatsApp us">
+        <Icon icon={WhatsappIcon} />
+      </a>
+      <button
+        type="button"
+        id="menu-button"
+        class={buttonVariants({ variant: "ghost", size: "icon", class: "md:hidden" })}
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label="Open menu">
+        <MorphIcon icon={Menu01Icon} id="menu-icon" size={22} strokeWidth={1.5} reducedMotion="user" />
+      </button>
+    </div>
+  </div>
+
+  <div
+    id="mobile-menu"
+    class="t-dropdown absolute inset-x-3 top-[calc(100%+0.5rem)] z-50 rounded-lg border bg-card p-2 shadow-lg md:hidden">
+    <nav aria-label="Main (mobile)">
+      <ul>
+        {nav.map((l) => (
+          <li>
+            <a href={l.href} class="flex h-12 items-center rounded-md px-3 text-base font-medium hover:bg-muted">{l.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+    <div class="mt-2 grid grid-cols-2 gap-2 border-t p-2 pt-4">
+      <a href={`tel:${phone.tel}`} class={buttonVariants({ variant: "outline", size: "lg" })}>
+        <Icon icon={Call02Icon} />Call
+      </a>
+      <a href={wa} target="_blank" rel="noopener" class={buttonVariants({ size: "lg" })}>
+        <Icon icon={WhatsappIcon} />WhatsApp
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  import { Menu01Icon, Cancel01Icon } from "@hugeicons/core-free-icons";
+  import type { MorphIconElement } from "morphicons/element";
+
+  const button = document.getElementById("menu-button")!;
+  const menu = document.getElementById("mobile-menu")!;
+  const icon = document.querySelector<MorphIconElement>("#menu-icon");
+  const closeMs =
+    parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--dropdown-close-dur")) || 150;
+  let closeTimer: number | undefined;
+
+  // Keyboard-initiated closes are instant: animating them only makes the UI feel slow.
+  function setOpen(open: boolean, instant = false) {
+    button.setAttribute("aria-expanded", String(open));
+    button.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    icon?.morphTo(open ? Cancel01Icon : Menu01Icon);
+    clearTimeout(closeTimer);
+    if (open) {
+      menu.classList.remove("is-closing");
+      menu.classList.add("is-open");
+    } else if (instant) {
+      menu.classList.remove("is-open", "is-closing");
+    } else if (menu.classList.contains("is-open")) {
+      menu.classList.remove("is-open");
+      menu.classList.add("is-closing");
+      closeTimer = window.setTimeout(() => menu.classList.remove("is-closing"), closeMs);
+    }
+  }
+  const isOpen = () => button.getAttribute("aria-expanded") === "true";
+
+  button.addEventListener("click", () => setOpen(!isOpen()));
+  menu.addEventListener("click", (e) => {
+    if ((e.target as HTMLElement).closest("a")) setOpen(false);
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && isOpen()) {
+      setOpen(false, true);
+      button.focus();
+    }
+  });
+  document.addEventListener("click", (e) => {
+    if (isOpen() && !menu.contains(e.target as Node) && !button.contains(e.target as Node)) setOpen(false);
+  });
+  matchMedia("(min-width: 768px)").addEventListener("change", (e) => e.matches && setOpen(false));
+</script>

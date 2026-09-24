@@ -1,0 +1,40 @@
+---
+import Logo from "./Logo.astro";
+import { business, brands, whatsappUrl } from "@/data/site";
+const year = new Date().getFullYear();
+const a = business.address;
+---
+<footer class="bg-inverse text-inverse-foreground">
+  <div class="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-[1.4fr_1fr_1fr]">
+    <div class="space-y-4">
+      <Logo inverse />
+      <p class="max-w-xs text-sm text-inverse-muted">
+        Wholesale distributor of pipes, fittings and sanitaryware in Jabalpur, Madhya Pradesh.
+      </p>
+    </div>
+    <div>
+      <h2 class="text-sm font-medium">Brand catalogues</h2>
+      <ul class="mt-3 space-y-2 text-sm text-inverse-muted">
+        {brands.filter((b) => b.slug).map((b) => (
+          <li><a href={`/${b.slug}.html`} class="hover:text-inverse-foreground">{b.name}</a></li>
+        ))}
+      </ul>
+    </div>
+    <div>
+      <h2 class="text-sm font-medium">Visit or call</h2>
+      <address class="mt-3 space-y-2 text-sm text-inverse-muted not-italic">
+        <p>{a.street}<br />{a.city}, {a.region} {a.postalCode}</p>
+        <p class="flex flex-col items-start">
+          {business.phones.map((p) => (
+            <a href={`tel:${p.tel}`} class="py-1 tabular-nums hover:text-inverse-foreground">{p.display}</a>
+          ))}
+        </p>
+        <p><a href={whatsappUrl()} target="_blank" rel="noopener" class="hover:text-inverse-foreground">WhatsApp</a> · <a href={business.mapUrl} target="_blank" rel="noopener" class="hover:text-inverse-foreground">Google Maps</a></p>
+        <p>{business.hours.short}, {business.hours.display}</p>
+      </address>
+    </div>
+  </div>
+  <div class="border-t border-inverse-foreground/10">
+    <p class="mx-auto max-w-6xl px-4 py-5 text-xs text-inverse-muted sm:px-6">© {year} Market Movers, Jabalpur</p>
+  </div>
+</footer>

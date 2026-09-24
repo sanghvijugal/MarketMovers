@@ -1,0 +1,1066 @@
+{
+ "slug": "johnson",
+ "name": "Johnson",
+ "tagline": "Bathrooms",
+ "origin": "H&R Johnson (India), Prism Johnson Limited — Est. 1998 | Baddi & Samba Manufacturing",
+ "badges": [
+  "Since 1998",
+  "ISI Certified",
+  "1.6M Pcs/Year Capacity",
+  "Germ-Free Technology",
+  "Available at Market Movers, Jabalpur"
+ ],
+ "seo": {
+  "title": "Johnson Bathrooms Dealer in Jabalpur | Market Movers",
+  "description": "Johnson Bathrooms faucets, sanitaryware, showers, kitchen sinks, bathtubs and bathroom accessories in Jabalpur. Browse the range and enquire at Market Movers."
+ },
+ "about": "Johnson Bathrooms",
+ "lines": [
+  {
+   "id": "faucets",
+   "name": "Faucets & Fittings",
+   "series": "12 Series",
+   "tag": "ISI Certified",
+   "sections": [
+    {
+     "title": "Description",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Johnson Faucets & Fittings"
+      },
+      {
+       "type": "text",
+       "html": "Johnson Bath Division manufactures faucets at two facilities in Baddi &amp; Samba with a combined capacity of 1.6 million pieces per annum. Guided by the core concept of \"Adorability, Adaptability &amp; Affordability\", Johnson offers 12 distinct faucet series from affordable ISI-certified lines to premium Elite concealed mixers that save up to 40% water. From pillar cocks to sophisticated sensor taps."
+      },
+      {
+       "type": "chips",
+       "kind": "features",
+       "items": [
+        "ISI Certified Series",
+        "Elite — Up to 40% Water Saving",
+        "Highly Durable Cartridges",
+        "12 Distinct Series",
+        "Bathroom & Kitchen Range",
+        "Sensor & Pressmatic Taps",
+        "Concealed Body Mixers",
+        "Baddi & Samba Manufactured"
+       ]
+      },
+      {
+       "type": "link",
+       "label": "View Product Range",
+       "href": "https://www.johnsonbathrooms.in/products/faucets-fittings",
+       "kind": "page"
+      }
+     ]
+    },
+    {
+     "title": "Key Features",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Key Features"
+      },
+      {
+       "type": "list",
+       "items": [
+        "ISI Certified range — quality assurance across affordable series",
+        "Elite range — ultra-modern concealed body mixers using up to 40% less water",
+        "Highly durable cartridges — extended service life",
+        "In-house R&amp;D and testing facilities at Baddi &amp; Samba plants",
+        "Sensor taps — touchless operation for superior hygiene",
+        "Pressmatic taps — self-closing, water-saving in high-traffic areas",
+        "Complete range from pillar cocks to concealed diverters and mixers",
+        "Kitchen sink mixers and health faucets also available"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Applications",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Applications"
+      },
+      {
+       "type": "list",
+       "items": [
+        "Residential bathrooms and kitchens",
+        "Hotels and hospitality",
+        "Commercial and office complexes",
+        "Hospitals and healthcare — sensor taps for hygiene",
+        "Public washrooms — pressmatic taps for water conservation"
+       ]
+      }
+     ]
+    }
+   ],
+   "products": [
+    {
+     "title": "Bathroom Faucets",
+     "items": [
+      {
+       "name": "Products Available in Each Series",
+       "std": "Pillar cocks, mixers, diverters, showers & accessories",
+       "blocks": [
+        {
+         "type": "chips",
+         "kind": "items",
+         "items": [
+          "Pillar Cock (Basin)",
+          "Pillar Cock (Bib)",
+          "Angle Valve",
+          "Basin Mixer",
+          "Sink Mixer",
+          "Bath Mixer (Wall)",
+          "Shower Mixer",
+          "Diverter",
+          "Single Lever Mixer",
+          "Concealed Body Mixer",
+          "Overhead Shower",
+          "Hand Shower",
+          "Shower Arm",
+          "Stop Cock",
+          "Flush Cock"
+         ]
+        }
+       ]
+      }
+     ],
+     "intro": [
+      {
+       "type": "text",
+       "html": "Johnson offers 12 complete bathroom faucet series, each with a coordinated range of pillar cocks, mixers, diverters and accessories:"
+      },
+      {
+       "type": "series",
+       "items": [
+        {
+         "name": "Avon",
+         "text": "Entry-level, durable & affordable"
+        },
+        {
+         "name": "Spirit",
+         "text": "Contemporary design, everyday use"
+        },
+        {
+         "name": "Diva",
+         "text": "Elegant styling, mid-range"
+        },
+        {
+         "name": "Fantasia",
+         "text": "Decorative profile, popular series"
+        },
+        {
+         "name": "Lexus",
+         "text": "Premium look, smooth finish"
+        },
+        {
+         "name": "Rejoice",
+         "text": "Modern angular design"
+        },
+        {
+         "name": "Florence",
+         "text": "Classic & refined aesthetics"
+        },
+        {
+         "name": "Alto",
+         "text": "Slim contemporary profile"
+        },
+        {
+         "name": "Marino",
+         "text": "Bold, textured finish"
+        },
+        {
+         "name": "Trident",
+         "text": "Robust triple-handle design"
+        },
+        {
+         "name": "Delta",
+         "text": "ISI Certified — economy range"
+        },
+        {
+         "name": "Linea",
+         "text": "Clean geometric lines"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Kitchen & Other",
+     "items": [
+      {
+       "name": "Kitchen Faucets",
+       "std": "Kitchen sink mixers & pillar cocks — Quebec, Fast, New Comfort, Smile series",
+       "blocks": [
+        {
+         "type": "series",
+         "items": [
+          {
+           "name": "Quebec",
+           "text": "Premium kitchen mixer"
+          },
+          {
+           "name": "Fast",
+           "text": "Quick-action kitchen tap"
+          },
+          {
+           "name": "New Comfort",
+           "text": "Ergonomic design"
+          },
+          {
+           "name": "Smile",
+           "text": "Compact, affordable"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "Sensor Taps",
+       "std": "Touchless operation — superior hygiene for high-traffic areas",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "Infrared sensor taps for touchless water activation. Ideal for hospitals, hotels, offices and public washrooms. Prevents cross-contamination and reduces water waste through automatic cut-off."
+        }
+       ]
+      },
+      {
+       "name": "Pressmatic Taps",
+       "std": "Self-closing water-saving taps for public/commercial use",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "Self-closing push-button taps that automatically shut off after a set time. Highly water-efficient — ideal for schools, offices, bus stands, hospitals and other public washrooms."
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "sanitaryware",
+   "name": "Sanitaryware",
+   "series": "Closets & Basins",
+   "tag": "Germ-Free",
+   "sections": [
+    {
+     "title": "Description",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Johnson Sanitaryware"
+      },
+      {
+       "type": "text",
+       "html": "Johnson offers a comprehensive range of ceramic sanitaryware including closets, basins, urinals and allied products. Available in three ranges — Johnson (standard), Johnson International (premium, rimless 360° flush technology) and Germ-Free (anti-bacterial glaze). Dual flush systems, soft-close seat covers and wall-hung options for every project type."
+      },
+      {
+       "type": "chips",
+       "kind": "features",
+       "items": [
+        "Rimless 360° Flush Technology",
+        "Germ-Free Glaze",
+        "Dual Flush (3 & 6 Litre)",
+        "Syphonic Flushing",
+        "Soft-Close Detachable Seats",
+        "Water-Saving Design",
+        "Wall-Hung & Floor Options",
+        "Johnson International Range"
+       ]
+      },
+      {
+       "type": "link",
+       "label": "View Product Range",
+       "href": "https://www.johnsonbathrooms.in/products/sanitaryware",
+       "kind": "page"
+      }
+     ]
+    },
+    {
+     "title": "Key Features",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Key Features"
+      },
+      {
+       "type": "list",
+       "items": [
+        "Rimless Cistern with 360° flush technology — superior hygiene, no hidden surfaces",
+        "Germ-Free Glaze — special anti-bacterial coating prevents bacterial growth",
+        "Syphonic flushing — efficiently cleans entire bowl using less water",
+        "Dual Flush — 3-litre &amp; 6-litre options to conserve water",
+        "Soft-Close Detachable Seat Covers — reduces noise, easy cleaning",
+        "Johnson International range — international quality with fully concealed installation",
+        "Smooth, non-porous ceramic surfaces — resist dirt, stains and bacteria",
+        "Available in Omni Suite (complete matched sets) for coordinated bathroom design"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Applications",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Applications"
+      },
+      {
+       "type": "list",
+       "items": [
+        "Residential bathrooms — all types from affordable to luxury",
+        "Hotels and hospitality — Germ-Free range preferred",
+        "Hospitals and healthcare facilities",
+        "Commercial and office complexes",
+        "Schools, institutions and public buildings"
+       ]
+      }
+     ]
+    }
+   ],
+   "products": [
+    {
+     "title": "Closets & WCs",
+     "items": [
+      {
+       "name": "Omni Suites — Complete Bathroom Sets",
+       "std": "Coordinated WC + Basin matched sets",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "Complete bathroom suite sets with matching closet and basin in a coordinated design. Includes Germ-Free Omni Suites with anti-bacterial glaze. Available with S-Trap and P-Trap configurations (300mm / 400mm)."
+        }
+       ]
+      },
+      {
+       "name": "Floor Mounted Coupled Closets",
+       "std": "Cistern connected to back of bowl | Standard & Germ-Free",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "Traditional floor-mounted WC with cistern attached at rear. Available with dual flush (3L/6L), syphonic action and Germ-Free glaze. S-Trap and P-Trap variants available."
+        }
+       ]
+      },
+      {
+       "name": "Wall Hung Coupled Closets",
+       "std": "Wall-mounted with exposed cistern",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "Wall-hung pan with cistern mounted above. Saves floor space, easier to clean floor beneath. Modern aesthetic suitable for compact bathrooms."
+        }
+       ]
+      },
+      {
+       "name": "Wall Hung Closets (with Concealed Cistern)",
+       "std": "Johnson International range | Fully concealed system",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "Premium wall-hung WC with concealed in-wall cistern system. Johnson International range features rimless 360° flush technology for maximum hygiene. Fully concealed installation — sleek, modern finish."
+        }
+       ]
+      },
+      {
+       "name": "Concealed Cisterns",
+       "std": "For wall-hung WC installations",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "In-wall concealed flush cisterns for wall-hung WC systems. Dual flush mechanism, access panel for maintenance, compatible with all Johnson wall-hung WC models."
+        }
+       ]
+      },
+      {
+       "name": "EWCs, Orissa Pans & Exposed Flush Tanks",
+       "std": "European & Indian style WCs",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "EWC (European Water Closet) pans in various designs, Orissa Pans (Indian-style squatting WC) and exposed flush tanks for traditional plumbing setups."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Basins",
+     "items": [
+      {
+       "name": "Vanity Basins — Under & Over Counter",
+       "std": "Counter-top & under-counter mount",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "Vanity basins available for countertop (over-counter) and under-counter installation. Various shapes — rectangular, oval and round. E.g. \"Creta\" countertop basin: 415×415×135mm. Modern slim designs with Germ-Free glaze available."
+        }
+       ]
+      },
+      {
+       "name": "Wash Basins (Pedestal & Wall-Hung)",
+       "std": "With or without pedestal | Various sizes",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "Classic pedestal washbasins (full and half pedestal), wall-hung basins for space saving. Multiple sizes for different bathroom dimensions. Germ-Free glaze available across models."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Urinals & Allied",
+     "items": [
+      {
+       "name": "Urinals & Urinal Partitions",
+       "std": "Commercial & institutional use",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "Wall-mounted urinals with flushing systems and ceramic/opaque partitions. For commercial buildings, offices, hotels, schools and public washrooms. Germ-Free glaze available."
+        }
+       ]
+      },
+      {
+       "name": "Allied Sanitaryware Products",
+       "std": "Flush valves, bottle traps, waste couplings",
+       "blocks": [
+        {
+         "type": "chips",
+         "kind": "items",
+         "items": [
+          "Flush Valve",
+          "Flush Cock",
+          "Bottle Trap",
+          "Waste Coupling",
+          "Health Faucet",
+          "Urinal Spreader",
+          "Cistern Fittings",
+          "Stop Cock"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Seat Covers",
+     "items": [
+      {
+       "name": "Toilet Seat Covers",
+       "std": "Standard & Soft-Close Detachable variants",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "Toilet seat covers available in standard and soft-close (slow-close) types. Detachable for easy cleaning and maintenance. PP (polypropylene) and duroplast (urea formaldehyde) materials. Fits all Johnson WC models."
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "showers",
+   "name": "Showers & Allied",
+   "series": "Rain & Body Showers",
+   "tag": "4-in-1 Shower",
+   "sections": [
+    {
+     "title": "Description",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Johnson Showers & Allied Products"
+      },
+      {
+       "type": "text",
+       "html": "Johnson offers a comprehensive shower range from simple overhead showers to elaborate multi-function shower systems and enclosures. The flagship 4-in-1 Concealed Body Shower combines overhead, hand, back and body jets in one system. Shower enclosures available in sliding, hinged and walk-in configurations. Health faucets and shower arms complete the range."
+      },
+      {
+       "type": "chips",
+       "kind": "features",
+       "items": [
+        "4-in-1 Concealed Body Shower",
+        "Rain Shower Heads",
+        "Shower Enclosures",
+        "Shower Panels",
+        "Multi-Function Systems",
+        "Health Faucets",
+        "Shower Arms & Flanges",
+        "Bathroom Accessories"
+       ]
+      },
+      {
+       "type": "link",
+       "label": "View Product Range",
+       "href": "https://www.johnsonbathrooms.in/products/showers-allied",
+       "kind": "page"
+      }
+     ]
+    },
+    {
+     "title": "Key Features",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Key Features"
+      },
+      {
+       "type": "list",
+       "items": [
+        "4-in-1 Concealed Body Shower — overhead + hand + back jets + body jets in one system",
+        "Rain shower heads — multiple spray patterns and sizes",
+        "Shower enclosures — sliding, hinged and walk-in configurations (tempered glass)",
+        "Shower panels — multiple body jets, hand shower and overhead in one unit",
+        "Diverters for routing water between different outlets",
+        "Health faucets (Fantasia and other series) with 1 metre CP hose and hook",
+        "Shower arms in various lengths and angles"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Applications",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Applications"
+      },
+      {
+       "type": "list",
+       "items": [
+        "Residential bathrooms — all budget levels",
+        "Hotels and luxury hospitality",
+        "Spa and wellness centres",
+        "Commercial bathrooms and gyms"
+       ]
+      }
+     ]
+    }
+   ],
+   "products": [
+    {
+     "title": "Showers",
+     "items": [
+      {
+       "name": "Overhead / Rain Showers",
+       "std": "Multiple sizes & spray modes",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "Fixed overhead shower heads in round and square formats. Multiple sizes: 200mm, 250mm, 300mm+ diameter. Various spray modes — rain, jet, mist. Available with anti-limescale rubber nozzles."
+        }
+       ]
+      },
+      {
+       "name": "Hand Showers",
+       "std": "With flexible hose & holder",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "Hand-held shower units with 1.5 metre flexible stainless steel hose and wall bracket. Multiple spray modes available. Compatible with all Johnson shower mixers."
+        }
+       ]
+      },
+      {
+       "name": "4-in-1 Concealed Body Shower",
+       "std": "Premium multi-function system — overhead + hand + body jets",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "Complete in-wall concealed shower system combining: (1) Rain overhead shower, (2) Hand shower, (3) Side body jets, (4) Back massage jets. Single concealed body with thermostatic or pressure-balanced valve. Fully concealed pipework for clean aesthetic."
+        }
+       ]
+      },
+      {
+       "name": "Shower Panels",
+       "std": "Multi-function tower panel with body jets",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "Freestanding or wall-mounted shower panels with multiple body jets, overhead rain shower and hand shower in one unit. Stainless steel or ABS finish."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Enclosures",
+     "items": [
+      {
+       "name": "Multi-Function Shower Enclosures",
+       "std": "With integrated body jets and steam",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "Premium enclosed shower cubicles with integrated multi-function features — body jets, rain shower, hand shower, steam generator. Frameless tempered glass, chrome fittings."
+        }
+       ]
+      },
+      {
+       "name": "Shower Enclosures — Standard",
+       "std": "Sliding, hinged & walk-in configurations",
+       "blocks": [
+        {
+         "type": "chips",
+         "kind": "items",
+         "items": [
+          "Sliding Door Enclosure",
+          "Hinged Door Enclosure",
+          "Walk-In Shower",
+          "Corner Entry",
+          "Shower Tray"
+         ]
+        },
+        {
+         "type": "text",
+         "html": "Tempered safety glass, aluminium frames in chrome/brushed finishes. Shower trays available in acrylic and stone resin.",
+         "note": true
+        }
+       ]
+      },
+      {
+       "name": "Free Standing Bath Tub Fillers & Multi-Function Bath Tubs",
+       "std": "Standalone bath system",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "Free-standing bath tub filler taps and multi-function bath tubs with integrated jets and overflow filler. Designed to work with the wellness bathtub range."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Allied Products",
+     "items": [
+      {
+       "name": "Allied Shower Products",
+       "std": "Health faucets, shower arms, diverters & more",
+       "blocks": [
+        {
+         "type": "chips",
+         "kind": "items",
+         "items": [
+          "Health Faucet (with Hose & Hook)",
+          "Shower Arm (Wall)",
+          "Ceiling Shower Arm",
+          "Shower Flange",
+          "Diverter (2-Way)",
+          "Diverter (3-Way)",
+          "Thermostatic Valve",
+          "Pressure Balancing Valve",
+          "Concealed Stop Valve"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "kitchen",
+   "name": "Kitchen Sinks",
+   "series": "Johnson Kitchen",
+   "tag": "SS & Quartz",
+   "sections": [
+    {
+     "title": "Description",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Johnson Kitchen Sinks"
+      },
+      {
+       "type": "text",
+       "html": "Johnson offers kitchen sinks for residential, commercial and public kitchens. The range covers single and double bowl sinks in stainless steel and composite/quartz materials, in under-counter, countertop and drop-in mounting options. Multiple size and bowl configuration options to suit every kitchen layout."
+      },
+      {
+       "type": "chips",
+       "kind": "features",
+       "items": [
+        "Stainless Steel Sinks",
+        "Quartz / Composite Sinks",
+        "Single & Double Bowl",
+        "Under-Counter Mount",
+        "Drop-In / Countertop",
+        "Multiple Sizes",
+        "Drainboard Options",
+        "Commercial Kitchen Range"
+       ]
+      },
+      {
+       "type": "link",
+       "label": "View Product Range",
+       "href": "https://www.johnsonbathrooms.in/products/kitchen-sinks",
+       "kind": "page"
+      }
+     ]
+    },
+    {
+     "title": "Key Features",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Key Features"
+      },
+      {
+       "type": "list",
+       "items": [
+        "Stainless steel sinks — 304 grade, satin/matt finish options",
+        "Quartz / composite sinks — scratch and stain resistant, heat resistant to 280°C",
+        "Single bowl, double bowl and 1.5 bowl configurations",
+        "Under-counter mount — seamless countertop appearance",
+        "Drop-in / flush mount — easier installation",
+        "Anti-vibration padding for quieter use",
+        "Complete with drainage accessories and waste fittings",
+        "Lab sinks also available for institutional use"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Applications",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Applications"
+      },
+      {
+       "type": "list",
+       "items": [
+        "Residential kitchens — home renovations and new builds",
+        "Commercial kitchens — hotels, restaurants, canteens",
+        "Laboratories — institutional lab sinks",
+        "Hospitals and healthcare kitchen facilities"
+       ]
+      }
+     ]
+    }
+   ],
+   "products": [
+    {
+     "title": "Stainless Steel Sinks",
+     "items": [
+      {
+       "name": "Stainless Steel Kitchen Sinks",
+       "std": "304 grade SS | Single, double & 1.5 bowl",
+       "blocks": [
+        {
+         "type": "chips",
+         "kind": "items",
+         "items": [
+          "Single Bowl (Various Sizes)",
+          "Double Bowl Equal",
+          "Double Bowl Unequal",
+          "1.5 Bowl with Drainboard",
+          "Single Bowl with Drainboard",
+          "Round Bowl"
+         ]
+        },
+        {
+         "type": "text",
+         "html": "Available in satin finish (brushed) and mirror finish. Under-counter, countertop and drop-in mounting options. Comes with drainage accessories.",
+         "note": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Quartz / Composite",
+     "items": [
+      {
+       "name": "Quartz / Composite Sinks",
+       "std": "Heat & scratch resistant | Multiple colours",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "Granite/quartz composite sinks — scratch resistant, heat resistant up to 280°C, food-safe, low maintenance. Available in multiple colours including black, grey and beige. Single and double bowl options."
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "wellness",
+   "name": "Wellness & Bathtubs",
+   "series": "Luxury Range",
+   "tag": "Jacuzzi Style",
+   "sections": [
+    {
+     "title": "Description",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Johnson Wellness & Bathtubs"
+      },
+      {
+       "type": "text",
+       "html": "Johnson's wellness range brings luxury bathing experiences to Indian homes. The range includes free-standing bathtubs, built-in soaking tubs, whirlpool/jacuzzi-style tubs with water jets, steam bath units and shower enclosures with spa features. Designed for residential luxury bathrooms, premium hotels and wellness spas."
+      },
+      {
+       "type": "chips",
+       "kind": "features",
+       "items": [
+        "Free Standing Bathtubs",
+        "Multi-Function Bath Tubs",
+        "Whirlpool / Jacuzzi Jets",
+        "Steam Bath Units",
+        "Bath Tub Fillers",
+        "Acrylic & Cast Iron",
+        "Various Sizes",
+        "Luxury Hotel Spec"
+       ]
+      },
+      {
+       "type": "link",
+       "label": "View Product Range",
+       "href": "https://www.johnsonbathrooms.in/products/wellness",
+       "kind": "page"
+      }
+     ]
+    },
+    {
+     "title": "Key Features",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Key Features"
+      },
+      {
+       "type": "list",
+       "items": [
+        "Free-standing bathtubs — contemporary sculptural designs in acrylic",
+        "Multi-function bathtubs — integrated whirlpool jets, air massage, chromotherapy lighting",
+        "Built-in bathtubs — alcove and drop-in installation for fitted bathrooms",
+        "Bath tub fillers — floor-mounted and wall-mounted spout options",
+        "Steam bath units — for shower enclosures and custom steam rooms",
+        "Slip-resistant base surfaces for safety"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Applications",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Applications"
+      },
+      {
+       "type": "list",
+       "items": [
+        "Luxury residential bathrooms and master ensuites",
+        "Five-star and boutique hotels",
+        "Spa and wellness centres",
+        "High-end residential projects and villas"
+       ]
+      }
+     ]
+    }
+   ],
+   "products": [
+    {
+     "title": "Bathtubs",
+     "items": [
+      {
+       "name": "Free Standing Bathtubs",
+       "std": "Acrylic | Multiple shapes & sizes",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "Freestanding acrylic bathtubs in oval, rectangular and slipper (single-ended) designs. Floor-mounted filler compatible. Sizes typically 1500mm, 1600mm, 1700mm length."
+        }
+       ]
+      },
+      {
+       "name": "Multi-Function Bathtubs",
+       "std": "Whirlpool jets + air massage + chromotherapy",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "Luxury bathtubs with integrated water jets (whirlpool), air massage system, LED chromotherapy lighting and digital controls. Acrylic reinforced with fibreglass. Alcove and drop-in configurations."
+        }
+       ]
+      },
+      {
+       "name": "Bath Tub Fillers",
+       "std": "Floor-mounted & wall-mounted spout options",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "Dedicated bathtub filler taps — floor-mounted roman tub fillers, wall-mounted bath spouts with hand shower. Available in chrome and brushed nickel finishes."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Enclosures & Steam",
+     "items": [
+      {
+       "name": "Multi-Function Shower Enclosures",
+       "std": "With steam, body jets & LED lighting",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "Complete shower cabins with: overhead rain shower, hand shower, body jets, steam generator, LED chromotherapy lighting, FM radio and Bluetooth speaker in top-end models. Tempered glass, aluminium frame."
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "accessories",
+   "name": "Bathroom Accessories",
+   "series": "Towel Rails & More",
+   "tag": "Complete Range",
+   "sections": [
+    {
+     "title": "Description",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Johnson Bathroom Accessories"
+      },
+      {
+       "type": "text",
+       "html": "Johnson offers a complete range of bathroom accessories to complement every faucet and sanitaryware series. Towel rails, rings, soap dishes, tumbler holders, robe hooks, paper holders, glass shelves and bathroom cabinets — all coordinated to match Johnson's faucet design series. Available in chrome, brushed and stainless steel finishes."
+      },
+      {
+       "type": "chips",
+       "kind": "features",
+       "items": [
+        "Towel Rail & Ring",
+        "Soap Dish & Holder",
+        "Paper Holder",
+        "Tumbler Holder",
+        "Robe Hook & Hanger",
+        "Glass Corner Shelf",
+        "Bathroom Mirrors",
+        "Bathroom Cabinets"
+       ]
+      },
+      {
+       "type": "link",
+       "label": "View Product Range",
+       "href": "https://www.johnsonbathrooms.in/products/showers-allied/bathroom-accessories",
+       "kind": "page"
+      }
+     ]
+    },
+    {
+     "title": "Key Features",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Key Features"
+      },
+      {
+       "type": "list",
+       "items": [
+        "Coordinated designs — accessories match corresponding faucet series",
+        "Available in chrome, brushed nickel and stainless steel finishes",
+        "Rust-resistant materials for long life in humid bathroom environments",
+        "Bathroom mirrors — standard and LED-backlit options",
+        "Bathroom cabinets — mirror cabinets with storage",
+        "Soap dispensers — wall-mounted built-in options"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Applications",
+     "blocks": [
+      {
+       "type": "heading",
+       "text": "Applications"
+      },
+      {
+       "type": "list",
+       "items": [
+        "Residential bathrooms — complete the bathroom set",
+        "Hotels and hospitality — branded bathroom accessory sets",
+        "Commercial bathrooms and offices",
+        "Healthcare and institutional bathrooms"
+       ]
+      }
+     ]
+    }
+   ],
+   "products": [
+    {
+     "title": "All Accessories",
+     "items": [
+      {
+       "name": "Bathroom Accessories — Complete Range",
+       "std": "Chrome, brushed & SS finishes | All series",
+       "blocks": [
+        {
+         "type": "chips",
+         "kind": "items",
+         "items": [
+          "Towel Rack (Single Bar)",
+          "Towel Rack (Double Bar)",
+          "Towel Rail (24\" / 18\")",
+          "Towel Ring",
+          "Paper Holder",
+          "Soap Dish (Wall)",
+          "Soap Holder",
+          "Tumbler Holder",
+          "Twin Robe Hook",
+          "Single Robe Hook",
+          "Glass Corner Shelf",
+          "SS Shelf",
+          "Soap Dispenser",
+          "Toothbrush Holder",
+          "Napkin Ring"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Mirrors & Cabinets",
+     "items": [
+      {
+       "name": "Bathroom Mirrors",
+       "std": "Standard & LED backlit | Various sizes",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "Wall-mounted bathroom mirrors in standard (framed and frameless) and LED backlit versions. Various sizes and shapes — rectangular, oval and round. Anti-fog available on premium models."
+        }
+       ]
+      },
+      {
+       "name": "Bathroom Cabinets (Mirror Cabinets)",
+       "std": "Mirror front with internal storage",
+       "blocks": [
+        {
+         "type": "text",
+         "html": "Wall-mounted mirror cabinets with internal shelves for storing toiletries and medicines. Single and double door options. Stainless steel or aluminium frame construction."
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

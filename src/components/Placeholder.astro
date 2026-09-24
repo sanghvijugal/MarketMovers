@@ -1,0 +1,17 @@
+---
+// PHOTO PLACEHOLDER — swap for a real <img> (with alt, width and height)
+// once photos are available. The label says which photo belongs here.
+import Icon from "./Icon.astro";
+import { Image01Icon } from "@hugeicons/core-free-icons";
+interface Props { label: string; class?: string }
+const { label, class: className } = Astro.props;
+---
+<div
+  class:list={["grid place-items-center rounded-lg border border-dashed border-input bg-muted text-muted-foreground", className]}
+  role="img"
+  aria-label={`Photo placeholder: ${label}`}>
+  <div class="flex flex-col items-center gap-2 p-6 text-center text-sm">
+    <Icon icon={Image01Icon} size={24} />
+    <span>Photo: {label}</span>
+  </div>
+</div>

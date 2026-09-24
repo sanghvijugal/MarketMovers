@@ -1,0 +1,144 @@
+---
+import Base from "@/layouts/Base.astro";
+import Icon from "@/components/Icon.astro";
+import LineSection from "@/components/brand/LineSection.astro";
+import { buttonVariants } from "@/components/ui/button-variants";
+import { brandPages, type Brand } from "@/data/brands";
+import { brands, business, whatsappUrl, SITE_URL } from "@/data/site";
+import { brandSchema } from "@/lib/schema";
+import { ArrowRight01Icon, Call02Icon, WhatsappIcon } from "@hugeicons/core-free-icons";
+
+export function getStaticPaths() {
+  return brandPages.map((brand) => ({ params: { brand: brand.slug }, props: { brand } }));
+}
+
+const { brand } = Astro.props as { brand: Brand };
+const path = `/${brand.slug}.html`;
+const others = brands.filter((b) => b.slug && b.slug !== brand.slug);
+const phone = business.phones[0];
+---
+<Base title={brand.seo.title} description={brand.seo.description} path={path} jsonLd={brandSchema(brand, SITE_URL + path)}>
+  <div class="border-b">
+    <div class="mx-auto max-w-6xl px-4 pt-8 pb-10 sm:px-6 md:pt-10 md:pb-14">
+      <nav aria-label="Breadcrumb">
+        <ol class="flex flex-wrap items-center gap-1.5 text-sm text-muted-foreground">
+          <li><a href="/" class="hover:text-foreground">Home</a></li>
+          <li aria-hidden="true">/</li>
+          <li><a href="/#brands" class="hover:text-foreground">Brands</a></li>
+          <li aria-hidden="true">/</li>
+          <li><span aria-current="page" class="text-foreground">{brand.name}</span></li>
+        </ol>
+      </nav>
+      <div class="mt-6 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+        <div class="max-w-2xl">
+          <h1 class="text-4xl font-semibold sm:text-5xl">{brand.name} {brand.tagline}</h1>
+          <p class="mt-3 text-muted-foreground">{brand.origin}</p>
+          <ul class="mt-5 flex flex-wrap gap-2">
+            {brand.badges.map((b) => <li class="rounded-md border px-2.5 py-1 text-sm">{b}</li>)}
+          </ul>
+        </div>
+        <div class="flex shrink-0 flex-col gap-3 sm:flex-row">
+          <a href={whatsappUrl(`Hello Market Movers, I'd like ${brand.name} prices and availability.`)} target="_blank" rel="noopener" class={buttonVariants({ size: "lg" })}>
+            <Icon icon={WhatsappIcon} />Ask for {brand.name} prices
+          </a>
+          <a href={`tel:${phone.tel}`} class={buttonVariants({ variant: "outline", size: "lg" })}>
+            <Icon icon={Call02Icon} />Call
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:grid lg:grid-cols-[13rem_minmax(0,1fr)] lg:gap-12">
+    <!-- Product line navigation: sticky sidebar on desktop, sticky scroller on mobile -->
+    <nav aria-label={`${brand.name} product lines`} class="sticky top-16 z-30 -mx-4 border-b bg-background sm:-mx-6 lg:top-24 lg:mx-0 lg:self-start lg:border-b-0 lg:bg-transparent lg:pt-12">
+      <p class="hidden px-3 text-sm font-medium lg:block">Product lines</p>
+      <ul id="line-nav" class="scroll-fade-x flex gap-1 overflow-x-auto overscroll-x-contain lg:[mask-image:none] px-4 py-2.5 [scrollbar-width:none] sm:px-6 lg:mt-3 lg:flex-col lg:gap-0.5 lg:overflow-visible lg:p-0">
+        {brand.lines.map((l) => (
+          <li class="shrink-0">
+            <a href={`#${l.id}`} class="block rounded-md px-3 py-1.5 text-sm whitespace-nowrap text-muted-foreground transition-colors duration-150 hover:text-foreground aria-[current=location]:bg-accent aria-[current=location]:text-accent-foreground lg:whitespace-normal">{l.name}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="py-10 lg:py-12">
+      {brand.lines.map((line, i) => <LineSection brand={brand} line={line} priority={i === 0} />)}
+    </div>
+  </div>
+
+  <section class="border-t bg-muted" aria-labelledby="more-brands">
+    <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+      <h2 id="more-brands" class="text-lg font-semibold">Other brands at Market Movers</h2>
+      <ul class="mt-5 flex flex-wrap gap-2">
+        {others.map((b) => (
+          <li><a href={`/${b.slug}.html`} class={buttonVariants({ variant: "outline" })}>{b.name}<Icon icon={ArrowRight01Icon} size={16} /></a></li>
+        ))}
+        <li><a href="/#products" class={buttonVariants({ variant: "ghost" })}>All products</a></li>
+      </ul>
+    </div>
+  </section>
+</Base>
+
+<script>
+  // Accordions (transitions.dev "Accordion expand" + hidden="until-found").
+  const CLOSE_MS = 220;
+  function setOpen(acc: HTMLElement, open: boolean) {
+    const head = acc.querySelector<HTMLElement>(":scope > * > .t-acc-head")!;
+    const inner = acc.querySelector<HTMLElement>(":scope > .t-acc-panel > .t-acc-panel-inner")!;
+    head.setAttribute("aria-expanded", String(open));
+    if (open) {
+      inner.removeAttribute("hidden");
+      void inner.offsetHeight; // start the height transition from 0
+      acc.dataset.open = "true";
+    } else {
+      acc.dataset.open = "false";
+      window.setTimeout(() => {
+        if (acc.dataset.open === "false") inner.setAttribute("hidden", "until-found");
+      }, CLOSE_MS);
+    }
+  }
+  document.addEventListener("click", (e) => {
+    const head = (e.target as HTMLElement).closest(".t-acc-head");
+    if (!head) return;
+    const acc = head.closest<HTMLElement>(".t-acc")!;
+    setOpen(acc, acc.dataset.open !== "true");
+  });
+  document.querySelectorAll<HTMLElement>(".t-acc-panel-inner").forEach((inner) => {
+    inner.addEventListener("beforematch", () => setOpen(inner.closest<HTMLElement>(".t-acc")!, true));
+  });
+
+  // Highlight the product line currently in view.
+  const links = new Map<string, HTMLAnchorElement>();
+  document.querySelectorAll<HTMLAnchorElement>("#line-nav a").forEach((a) => links.set(a.hash.slice(1), a));
+  const nav = document.getElementById("line-nav")!;
+  // Fade whichever edge of the mobile scroller has more chips behind it.
+  function updateFade() {
+    const left = nav.scrollLeft > 4;
+    const right = nav.scrollLeft + nav.clientWidth < nav.scrollWidth - 4;
+    nav.style.setProperty("--fade-l", left ? "24px" : "0px");
+    nav.style.setProperty("--fade-r", right ? "24px" : "0px");
+  }
+  nav.addEventListener("scroll", updateFade, { passive: true });
+  addEventListener("resize", updateFade);
+  updateFade();
+  let current: HTMLAnchorElement | undefined;
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        const link = links.get(entry.target.id);
+        if (!link || link === current) continue;
+        current?.removeAttribute("aria-current");
+        link.setAttribute("aria-current", "location");
+        current = link;
+        // keep the active chip visible in the mobile scroller
+        if (nav.scrollWidth > nav.clientWidth) {
+          nav.scrollTo({ left: link.offsetLeft - 16, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+        }
+      }
+    },
+    { rootMargin: "-30% 0px -60% 0px" },
+  );
+  document.querySelectorAll("main section[id]").forEach((s) => observer.observe(s));
+</script>

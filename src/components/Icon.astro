@@ -1,0 +1,39 @@
+---
+// Renders a Hugeicons icon (from @hugeicons/core-free-icons) as inline SVG at
+// build time — no JavaScript ships for static icons.
+type IconNode = readonly (readonly [string, Record<string, string | number>])[];
+interface Props {
+  icon: IconNode;
+  size?: number;
+  strokeWidth?: number;
+  class?: string;
+  label?: string;
+}
+const { icon, size = 20, strokeWidth = 1.5, class: className, label } = Astro.props;
+const kebab = (k: string) => k.replace(/[A-Z]/g, (m) => "-" + m.toLowerCase());
+const children = icon
+  .map(([tag, attrs]) => {
+    const a = Object.entries(attrs)
+      .filter(([k]) => k !== "key")
+      .map(([k, v]) => {
+        const name = kebab(k);
+        const value = name === "stroke-width" ? strokeWidth : v;
+        return `${name}="${String(value).replace(/"/g, "&quot;")}"`;
+      })
+      .join(" ");
+    return `<${tag} ${a}/>`;
+  })
+  .join("");
+---
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  fill="none"
+  class={className}
+  role={label ? "img" : undefined}
+  aria-label={label}
+  aria-hidden={label ? undefined : "true"}
+  set:html={children}
+/>

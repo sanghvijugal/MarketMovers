@@ -1,28 +1,27 @@
 #!/usr/bin/env python3
-"""SEO maintenance for the Market Movers static site. Standard library only.
+"""SEO checks for the built Market Movers site. Standard library only.
 
-    python3 tools/seo.py sitemap   # rewrite sitemap.xml from the pages on disk
-    python3 tools/seo.py check     # fail if any page breaks the SEO rules
+    npm run build                  # builds into dist/ and runs `check`
+    python3 tools/seo.py check     # fail if any built page breaks the SEO rules
     python3 tools/seo.py links     # check that external links still resolve
 
-Every *.html file in the repo root is treated as a public page, except the
-ones in NOT_PAGES. Run `sitemap` then `check` after adding, renaming or
-editing a page. CI (.github/workflows/seo.yml) runs them on every push.
+Every *.html file in dist/ is treated as a public page, except the ones in
+NOT_PAGES. CI (.github/workflows/deploy.yml) runs `check` on every push and
+`links` weekly.
 """
 import json
 import re
-import subprocess
 import sys
 import urllib.error
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor
-from datetime import date
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urldefrag, urlparse
 
-ROOT = Path(__file__).resolve().parent.parent
-SITE = "https://" + (ROOT / "CNAME").read_text().strip()
+REPO = Path(__file__).resolve().parent.parent
+ROOT = REPO / "dist"  # the built site
+SITE = "https://" + (REPO / "public" / "CNAME").read_text().strip()
 NOT_PAGES = {"404.html"}  # served by GitHub Pages but must not be indexed
 
 TITLE_MAX = 60
@@ -101,38 +100,6 @@ class Page(HTMLParser):
 
     def link_rel(self, rel):
         return [l.get("href", "") for l in self.links if rel in l.get("rel", "").lower().split()]
-
-
-# ── sitemap ────────────────────────────────────────────────────────────────
-
-def last_modified(path):
-    """Date of the last commit touching the file, or today if it has uncommitted edits."""
-    rel = str(path.relative_to(ROOT))
-    try:
-        dirty = subprocess.run(["git", "status", "--porcelain", "--", rel], cwd=ROOT,
-                               capture_output=True, text=True, check=True).stdout.strip()
-        if not dirty:
-            day = subprocess.run(["git", "log", "-1", "--format=%cs", "--", rel], cwd=ROOT,
-                                 capture_output=True, text=True, check=True).stdout.strip()
-            if day:
-                return day
-    except (OSError, subprocess.CalledProcessError):
-        pass
-    return date.today().isoformat()
-
-
-def build_sitemap():
-    entries = []
-    for p in sorted(pages(), key=lambda p: (p.name != "index.html", p.name)):
-        entries.append(f"  <url>\n    <loc>{page_url(p)}</loc>\n    <lastmod>{last_modified(p)}</lastmod>\n  </url>")
-    xml = ('<?xml version="1.0" encoding="UTF-8"?>\n'
-           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-           + "\n".join(entries) + "\n</urlset>\n")
-    out = ROOT / "sitemap.xml"
-    changed = not out.exists() or out.read_text() != xml
-    if changed:
-        out.write_text(xml)
-    print(("updated" if changed else "unchanged"), "sitemap.xml with", len(entries), "URLs")
 
 
 # ── checks ─────────────────────────────────────────────────────────────────
@@ -241,9 +208,11 @@ def check():
                     err(f'<a href="{href}"> goes nowhere')
                 continue
             target, frag = urldefrag(href)
-            target = target.lstrip("./") or name
             if target.startswith("/"):
                 target = target[1:] or "index.html"
+            elif target.startswith("./"):
+                target = target[2:]
+            target = target or name
             if target.endswith("/"):
                 target += "index.html"
             if not (ROOT / target).is_file():
@@ -278,14 +247,14 @@ def check():
             errors.append("robots.txt disallows the whole site")
     sm = ROOT / "sitemap.xml"
     if not sm.is_file():
-        errors.append("sitemap.xml is missing; run: python3 tools/seo.py sitemap")
+        errors.append("sitemap.xml is missing from the build (src/pages/sitemap.xml.ts)")
     else:
         listed = set(re.findall(r"<loc>(.*?)</loc>", sm.read_text()))
         expected = {page_url(p) for p in pages()}
         if listed != expected:
             missing, extra = sorted(expected - listed), sorted(listed - expected)
-            errors.append(f"sitemap.xml is out of date (missing {missing}, extra {extra}); "
-                          "run: python3 tools/seo.py sitemap")
+            errors.append(f"sitemap.xml doesn't match the built pages (missing {missing}, extra {extra}); "
+                          "update src/pages/sitemap.xml.ts")
 
     for w in warnings:
         print("warning:", w)
@@ -337,9 +306,9 @@ def links():
 
 if __name__ == "__main__":
     cmd = sys.argv[1] if len(sys.argv) > 1 else "check"
-    if cmd == "sitemap":
-        build_sitemap()
-    elif cmd == "check":
+    if not ROOT.is_dir():
+        sys.exit("dist/ not found; run `npm run build` first")
+    if cmd == "check":
         sys.exit(check())
     elif cmd == "links":
         sys.exit(links())

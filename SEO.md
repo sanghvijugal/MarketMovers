@@ -15,20 +15,27 @@ There were no `noindex` tags on the site, so nothing was actively blocking Googl
 
 ## Automatic from now on
 
-`.github/workflows/seo.yml` runs on every push:
-- rebuilds `sitemap.xml` (new pages and "last modified" dates) and commits it on `main`
-- runs `tools/seo.py check`, which fails (red ✗ on the commit) if a page is missing a
-  title, description, canonical, OG tags or schema; has a `noindex`; has zero or two H1s,
-  skipped heading levels, missing alt text, a broken internal link or an `http://` URL;
-  or is not linked from any other page
+`.github/workflows/deploy.yml` runs on every push:
+- builds the site; `sitemap.xml` is generated from the pages, with "last modified" dates
+  taken from each page's content file in git
+- runs `tools/seo.py check` on the built pages. It fails (red ✗ on the commit, and nothing
+  is deployed) if a page is missing a title, description, canonical, OG tags or schema;
+  has a `noindex`; has zero or two H1s, skipped heading levels, missing alt text, a broken
+  internal link or an `http://` URL; or is not linked from any other page
+- deploys to GitHub Pages when the push is to `main`
 - weekly, checks that every link to manufacturer sites and PDFs still works
 
 `CLAUDE.md` lists the same rules, so Claude follows them when editing the site.
 
 ## One-time steps only you can do (≈20 minutes)
 
-### 1. Enforce HTTPS (GitHub)
-Repo → **Settings → Pages** → tick **Enforce HTTPS**. If the box is greyed out, check
+### 1. GitHub Pages settings
+Repo → **Settings → Pages**:
+- **Build and deployment → Source: GitHub Actions.** Do this *before* merging the Astro
+  rebuild into `main`. The repo no longer contains ready-made HTML, so the old
+  "deploy from branch" setting would publish a broken site.
+- **Custom domain:** `marketmovers.co.in` (re-enter it if it's blank after switching source).
+- Tick **Enforce HTTPS**. If the box is greyed out, check
 that the custom domain shows `marketmovers.co.in` with a green "DNS check successful",
 wait for the certificate to be issued (up to 24 h), then tick it.
 While there, make sure `www.marketmovers.co.in` also works. Add a `CNAME` DNS record
@@ -48,7 +55,7 @@ to the main domain automatically.
    `/texmo.html`, `/waterflo.html`).
 
 If you'd rather use the HTML-tag method, send the `<meta name="google-site-verification" …>`
-tag to Claude and ask for it to be added to `index.html`.
+tag to Claude and ask for it to be added to `src/layouts/Base.astro`.
 
 Also do the same at **Bing Webmaster Tools** (<https://www.bing.com/webmasters>). It can
 import directly from Search Console in one click.

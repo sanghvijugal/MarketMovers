@@ -1,0 +1,16 @@
+---
+import Base from "@/layouts/Base.astro";
+import { buttonVariants } from "@/components/ui/button-variants";
+import { brands } from "@/data/site";
+---
+<Base title="Page not found | Market Movers" description="This page doesn't exist or has moved." noindex>
+  <section class="mx-auto max-w-2xl px-4 py-24 text-center sm:px-6">
+    <p class="text-sm text-muted-foreground tabular-nums">404</p>
+    <h1 class="mt-2 text-4xl font-semibold">Page not found</h1>
+    <p class="mt-4 text-muted-foreground">This page doesn't exist or has moved. Try the homepage or one of our brand catalogues.</p>
+    <div class="mt-8 flex flex-wrap justify-center gap-2">
+      <a href="/" class={buttonVariants()}>Homepage</a>
+      {brands.filter((b) => b.slug).map((b) => <a href={`/${b.slug}.html`} class={buttonVariants({ variant: "outline" })}>{b.name}</a>)}
+    </div>
+  </section>
+</Base>
