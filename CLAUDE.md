@@ -58,3 +58,13 @@ redirects, so if a page must move, keep the old file as a stub with
 `<meta http-equiv="refresh" content="0; url=new.html">` and a canonical pointing to the new URL,
 and add the stub's name to `NOT_PAGES` in `tools/seo.py`.
 `404.html` is the not-found page (intentionally `noindex`, excluded from the sitemap).
+
+## UI work
+
+Design and UI skills are vendored in `.claude/skills/` (sources in `.claude/skills/SOURCES.md`).
+For any change to how the site looks or moves:
+- follow `baseline-ui` as the default constraints (no gradients/glow, one accent colour,
+  `text-balance` headings, only animate `transform`/`opacity`, respect reduced motion)
+- use `emil-design-eng` / `animate` before adding any animation, `mobile-native` for touch/mobile
+  behaviour, and `fixing-accessibility` for dialogs, forms and keyboard focus
+- run `review-animations` / `improve-ui` for a review pass before shipping a redesign
