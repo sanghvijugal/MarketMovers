@@ -9,14 +9,14 @@ import { business, whatsappUrl } from "@/data/site";
 const nav = [
   { href: "/#products", label: "Products" },
   { href: "/#brands", label: "Brands" },
-  { href: "/#about", label: "About" },
-  { href: "/#contact", label: "Contact" },
+  { href: "/#order", label: "How to order" },
+  { href: "/#contact", label: "Visit us" },
 ];
 const phone = business.phones[0];
 const wa = whatsappUrl("Hello Market Movers, I have an enquiry.");
 ---
-<header class="sticky top-0 z-40 border-b bg-background">
-  <div class="mx-auto flex h-16 max-w-6xl items-center justify-between gap-6 px-4 sm:px-6">
+<header class="sticky top-0 z-40 border-b bg-background/95 backdrop-blur-sm supports-[backdrop-filter]:bg-background/80">
+  <div class="mx-auto flex h-16 max-w-7xl items-center justify-between gap-6 px-4 sm:px-6 lg:h-[72px] lg:px-8">
     <a href="/" class="rounded-md">
       <Logo />
     </a>
@@ -25,17 +25,17 @@ const wa = whatsappUrl("Hello Market Movers, I have an enquiry.");
       <ul class="flex items-center gap-1">
         {nav.map((l) => (
           <li>
-            <a href={l.href} class="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors duration-150 hover:text-foreground">{l.label}</a>
+            <a href={l.href} class="rounded-full px-3.5 py-2 text-[15px] text-muted-foreground transition-colors duration-150 hover:bg-muted hover:text-foreground">{l.label}</a>
           </li>
         ))}
       </ul>
     </nav>
 
     <div class="flex items-center gap-2">
-      <a href={`tel:${phone.tel}`} class={buttonVariants({ variant: "ghost", class: "hidden lg:inline-flex" })}>
-        <Icon icon={Call02Icon} />
-        <span class="tabular-nums">{phone.display}</span>
-      </a>
+      <p class="hidden items-center gap-2 px-2 font-mono text-[13px] text-muted-foreground lg:flex">
+        <span class="size-2 rounded-full bg-highlight" data-open-dot aria-hidden="true"></span>
+        <span data-open-status>{business.hours.short}, {business.hours.display}</span>
+      </p>
       <a href={wa} target="_blank" rel="noopener" class={buttonVariants({ class: "hidden sm:inline-flex" })}>
         <Icon icon={WhatsappIcon} />
         WhatsApp us
@@ -57,12 +57,12 @@ const wa = whatsappUrl("Hello Market Movers, I have an enquiry.");
 
   <div
     id="mobile-menu"
-    class="t-dropdown absolute inset-x-3 top-[calc(100%+0.5rem)] z-50 rounded-lg border bg-card p-2 shadow-lg md:hidden">
+    class="t-dropdown absolute inset-x-3 top-[calc(100%+0.5rem)] z-50 rounded-2xl border bg-card p-2 shadow-lg md:hidden">
     <nav aria-label="Main (mobile)">
       <ul>
         {nav.map((l) => (
           <li>
-            <a href={l.href} class="flex h-12 items-center rounded-md px-3 text-base font-medium hover:bg-muted">{l.label}</a>
+            <a href={l.href} class="flex h-12 items-center rounded-xl px-3 text-base font-medium hover:bg-muted">{l.label}</a>
           </li>
         ))}
       </ul>
@@ -122,4 +122,22 @@ const wa = whatsappUrl("Hello Market Movers, I have an enquiry.");
     if (isOpen() && !menu.contains(e.target as Node) && !button.contains(e.target as Node)) setOpen(false);
   });
   matchMedia("(min-width: 768px)").addEventListener("change", (e) => e.matches && setOpen(false));
+
+  // "Open now" status, worked out in Jabalpur time (IST, UTC+5:30).
+  // Mon–Sat 9 am – 7 pm. Falls back to the static hours if this doesn't run.
+  const status = document.querySelector<HTMLElement>("[data-open-status]");
+  const dot = document.querySelector<HTMLElement>("[data-open-dot]");
+  if (status) {
+    const ist = new Date(Date.now() + (5.5 * 60 + new Date().getTimezoneOffset()) * 60_000);
+    const day = ist.getDay();
+    const h = ist.getHours() + ist.getMinutes() / 60;
+    const workday = day >= 1 && day <= 6;
+    if (workday && h >= 9 && h < 19) status.textContent = "Open now · till 7 pm";
+    else {
+      const opensToday = workday && h < 9;
+      const nextDay = opensToday ? "" : day === 6 || day === 0 ? " Monday" : " tomorrow";
+      status.textContent = `Closed · opens 9 am${nextDay}`;
+      dot?.classList.replace("bg-highlight", "bg-muted-foreground/50");
+    }
+  }
 </script>

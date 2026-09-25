@@ -1,0 +1,20 @@
+---
+// Phone-only bar pinned to the bottom of the screen so Call and WhatsApp are
+// always one tap away. A spacer of the same height keeps the footer clear.
+import Icon from "./Icon.astro";
+import { buttonVariants } from "./ui/button-variants";
+import { business, whatsappUrl } from "@/data/site";
+import { Call02Icon, WhatsappIcon } from "@hugeicons/core-free-icons";
+const phone = business.phones[0];
+---
+<div class="h-[76px] md:hidden" aria-hidden="true"></div>
+<nav
+  aria-label="Quick contact"
+  class="fixed inset-x-0 bottom-0 z-40 grid grid-cols-[1fr_1.6fr] gap-2 border-t bg-background/95 px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] backdrop-blur-sm md:hidden">
+  <a href={`tel:${phone.tel}`} class={buttonVariants({ variant: "outline", size: "lg" })}>
+    <Icon icon={Call02Icon} />Call
+  </a>
+  <a href={whatsappUrl("Hello Market Movers, I'd like a quote.")} target="_blank" rel="noopener" class={buttonVariants({ size: "lg" })}>
+    <Icon icon={WhatsappIcon} />Get a quote
+  </a>
+</nav>

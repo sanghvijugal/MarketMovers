@@ -1,7 +1,7 @@
 ---
+import { Image } from "astro:assets";
 import Base from "@/layouts/Base.astro";
 import Icon from "@/components/Icon.astro";
-import Placeholder from "@/components/Placeholder.astro";
 import EnquiryForm from "@/components/EnquiryForm";
 import { buttonVariants } from "@/components/ui/button-variants";
 import { business, brands, categories, customers, whatsappUrl } from "@/data/site";
@@ -11,44 +11,93 @@ import {
   ArrowRight01Icon,
   Call02Icon,
   Clock01Icon,
-  DropletIcon,
-  Leaf01Icon,
+  DeliveryTruck01Icon,
   Location01Icon,
-  PipelineIcon,
-  PlantIcon,
-  ShowerHeadIcon,
-  Tick02Icon,
-  WaterPumpIcon,
+  PackageIcon,
+  Tag01Icon,
   WhatsappIcon,
   Wrench01Icon,
 } from "@hugeicons/core-free-icons";
 
-const categoryIcons = {
-  pvc: PipelineIcon,
-  hdpe: DropletIcon,
-  sprinkler: PlantIcon,
-  bath: ShowerHeadIcon,
-  casing: WaterPumpIcon,
-  suction: Leaf01Icon,
-  fittings: Wrench01Icon,
-} as const;
+import pipeWall from "@/assets/home/pipe-wall.jpg";
+import shopFront from "@/assets/home/shop-front.jpg";
+import pvcImg from "@/assets/products/pvc.jpg";
+import hdpeImg from "@/assets/products/hdpe.jpg";
+import casingImg from "@/assets/products/casing.jpg";
+import sprinklerImg from "@/assets/products/sprinkler.jpg";
+import bathImg from "@/assets/products/bath.jpg";
+import hoseImg from "@/assets/products/hose.jpg";
 
-const slugFor = (name: string) => brands.find((b) => b.name === name)?.slug;
-const featured = brands
-  .filter((b) => b.slug)
-  .map((b) => ({ ...b, page: brandPages.find((p) => p.slug === b.slug)! }));
-const others = brands.filter((b) => !b.slug);
 const phone = business.phones[0];
 const a = business.address;
+const slugFor = (name: string) => brands.find((b) => b.name === name)?.slug;
+const category = (id: (typeof categories)[number]["id"]) => categories.find((c) => c.id === id)!;
+const others = brands.filter((b) => !b.slug);
+
+// "What we supply" cards, in grid order. Images are stand-in 3D renders;
+// swap each file in src/assets/products/ for a real photo (same 2:1 crop).
+type ProductCard = {
+  id: (typeof categories)[number]["id"];
+  img: ImageMetadata;
+  tag: string;
+  alt: string;
+  wide?: boolean;
+  dark?: boolean;
+};
+const productCards: ProductCard[] = [
+  { id: "pvc", img: pvcImg, wide: true, tag: "IS 4985 · IS 13592 · ASTM", alt: "Grey PVC, cream CPVC and white SWR pipes with an elbow, tee and coupler" },
+  { id: "hdpe", img: hdpeImg, tag: "IS 4984", alt: "Coils of black HDPE pipe with blue stripes and a cut length" },
+  { id: "casing", img: casingImg, tag: "IS 12818", alt: "Blue threaded borewell casing pipes, a grey column pipe and couplers" },
+  { id: "sprinkler", img: sprinklerImg, tag: "IS 17425 · IS 12786", alt: "Drip line coil, a brass sprinkler on a riser, sprinkler pipe with a quick coupler and drip connectors" },
+  { id: "bath", img: bathImg, wide: true, dark: true, tag: "ISI certified", alt: "White vessel basin with a brushed-gold tall mixer, rolled towels and a gold rain shower on dark marble" },
+  { id: "suction", img: hoseImg, tag: "IS 15265", alt: "Coiled green suction hose, an orange garden hose and a brass hose connector" },
+];
+const fittings = category("fittings");
+
+const brandCards: Record<string, { meta: string; blurb: string; chips: string[] }> = {
+  finolex: { meta: "Pune · est. 1981", blurb: "Agriculture, casing, column, CPVC, ASTM, SWR and sewerage pipes, plus solvent cement.", chips: ["IS 4985", "IS 12818", "IS 13592", "SCH 40 & 80"] },
+  dutron: { meta: "Ahmedabad · since 1962", blurb: "CPVC, uPVC, agriculture, SWR, casing and HDPE pipes, plus Kanaflex suction and Duplon hose.", chips: ["ASTM D1785", "IS 4984", "IS 13592", "Hot & cold"] },
+  texmo: { meta: "Burhanpur, MP · est. 1988", blurb: "The widest range: CPVC to HDPE coils, drip and sprinkler systems, gas pipes and water tanks.", chips: ["IS 4984", "IS 12786", "IS 17425", "Tanks"] },
+  waterflo: { meta: "Rajkot", blurb: "Strongfit CPVC, Surefit uPVC, Clickfit push-fit SWR, AgriMaster and Boreline pipes.", chips: ["IS 4985", "IS 13592", "IS 4984", "Push-fit"] },
+  johnson: { meta: "H&R Johnson", blurb: "Faucets, sanitaryware, showers, kitchen sinks, bathtubs and bathroom accessories.", chips: ["ISI certified", "SS & quartz sinks", "4-in-1 shower"] },
+};
+const featured = brands
+  .filter((b) => b.slug)
+  .map((b) => ({ ...b, page: brandPages.find((p) => p.slug === b.slug)!, card: brandCards[b.slug!] }));
+
+const quickNeeds = [
+  "PVC & CPVC pipes",
+  "HDPE pipes",
+  "Borewell casing & column",
+  "Sprinkler & drip",
+  "Bath & sanitaryware",
+  "Fittings",
+];
+
+const glance = [
+  { icon: PackageIcon, value: "1,500+ products", label: "in stock, ready to go" },
+  { icon: Tag01Icon, value: `${brands.length} brands`, label: "Finolex, Dutron, Texmo and more" },
+  { icon: DeliveryTruck01Icon, value: "Same or next day", label: "supply across Jabalpur" },
+  { icon: Clock01Icon, value: business.hours.short.replace("–", " – "), label: `${business.hours.display}, Marhatal` },
+];
+
+const steps = [
+  { title: "Send your list", text: "A photo of your material list, a site drawing, or just sizes and quantities." },
+  { title: "Get rates and stock", text: "Distributor rates and what's on the shelf, usually the same day." },
+  { title: "Pick up or get it sent", text: "Collect from Anjuman Market, or same-day / next-day supply across Jabalpur and nearby districts." },
+];
 
 const reasons = [
-  { title: "Ready stock", text: "A large inventory, so bulk and project orders go out without waiting on the factory." },
-  { title: "Same-day or next-day supply", text: "Across Jabalpur and nearby districts." },
+  { title: "Ready stock", text: "Bulk and project orders go out without waiting on the factory." },
   { title: "Distributor pricing", text: "Bought direct from the brands, with no middlemen in between." },
-  { title: "MSME registered government supplier", text: "Trusted for institutional and public-sector projects." },
-  { title: "Retailer network", text: "Partner retailers across Jabalpur and Madhya Pradesh keep our range within reach." },
-  { title: "Agriculture know-how", text: "From HDPE mains to sprinkler and drip systems for farms and irrigation projects." },
+  { title: "MSME registered supplier", text: "Trusted for institutional and public-sector projects." },
+  { title: "Retailer network", text: "Partner shops across Jabalpur and Madhya Pradesh keep our range close by." },
+  { title: "Agriculture know-how", text: "From HDPE mains to sprinkler and drip systems for farms." },
+  { title: "Brand-standard products", text: "Certified pipes and fittings, bought straight from the brands." },
 ];
+
+const pad = "mx-auto max-w-7xl px-4 sm:px-6 lg:px-8";
+const h2 = "text-[clamp(1.875rem,3.4vw,2.75rem)] leading-[1.1] font-semibold";
 ---
 <Base
   title="Pipes & Sanitary Distributor in Jabalpur, MP | Market Movers"
@@ -57,15 +106,17 @@ const reasons = [
   jsonLd={homeSchema()}>
 
   <!-- Hero -->
-  <section class="mx-auto grid max-w-6xl items-center gap-10 px-4 pt-12 pb-16 sm:px-6 md:grid-cols-[1.1fr_1fr] md:pt-20 md:pb-24">
-    <div>
-      <p class="text-sm text-muted-foreground">Wholesale distributor · Jabalpur, Madhya Pradesh</p>
-      <h1 class="mt-4 text-4xl leading-[1.1] font-semibold sm:text-5xl">
-        Pipes, fittings and sanitaryware from stock in Jabalpur
+  <section class:list={[pad, "grid items-center gap-10 pt-8 pb-14 md:grid-cols-[1.05fr_1fr] md:gap-14 md:pt-16 md:pb-20"]}>
+    <div class="flex flex-col">
+      <p class="inline-flex items-center gap-2 self-start rounded-full border bg-card px-3 py-1.5 text-sm font-medium text-foreground/80">
+        <Icon icon={Location01Icon} size={16} />Anjuman Market, Marhatal · Jabalpur
+      </p>
+      <h1 class="mt-5 text-[clamp(2.25rem,5.2vw,4rem)] leading-[1.04] font-semibold">
+        Pipes, fittings and sanitaryware. <span class="text-accent-foreground">In stock, in Jabalpur.</span>
       </h1>
-      <p class="mt-5 max-w-xl text-lg text-muted-foreground">
-        We supply Finolex, Dutron, Texmo, Waterflo, Johnson Bathrooms and five more brands to contractors,
-        builders, retailers and farmers across Madhya Pradesh.
+      <p class="mt-5 max-w-xl text-lg text-muted-foreground sm:text-[19px]">
+        Finolex, Dutron, Texmo, Waterflo, Johnson Bathrooms and five more brands, for contractors, builders,
+        retailers and farmers across Madhya Pradesh.
       </p>
       <div class="mt-8 flex flex-col gap-3 sm:flex-row">
         <a href={whatsappUrl("Hello Market Movers, I'd like a quote.")} target="_blank" rel="noopener" class={buttonVariants({ size: "lg" })}>
@@ -75,118 +126,221 @@ const reasons = [
           <Icon icon={Call02Icon} /><span class="tabular-nums">Call {phone.display}</span>
         </a>
       </div>
-      <dl class="mt-10 grid max-w-lg grid-cols-3 gap-6 border-t pt-6">
-        <div>
-          <dt class="text-sm text-muted-foreground">Products in stock</dt>
-          <dd class="mt-1 text-xl font-semibold tabular-nums">1,500+</dd>
-        </div>
-        <div>
-          <dt class="text-sm text-muted-foreground">Brands</dt>
-          <dd class="mt-1 text-xl font-semibold tabular-nums">{brands.length}</dd>
-        </div>
-        <div>
-          <dt class="text-sm text-muted-foreground">Open</dt>
-          <dd class="mt-1 text-xl font-semibold">{business.hours.short}</dd>
-        </div>
-      </dl>
+      <div class="mt-10 border-t pt-6">
+        <p class="text-sm text-muted-foreground">What do you need today?</p>
+        <ul class="mt-3 flex flex-wrap gap-2">
+          {quickNeeds.map((n) => (
+            <li>
+              <a
+                href={whatsappUrl(`Hello Market Movers, I need ${n}. Please share rates and stock.`)}
+                target="_blank"
+                rel="noopener"
+                class="inline-flex h-10 items-center rounded-full bg-accent px-4 text-sm font-medium text-accent-foreground transition-colors duration-150 hover:bg-primary hover:text-primary-foreground">
+                {n}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
-    <Placeholder label="shop front or warehouse stock" class="aspect-[4/3] w-full" />
+    <div class="relative overflow-hidden rounded-3xl bg-muted">
+      <Image
+        src={pipeWall}
+        alt="Stacked ends of grey, orange, cream and blue pipes in the Market Movers godown"
+        widths={[600, 900, 1200]}
+        sizes="(min-width: 768px) 46vw, 100vw"
+        loading="eager"
+        fetchpriority="high"
+        class="aspect-[4/5] w-full object-cover sm:aspect-[4/3] md:aspect-auto md:h-[620px]"
+      />
+      <div class="absolute inset-x-3 bottom-3 flex flex-col gap-2 rounded-2xl bg-card p-4 shadow-[0_12px_32px_rgb(28_25_23/0.12)] sm:inset-x-5 sm:bottom-5 sm:right-16 sm:p-5">
+        <p class="font-mono text-xs text-muted-foreground">How most orders start</p>
+        <p class="max-w-[300px] self-end rounded-[14px_14px_4px_14px] bg-accent px-3.5 py-2.5 text-[15px] text-accent-foreground">
+          Need 40 lengths of 110 mm SWR and 25 elbows. Rate and stock?
+        </p>
+        <p class="max-w-[300px] self-start rounded-[14px_14px_14px_4px] bg-muted px-3.5 py-2.5 text-[15px]">
+          All in stock. Rates sent, ready for pickup today.
+        </p>
+      </div>
+    </div>
   </section>
 
-  <!-- Brands -->
-  <section id="brands" class="bg-muted">
-    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
-      <div class="max-w-2xl">
-        <h2 class="text-3xl font-semibold">Brands we distribute</h2>
-        <p class="mt-3 text-muted-foreground">Open a brand for its full product range, sizes and specifications.</p>
+  <!-- At a glance -->
+  <section aria-label="At a glance" class={pad}>
+    <dl class="grid grid-cols-1 gap-6 rounded-3xl bg-accent p-6 sm:grid-cols-2 sm:p-8 lg:grid-cols-4 lg:gap-8">
+      {glance.map((g) => (
+        <div class="flex items-center gap-4">
+          <span class="grid size-[52px] shrink-0 place-items-center rounded-2xl bg-card text-primary">
+            <Icon icon={g.icon} size={24} />
+          </span>
+          <div>
+            <dt class="text-[22px] leading-tight font-semibold tabular-nums">{g.value}</dt>
+            <dd class="mt-0.5 text-sm text-muted-foreground">{g.label}</dd>
+          </div>
+        </div>
+      ))}
+    </dl>
+  </section>
+
+  <!-- Brand strip -->
+  <section aria-label="Brands we stock" class:list={[pad, "flex flex-col gap-4 py-10 lg:flex-row lg:items-center lg:gap-12"]}>
+    <p class="shrink-0 text-sm font-medium text-muted-foreground">Authorised stock from</p>
+    <ul class="flex flex-1 flex-wrap gap-x-7 gap-y-2 text-lg font-semibold text-[#8a847c] lg:justify-between lg:text-xl">
+      {brands.map((b) => <li>{b.name.replace(" Bathrooms", "")}</li>)}
+    </ul>
+  </section>
+
+  <!-- Products -->
+  <section id="products" class="bg-muted">
+    <div class:list={[pad, "py-16 md:py-24"]}>
+      <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <div class="max-w-2xl">
+          <h2 class={h2}>What we supply</h2>
+          <p class="mt-3 text-lg text-muted-foreground">Plumbing, drainage, agriculture and bathroom products for homes, projects and farms.</p>
+        </div>
+        <a href={whatsappUrl("Hello Market Movers, here is my material list:")} target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 font-medium text-primary underline-offset-4 hover:underline">
+          Send us your material list<Icon icon={ArrowRight01Icon} size={18} />
+        </a>
       </div>
-      <ul class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {featured.map((b) => (
-          <li>
-            <a href={`/${b.slug}.html`} class="group flex h-full flex-col rounded-lg border bg-card p-6 transition-[border-color] duration-150 hover:border-input">
-              <h3 class="text-xl font-semibold">{b.name}</h3>
-              <p class="mt-1 text-sm text-muted-foreground">{b.page.tagline} · {b.page.lines.length} product lines</p>
-              <p class="mt-4 line-clamp-2 text-sm text-muted-foreground">{b.page.lines.slice(0, 4).map((l) => l.name).join(", ")}</p>
-              <span class="mt-auto inline-flex items-center gap-1 pt-6 text-sm font-medium text-primary">
-                View range
-                <Icon icon={ArrowRight01Icon} size={16} class="transition-transform duration-150 ease-out group-hover:translate-x-0.5" />
-              </span>
-            </a>
-          </li>
-        ))}
-        <li class="flex flex-col rounded-lg border border-dashed border-input p-6">
-          <h3 class="text-xl font-semibold">Also in stock</h3>
-          <p class="mt-1 text-sm text-muted-foreground">{others.map((b) => b.name).join(", ")}</p>
-          <p class="mt-4 text-sm text-muted-foreground">Catalogues for these brands aren't online yet. Ask us for sizes and prices.</p>
-          <a href={whatsappUrl(`Hello Market Movers, I'd like prices for ${others.map((b) => b.name).join(" / ")} products.`)} target="_blank" rel="noopener" class="mt-auto inline-flex items-center gap-1 pt-6 text-sm font-medium text-primary hover:underline underline-offset-4">
-            Ask on WhatsApp
-            <Icon icon={ArrowRight01Icon} size={16} />
+      <ul class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {productCards.map((p) => {
+          const c = category(p.id);
+          return (
+            <li class:list={["tilt flex flex-col overflow-hidden rounded-2xl border bg-card", p.wide && "sm:col-span-2"]} data-tilt>
+              <div class:list={["relative h-[200px] overflow-hidden", p.dark ? "bg-[#2a2724]" : "bg-[#bcd9d4]"]}>
+                <Image
+                  src={p.img}
+                  alt={p.alt}
+                  widths={p.wide ? [600, 900, 1200] : [400, 600, 900]}
+                  sizes={p.wide ? "(min-width: 1024px) 600px, (min-width: 640px) 100vw, 100vw" : "(min-width: 1024px) 300px, (min-width: 640px) 50vw, 100vw"}
+                  loading="lazy"
+                  class="tilt-photo size-full object-cover"
+                />
+                <span class="absolute bottom-4 left-5 rounded-full bg-card px-2.5 py-1 font-mono text-xs text-accent-foreground">{p.tag}</span>
+              </div>
+              <div class="p-5 sm:p-6">
+                <h3 class="text-xl font-semibold">{c.name}</h3>
+                <p class="mt-1.5 text-[15px] text-muted-foreground">{c.text}</p>
+                <p class="mt-3.5 font-mono text-[13px] text-muted-foreground">
+                  {c.brands.map((name, i) => {
+                    const slug = slugFor(name);
+                    return (
+                      <>
+                        {i > 0 && " · "}
+                        {slug ? <a href={`/${slug}.html`} class="text-primary underline decoration-primary/30 underline-offset-4 hover:decoration-primary">{name}</a> : name}
+                      </>
+                    );
+                  })}
+                </p>
+              </div>
+            </li>
+          );
+        })}
+        <li class="flex flex-col gap-4 rounded-2xl border bg-card p-6 sm:col-span-2 sm:flex-row sm:items-center sm:gap-5 lg:col-span-4">
+          <span class="grid size-12 shrink-0 place-items-center rounded-xl bg-accent text-accent-foreground">
+            <Icon icon={Wrench01Icon} size={22} />
+          </span>
+          <div class="flex-1">
+            <h3 class="text-xl font-semibold">{fittings.name}, all brands</h3>
+            <p class="mt-1 text-[15px] text-muted-foreground">{fittings.text}</p>
+          </div>
+          <a href={whatsappUrl("Hello Market Movers, I need fittings. Please share rates and stock.")} target="_blank" rel="noopener" class={buttonVariants({ variant: "outline", class: "self-start sm:self-auto" })}>
+            Ask for fittings<Icon icon={ArrowRight01Icon} size={16} />
           </a>
         </li>
       </ul>
     </div>
   </section>
 
-  <!-- Products -->
-  <section id="products" class="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
+  <!-- Brands -->
+  <section id="brands" class:list={[pad, "py-16 md:py-24"]}>
     <div class="max-w-2xl">
-      <h2 class="text-3xl font-semibold">What we supply</h2>
-      <p class="mt-3 text-muted-foreground">Plumbing, drainage, agriculture and bathroom products for homes, projects and farms.</p>
+      <h2 class={h2}>Brand catalogues</h2>
+      <p class="mt-3 text-lg text-muted-foreground">Every product line with sizes, standards and brochures. Open a brand to check what fits your job.</p>
     </div>
-    <ul class="mt-10 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-      {categories.map((c) => (
-        <li class="flex gap-4">
-          <span class="grid size-10 shrink-0 place-items-center rounded-md bg-accent text-accent-foreground">
-            <Icon icon={categoryIcons[c.id]} />
-          </span>
-          <div>
-            <h3 class="font-semibold">{c.name}</h3>
-            <p class="mt-1 text-sm text-muted-foreground">{c.text}</p>
-            <p class="mt-2 text-sm">
-              {c.brands.length === 0 ? (
-                <span class="text-muted-foreground">All brands</span>
-              ) : (
-                c.brands.map((name, i) => {
-                  const slug = slugFor(name);
-                  return (
-                    <>
-                      {i > 0 && <span class="text-muted-foreground">, </span>}
-                      {slug ? <a href={`/${slug}.html`} class="text-primary underline decoration-primary/30 underline-offset-4 hover:decoration-primary">{name}</a> : <span class="text-muted-foreground">{name}</span>}
-                    </>
-                  );
-                })
-              )}
-            </p>
-          </div>
+    <ul class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {featured.map((b) => (
+        <li>
+          <a href={`/${b.slug}.html`} class="group flex h-full flex-col gap-4 rounded-2xl border bg-card p-6 transition-[border-color,box-shadow] duration-150 hover:border-input hover:shadow-[0_8px_24px_rgb(14_42_44/0.06)] sm:p-7">
+            <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+              <h3 class="text-2xl font-semibold sm:text-[28px]">{b.name}</h3>
+              <span class="font-mono text-[13px] text-muted-foreground">{b.card.meta}</span>
+            </div>
+            <p class="text-[15px] text-muted-foreground">{b.card.blurb}</p>
+            <ul class="flex flex-wrap gap-1.5 font-mono text-xs">
+              {b.card.chips.map((c) => <li class="rounded-md bg-muted px-2 py-1">{c}</li>)}
+            </ul>
+            <div class="mt-auto flex items-center justify-between border-t pt-4">
+              <span class="font-mono text-[13px] text-muted-foreground">{b.page.lines.length} product lines</span>
+              <span class="inline-flex items-center gap-1.5 text-[15px] font-medium text-primary">
+                View range<Icon icon={ArrowRight01Icon} size={16} class="transition-transform duration-150 ease-out group-hover:translate-x-0.5" />
+              </span>
+            </div>
+          </a>
         </li>
       ))}
+      <li class="flex flex-col gap-4 rounded-2xl border border-dashed border-input bg-muted p-6 sm:p-7">
+        <h3 class="text-2xl font-semibold sm:text-[28px]">Also in stock</h3>
+        <p class="text-[17px] font-medium">{others.map((b) => b.name).join(" · ")}</p>
+        <p class="text-[15px] text-muted-foreground">Catalogues for these brands aren't online yet. Ask us for sizes and prices.</p>
+        <a href={whatsappUrl(`Hello Market Movers, I'd like prices for ${others.map((b) => b.name).join(" / ")} products.`)} target="_blank" rel="noopener" class="mt-auto inline-flex items-center gap-1.5 border-t border-input pt-4 text-[15px] font-medium text-primary">
+          Ask on WhatsApp<Icon icon={ArrowRight01Icon} size={16} />
+        </a>
+      </li>
     </ul>
   </section>
 
-  <!-- About -->
-  <section id="about" class="border-t">
-    <div class="mx-auto grid max-w-6xl gap-12 px-4 py-16 sm:px-6 md:py-24 lg:grid-cols-[1fr_1.2fr]">
-      <div>
-        <h2 class="text-3xl font-semibold">About Market Movers</h2>
-        <p class="mt-4 text-muted-foreground">
-          We're a plumbing and sanitary distributor based at Anjuman Market, Marhatal, in Jabalpur. We carry
-          certified, brand-standard products only, and keep enough stock to fill project orders the same week.
-        </p>
-        <h3 class="mt-8 text-sm font-medium">Who we supply</h3>
-        <ul class="mt-3 grid grid-cols-2 gap-x-6 gap-y-2 text-sm">
-          {customers.map((c) => (
-            <li class="flex items-center gap-2">
-              <Icon icon={Tick02Icon} size={16} class="shrink-0 text-primary" />{c}
-            </li>
-          ))}
-        </ul>
-        <Placeholder label="team, godown or delivery vehicle" class="mt-10 aspect-[16/10] w-full" />
+  <!-- How ordering works -->
+  <section id="order" class="px-3 sm:px-6">
+    <div class="mx-auto max-w-[88rem] rounded-[28px] bg-inverse px-6 py-14 text-inverse-foreground sm:px-10 md:px-16 md:py-20 lg:px-24">
+      <div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+        <div class="max-w-xl">
+          <h2 class={h2}>Ordering takes one message</h2>
+          <p class="mt-3 text-lg text-inverse-muted">No account and no forms to print. Most customers order the way they'd text a friend.</p>
+        </div>
+        <a href={whatsappUrl("Hello Market Movers, here is my material list:")} target="_blank" rel="noopener" class={buttonVariants({ size: "lg", class: "bg-inverse-foreground text-inverse hover:bg-inverse-foreground/90 self-start md:self-auto" })}>
+          <Icon icon={WhatsappIcon} />Start on WhatsApp
+        </a>
       </div>
-      <dl class="grid content-start gap-x-8 gap-y-8 sm:grid-cols-2">
+      <ol class="mt-12 grid gap-8 md:grid-cols-3 md:gap-12">
+        {steps.map((s, i) => (
+          <li class="border-t border-inverse-foreground/15 pt-6">
+            <span class="font-mono text-sm text-highlight">0{i + 1}</span>
+            <h3 class="mt-3 text-[22px] font-semibold">{s.title}</h3>
+            <p class="mt-2 text-inverse-muted">{s.text}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class:list={[pad, "grid gap-12 py-16 md:py-24 lg:grid-cols-[1fr_1.1fr] lg:gap-20"]}>
+    <div>
+      <h2 class={h2}>A distributor you can walk into</h2>
+      <p class="mt-4 text-lg text-muted-foreground">
+        We're at Anjuman Market, Marhatal. We carry certified, brand-standard products only, and keep enough stock
+        to fill project orders the same week.
+      </p>
+      <Image
+        src={shopFront}
+        alt="Market Movers shop front at Anjuman Market with a delivery vehicle loaded with pipes"
+        widths={[600, 900, 1200]}
+        sizes="(min-width: 1024px) 560px, 100vw"
+        loading="lazy"
+        class="mt-9 aspect-[16/10] w-full rounded-3xl object-cover"
+      />
+    </div>
+    <div>
+      <h3 class="text-[15px] font-medium text-muted-foreground">Who we supply</h3>
+      <ul class="mt-4 flex flex-wrap gap-2">
+        {customers.map((c) => <li class="inline-flex h-10 items-center rounded-full border bg-card px-4 text-[15px]">{c}</li>)}
+      </ul>
+      <dl class="mt-12 grid gap-x-10 gap-y-8 sm:grid-cols-2">
         {reasons.map((r) => (
           <div class="border-t pt-5">
-            <dt class="font-semibold">{r.title}</dt>
-            <dd class="mt-1.5 text-sm text-muted-foreground">{r.text}</dd>
+            <dt class="text-lg font-semibold">{r.title}</dt>
+            <dd class="mt-1.5 text-[15px] text-muted-foreground">{r.text}</dd>
           </div>
         ))}
       </dl>
@@ -195,17 +349,17 @@ const reasons = [
 
   <!-- Contact -->
   <section id="contact" class="bg-muted">
-    <div class="mx-auto grid max-w-6xl gap-12 px-4 py-16 sm:px-6 md:py-24 lg:grid-cols-[1fr_1.3fr]">
+    <div class:list={[pad, "grid gap-12 py-16 md:py-24 lg:grid-cols-[1fr_1.15fr] lg:gap-16"]}>
       <div>
-        <h2 class="text-3xl font-semibold">Get prices and availability</h2>
-        <p class="mt-3 text-muted-foreground">Send your requirement and we'll reply with rates and stock, usually the same day.</p>
+        <h2 class={h2}>Visit, call or message</h2>
+        <p class="mt-3 text-lg text-muted-foreground">Send your requirement and we'll reply with rates and stock, usually the same day.</p>
         <ul class="mt-8 space-y-6">
           <li class="flex gap-4">
             <Icon icon={Location01Icon} class="mt-0.5 shrink-0 text-muted-foreground" />
             <div>
               <p class="font-medium">{a.street}</p>
               <p class="text-muted-foreground">{a.city}, {a.region} {a.postalCode}</p>
-              <a href={business.mapUrl} target="_blank" rel="noopener" class="mt-1 inline-block text-sm text-primary underline-offset-4 hover:underline">Open in Google Maps</a>
+              <a href={business.mapUrl} target="_blank" rel="noopener" class={buttonVariants({ variant: "outline", size: "sm", class: "mt-3" })}>Open in Google Maps</a>
             </div>
           </li>
           <li class="flex gap-4">
@@ -224,8 +378,9 @@ const reasons = [
           </li>
         </ul>
       </div>
-      <div class="rounded-lg border bg-card p-6 sm:p-8">
-        <h3 class="text-lg font-semibold">Send an enquiry</h3>
+      <div class="self-start rounded-3xl border bg-card p-6 sm:p-10">
+        <h3 class="text-2xl font-semibold">Send an enquiry</h3>
+        <p class="mt-1.5 text-[15px] text-muted-foreground">Tell us what you need. Nothing is stored on this site.</p>
         <div class="mt-6">
           <EnquiryForm client:idle whatsapp={business.whatsapp} categories={categories.map((c) => c.name)} />
         </div>
@@ -233,3 +388,36 @@ const reasons = [
     </div>
   </section>
 </Base>
+
+<script>
+  // Product cards lean toward the mouse while it hovers (no click needed) and
+  // spring back when it leaves. Touch screens get the scroll-linked tilt in
+  // global.css instead. Skipped entirely for reduced motion.
+  const fine = matchMedia("(hover: hover) and (pointer: fine)");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)");
+  const MAX = 4;
+  document.querySelectorAll<HTMLElement>("[data-tilt]").forEach((card) => {
+    let frame = 0;
+    card.addEventListener("pointermove", (e) => {
+      if (e.pointerType !== "mouse" || !fine.matches || reduce.matches) return;
+      const r = card.getBoundingClientRect();
+      const nx = Math.max(-1, Math.min(1, ((e.clientX - r.left) / r.width) * 2 - 1));
+      const ny = Math.max(-1, Math.min(1, ((e.clientY - r.top) / r.height) * 2 - 1));
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        card.classList.add("is-tilting");
+        card.style.setProperty("--rx", `${-ny * MAX}deg`);
+        card.style.setProperty("--ry", `${nx * MAX}deg`);
+        card.style.setProperty("--rx-n", String(-ny));
+        card.style.setProperty("--ry-n", String(nx));
+        card.style.setProperty("--px", `${-nx * MAX * 2}px`);
+        card.style.setProperty("--py", `${-ny * MAX * 2}px`);
+      });
+    });
+    card.addEventListener("pointerleave", () => {
+      cancelAnimationFrame(frame);
+      card.classList.remove("is-tilting");
+      for (const p of ["--rx", "--ry", "--rx-n", "--ry-n", "--px", "--py"]) card.style.removeProperty(p);
+    });
+  });
+</script>

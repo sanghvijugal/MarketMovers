@@ -1,39 +1,44 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "@fontsource-variable/ibm-plex-sans";
+@import "@fontsource/ibm-plex-mono/400.css";
+@import "@fontsource/ibm-plex-mono/500.css";
 /* Devanagari glyphs for future Hindi content; unicode-range means the
    files only download when a page actually contains Hindi text. */
 @import "@fontsource/ibm-plex-sans-devanagari/400.css";
 @import "@fontsource/ibm-plex-sans-devanagari/600.css";
 
 /* ── Design tokens ────────────────────────────────────────────────
-   Neutrals: warm stone. One accent: cobalt (links, primary actions,
-   focus). Nothing else gets colour. See DESIGN.md. */
+   Teal palette (see DESIGN.md). One action colour (`primary`, deep teal)
+   for buttons and links, one small highlight (`highlight`, aqua) for the
+   open-now dot and step numbers on dark. Neutrals are warm stone text on a
+   faintly cool ground. */
 :root {
-  --radius: 0.375rem;
+  --radius: 0.625rem;
 
-  --background: oklch(0.992 0.002 85);
-  --foreground: oklch(0.216 0.006 56);
-  --card: oklch(1 0 0);
+  --background: #f8faf9;
+  --foreground: #1c1917;
+  --card: #ffffff;
   --card-foreground: var(--foreground);
-  --muted: oklch(0.968 0.004 85);
-  --muted-foreground: oklch(0.5 0.011 58);
-  --border: oklch(0.912 0.005 80);
-  --input: oklch(0.87 0.006 75);
+  --muted: #ecf2f1;
+  --muted-foreground: #68625b;
+  --border: #e5e1db;
+  --input: #d3cdc5;
 
-  --primary: oklch(0.46 0.14 257);
-  --primary-foreground: oklch(0.99 0 0);
+  --primary: #0b6b73;
+  --primary-foreground: #ffffff;
   --secondary: var(--muted);
   --secondary-foreground: var(--foreground);
-  --accent: oklch(0.95 0.02 257);
-  --accent-foreground: oklch(0.36 0.12 257);
+  --accent: #ddefee;
+  --accent-foreground: #08505a;
+  --highlight: #5fc4c0;
   --destructive: oklch(0.53 0.2 27);
   --ring: var(--primary);
 
-  /* footer / inverse surfaces */
-  --inverse: oklch(0.2 0.006 56);
-  --inverse-foreground: oklch(0.93 0.004 85);
-  --inverse-muted: oklch(0.7 0.008 70);
+  /* dark sections and footer */
+  --inverse: #0e2a2c;
+  --inverse-foreground: #e6f0ef;
+  --inverse-muted: #9db5b3;
 
   /* transitions.dev tuning (shared by the recipes below) */
   --acc-expand: 250ms;
@@ -54,6 +59,7 @@
 
 @theme inline {
   --font-sans: "IBM Plex Sans Variable", "IBM Plex Sans Devanagari", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -69,6 +75,7 @@
   --color-secondary-foreground: var(--secondary-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-highlight: var(--highlight);
   --color-destructive: var(--destructive);
   --color-ring: var(--ring);
   --color-inverse: var(--inverse);
@@ -79,6 +86,8 @@
   --radius-md: var(--radius);
   --radius-lg: calc(var(--radius) + 2px);
   --radius-xl: calc(var(--radius) + 6px);
+  --radius-2xl: 1rem;
+  --radius-3xl: 1.25rem;
 }
 
 @layer base {
@@ -194,4 +203,51 @@
    has more content instead of drawing a hard cut. */
 .scroll-fade-x {
   mask-image: linear-gradient(to right, transparent, #000 var(--fade-l, 0px), #000 calc(100% - var(--fade-r, 0px)), transparent);
+}
+
+/* ── Product card tilt ────────────────────────────────────────────
+   Mouse: the card leans up to 4° toward the pointer while hovering (set by
+   the script on the homepage through --rx/--ry) and springs back on leave;
+   the photo shifts the other way for depth. Touch: a 2.5° tilt linked to
+   scroll position, settling flat mid-screen (CSS scroll-driven animation,
+   no JavaScript; browsers without it show a still card). Transform only. */
+.tilt {
+  transform: perspective(1100px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) scale(var(--ts, 1));
+  transition: transform 650ms cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 400ms ease-out;
+}
+.tilt-photo {
+  transform: scale(1.08) translate(var(--px, 0px), var(--py, 0px));
+  transition: transform 650ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.tilt.is-tilting {
+  --ts: 1.01;
+  box-shadow: calc(var(--ry-n, 0) * -8px) calc(10px + var(--rx-n, 0) * 8px) 32px rgb(14 42 44 / 0.14);
+  transition: transform 160ms ease-out, box-shadow 160ms ease-out;
+}
+.tilt.is-tilting .tilt-photo { transition: transform 160ms ease-out; }
+
+@media (hover: none) and (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .tilt {
+      animation: tilt-scroll linear both;
+      animation-timeline: view();
+    }
+    .tilt-photo {
+      animation: tilt-photo-scroll linear both;
+      animation-timeline: view();
+    }
+  }
+}
+@keyframes tilt-scroll {
+  from { transform: perspective(1100px) rotateX(2.5deg); }
+  50% { transform: perspective(1100px) rotateX(0deg); }
+  to { transform: perspective(1100px) rotateX(-2.5deg); }
+}
+@keyframes tilt-photo-scroll {
+  from { transform: scale(1.08) translateY(-6px); }
+  to { transform: scale(1.08) translateY(6px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tilt, .tilt-photo { transform: none !important; transition: none !important; animation: none !important; }
+  .tilt.is-tilting { box-shadow: none; }
 }
