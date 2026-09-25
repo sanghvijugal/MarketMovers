@@ -18,8 +18,8 @@ const others = brands.filter((b) => b.slug && b.slug !== brand.slug);
 const phone = business.phones[0];
 ---
 <Base title={brand.seo.title} description={brand.seo.description} path={path} jsonLd={brandSchema(brand, SITE_URL + path)}>
-  <div class="border-b">
-    <div class="mx-auto max-w-6xl px-4 pt-8 pb-10 sm:px-6 md:pt-10 md:pb-14">
+  <div class="bg-muted">
+    <div class="mx-auto max-w-7xl px-4 pt-7 pb-12 sm:px-6 md:pt-9 md:pb-16 lg:px-8">
       <nav aria-label="Breadcrumb">
         <ol class="flex flex-wrap items-center gap-1.5 text-sm text-muted-foreground">
           <li><a href="/" class="hover:text-foreground">Home</a></li>
@@ -29,34 +29,38 @@ const phone = business.phones[0];
           <li><span aria-current="page" class="text-foreground">{brand.name}</span></li>
         </ol>
       </nav>
-      <div class="mt-6 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-        <div class="max-w-2xl">
-          <h1 class="text-4xl font-semibold sm:text-5xl">{brand.name} {brand.tagline}</h1>
-          <p class="mt-3 text-muted-foreground">{brand.origin}</p>
+      <div class="mt-7 grid gap-8 lg:grid-cols-[1.6fr_1fr] lg:items-end lg:gap-16">
+        <div>
+          <p class="font-mono text-[13px] text-muted-foreground">Authorised stock · Market Movers, Jabalpur</p>
+          <h1 class="mt-3 text-[clamp(2.25rem,4.6vw,3.75rem)] leading-[1.05] font-semibold">{brand.name} {brand.tagline}</h1>
+          <p class="mt-4 text-lg text-muted-foreground">{brand.origin}</p>
+          <p class="mt-6 flex items-baseline gap-2"><span class="font-mono text-2xl font-medium tabular-nums">{brand.lines.length}</span><span class="text-sm text-muted-foreground">product lines on this page</span></p>
           <ul class="mt-5 flex flex-wrap gap-2">
-            {brand.badges.map((b) => <li class="rounded-md border px-2.5 py-1 text-sm">{b}</li>)}
+            {brand.badges.filter((b) => !/product lines|available at/i.test(b)).map((b) => <li class="rounded-full border bg-card px-3 py-1 text-sm">{b}</li>)}
           </ul>
         </div>
-        <div class="flex shrink-0 flex-col gap-3 sm:flex-row">
+        <div class="flex flex-col gap-3 rounded-3xl border bg-card p-6 sm:p-7">
+          <p class="text-xl font-semibold">Need {brand.name} rates?</p>
+          <p class="mb-2 text-[15px] text-muted-foreground">Send sizes and quantities. We reply with rates and stock, usually the same day.</p>
           <a href={whatsappUrl(`Hello Market Movers, I'd like ${brand.name} prices and availability.`)} target="_blank" rel="noopener" class={buttonVariants({ size: "lg" })}>
             <Icon icon={WhatsappIcon} />Ask for {brand.name} prices
           </a>
           <a href={`tel:${phone.tel}`} class={buttonVariants({ variant: "outline", size: "lg" })}>
-            <Icon icon={Call02Icon} />Call
+            <Icon icon={Call02Icon} /><span class="tabular-nums">Call {phone.display}</span>
           </a>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:grid lg:grid-cols-[13rem_minmax(0,1fr)] lg:gap-12">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:grid lg:grid-cols-[14rem_minmax(0,1fr)] lg:gap-16 lg:px-8">
     <!-- Product line navigation: sticky sidebar on desktop, sticky scroller on mobile -->
     <nav aria-label={`${brand.name} product lines`} class="sticky top-16 z-30 -mx-4 border-b bg-background sm:-mx-6 lg:top-24 lg:mx-0 lg:self-start lg:border-b-0 lg:bg-transparent lg:pt-12">
       <p class="hidden px-3 text-sm font-medium lg:block">Product lines</p>
       <ul id="line-nav" class="scroll-fade-x flex gap-1 overflow-x-auto overscroll-x-contain lg:[mask-image:none] px-4 py-2.5 [scrollbar-width:none] sm:px-6 lg:mt-3 lg:flex-col lg:gap-0.5 lg:overflow-visible lg:p-0">
         {brand.lines.map((l) => (
           <li class="shrink-0">
-            <a href={`#${l.id}`} class="block rounded-md px-3 py-1.5 text-sm whitespace-nowrap text-muted-foreground transition-colors duration-150 hover:text-foreground aria-[current=location]:bg-accent aria-[current=location]:text-accent-foreground lg:whitespace-normal">{l.name}</a>
+            <a href={`#${l.id}`} class="block rounded-full px-3.5 py-2 text-sm whitespace-nowrap text-muted-foreground transition-colors duration-150 hover:text-foreground aria-[current=location]:bg-accent aria-[current=location]:text-accent-foreground lg:rounded-xl lg:whitespace-normal">{l.name}</a>
           </li>
         ))}
       </ul>
@@ -68,7 +72,7 @@ const phone = business.phones[0];
   </div>
 
   <section class="border-t bg-muted" aria-labelledby="more-brands">
-    <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+    <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <h2 id="more-brands" class="text-lg font-semibold">Other brands at Market Movers</h2>
       <ul class="mt-5 flex flex-wrap gap-2">
         {others.map((b) => (

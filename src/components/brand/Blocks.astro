@@ -37,7 +37,7 @@ const cell = (c: Cell) => (typeof c === "string" ? { v: c, span: 1 } : c);
         return (
           <ul class="flex flex-wrap gap-2" aria-label={b.kind === "features" ? "Features" : "Items"}>
             {b.items.map((i) => (
-              <li class:list={["rounded-md border px-2.5 py-1 text-sm", b.kind === "features" ? "bg-accent/60 border-transparent text-accent-foreground" : "bg-card"]}>{i}</li>
+              <li class:list={["rounded-full border px-3 py-1 text-sm", b.kind === "features" ? "bg-accent/60 border-transparent text-accent-foreground" : "bg-card"]}>{i}</li>
             ))}
           </ul>
         );
@@ -45,7 +45,7 @@ const cell = (c: Cell) => (typeof c === "string" ? { v: c, span: 1 } : c);
         return (
           <figure>
             {b.label && <figcaption class="mb-2 text-sm font-medium">{b.label}</figcaption>}
-            <div class="overflow-x-auto rounded-md border bg-card" tabindex="0" role="region" aria-label={b.label ?? "Table"}>
+            <div class="overflow-x-auto rounded-xl border bg-card" tabindex="0" role="region" aria-label={b.label ?? "Table"}>
               <table class="w-full text-left text-sm tabular-nums">
                 {b.header && (
                   <thead class="bg-muted text-muted-foreground">
@@ -69,7 +69,7 @@ const cell = (c: Cell) => (typeof c === "string" ? { v: c, span: 1 } : c);
         return (
           <dl class="grid gap-x-6 gap-y-3 sm:grid-cols-2 lg:grid-cols-3">
             {b.items.map((s) => (
-              <div class="rounded-md border bg-card px-3 py-2.5">
+              <div class="rounded-xl border bg-card px-3.5 py-3">
                 <dt class="font-medium">{s.name}</dt>
                 <dd class="text-sm text-muted-foreground">{s.text}</dd>
               </div>

@@ -16,12 +16,12 @@ const heading = overview?.blocks.find((b) => b.type === "heading");
 const title = heading?.text ?? `${brand.name} ${line.name}`;
 ---
 <section id={line.id} class="scroll-mt-32 border-t py-12 first:border-t-0 first:pt-0 lg:scroll-mt-24" aria-labelledby={`${line.id}-title`}>
-  <p class="text-sm text-muted-foreground">{line.series}{line.tag && ` · ${line.tag}`}</p>
-  <h2 id={`${line.id}-title`} class="mt-1 text-2xl font-semibold">{title}</h2>
+  <p class="font-mono text-[13px] text-muted-foreground">{line.series}{line.tag && ` · ${line.tag}`}</p>
+  <h2 id={`${line.id}-title`} class="mt-1.5 text-[clamp(1.5rem,2.6vw,2rem)] leading-tight font-semibold">{title}</h2>
 
   <div class:list={["mt-6 grid gap-8", image && "md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]"]}>
     {image && (
-      <div class="aspect-[4/3] overflow-hidden rounded-lg border bg-white">
+      <div class="aspect-[4/3] overflow-hidden rounded-2xl border bg-white">
         <img
           src={image.src}
           alt={image.alt}
