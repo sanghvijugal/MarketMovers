@@ -4,7 +4,7 @@ import { twMerge } from "tailwind-merge";
 // Shared by button.tsx (React islands) and plain .astro markup, so links
 // that look like buttons don't need React.
 const variants = cva(
-  "inline-flex shrink-0 cursor-pointer items-center justify-center gap-2 rounded-[var(--radius)] text-sm font-semibold whitespace-nowrap select-none transition-[background-color,border-color,color,transform] duration-150 ease-out outline-none focus-visible:ring-3 focus-visible:ring-ring/35 active:scale-[0.97] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-[18px]",
+  "inline-flex shrink-0 cursor-pointer items-center justify-center gap-2 rounded-full text-sm font-medium whitespace-nowrap select-none transition-[background-color,border-color,color,transform] duration-150 ease-out outline-none focus-visible:ring-3 focus-visible:ring-ring/35 active:scale-[0.97] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-[18px]",
   {
     variants: {
       variant: {

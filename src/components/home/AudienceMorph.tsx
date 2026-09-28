@@ -13,7 +13,7 @@ export default function AudienceMorph() {
     return () => window.clearInterval(id);
   }, []);
   return (
-    <TextMorph as="span" className="text-brass italic" ease={{ stiffness: 220, damping: 26 }}>
+    <TextMorph as="span" className="text-teal" ease={{ stiffness: 220, damping: 26 }}>
       {WHO[i]}
     </TextMorph>
   );

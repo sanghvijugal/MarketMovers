@@ -5,47 +5,46 @@ import EnquiryForm from "@/components/EnquiryForm";
 import SizeRings from "@/components/home/SizeRings";
 import AudienceMorph from "@/components/home/AudienceMorph";
 import Stats from "@/components/home/Stats";
+import BrandSentence from "@/components/home/BrandSentence";
 import Globe from "@/components/home/Globe";
 import { buttonVariants } from "@/components/ui/button-variants";
 import { business, brands, categories, whatsappUrl } from "@/data/site";
 import { brandPages } from "@/data/brands";
 import { homeSchema } from "@/lib/schema";
-import { ArrowRight01Icon, Call02Icon, WhatsappIcon } from "@hugeicons/core-free-icons";
+import { ArrowRight01Icon, WhatsappIcon } from "@hugeicons/core-free-icons";
 
 const phone = business.phones[0];
 const a = business.address;
 const slugFor = (name: string) => brands.find((b) => b.name === name)?.slug;
-const others = brands.filter((b) => !b.slug);
 
-const brandRows: Record<string, { from: string; stock: string }> = {
+const brandInfo: Record<string, { from: string; stock: string }> = {
   finolex: { from: "Pune", stock: "Agriculture, casing, column, CPVC, ASTM, SWR and sewerage pipes, solvent cement" },
   dutron: { from: "Ahmedabad", stock: "CPVC, uPVC, agriculture, SWR, casing and HDPE pipes, suction and garden hose" },
   texmo: { from: "Burhanpur, MP", stock: "CPVC to HDPE coils, drip and sprinkler systems, gas pipes, water tanks" },
   waterflo: { from: "Rajkot", stock: "CPVC, uPVC, push-fit SWR, agriculture and borewell pipes, HDPE" },
-  johnson: { from: "Baddi & Samba", stock: "Taps, sanitaryware, showers, kitchen sinks, bathtubs, bathroom accessories" },
+  johnson: { from: "Baddi and Samba", stock: "Taps, sanitaryware, showers, kitchen sinks, bathtubs, bathroom accessories" },
 };
-const featured = brands
-  .filter((b) => b.slug)
-  .map((b) => ({ ...b, lines: brandPages.find((p) => p.slug === b.slug)!.lines.length, row: brandRows[b.slug!] }));
-const totalLines = featured.reduce((n, b) => n + b.lines, 0);
+const sentence = brands.map((b) =>
+  b.slug
+    ? { name: b.name, slug: b.slug, lines: brandPages.find((p) => p.slug === b.slug)!.lines.length, ...brandInfo[b.slug] }
+    : { name: b.name },
+);
+const totalLines = sentence.reduce((n, b) => n + ("lines" in b ? b.lines : 0), 0);
 
 const stats = [
   { value: 1500, suffix: "+", label: "products in stock at the godown" },
   { value: brands.length, label: "brands on our shelves" },
-  { value: totalLines, label: "product lines with full specifications on this site" },
-  { value: categories.length, label: "product families, from house plumbing to 400 mm mains" },
+  { value: totalLines, label: "product lines with full specifications online" },
+  { value: categories.length, label: "product families, house plumbing to 400 mm mains" },
 ];
 
-const steps = [
-  { title: "Send your list", text: "On WhatsApp. Sizes and quantities are enough; a photo of a handwritten list is fine." },
-  { title: "Get rates and stock", text: "We reply with distributor rates and what's on the shelf, usually the same day." },
-  { title: "Collect or receive", text: "Pick it up from the shop, or we send it across Jabalpur and nearby districts." },
-];
+const ordering =
+  "Send your list on WhatsApp. Sizes and quantities are enough, and a photo of a handwritten list is fine. We reply with rates and what's on the shelf, usually the same day. Then pick it up from the shop, or we send it across Jabalpur and nearby districts.";
 
-const wrap = "mx-auto max-w-7xl px-4 sm:px-6 lg:px-8";
-const eyebrow = "text-xs font-semibold tracking-[0.16em] uppercase";
-const h2 = "font-display text-[clamp(2.5rem,5.5vw,4.75rem)] leading-[0.98] tracking-[-0.01em]";
-const hindi = "font-hindi text-lg";
+const wrap = "mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-14";
+const label = "text-[13px] text-muted-foreground";
+const h2 = "text-[clamp(2.25rem,4.6vw,4.25rem)] leading-[0.98] font-semibold tracking-[-0.045em]";
+const link = "sweep inline-flex items-center gap-1.5 font-medium";
 ---
 <Base
   title="Pipes & Sanitary Distributor in Jabalpur, MP | Market Movers"
@@ -54,199 +53,143 @@ const hindi = "font-hindi text-lg";
   jsonLd={homeSchema()}>
 
   <!-- Hero -->
-  <section class="bg-inverse text-inverse-foreground">
-    <div class:list={[wrap, "grid items-center gap-12 pt-12 pb-16 lg:grid-cols-[1.15fr_1fr] lg:gap-10 lg:pt-20 lg:pb-24"]}>
-      <div>
-        <p class:list={[eyebrow, "text-brass"]}>Wholesale distributor · Marhatal, Jabalpur</p>
-        <h1 class="mt-6 font-display text-[clamp(3.25rem,8vw,7rem)] leading-[0.92] tracking-[-0.02em]">
-          Pipes, fittings &amp; sanitaryware, <em class="text-brass">in stock.</em>
-        </h1>
-        <p class="mt-7 max-w-xl text-lg text-inverse-foreground/85 sm:text-xl">
-          Stocked for <AudienceMorph client:load /> across Madhya Pradesh.
-        </p>
-        <p lang="hi" class="mt-2 font-hindi text-xl text-inverse-muted">पाइप, फिटिंग और सैनिटरी का सामान, थोक में</p>
-        <div class="mt-10 flex flex-col gap-3 sm:flex-row">
-          <a href={whatsappUrl("Hello Market Movers, here is my list:")} target="_blank" rel="noopener" class={buttonVariants({ size: "lg", class: "bg-brass text-inverse hover:bg-brass/90" })}>
+  <section class:list={[wrap, "grid gap-14 pt-8 pb-24 lg:min-h-[calc(100dvh-76px)] lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)] lg:items-end lg:gap-16 lg:pb-16"]}>
+    <div class="flex flex-col">
+      <p class={label}>Wholesale distributor — Marhatal, Jabalpur</p>
+      <h1 class="mt-7 text-[clamp(4rem,11.6vw,10.5rem)] leading-[0.86] font-semibold tracking-[-0.058em]">
+        Pipes.<br />Fittings.<br />Sanitary&shy;ware.
+      </h1>
+      <div class="mt-12 flex flex-col gap-8 xl:flex-row xl:items-end xl:justify-between">
+        <div class="max-w-lg">
+          <p class="text-[clamp(1.125rem,1.5vw,1.3rem)] leading-snug tracking-[-0.01em]">
+            Ten brands in stock at our counter in Marhatal, for <AudienceMorph client:load />. Send your list on
+            WhatsApp and we'll reply with rates the same day.
+          </p>
+          <p lang="hi" class="mt-3 font-hindi text-lg text-muted-foreground">पाइप, फिटिंग और सैनिटरी का सामान, थोक में</p>
+        </div>
+        <div class="flex shrink-0 items-center gap-6">
+          <a href={whatsappUrl("Hello Market Movers, here is my list:")} target="_blank" rel="noopener" class={buttonVariants({ size: "lg" })}>
             <Icon icon={WhatsappIcon} />WhatsApp your list
           </a>
-          <a href={`tel:${phone.tel}`} class={buttonVariants({ size: "lg", variant: "outline", class: "border-brass-soft bg-transparent text-inverse-foreground hover:bg-white/5" })}>
-            <Icon icon={Call02Icon} /><span class="tabular-nums">Call {phone.display}</span>
-          </a>
+          <a href={`tel:${phone.tel}`} class:list={[link, "hidden whitespace-nowrap tabular-nums sm:inline-flex"]}>Call {phone.display}</a>
         </div>
       </div>
-      <SizeRings client:load />
     </div>
+    <SizeRings client:load />
   </section>
 
-  <!-- Brand marquee -->
-  <section aria-label="Brands we stock" class="marquee overflow-hidden border-y border-brass-soft bg-inverse-2 py-6 text-inverse-foreground">
-    <div class="marquee-track">
-      {[0, 1].map((copy) => (
-        <ul class="flex shrink-0 items-center" aria-hidden={copy === 1 ? "true" : undefined}>
-          {brands.map((b) => (
-            <li class="flex items-center font-display text-[clamp(2rem,4vw,3.25rem)] leading-none whitespace-nowrap">
-              <span class="px-8 sm:px-10">{b.name}</span>
-              <span class="size-2 rotate-45 bg-brass" aria-hidden="true"></span>
-            </li>
-          ))}
-        </ul>
-      ))}
-    </div>
-  </section>
-
-  <!-- Numbers -->
-  <section class="bg-inverse text-inverse-foreground">
-    <div class:list={[wrap, "py-20 md:py-28"]}>
-      <p class:list={[eyebrow, "text-brass"]}>The godown</p>
-      <h2 class:list={[h2, "mt-4 max-w-3xl"]} data-reveal>Ready stock, so your site never waits on a factory.</h2>
-      <div class="mt-14">
-        <Stats client:visible stats={stats} />
-      </div>
+  <!-- Figures -->
+  <section class:list={[wrap, "rule-top py-24 md:py-32"]}>
+    <p class={label}>01 — The godown</p>
+    <h2 class:list={[h2, "mt-6 max-w-4xl"]} data-reveal>Ready stock, so your site never waits on a factory.</h2>
+    <div class="mt-16">
+      <Stats client:visible stats={stats} />
     </div>
   </section>
 
   <!-- Brands -->
-  <section id="brands" class="bg-background">
-    <div class:list={[wrap, "py-20 md:py-28"]}>
-      <div class="flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <p class:list={[eyebrow, "text-primary"]}>Brands</p>
-          <h2 class:list={[h2, "mt-4"]} data-reveal>On our shelves</h2>
-        </div>
-        <p lang="hi" class:list={[hindi, "text-muted-foreground"]}>हमारे ब्रांड</p>
-      </div>
-      <ul class="mt-12 border-t border-rule">
-        {featured.map((b) => (
-          <li>
-            <a href={`/${b.slug}.html`} class="sweep group grid gap-x-10 gap-y-2 border-b border-border py-7 text-foreground md:grid-cols-[minmax(0,1.1fr)_minmax(0,1.4fr)_11rem] md:items-center">
-              <span class="font-display text-[clamp(2.5rem,5vw,4rem)] leading-none transition-colors duration-200 group-hover:text-primary">{b.name}</span>
-              <span class="text-muted-foreground"><span class="font-medium text-foreground">{b.row.from}.</span> {b.row.stock}</span>
-              <span class="inline-flex items-center gap-2 font-medium whitespace-nowrap text-primary md:justify-self-end">
-                {b.lines} product lines<Icon icon={ArrowRight01Icon} size={18} class="sweep-arrow" />
-              </span>
-            </a>
-          </li>
-        ))}
-        <li>
-          <a href={whatsappUrl(`Hello Market Movers, I'd like rates for ${others.map((b) => b.name).join(" / ")}.`)} target="_blank" rel="noopener" class="sweep group grid gap-x-10 gap-y-2 border-b border-border py-7 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1.4fr)_11rem] md:items-center">
-            <span class="font-display text-[clamp(1.75rem,3.4vw,2.75rem)] leading-tight transition-colors duration-200 group-hover:text-primary">{others.map((b) => b.name).join(", ")}</span>
-            <span class="text-muted-foreground">Also in stock. Catalogues aren't online yet; ask us for sizes and rates.</span>
-            <span class="inline-flex items-center gap-2 font-medium whitespace-nowrap text-primary md:justify-self-end">
-              Ask on WhatsApp<Icon icon={ArrowRight01Icon} size={18} class="sweep-arrow" />
-            </span>
-          </a>
+  <section id="brands" class:list={[wrap, "rule-top py-24 md:py-32"]}>
+    <div class="mb-12 flex items-baseline justify-between gap-6">
+      <p class={label}>02 — Brands</p>
+      <p lang="hi" class="font-hindi text-muted-foreground">हमारे ब्रांड</p>
+    </div>
+    <BrandSentence
+      client:visible
+      brands={sentence}
+      askHref={whatsappUrl(`Hello Market Movers, I'd like rates for ${brands.filter((b) => !b.slug).map((b) => b.name).join(" / ")}.`)}
+    />
+  </section>
+
+  <!-- Products -->
+  <section id="products" class:list={[wrap, "rule-top py-24 md:py-32"]}>
+    <div class="flex items-baseline justify-between gap-6">
+      <p class={label}>03 — Products</p>
+      <p lang="hi" class="font-hindi text-muted-foreground">हमारे पास क्या मिलता है</p>
+    </div>
+    <h2 class:list={[h2, "mt-6"]} data-reveal>What we stock</h2>
+    <ol class="mt-14 border-b border-border">
+      {categories.map((c, i) => (
+        <li class="sweep grid gap-x-10 gap-y-3 border-t border-border py-8 md:grid-cols-[3rem_minmax(0,1.15fr)_minmax(0,1fr)] md:items-baseline">
+          <span class="text-[13px] text-muted-foreground tabular-nums">{String(i + 1).padStart(2, "0")}</span>
+          <h3 class="nudge text-[clamp(1.875rem,3.6vw,3.25rem)] leading-none font-semibold tracking-[-0.045em]">{c.name}</h3>
+          <div class="text-[15px] leading-relaxed">
+            <p class="text-muted-foreground">{c.text}</p>
+            <p class="mt-2">
+              {c.brands.length === 0 ? (
+                "All brands"
+              ) : (
+                c.brands.map((name, j) => {
+                  const slug = slugFor(name);
+                  return (
+                    <>
+                      {j > 0 && ", "}
+                      {slug ? <a href={`/${slug}.html`} class="text-teal underline decoration-teal/30 underline-offset-4 hover:decoration-teal">{name}</a> : name}
+                    </>
+                  );
+                })
+              )}
+            </p>
+          </div>
         </li>
-      </ul>
-    </div>
+      ))}
+    </ol>
+    <p class="mt-10 text-lg">
+      Something else? <a href={whatsappUrl("Hello Market Movers, do you have ")} target="_blank" rel="noopener" class:list={[link, "text-teal"]}>Ask us on WhatsApp</a>
+    </p>
   </section>
 
-  <!-- What we stock -->
-  <section id="products" class="bg-inverse-2 text-inverse-foreground">
-    <div class:list={[wrap, "py-20 md:py-28"]}>
-      <div class="flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <p class:list={[eyebrow, "text-brass"]}>Products</p>
-          <h2 class:list={[h2, "mt-4"]} data-reveal>What we stock</h2>
-        </div>
-        <p lang="hi" class:list={[hindi, "text-inverse-muted"]}>हमारे पास क्या मिलता है</p>
+  <!-- Ordering -->
+  <section id="order" class="bg-card">
+    <div class:list={[wrap, "py-24 md:py-40"]}>
+      <div class="flex items-baseline justify-between gap-6">
+        <p class={label}>04 — Ordering</p>
+        <p lang="hi" class="font-hindi text-muted-foreground">ऑर्डर कैसे करें</p>
       </div>
-      <ol class="mt-12 grid border-t border-brass-soft md:grid-cols-2 md:gap-x-16">
-        {categories.map((c, i) => (
-          <li class="grid grid-cols-[3rem_1fr] border-b border-brass-soft py-7">
-            <span class="pt-2 text-sm font-medium text-brass tabular-nums">{String(i + 1).padStart(2, "0")}</span>
-            <div>
-              <h3 class="font-display text-[clamp(1.75rem,3vw,2.25rem)] leading-tight">{c.name}</h3>
-              <p class="mt-2 text-inverse-muted">{c.text}</p>
-              <p class="mt-3 text-[15px]">
-                {c.brands.length === 0 ? (
-                  <span>All brands</span>
-                ) : (
-                  c.brands.map((name, j) => {
-                    const slug = slugFor(name);
-                    return (
-                      <>
-                        {j > 0 && <span class="text-inverse-muted">, </span>}
-                        {slug ? <a href={`/${slug}.html`} class="underline decoration-brass/50 underline-offset-4 transition-colors duration-150 hover:text-brass hover:decoration-brass">{name}</a> : <span>{name}</span>}
-                      </>
-                    );
-                  })
-                )}
-              </p>
-            </div>
-          </li>
-        ))}
-      </ol>
-    </div>
-  </section>
-
-  <!-- How to order -->
-  <section id="order" class="bg-background">
-    <div class:list={[wrap, "py-20 md:py-28"]}>
-      <div class="flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <p class:list={[eyebrow, "text-primary"]}>Ordering</p>
-          <h2 class:list={[h2, "mt-4"]} data-reveal>One message is enough</h2>
-        </div>
-        <p lang="hi" class:list={[hindi, "text-muted-foreground"]}>ऑर्डर कैसे करें</p>
-      </div>
-      <div class="relative mt-14">
-        <div class="draw-line absolute top-[1.9rem] right-0 left-0 hidden h-px bg-rule md:block" aria-hidden="true"></div>
-        <ol class="grid gap-10 md:grid-cols-3 md:gap-12">
-          {steps.map((s, i) => (
-            <li class="relative">
-              <span class="relative inline-grid size-[3.8rem] place-items-center rounded-full border border-rule bg-background font-display text-3xl text-primary" aria-hidden="true">{i + 1}</span>
-              <h3 class="mt-6 font-display text-3xl leading-tight">{s.title}</h3>
-              <p class="mt-2 max-w-sm text-lg text-muted-foreground">{s.text}</p>
-            </li>
-          ))}
-        </ol>
-      </div>
-      <a href={whatsappUrl("Hello Market Movers, here is my list:")} target="_blank" rel="noopener" class={buttonVariants({ size: "lg", class: "mt-12" })}>
-        <Icon icon={WhatsappIcon} />Send your list on WhatsApp
+      <p class="read-words mt-10 max-w-6xl text-[clamp(1.875rem,4.4vw,4rem)] leading-[1.08] font-medium tracking-[-0.04em]">
+        {ordering.split(" ").map((w) => <span>{w} </span>)}
+      </p>
+      <a href={whatsappUrl("Hello Market Movers, here is my list:")} target="_blank" rel="noopener" class={buttonVariants({ size: "lg", class: "mt-14" })}>
+        <Icon icon={WhatsappIcon} />Send your list
       </a>
     </div>
   </section>
 
   <!-- Visit -->
-  <section id="contact" class="bg-inverse text-inverse-foreground">
-    <div class:list={[wrap, "grid items-center gap-12 py-20 md:py-28 lg:grid-cols-[1.1fr_1fr]"]}>
-      <div>
-        <p class:list={[eyebrow, "text-brass"]}>The shop</p>
-        <h2 class:list={[h2, "mt-4"]} data-reveal>In the heart of India</h2>
-        <p lang="hi" class:list={[hindi, "mt-3 text-inverse-muted"]}>दुकान पर आइए</p>
-        <address class="mt-10 font-display text-[clamp(1.75rem,3vw,2.5rem)] leading-tight not-italic">
-          {a.street}<br />{a.city}, {a.region} {a.postalCode}
-        </address>
-        <dl class="mt-8 border-t border-brass-soft">
-          <div class="grid grid-cols-[7rem_1fr] gap-4 border-b border-brass-soft py-3.5">
-            <dt class="text-xs font-semibold tracking-[0.14em] text-brass uppercase">Hours</dt>
-            <dd>{business.hours.days}, {business.hours.display}<br /><span class="text-inverse-muted">Sunday closed</span></dd>
-          </div>
-          <div class="grid grid-cols-[7rem_1fr] gap-4 border-b border-brass-soft py-3.5">
-            <dt class="text-xs font-semibold tracking-[0.14em] text-brass uppercase">Phone</dt>
-            <dd class="tabular-nums">{business.phones.map((p) => <a href={`tel:${p.tel}`} class="block transition-colors duration-150 hover:text-brass">{p.display}</a>)}</dd>
-          </div>
-        </dl>
-        <a href={business.mapUrl} target="_blank" rel="noopener" class={buttonVariants({ size: "lg", variant: "outline", class: "mt-8 border-brass-soft bg-transparent text-inverse-foreground hover:bg-white/5" })}>
-          Open in Google Maps<Icon icon={ArrowRight01Icon} size={18} />
-        </a>
+  <section id="contact" class:list={[wrap, "grid items-center gap-14 py-24 md:py-32 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]"]}>
+    <div>
+      <div class="flex items-baseline justify-between gap-6 lg:justify-start lg:gap-10">
+        <p class={label}>05 — Visit</p>
+        <p lang="hi" class="font-hindi text-muted-foreground">दुकान पर आइए</p>
       </div>
-      <div class="mx-auto w-full max-w-[520px]">
-        <Globe client:visible />
-        <p class="mt-2 text-center text-sm text-inverse-muted">Jabalpur, with Katni, Mandla, Narsinghpur, Seoni and Damoh. Drag to spin.</p>
+      <h2 class="mt-6 text-[clamp(2.75rem,6.4vw,6rem)] leading-[0.92] font-semibold tracking-[-0.055em]" data-reveal>
+        {a.street}, {a.city}.
+      </h2>
+      <div class="mt-10 space-y-2 text-lg">
+        <p>{business.hours.days}, {business.hours.display}. <span class="text-muted-foreground">Sunday closed.</span></p>
+        <p class="tabular-nums">
+          {business.phones.map((p, i) => (
+            <>{i > 0 && <span class="text-muted-foreground"> · </span>}<a href={`tel:${p.tel}`} class="hover:text-teal">{p.display}</a></>
+          ))}
+        </p>
       </div>
+      <div class="mt-8 flex flex-wrap gap-x-8 gap-y-3">
+        <a href={business.mapUrl} target="_blank" rel="noopener" class:list={[link, "text-teal"]}>Open in Google Maps<Icon icon={ArrowRight01Icon} size={16} class="sweep-arrow" /></a>
+        <a href={whatsappUrl()} target="_blank" rel="noopener" class:list={[link, "text-teal"]}>WhatsApp {phone.display}<Icon icon={ArrowRight01Icon} size={16} class="sweep-arrow" /></a>
+      </div>
+    </div>
+    <div class="mx-auto w-full max-w-[520px]">
+      <Globe client:visible />
+      <p class="mt-2 text-center text-[13px] text-muted-foreground">Jabalpur and nearby districts. Drag to spin.</p>
     </div>
   </section>
 
   <!-- Enquiry -->
-  <section class="bg-background">
-    <div class="mx-auto max-w-3xl px-4 py-20 sm:px-6 md:py-28">
-      <p class:list={[eyebrow, "text-center text-primary"]}>Enquiry</p>
-      <h2 class:list={[h2, "mt-4 text-center"]} data-reveal>Tell us what you need</h2>
-      <p class="mx-auto mt-4 max-w-lg text-center text-lg text-muted-foreground">Fill this in and it opens WhatsApp with your message ready to send. Nothing is stored on this site.</p>
-      <div class="mt-12 rounded-lg border border-border bg-card p-6 shadow-[0_24px_60px_-30px_rgb(10_31_33/0.35)] sm:p-10">
-        <EnquiryForm client:idle whatsapp={business.whatsapp} categories={categories.map((c) => c.name)} />
-      </div>
+  <section class:list={[wrap, "rule-top grid gap-12 py-24 md:py-32 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-20"]}>
+    <div>
+      <p class={label}>06 — Enquiry</p>
+      <h2 class:list={[h2, "mt-6"]} data-reveal>Tell us what you need.</h2>
+      <p class="mt-5 max-w-md text-lg text-muted-foreground">Fill this in and it opens WhatsApp with your message ready to send. Nothing is stored on this site.</p>
     </div>
+    <EnquiryForm client:idle whatsapp={business.whatsapp} categories={categories.map((c) => c.name)} />
   </section>
 </Base>

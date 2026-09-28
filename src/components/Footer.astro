@@ -1,33 +1,30 @@
 ---
-import Logo from "./Logo.astro";
 import { business, brands, whatsappUrl } from "@/data/site";
 const year = new Date().getFullYear();
 const a = business.address;
-const link = "transition-colors duration-150 hover:text-brass";
+const link = "transition-colors duration-150 hover:text-inverse-foreground";
 ---
-<footer class="border-t border-brass-soft bg-inverse text-inverse-foreground">
-  <div class="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 md:grid-cols-[1.4fr_1fr_1fr] lg:px-8">
-    <div class="space-y-4">
-      <Logo />
-      <p class="max-w-xs text-sm text-inverse-muted">
-        Wholesale distributor of pipes, fittings and sanitaryware in Jabalpur, Madhya Pradesh.
-      </p>
-    </div>
+<footer class="overflow-hidden bg-inverse text-inverse-foreground">
+  <div class="mx-auto grid max-w-[88rem] gap-10 px-5 pt-20 sm:px-8 md:grid-cols-[1.4fr_1fr_1fr] lg:px-14">
+    <p class="max-w-sm text-[15px] leading-relaxed text-inverse-muted">
+      Wholesale distributor of pipes, fittings and sanitaryware in Jabalpur, Madhya Pradesh.
+      <span lang="hi" class="mt-2 block font-hindi">पाइप, फिटिंग और सैनिटरी का सामान</span>
+    </p>
     <div>
-      <h2 class="text-xs font-semibold tracking-[0.14em] text-brass uppercase">Brand catalogues</h2>
-      <ul class="mt-4 space-y-2 text-sm text-inverse-muted">
+      <h2 class="text-[13px] text-inverse-muted">Catalogues</h2>
+      <ul class="mt-4 space-y-2 text-[15px] text-inverse-muted">
         {brands.filter((b) => b.slug).map((b) => (
           <li><a href={`/${b.slug}.html`} class={link}>{b.name}</a></li>
         ))}
       </ul>
     </div>
     <div>
-      <h2 class="text-xs font-semibold tracking-[0.14em] text-brass uppercase">Visit or call</h2>
-      <address class="mt-4 space-y-2 text-sm text-inverse-muted not-italic">
+      <h2 class="text-[13px] text-inverse-muted">Visit or call</h2>
+      <address class="mt-4 space-y-2 text-[15px] text-inverse-muted not-italic">
         <p>{a.street}<br />{a.city}, {a.region} {a.postalCode}</p>
         <p class="flex flex-col items-start">
           {business.phones.map((p) => (
-            <a href={`tel:${p.tel}`} class={`py-1 tabular-nums ${link}`}>{p.display}</a>
+            <a href={`tel:${p.tel}`} class={`py-0.5 tabular-nums ${link}`}>{p.display}</a>
           ))}
         </p>
         <p><a href={whatsappUrl()} target="_blank" rel="noopener" class={link}>WhatsApp</a> · <a href={business.mapUrl} target="_blank" rel="noopener" class={link}>Google Maps</a></p>
@@ -35,7 +32,8 @@ const link = "transition-colors duration-150 hover:text-brass";
       </address>
     </div>
   </div>
-  <div class="border-t border-brass-soft">
-    <p class="mx-auto max-w-7xl px-4 py-5 text-xs text-inverse-muted sm:px-6 lg:px-8">© {year} Market Movers, Jabalpur</p>
-  </div>
+  <p aria-hidden="true" class="mt-16 px-3 text-center text-[clamp(3.5rem,15.2vw,15rem)] leading-[0.8] font-semibold tracking-[-0.06em] whitespace-nowrap">
+    Market Movers
+  </p>
+  <p class="mx-auto max-w-[88rem] px-5 py-6 text-xs text-inverse-muted sm:px-8 lg:px-14">© {year} Market Movers, Jabalpur</p>
 </footer>

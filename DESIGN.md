@@ -5,56 +5,52 @@ distributor: calm, dense with real information, quick to act on (call / WhatsApp
 
 ## Principles
 
-- **Night showroom.** Luxurious but honest: deep teal-black sections with ivory serif type and
-  brass hairlines, alternating with ivory "paper" sections for dense reading (brands, spec pages,
-  the form). It should impress a builder the way a good showroom does.
-- **No fake photos.** Only real photos of the shop, stock and people. Until they exist, type,
-  line art built from real data (the pipe-size rings) and motion carry the page. Never renders,
-  stock photos or illustrations.
-- **Real things, not SaaS parts.** No icon tiles, chips, card grids or testimonial bubbles.
-  Lists and rows separated by hairlines; big serif names; numbers from real data.
-- **Plain words, some Hindi.** Headings are confident but concrete; each section carries a short
-  Hindi line (`lang="hi"`, Tiro Devanagari Hindi).
-- **Phones first.** Buttons 44–52px, Call / WhatsApp bar pinned to the bottom on phones, 16px
+- **Precision.** In the spirit of design-led sites like Vitsoe, Teenage Engineering and Apple
+  product pages: one idea per screen, one typeface (Geist) set very large or very small, lots of
+  space, black ink on warm off-white. It should look engineered and expensive.
+- **No boxes.** No cards, chips, tiles, badges or grids of information. Separate things with
+  space and the odd hairline; let big type carry hierarchy. Lists are rows or sentences.
+- **No fake photos.** Only real photos of the shop, stock and people. Until then, type, the
+  pipe-size rings (real IS 4985 sizes) and motion do the work.
+- **Teal is rare.** Links, the active pipe dimension and a status dot. Buttons are black pills.
+- **Plain words, some Hindi.** Each section carries a short Hindi line (Tiro Devanagari Hindi).
+- **Phones first.** 44–52px buttons, a Call / WhatsApp bar pinned to the bottom on phones, 16px
   form text so iOS doesn't zoom.
 
 ## Tokens (`src/styles/global.css`)
 
 | Token | Use |
 |---|---|
-| `inverse` / `inverse-2` | teal-black showroom sections `#0a1f21` / `#0f2a2d`, header, footer |
-| `inverse-foreground` / `inverse-muted` | ivory type / muted type on dark |
-| `brass` / `brass-soft` | action colour and accents on dark (`#c9a45c`) / hairlines on dark |
-| `background` / `foreground` | ivory paper `#f4f0e8` / ink `#141312` |
-| `card` / `muted` / `border` / `rule` | paper surfaces and hairlines |
-| `primary` | teal `#0b5d63`: action colour and links on paper |
-
-Radius 6px (buttons, inputs, boxes). No gradients.
+| `background` / `foreground` | warm off-white `#f1f0ec` / ink `#111111` |
+| `card` | slightly lighter band for the ordering section |
+| `muted-foreground` / `faint` | secondary text `#6b6a64` / faded words (brand sentence, taglines) `#bdbbb4` |
+| `border` | hairlines (`.rule-top` draws a section hairline inside the page gutters) |
+| `primary` | black: buttons |
+| `teal` | `#0b5d63`: links, active detail, status dot |
+| `inverse*` | black footer with the full-width wordmark |
 
 ## Type
 
-- **Instrument Serif** (regular and italic) for display: headings, brand names, numbers,
-  the wordmark. Italic brass for one emphasised phrase per heading at most.
-- **IBM Plex Sans** for reading; **Tiro Devanagari Hindi** for Hindi lines.
-- Eyebrows: 12px semibold uppercase, 0.16em tracking, brass on dark / teal on paper.
+Geist (variable) for everything. Display sizes use `clamp()` with tight tracking
+(-0.045em to -0.06em) and leading 0.85–1. Section labels: 13px muted, "01 — Brands".
+Hindi: Tiro Devanagari Hindi.
 
 ## Interactive pieces (React islands, `src/components/home/`)
 
 | Piece | Library | Notes |
 |---|---|---|
-| `SizeRings` | NumberFlow, torph | IS 4985 outside diameters 20–400 mm to true scale; pick a size, the wall scales and the readout counts; cycles on its own until someone picks |
-| `AudienceMorph` | torph | "Stocked for builders / contractors / …" word morph |
-| `Stats` | NumberFlow, Motion `useInView` | real figures count up once when first seen |
-| `Globe` | Cobe | turns to Jabalpur and nearby districts; drag to spin; paused off screen |
-
-Library picks follow Emil Kowalski's curated list (`.claude/skills/pick-ui-library`).
+| `SizeRings` | NumberFlow, torph | IS 4985 ODs 20–400 mm to scale; ruler of sizes below; cycles until someone picks |
+| `AudienceMorph` | torph | "…for builders / contractors / …" word morph |
+| `Stats` | NumberFlow, Motion `useInView` | real figures count up once, set as one typographic line |
+| `BrandSentence` | — | all brands as one sentence; hover fades the others and crossfades details on the left |
+| `Globe` | Cobe | light globe turning to Jabalpur; drag to spin; paused off screen |
 
 ## Components
 
-- shadcn/ui (`src/components/ui`): `Button` / `buttonVariants`, `Input`, `Textarea`, `Label`,
-  `NativeSelect`. On dark, buttons are brass; on paper, teal.
-- Icons: Hugeicons stroke icons, only inside buttons and arrow links.
-- `ActionBar.astro`: phone-only Call / Get a quote bar. `Logo.astro`: serif wordmark + Hindi.
+- shadcn/ui (`src/components/ui`): `Button` / `buttonVariants` (black pill), `Input`, `Textarea`,
+  `Label`, `NativeSelect`.
+- Icons: Hugeicons, only inside buttons and arrow links.
+- `ActionBar.astro`: phone Call / Get a quote bar. `Logo.astro`: wordmark + Hindi.
 
 ## Motion (transitions.dev recipes + morphicons)
 
@@ -65,10 +61,10 @@ Library picks follow Emil Kowalski's curated list (`.claude/skills/pick-ui-libra
 | Menu button | morphicons: Hugeicons menu ↔ close morph | spring |
 | Form errors | Error state shake on invalid fields (message stays until fixed) | 280ms |
 | Buttons | press scale 0.97 | 150ms ease-out |
-| Section headings (`data-reveal`) | clip-path wipe up + 12px rise, once | 700ms strong ease-in-out |
-| Brand marquee | continuous slide, pauses on hover | 48s linear |
-| Brand rows, nav links | hairline sweeps in under the row; arrow nudges | 450ms / 250ms ease-out |
-| Ordering steps | connecting line draws with scroll (CSS scroll-driven) | scroll |
+| Headlines (`data-reveal`) | clip-path wipe up, once | 800ms strong ease-in-out |
+| Ordering paragraph (`.read-words`) | words go from 16% to full opacity as it scrolls up (CSS scroll-driven) | scroll |
+| Brand sentence | other names fade to `faint`; details crossfade | 300ms / 280ms ease-out |
+| Product rows, links | row name nudges right; hairline sweeps in | 450ms ease-out |
 | Size rings | rings settle in with 45ms stagger; selected wall scales | 600ms / 520ms ease-out |
 
 Everything above turns off under `prefers-reduced-motion`.

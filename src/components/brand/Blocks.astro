@@ -35,9 +35,9 @@ const cell = (c: Cell) => (typeof c === "string" ? { v: c, span: 1 } : c);
         );
       case "chips":
         return (
-          <ul class="flex flex-wrap gap-2" aria-label={b.kind === "features" ? "Features" : "Items"}>
-            {b.items.map((i) => (
-              <li class:list={["rounded-sm border px-2.5 py-1 text-sm", b.kind === "features" ? "bg-accent/60 border-transparent text-accent-foreground" : "bg-card"]}>{i}</li>
+          <ul class="flex flex-wrap gap-x-2 gap-y-1 text-[15px]" aria-label={b.kind === "features" ? "Features" : "Items"}>
+            {b.items.map((i, n) => (
+              <li class:list={[b.kind === "features" ? "font-medium" : "text-muted-foreground"]}>{i}{n < b.items.length - 1 && <span class="ml-2 text-faint" aria-hidden="true">·</span>}</li>
             ))}
           </ul>
         );

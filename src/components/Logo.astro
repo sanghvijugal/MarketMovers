@@ -1,10 +1,9 @@
 ---
-// Wordmark: serif name with the Hindi name under it. Replace with the real
-// logo when there is one; keep roughly the same height.
+// Wordmark. Replace with the real logo when there is one; keep the height.
 interface Props { class?: string }
 const { class: className } = Astro.props;
 ---
-<span class:list={["inline-flex flex-col leading-none", className]}>
-  <span class="font-display text-[28px] tracking-[-0.01em] sm:text-[30px]">Market Movers</span>
-  <span lang="hi" class="mt-0.5 font-hindi text-[13px] text-brass">मार्केट मूवर्स, जबलपुर</span>
+<span class:list={["inline-flex items-baseline gap-2.5 leading-none", className]}>
+  <span class="text-[18px] font-semibold tracking-[-0.02em]">Market Movers</span>
+  <span lang="hi" class="hidden font-hindi text-[13px] opacity-60 sm:inline">मार्केट मूवर्स</span>
 </span>
