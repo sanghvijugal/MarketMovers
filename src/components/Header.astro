@@ -15,43 +15,43 @@ const nav = [
 const phone = business.phones[0];
 const wa = whatsappUrl("Hello Market Movers, I have an enquiry.");
 ---
-<div class="border-b border-border bg-muted text-[13px] text-muted-foreground">
+<div class="border-b border-brass-soft bg-inverse text-[13px] text-inverse-muted">
   <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-1.5 sm:px-6 lg:px-8">
     <p class="flex items-center gap-2">
-      <span class="size-2 rounded-full bg-primary" data-open-dot aria-hidden="true"></span>
+      <span class="size-2 rounded-full bg-brass" data-open-dot aria-hidden="true"></span>
       <span data-open-status>{business.hours.short}, {business.hours.display}</span>
       <span class="hidden sm:inline">· {business.address.street}, {business.address.city}</span>
     </p>
     <p class="hidden gap-4 tabular-nums md:flex">
-      {business.phones.map((p) => <a href={`tel:${p.tel}`} class="font-medium text-foreground hover:text-primary">{p.display}</a>)}
+      {business.phones.map((p) => <a href={`tel:${p.tel}`} class="font-medium text-inverse-foreground hover:text-brass">{p.display}</a>)}
     </p>
   </div>
 </div>
-<header class="sticky top-0 z-40 border-b-2 border-rule bg-background">
+<header class="sticky top-0 z-40 border-b border-brass-soft bg-inverse/95 text-inverse-foreground backdrop-blur-md">
   <div class="mx-auto flex h-[68px] max-w-7xl items-center justify-between gap-6 px-4 sm:px-6 lg:h-[76px] lg:px-8">
     <a href="/" aria-label="Market Movers home">
       <Logo />
     </a>
 
     <nav aria-label="Main" class="hidden md:block">
-      <ul class="flex items-center gap-7 font-display text-[19px] font-semibold tracking-[0.02em] uppercase">
+      <ul class="flex items-center gap-8 text-[15px]">
         {nav.map((l) => (
           <li>
-            <a href={l.href} class="underline-offset-[6px] decoration-2 hover:text-primary hover:underline">{l.label}</a>
+            <a href={l.href} class="sweep pb-0.5 text-inverse-foreground/85 transition-colors duration-150 hover:text-inverse-foreground">{l.label}</a>
           </li>
         ))}
       </ul>
     </nav>
 
     <div class="flex items-center gap-2">
-      <a href={wa} target="_blank" rel="noopener" class={buttonVariants({ class: "hidden sm:inline-flex" })}>
+      <a href={wa} target="_blank" rel="noopener" class={buttonVariants({ class: "hidden bg-brass text-inverse hover:bg-brass/90 sm:inline-flex" })}>
         <Icon icon={WhatsappIcon} />
         WhatsApp
       </a>
       <button
         type="button"
         id="menu-button"
-        class={buttonVariants({ variant: "ghost", size: "icon", class: "md:hidden" })}
+        class={buttonVariants({ variant: "ghost", size: "icon", class: "text-inverse-foreground hover:bg-white/10 md:hidden" })}
         aria-expanded="false"
         aria-controls="mobile-menu"
         aria-label="Open menu">
@@ -62,21 +62,21 @@ const wa = whatsappUrl("Hello Market Movers, I have an enquiry.");
 
   <div
     id="mobile-menu"
-    class="t-dropdown absolute inset-x-3 top-[calc(100%+0.5rem)] z-50 rounded border border-rule bg-card p-2 shadow-lg md:hidden">
+    class="t-dropdown absolute inset-x-3 top-[calc(100%+0.5rem)] z-50 rounded-lg border border-brass-soft bg-inverse-2 p-2 text-inverse-foreground shadow-2xl md:hidden">
     <nav aria-label="Main (mobile)">
       <ul>
         {nav.map((l) => (
           <li>
-            <a href={l.href} class="flex h-12 items-center rounded px-3 font-display text-xl font-semibold uppercase hover:bg-muted">{l.label}</a>
+            <a href={l.href} class="flex h-12 items-center rounded px-3 font-display text-2xl hover:bg-white/5">{l.label}</a>
           </li>
         ))}
       </ul>
     </nav>
-    <div class="mt-2 grid grid-cols-2 gap-2 border-t p-2 pt-4">
-      <a href={`tel:${phone.tel}`} class={buttonVariants({ variant: "outline", size: "lg" })}>
+    <div class="mt-2 grid grid-cols-2 gap-2 border-t border-brass-soft p-2 pt-4">
+      <a href={`tel:${phone.tel}`} class={buttonVariants({ variant: "outline", size: "lg", class: "border-brass-soft bg-transparent text-inverse-foreground hover:bg-white/5" })}>
         <Icon icon={Call02Icon} />Call
       </a>
-      <a href={wa} target="_blank" rel="noopener" class={buttonVariants({ size: "lg" })}>
+      <a href={wa} target="_blank" rel="noopener" class={buttonVariants({ size: "lg", class: "bg-brass text-inverse hover:bg-brass/90" })}>
         <Icon icon={WhatsappIcon} />WhatsApp
       </a>
     </div>
@@ -142,7 +142,7 @@ const wa = whatsappUrl("Hello Market Movers, I have an enquiry.");
       const opensToday = workday && h < 9;
       const nextDay = opensToday ? "" : day === 6 || day === 0 ? " Monday" : " tomorrow";
       status.textContent = `Closed now, opens 9 am${nextDay}`;
-      dot?.classList.replace("bg-primary", "bg-muted-foreground/50");
+      dot?.classList.replace("bg-brass", "bg-inverse-muted/50");
     }
   }
 </script>

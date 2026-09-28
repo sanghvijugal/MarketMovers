@@ -20,7 +20,8 @@ npm run check    # TypeScript / Astro type check
 - `src/pages/index.astro`: homepage. `src/pages/404.astro`: not-found page.
 - `src/components/`: `Header`, `Footer`, `ActionBar` (phone Call/WhatsApp bar), `Logo`
   (placeholder), `Icon` (Hugeicons → inline SVG), `EnquiryForm.tsx` (React island),
-  `brand/*` (brand page parts), `ui/*` (shadcn components).
+  `brand/*` (brand page parts), `home/*` (homepage React islands: size rings,
+  word morph, count-up stats, globe), `ui/*` (shadcn components).
 - `src/styles/global.css`: design tokens and the transitions.dev recipes. See `DESIGN.md`.
 - `public/`: files served as-is (`robots.txt`, `CNAME`, `assets/` OG image and favicons).
 - `tools/seo.py`: SEO checker that runs on `dist/` after every build.
@@ -50,10 +51,10 @@ npm run check    # TypeScript / Astro type check
 
 Design and UI skills are vendored in `.claude/skills/` (sources in `.claude/skills/SOURCES.md`).
 Read `DESIGN.md` before changing how anything looks.
-- Follow `baseline-ui`: no gradients or glow, one colour (signboard teal `primary`) on ink and
-  paper, `text-balance` on headings, `tabular-nums` for numbers, `h-dvh` not `h-screen`.
-- "Trade counter" style (see DESIGN.md): ruled lists and tables, not cards; no stat tiles, icon
-  grids, chips or fake photos. Only real photos of the business.
+- Follow `baseline-ui`: no gradients or glow, `text-balance` on headings, `tabular-nums` for
+  numbers, `h-dvh` not `h-screen`. Colours: brass on the dark sections, teal on paper.
+- "Night showroom" style (see DESIGN.md): hairline-ruled rows, big serif type, no icon tiles,
+  chips, card grids or fake photos. Only real photos of the business.
 - Use the shadcn components in `src/components/ui/` for form controls and buttons. Use
   `buttonVariants()` for links that look like buttons in `.astro` files.
 - Icons: Hugeicons only (`@hugeicons/core-free-icons`), rendered with `Icon.astro` (or

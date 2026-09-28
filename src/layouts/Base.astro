@@ -21,6 +21,7 @@ const ogImage = `${SITE_URL}/assets/og-image.jpg`;
 <html lang="en-IN">
   <head>
     <meta charset="utf-8" />
+    <script is:inline>document.documentElement.classList.add("js")</script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -28,7 +29,7 @@ const ogImage = `${SITE_URL}/assets/og-image.jpg`;
     {url && <link rel="canonical" href={url} />}
     <link rel="icon" href="/assets/favicon-48.png" sizes="48x48" type="image/png" />
     <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
-    <meta name="theme-color" content="#f8faf9" />
+    <meta name="theme-color" content="#0a1f21" />
     {url && (
       <>
         <meta property="og:type" content="website" />
@@ -54,5 +55,20 @@ const ogImage = `${SITE_URL}/assets/og-image.jpg`;
     </main>
     <Footer />
     <ActionBar />
+    <script>
+      // Headings marked data-reveal wipe into view once, when first seen.
+      const els = document.querySelectorAll<HTMLElement>("[data-reveal]");
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) {
+            if (!e.isIntersecting) continue;
+            (e.target as HTMLElement).dataset.visible = "";
+            io.unobserve(e.target);
+          }
+        },
+        { rootMargin: "0px 0px -12% 0px" },
+      );
+      els.forEach((el) => io.observe(el));
+    </script>
   </body>
 </html>

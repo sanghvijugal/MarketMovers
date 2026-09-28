@@ -1,10 +1,10 @@
 ---
-// Wordmark in the style of a painted shop sign, with the Hindi name under it.
-// Replace with the real logo when there is one; keep roughly the same height.
-interface Props { class?: string; inverse?: boolean }
-const { class: className, inverse = false } = Astro.props;
+// Wordmark: serif name with the Hindi name under it. Replace with the real
+// logo when there is one; keep roughly the same height.
+interface Props { class?: string }
+const { class: className } = Astro.props;
 ---
 <span class:list={["inline-flex flex-col leading-none", className]}>
-  <span class="font-display text-[26px] font-bold tracking-[0.02em] uppercase sm:text-[28px]">Market Movers</span>
-  <span lang="hi" class:list={["mt-0.5 text-[13px] font-semibold", inverse ? "text-background/70" : "text-muted-foreground"]}>मार्केट मूवर्स, जबलपुर</span>
+  <span class="font-display text-[28px] tracking-[-0.01em] sm:text-[30px]">Market Movers</span>
+  <span lang="hi" class="mt-0.5 font-hindi text-[13px] text-brass">मार्केट मूवर्स, जबलपुर</span>
 </span>

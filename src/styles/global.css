@@ -1,43 +1,50 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "@fontsource-variable/ibm-plex-sans";
-@import "@fontsource/barlow-condensed/600.css";
-@import "@fontsource/barlow-condensed/700.css";
+@import "@fontsource/instrument-serif/latin-400.css";
+@import "@fontsource/instrument-serif/latin-400-italic.css";
+@import "@fontsource/tiro-devanagari-hindi/devanagari-400.css";
 /* Devanagari glyphs for future Hindi content; unicode-range means the
    files only download when a page actually contains Hindi text. */
 @import "@fontsource/ibm-plex-sans-devanagari/400.css";
 @import "@fontsource/ibm-plex-sans-devanagari/600.css";
 
 /* ── Design tokens ────────────────────────────────────────────────
-   "Trade counter": printed rate-list paper, black ink, one signboard
-   colour (deep teal) for the sign band, buttons and links. Square-ish
-   corners and ruled lines instead of cards. See DESIGN.md. */
+   "Night showroom": deep teal-black sections with ivory type and brass
+   hairlines, alternating with ivory paper sections. Teal is the action
+   colour on paper; brass is the action colour on dark. See DESIGN.md. */
 :root {
-  --radius: 0.25rem;
+  --radius: 0.375rem;
 
-  --background: #f5f2ea;
-  --foreground: #1a1917;
-  --card: #fffdf8;
+  --background: #f4f0e8;
+  --foreground: #141312;
+  --card: #fbf9f4;
   --card-foreground: var(--foreground);
-  --muted: #ece7dc;
-  --muted-foreground: #5f5a52;
-  --border: #d9d2c4;
-  --input: #b9b1a2;
-  --rule: #1a1917;
+  --muted: #eae4d8;
+  --muted-foreground: #5e584f;
+  --border: #dad2c3;
+  --input: #b8b0a1;
+  --rule: #141312;
 
   --primary: #0b5d63;
   --primary-foreground: #ffffff;
   --secondary: var(--muted);
   --secondary-foreground: var(--foreground);
-  --accent: #dfe9e6;
+  --accent: #e3ebe8;
   --accent-foreground: #083f44;
   --destructive: oklch(0.53 0.2 27);
   --ring: var(--primary);
 
-  /* signboard band and footer */
-  --inverse: #0b5d63;
-  --inverse-foreground: #ffffff;
-  --inverse-muted: #c9dedc;
+  /* dark showroom sections, header and footer */
+  --inverse: #0a1f21;
+  --inverse-2: #0f2a2d;
+  --inverse-foreground: #f4f0e8;
+  --inverse-muted: #a3b3b0;
+  --brass: #c9a45c;
+  --brass-soft: rgb(201 164 92 / 0.28);
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 
   /* transitions.dev tuning (shared by the recipes below) */
   --acc-expand: 250ms;
@@ -58,7 +65,8 @@
 
 @theme inline {
   --font-sans: "IBM Plex Sans Variable", "IBM Plex Sans Devanagari", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Barlow Condensed", "IBM Plex Sans Devanagari", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Instrument Serif", "Tiro Devanagari Hindi", ui-serif, Georgia, serif;
+  --font-hindi: "Tiro Devanagari Hindi", "IBM Plex Sans Devanagari", serif;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -75,6 +83,9 @@
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-rule: var(--rule);
+  --color-inverse-2: var(--inverse-2);
+  --color-brass: var(--brass);
+  --color-brass-soft: var(--brass-soft);
   --color-destructive: var(--destructive);
   --color-ring: var(--ring);
   --color-inverse: var(--inverse);
@@ -201,4 +212,93 @@
    has more content instead of drawing a hard cut. */
 .scroll-fade-x {
   mask-image: linear-gradient(to right, transparent, #000 var(--fade-l, 0px), #000 calc(100% - var(--fade-r, 0px)), transparent);
+}
+
+/* ── Showroom motion ─────────────────────────────────────────────
+   All transform / opacity / clip-path. Everything below has a gentler
+   reduced-motion version at the end of this block. */
+
+/* Headings wipe up into view once, the first time they scroll in
+   (marketing sections only). Script: data-reveal → data-visible. */
+.js [data-reveal] {
+  clip-path: inset(0 0 100% 0);
+  transform: translateY(12px);
+  transition: clip-path 700ms var(--ease-in-out), transform 700ms var(--ease-out);
+}
+.js [data-reveal][data-visible] {
+  clip-path: inset(0 0 -10% 0);
+  transform: none;
+}
+
+/* Brand names scroll past like a moving sign. Two copies, -50%. */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 48s linear infinite;
+}
+@media (hover: hover) and (pointer: fine) {
+  .marquee:hover .marquee-track { animation-play-state: paused; }
+}
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
+/* Brass line sweeps under a brand row on hover; the arrow nudges. */
+.sweep { position: relative; }
+.sweep::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 -1px 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 450ms var(--ease-out);
+}
+.sweep-arrow { transition: transform 250ms var(--ease-out); }
+@media (hover: hover) and (pointer: fine) {
+  .sweep:hover::after { transform: scaleX(1); }
+  .sweep:hover .sweep-arrow { transform: translateX(6px); }
+}
+
+/* The line joining the three ordering steps draws as you scroll by it. */
+.draw-line { transform-origin: left; }
+@supports (animation-timeline: view()) {
+  .draw-line {
+    animation: draw-line linear both;
+    animation-timeline: view();
+    animation-range: entry 20% cover 45%;
+  }
+}
+@keyframes ring-fade { to { opacity: 1; } }
+@keyframes draw-line {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+/* Size rings: rings settle in one by one; the selected wall scales. */
+.ring {
+  opacity: 0;
+  transform-origin: 220px 220px;
+  animation: ring-in 600ms var(--ease-out) forwards;
+  transition: stroke-opacity 200ms ease, stroke-width 200ms ease;
+}
+@keyframes ring-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+.scaler {
+  transform-origin: 220px 220px;
+  transition: transform 520ms var(--ease-out);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ring { animation: ring-fade 300ms ease forwards; }
+  .scaler { transition: none; }
+  .js [data-reveal] { clip-path: none; transform: none; opacity: 0; transition: opacity 300ms ease; }
+  .js [data-reveal][data-visible] { opacity: 1; }
+  .marquee-track { animation: none; flex-wrap: wrap; width: auto; }
+  .marquee-track > [aria-hidden] { display: none; }
+  .draw-line { animation: none; }
+  .sweep::after, .sweep-arrow { transition: none; }
 }
