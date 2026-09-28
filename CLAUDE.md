@@ -21,7 +21,7 @@ npm run check    # TypeScript / Astro type check
 - `src/components/`: `Header`, `Footer`, `ActionBar` (phone Call/WhatsApp bar), `Logo`
   (placeholder), `Icon` (Hugeicons → inline SVG), `EnquiryForm.tsx` (React island),
   `brand/*` (brand page parts), `home/*` (homepage React islands: size rings,
-  word morph, count-up stats, globe), `ui/*` (shadcn components).
+  word morph, count-up stats, brand sentence, globe), `ui/*` (shadcn components).
 - `src/styles/global.css`: design tokens and the transitions.dev recipes. See `DESIGN.md`.
 - `public/`: files served as-is (`robots.txt`, `CNAME`, `assets/` OG image and favicons).
 - `tools/seo.py`: SEO checker that runs on `dist/` after every build.
@@ -52,9 +52,9 @@ npm run check    # TypeScript / Astro type check
 Design and UI skills are vendored in `.claude/skills/` (sources in `.claude/skills/SOURCES.md`).
 Read `DESIGN.md` before changing how anything looks.
 - Follow `baseline-ui`: no gradients or glow, `text-balance` on headings, `tabular-nums` for
-  numbers, `h-dvh` not `h-screen`. Colours: brass on the dark sections, teal on paper.
-- "Night showroom" style (see DESIGN.md): hairline-ruled rows, big serif type, no icon tiles,
-  chips, card grids or fake photos. Only real photos of the business.
+  numbers, `h-dvh` not `h-screen`. Black ink, warm off-white, teal only for links and details.
+- "Precision" style (see DESIGN.md): Geist set very large, lots of space, no cards, chips, tiles,
+  badges or grids of information, and no fake photos. Only real photos of the business.
 - Use the shadcn components in `src/components/ui/` for form controls and buttons. Use
   `buttonVariants()` for links that look like buttons in `.astro` files.
 - Icons: Hugeicons only (`@hugeicons/core-free-icons`), rendered with `Icon.astro` (or

@@ -18,43 +18,39 @@ const others = brands.filter((b) => b.slug && b.slug !== brand.slug);
 const phone = business.phones[0];
 ---
 <Base title={brand.seo.title} description={brand.seo.description} path={path} jsonLd={brandSchema(brand, SITE_URL + path)}>
-  <div class="bg-inverse text-inverse-foreground">
-    <div class="mx-auto max-w-7xl px-4 pt-7 pb-10 sm:px-6 md:pt-9 md:pb-14 lg:px-8">
-      <nav aria-label="Breadcrumb">
-        <ol class="flex flex-wrap items-center gap-1.5 text-sm text-inverse-muted">
-          <li><a href="/" class="hover:text-brass">Home</a></li>
-          <li aria-hidden="true">/</li>
-          <li><a href="/#brands" class="hover:text-brass">Brands</a></li>
-          <li aria-hidden="true">/</li>
-          <li><span aria-current="page" class="text-inverse-foreground">{brand.name}</span></li>
-        </ol>
-      </nav>
-      <div class="mt-6 grid gap-8 lg:grid-cols-[1.6fr_1fr] lg:items-end lg:gap-16">
-        <div>
-          <h1 class="font-display text-[clamp(3rem,7vw,6rem)] leading-[0.92] tracking-[-0.02em]">{brand.name} <em class="text-brass">{brand.tagline}</em></h1>
-          <p class="mt-5 text-lg text-inverse-muted">{brand.origin}</p>
-          <p class="mt-4 text-inverse-foreground/90">
-            {[`${brand.lines.length} product lines`, ...brand.badges.filter((b) => !/product lines|available at/i.test(b))].join(" · ")}
-          </p>
-        </div>
-        <div class="flex flex-col gap-3 rounded-lg border border-brass-soft bg-inverse-2 p-6 sm:p-7">
-          <p class="font-display text-3xl leading-none">{brand.name} rates and stock</p>
-          <p class="mb-1 text-inverse-muted">Send sizes and quantities. We usually reply the same day.</p>
-          <a href={whatsappUrl(`Hello Market Movers, I'd like ${brand.name} prices and availability.`)} target="_blank" rel="noopener" class={buttonVariants({ size: "lg", class: "bg-brass text-inverse hover:bg-brass/90" })}>
-            <Icon icon={WhatsappIcon} />Ask for {brand.name} rates
-          </a>
-          <a href={`tel:${phone.tel}`} class={buttonVariants({ variant: "outline", size: "lg", class: "border-brass-soft bg-transparent text-inverse-foreground hover:bg-white/5" })}>
-            <Icon icon={Call02Icon} /><span class="tabular-nums">Call {phone.display}</span>
-          </a>
-        </div>
+  <div class="mx-auto max-w-[88rem] px-5 pt-6 pb-16 sm:px-8 md:pb-24 lg:px-14">
+    <nav aria-label="Breadcrumb">
+      <ol class="flex flex-wrap items-center gap-1.5 text-[13px] text-muted-foreground">
+        <li><a href="/" class="hover:text-foreground">Home</a></li>
+        <li aria-hidden="true">/</li>
+        <li><a href="/#brands" class="hover:text-foreground">Brands</a></li>
+        <li aria-hidden="true">/</li>
+        <li><span aria-current="page" class="text-foreground">{brand.name}</span></li>
+      </ol>
+    </nav>
+    <h1 class="mt-10 text-[clamp(4rem,13vw,11.5rem)] leading-[0.85] font-semibold tracking-[-0.06em]">
+      {brand.name}<span class="block text-[0.42em] leading-[1.05] tracking-[-0.045em] text-faint">{brand.tagline}</span>
+    </h1>
+    <div class="mt-12 flex flex-col gap-8 border-t border-border pt-8 lg:flex-row lg:items-end lg:justify-between">
+      <div class="max-w-2xl">
+        <p class="text-lg leading-snug">{brand.origin}</p>
+        <p class="mt-2 text-muted-foreground">
+          {[`${brand.lines.length} product lines`, ...brand.badges.filter((b) => !/product lines|available at/i.test(b))].join(" · ")}
+        </p>
+      </div>
+      <div class="flex shrink-0 flex-wrap items-center gap-6">
+        <a href={whatsappUrl(`Hello Market Movers, I'd like ${brand.name} prices and availability.`)} target="_blank" rel="noopener" class={buttonVariants({ size: "lg" })}>
+          <Icon icon={WhatsappIcon} />Ask for {brand.name} rates
+        </a>
+        <a href={`tel:${phone.tel}`} class="sweep font-medium tabular-nums">Call {phone.display}</a>
       </div>
     </div>
   </div>
 
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:grid lg:grid-cols-[14rem_minmax(0,1fr)] lg:gap-16 lg:px-8">
+  <div class="rule-top mx-auto max-w-[88rem] px-5 sm:px-8 lg:grid lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-16 lg:px-14">
     <!-- Product line navigation: sticky sidebar on desktop, sticky scroller on mobile -->
-    <nav aria-label={`${brand.name} product lines`} class="sticky top-[68px] z-30 -mx-4 border-b bg-background sm:-mx-6 lg:top-[100px] lg:mx-0 lg:self-start lg:border-b-0 lg:bg-transparent lg:pt-12">
-      <p class="hidden px-3 text-sm font-semibold tracking-wide text-muted-foreground uppercase lg:block">Product lines</p>
+    <nav aria-label={`${brand.name} product lines`} class="sticky top-[68px] z-30 -mx-4 border-b bg-background sm:-mx-6 lg:top-[76px] lg:mx-0 lg:self-start lg:border-b-0 lg:bg-transparent lg:pt-12">
+      <p class="hidden px-3 text-[13px] text-muted-foreground lg:block">Product lines</p>
       <ul id="line-nav" class="scroll-fade-x flex gap-1 overflow-x-auto overscroll-x-contain lg:[mask-image:none] px-4 py-2.5 [scrollbar-width:none] sm:px-6 lg:mt-3 lg:flex-col lg:gap-0.5 lg:overflow-visible lg:p-0">
         {brand.lines.map((l) => (
           <li class="shrink-0">
@@ -69,15 +65,17 @@ const phone = business.phones[0];
     </div>
   </div>
 
-  <section class="border-t bg-muted" aria-labelledby="more-brands">
-    <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-      <h2 id="more-brands" class="font-display text-3xl">Other brands at Market Movers</h2>
-      <ul class="mt-5 flex flex-wrap gap-2">
-        {others.map((b) => (
-          <li><a href={`/${b.slug}.html`} class={buttonVariants({ variant: "outline" })}>{b.name}<Icon icon={ArrowRight01Icon} size={16} /></a></li>
+  <section class="rule-top mx-auto max-w-[88rem]" aria-labelledby="more-brands">
+    <div class="mx-auto max-w-[88rem] px-5 py-20 sm:px-8 lg:px-14">
+      <h2 id="more-brands" class="text-[13px] font-normal text-muted-foreground">Other brands at Market Movers</h2>
+      <p class="mt-6 text-[clamp(2.25rem,5.5vw,4.5rem)] leading-[1] font-semibold tracking-[-0.05em]">
+        {others.map((b, i) => (
+          <>
+            <a href={`/${b.slug}.html`} class="transition-colors duration-200 hover:text-teal">{b.name}</a>{i < others.length - 1 ? ", " : "."}{" "}
+          </>
         ))}
-        <li><a href="/#products" class={buttonVariants({ variant: "ghost" })}>All products</a></li>
-      </ul>
+      </p>
+      <a href="/#products" class="sweep mt-8 inline-block font-medium text-teal">All products</a>
     </div>
   </section>
 </Base>

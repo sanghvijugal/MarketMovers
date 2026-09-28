@@ -52,78 +52,69 @@ export default function SizeRings() {
   const r = radius(size);
 
   return (
-    <figure className="m-0 flex flex-col items-center gap-6">
-      <div className="relative w-full max-w-[460px]">
-        <svg viewBox="0 0 440 440" className="block w-full" aria-hidden="true">
-          {/* crosshair and scale ticks, like a drawing sheet */}
-          <g stroke="var(--brass)" strokeOpacity="0.25" strokeWidth="1">
-            <line x1="220" y1="6" x2="220" y2="434" />
-            <line x1="6" y1="220" x2="434" y2="220" />
-          </g>
-          {SIZES.map((s, i) => (
-            <circle
-              key={s}
-              cx="220"
-              cy="220"
-              r={radius(s)}
-              fill="none"
-              className="ring"
-              style={{ animationDelay: `${120 + i * 45}ms` }}
-              stroke="var(--brass)"
-              strokeWidth={s === size ? 2.5 : 1}
-              strokeOpacity={s === size ? 1 : 0.3}
-            />
-          ))}
-          {/* the selected pipe's wall: one circle drawn at full size and
-              scaled, so changing size is a transform transition */}
-          <g className="scaler" style={{ transform: `scale(${r / R_MAX})` }}>
-            <circle cx="220" cy="220" r={R_MAX * 0.935} fill="none" stroke="var(--brass)" strokeOpacity="0.2" strokeWidth={R_MAX * 0.13} />
-            <line x1={220 - R_MAX} y1="220" x2={220 + R_MAX} y2="220" stroke="var(--brass)" strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
-          </g>
-          {/* wide invisible strokes so rings are easy to hover or tap */}
-          {SIZES.map((s) => (
-            <circle
-              key={`hit-${s}`}
-              cx="220"
-              cy="220"
-              r={radius(s)}
-              fill="none"
-              stroke="transparent"
-              strokeWidth="7"
-              style={{ pointerEvents: "stroke", cursor: "pointer" }}
-              onPointerEnter={(e) => e.pointerType === "mouse" && pick(s)}
-              onClick={() => pick(s)}
-            />
-          ))}
-        </svg>
-        <figcaption className="pointer-events-none absolute inset-x-0 bottom-[4%] text-center">
-          <span className="font-display text-[clamp(2.5rem,6vw,3.75rem)] leading-none text-inverse-foreground">
-            <NumberFlow value={size} />
-            <span className="ml-1 text-[0.45em] text-inverse-muted">mm</span>
-          </span>
-        </figcaption>
-      </div>
+    <figure className="m-0 w-full">
+      <svg viewBox="0 0 440 440" className="block w-full" aria-hidden="true">
+        {SIZES.map((s, i) => (
+          <circle
+            key={s}
+            cx="220"
+            cy="220"
+            r={radius(s)}
+            fill="none"
+            className="ring"
+            style={{ animationDelay: `${120 + i * 45}ms` }}
+            stroke="currentColor"
+            strokeWidth={s === size ? 2 : 0.75}
+            strokeOpacity={s === size ? 1 : 0.4}
+          />
+        ))}
+        {/* selected wall + dimension line: drawn at full size and scaled,
+            so changing size is a transform transition */}
+        <g className="scaler" style={{ transform: `scale(${r / R_MAX})` }}>
+          <circle cx="220" cy="220" r={R_MAX * 0.935} fill="none" stroke="currentColor" strokeOpacity="0.08" strokeWidth={R_MAX * 0.13} />
+          <line x1={220 - R_MAX} y1="220" x2={220 + R_MAX} y2="220" stroke="var(--teal)" strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
+        </g>
+        {SIZES.map((s) => (
+          <circle
+            key={`hit-${s}`}
+            cx="220"
+            cy="220"
+            r={radius(s)}
+            fill="none"
+            stroke="transparent"
+            strokeWidth="7"
+            style={{ pointerEvents: "stroke", cursor: "pointer" }}
+            onPointerEnter={(e) => e.pointerType === "mouse" && pick(s)}
+            onClick={() => pick(s)}
+          />
+        ))}
+      </svg>
 
-      <div className="w-full max-w-[460px] text-center">
-        <p className="min-h-[1.5em] text-[15px] text-inverse-muted" aria-live="polite">
+      <figcaption className="mt-5 flex items-end justify-between gap-6 border-b border-foreground pb-3">
+        <span className="text-[clamp(2.5rem,4vw,3.5rem)] leading-none font-medium tracking-[-0.045em] tabular-nums">
+          <NumberFlow value={size} />
+          <span className="ml-1 text-base tracking-normal text-muted-foreground">mm</span>
+        </span>
+        <span className="pb-1 text-right text-[14px] text-muted-foreground" aria-live="polite">
           <TextMorph>{USE[size]}</TextMorph>
-        </p>
-        <div role="radiogroup" aria-label="Pipe outside diameter" className="mt-4 flex flex-wrap justify-center gap-1">
-          {SIZES.map((s) => (
-            <button
-              key={s}
-              type="button"
-              role="radio"
-              aria-checked={s === size}
-              onClick={() => pick(s)}
-              className="size-btn h-8 min-w-10 rounded px-1.5 text-[13px] font-medium tabular-nums text-inverse-muted transition-[background-color,color] duration-150 hover:text-inverse-foreground aria-checked:bg-brass aria-checked:text-inverse"
-            >
-              {s}
-            </button>
-          ))}
-        </div>
-        <p className="mt-3 text-xs text-inverse-muted/80">Outside diameters to scale, 20 to 400 mm (IS 4985 series). Pick one.</p>
+        </span>
+      </figcaption>
+
+      <div role="radiogroup" aria-label="Pipe outside diameter, mm" className="mt-2 grid grid-cols-8 text-center text-[13px] tabular-nums sm:grid-cols-[repeat(15,minmax(0,1fr))] sm:text-[12px]">
+        {SIZES.map((s) => (
+          <button
+            key={s}
+            type="button"
+            role="radio"
+            aria-checked={s === size}
+            onClick={() => pick(s)}
+            className="min-h-9 text-faint transition-colors duration-150 hover:text-foreground aria-checked:font-semibold aria-checked:text-foreground"
+          >
+            {s}
+          </button>
+        ))}
       </div>
+      <p className="mt-1 text-[12px] text-muted-foreground">Outside diameters to scale, IS 4985 series. Pick one.</p>
     </figure>
   );
 }
