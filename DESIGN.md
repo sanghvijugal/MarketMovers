@@ -5,57 +5,56 @@ distributor: calm, dense with real information, quick to act on (call / WhatsApp
 
 ## Principles
 
-- **Content over decoration.** Real specs, sizes, brands and contact details carry the page.
-  No stock illustrations, emoji icons, glowing buttons or gradients.
-- **Relatable, not corporate.** Speak like the counter: "Ordering takes one message", a sample
-  WhatsApp exchange, "What do you need today?" quick links. Ordering on WhatsApp is the main path.
-- **Teal, one action colour.** Deep teal (`primary`) marks buttons, links and the current item.
-  A small aqua `highlight` is only for the open-now dot and the step numbers on dark. Everything
-  else is warm stone text on a faintly cool ground.
-- **Soft and fluid.** Pill buttons and chips, 16–28px card radii, headings sized with `clamp()`
-  so they scale smoothly between phone and desktop.
-- **Phones first.** Most visitors are contractors and retailers on Android phones. Buttons are
-  44–52px tall, a Call / WhatsApp bar is pinned to the bottom on phones, and form fields use 16px
-  text so iOS doesn't zoom.
+- **Night showroom.** Luxurious but honest: deep teal-black sections with ivory serif type and
+  brass hairlines, alternating with ivory "paper" sections for dense reading (brands, spec pages,
+  the form). It should impress a builder the way a good showroom does.
+- **No fake photos.** Only real photos of the shop, stock and people. Until they exist, type,
+  line art built from real data (the pipe-size rings) and motion carry the page. Never renders,
+  stock photos or illustrations.
+- **Real things, not SaaS parts.** No icon tiles, chips, card grids or testimonial bubbles.
+  Lists and rows separated by hairlines; big serif names; numbers from real data.
+- **Plain words, some Hindi.** Headings are confident but concrete; each section carries a short
+  Hindi line (`lang="hi"`, Tiro Devanagari Hindi).
+- **Phones first.** Buttons 44–52px, Call / WhatsApp bar pinned to the bottom on phones, 16px
+  form text so iOS doesn't zoom.
 
 ## Tokens (`src/styles/global.css`)
 
 | Token | Use |
 |---|---|
-| `background` / `foreground` | page `#f8faf9` and body text `#1c1917` |
-| `muted` / `muted-foreground` | alternate section surface `#ecf2f1` / secondary text |
-| `card` | raised surfaces (cards, form, tables) |
-| `border` / `input` | hairlines / form field and outline-button borders |
-| `primary` | deep teal `#0b6b73`: buttons, links, focus ring |
-| `accent` / `accent-foreground` | pale teal / dark teal: chips, the at-a-glance panel, active nav |
-| `highlight` | aqua `#5fc4c0`: open-now dot, step numbers on dark only |
-| `inverse*` | dark teal sections ("Ordering takes one message") and the footer |
+| `inverse` / `inverse-2` | teal-black showroom sections `#0a1f21` / `#0f2a2d`, header, footer |
+| `inverse-foreground` / `inverse-muted` | ivory type / muted type on dark |
+| `brass` / `brass-soft` | action colour and accents on dark (`#c9a45c`) / hairlines on dark |
+| `background` / `foreground` | ivory paper `#f4f0e8` / ink `#141312` |
+| `card` / `muted` / `border` / `rule` | paper surfaces and hairlines |
+| `primary` | teal `#0b5d63`: action colour and links on paper |
 
-Radius: inputs 10px (`--radius`), cards `rounded-2xl`, big panels and photos `rounded-3xl`,
-buttons and chips `rounded-full`. Shadows only on floating layers and hovered/tilted cards.
+Radius 6px (buttons, inputs, boxes). No gradients.
 
 ## Type
 
-IBM Plex Sans (variable) for everything readable, IBM Plex Sans Devanagari for Hindi, and
-IBM Plex Mono for small technical labels only: standards (IS 4985), product-line counts, the
-open-now status. Headings are semibold; h1 `clamp(2.25rem, 5.2vw, 4rem)`, section h2
-`clamp(1.875rem, 3.4vw, 2.75rem)`. Body 15–19px. Don't change letter-spacing.
+- **Instrument Serif** (regular and italic) for display: headings, brand names, numbers,
+  the wordmark. Italic brass for one emphasised phrase per heading at most.
+- **IBM Plex Sans** for reading; **Tiro Devanagari Hindi** for Hindi lines.
+- Eyebrows: 12px semibold uppercase, 0.16em tracking, brass on dark / teal on paper.
 
-## Images
+## Interactive pieces (React islands, `src/components/home/`)
 
-- `src/assets/products/*.jpg`: "What we supply" card images, 1200×600 studio renders on a
-  teal backdrop (Bath uses dark marble and gold on purpose, as the premium range). Replace
-  with real photos at the same 2:1 crop, subject centred.
-- `src/assets/home/`: hero pipe wall and shop front, stand-ins until real photos arrive.
-- Rendered through `astro:assets` `<Image>` (WebP, responsive `srcset`, width/height set).
+| Piece | Library | Notes |
+|---|---|---|
+| `SizeRings` | NumberFlow, torph | IS 4985 outside diameters 20–400 mm to true scale; pick a size, the wall scales and the readout counts; cycles on its own until someone picks |
+| `AudienceMorph` | torph | "Stocked for builders / contractors / …" word morph |
+| `Stats` | NumberFlow, Motion `useInView` | real figures count up once when first seen |
+| `Globe` | Cobe | turns to Jabalpur and nearby districts; drag to spin; paused off screen |
+
+Library picks follow Emil Kowalski's curated list (`.claude/skills/pick-ui-library`).
 
 ## Components
 
 - shadcn/ui (`src/components/ui`): `Button` / `buttonVariants`, `Input`, `Textarea`, `Label`,
-  `NativeSelect`.
-- Icons: Hugeicons stroke icons at 1.5px stroke, 16–24px.
-- `ActionBar.astro`: phone-only Call / Get a quote bar pinned to the bottom.
-- The logo (`Logo.astro`) is temporary. Replace it with the real logo; keep the same size.
+  `NativeSelect`. On dark, buttons are brass; on paper, teal.
+- Icons: Hugeicons stroke icons, only inside buttons and arrow links.
+- `ActionBar.astro`: phone-only Call / Get a quote bar. `Logo.astro`: serif wordmark + Hindi.
 
 ## Motion (transitions.dev recipes + morphicons)
 
@@ -66,7 +65,10 @@ open-now status. Headings are semibold; h1 `clamp(2.25rem, 5.2vw, 4rem)`, sectio
 | Menu button | morphicons: Hugeicons menu ↔ close morph | spring |
 | Form errors | Error state shake on invalid fields (message stays until fixed) | 280ms |
 | Buttons | press scale 0.97 | 150ms ease-out |
-| Product cards (mouse) | lean ≤4° toward the pointer on hover, photo shifts opposite; spring back on leave | 160ms follow / 650ms spring |
-| Product cards (touch) | ≤2.5° tilt linked to scroll, flat mid-screen (CSS scroll-driven, no JS) | scroll |
+| Section headings (`data-reveal`) | clip-path wipe up + 12px rise, once | 700ms strong ease-in-out |
+| Brand marquee | continuous slide, pauses on hover | 48s linear |
+| Brand rows, nav links | hairline sweeps in under the row; arrow nudges | 450ms / 250ms ease-out |
+| Ordering steps | connecting line draws with scroll (CSS scroll-driven) | scroll |
+| Size rings | rings settle in with 45ms stagger; selected wall scales | 600ms / 520ms ease-out |
 
 Everything above turns off under `prefers-reduced-motion`.

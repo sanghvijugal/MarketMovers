@@ -20,9 +20,9 @@ npm run check    # TypeScript / Astro type check
 - `src/pages/index.astro`: homepage. `src/pages/404.astro`: not-found page.
 - `src/components/`: `Header`, `Footer`, `ActionBar` (phone Call/WhatsApp bar), `Logo`
   (placeholder), `Icon` (Hugeicons → inline SVG), `EnquiryForm.tsx` (React island),
-  `brand/*` (brand page parts), `ui/*` (shadcn components).
+  `brand/*` (brand page parts), `home/*` (homepage React islands: size rings,
+  word morph, count-up stats, globe), `ui/*` (shadcn components).
 - `src/styles/global.css`: design tokens and the transitions.dev recipes. See `DESIGN.md`.
-- `src/assets/`: images processed by `astro:assets` (product card renders, homepage photos).
 - `public/`: files served as-is (`robots.txt`, `CNAME`, `assets/` OG image and favicons).
 - `tools/seo.py`: SEO checker that runs on `dist/` after every build.
 
@@ -51,15 +51,16 @@ npm run check    # TypeScript / Astro type check
 
 Design and UI skills are vendored in `.claude/skills/` (sources in `.claude/skills/SOURCES.md`).
 Read `DESIGN.md` before changing how anything looks.
-- Follow `baseline-ui`: no gradients or glow, one action colour (teal `primary`) plus the small
-  aqua `highlight` for status dots and step numbers only, `text-balance` on headings,
-  `tabular-nums` for numbers, `h-dvh` not `h-screen`. Buttons and chips are pills.
+- Follow `baseline-ui`: no gradients or glow, `text-balance` on headings, `tabular-nums` for
+  numbers, `h-dvh` not `h-screen`. Colours: brass on the dark sections, teal on paper.
+- "Night showroom" style (see DESIGN.md): hairline-ruled rows, big serif type, no icon tiles,
+  chips, card grids or fake photos. Only real photos of the business.
 - Use the shadcn components in `src/components/ui/` for form controls and buttons. Use
   `buttonVariants()` for links that look like buttons in `.astro` files.
 - Icons: Hugeicons only (`@hugeicons/core-free-icons`), rendered with `Icon.astro` (or
   `HugeiconsIcon` inside React). Don't mix in other icon sets.
 - Motion: use `emil-design-eng` / `animate` before adding any animation. Reuse the
-  transitions.dev recipes and the product-card tilt in `global.css`; only animate `transform`
+  transitions.dev recipes in `global.css`; only animate `transform`
   and `opacity` (the accordion's grid-rows height is the one exception); always respect
   `prefers-reduced-motion`.
 - Use `mobile-native` for touch behaviour and `fixing-accessibility` for dialogs, forms and focus.
