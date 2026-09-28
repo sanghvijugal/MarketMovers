@@ -20,7 +20,7 @@ const phone = business.phones[0];
 <Base title={brand.seo.title} description={brand.seo.description} path={path} jsonLd={brandSchema(brand, SITE_URL + path)}>
   <div class="mx-auto max-w-[88rem] px-5 pt-6 pb-16 sm:px-8 md:pb-24 lg:px-14">
     <nav aria-label="Breadcrumb">
-      <ol class="flex flex-wrap items-center gap-1.5 text-[13px] text-muted-foreground">
+      <ol class="flex flex-wrap items-center gap-1.5 text-[15px] sm:text-[13px] text-muted-foreground">
         <li><a href="/" class="hover:text-foreground">Home</a></li>
         <li aria-hidden="true">/</li>
         <li><a href="/#brands" class="hover:text-foreground">Brands</a></li>
@@ -50,11 +50,11 @@ const phone = business.phones[0];
   <div class="rule-top mx-auto max-w-[88rem] px-5 sm:px-8 lg:grid lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-16 lg:px-14">
     <!-- Product line navigation: sticky sidebar on desktop, sticky scroller on mobile -->
     <nav aria-label={`${brand.name} product lines`} class="sticky top-[68px] z-30 -mx-4 border-b bg-background sm:-mx-6 lg:top-[76px] lg:mx-0 lg:self-start lg:border-b-0 lg:bg-transparent lg:pt-12">
-      <p class="hidden px-3 text-[13px] text-muted-foreground lg:block">Product lines</p>
+      <p class="hidden px-3 text-[15px] sm:text-[13px] text-muted-foreground lg:block">Product lines</p>
       <ul id="line-nav" class="scroll-fade-x flex gap-1 overflow-x-auto overscroll-x-contain lg:[mask-image:none] px-4 py-2.5 [scrollbar-width:none] sm:px-6 lg:mt-3 lg:flex-col lg:gap-0.5 lg:overflow-visible lg:p-0">
         {brand.lines.map((l) => (
           <li class="shrink-0">
-            <a href={`#${l.id}`} class="block border-b-2 border-transparent px-2 py-2 text-[15px] whitespace-nowrap text-muted-foreground transition-colors duration-150 hover:text-foreground aria-[current=location]:border-primary aria-[current=location]:font-semibold aria-[current=location]:text-foreground lg:border-b-0 lg:border-l-2 lg:px-3 lg:whitespace-normal">{l.name}</a>
+            <a href={`#${l.id}`} class="block border-b-2 border-transparent px-2 py-2 text-[17px] sm:text-[15px] whitespace-nowrap text-muted-foreground transition-colors duration-150 hover:text-foreground aria-[current=location]:border-primary aria-[current=location]:font-semibold aria-[current=location]:text-foreground lg:border-b-0 lg:border-l-2 lg:px-3 lg:whitespace-normal">{l.name}</a>
           </li>
         ))}
       </ul>
@@ -67,7 +67,7 @@ const phone = business.phones[0];
 
   <section class="rule-top mx-auto max-w-[88rem]" aria-labelledby="more-brands">
     <div class="mx-auto max-w-[88rem] px-5 py-20 sm:px-8 lg:px-14">
-      <h2 id="more-brands" class="text-[13px] font-normal text-muted-foreground">Other brands at Market Movers</h2>
+      <h2 id="more-brands" class="text-[15px] sm:text-[13px] font-normal text-muted-foreground">Other brands at Market Movers</h2>
       <p class="mt-6 text-[clamp(2.25rem,5.5vw,4.5rem)] leading-[1] font-semibold tracking-[-0.05em]">
         {others.map((b, i) => (
           <>

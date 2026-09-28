@@ -38,11 +38,14 @@ const stats = [
   { value: categories.length, label: "product families, house plumbing to 400 mm mains" },
 ];
 
-const ordering =
-  "Send your list on WhatsApp. Sizes and quantities are enough, and a photo of a handwritten list is fine. We reply with rates and what's on the shelf, usually the same day. Then pick it up from the shop, or we send it across Jabalpur and nearby districts.";
+const steps = [
+  { title: "Send your list", text: "On WhatsApp. Sizes and quantities are enough, and a photo of a handwritten list is fine." },
+  { title: "Get rates the same day", text: "We reply with prices and tell you what's in stock at the godown." },
+  { title: "Pick up or we deliver", text: "Collect from the shop in Marhatal, or we send it across Jabalpur and nearby districts." },
+];
 
 const wrap = "mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-14";
-const label = "text-[13px] text-muted-foreground";
+const label = "text-[15px] sm:text-[13px] text-muted-foreground";
 const h2 = "text-[clamp(2.25rem,4.6vw,4.25rem)] leading-[0.98] font-semibold tracking-[-0.045em]";
 const link = "sweep inline-flex items-center gap-1.5 font-medium";
 ---
@@ -56,12 +59,12 @@ const link = "sweep inline-flex items-center gap-1.5 font-medium";
   <section class:list={[wrap, "grid gap-14 pt-8 pb-24 lg:min-h-[calc(100dvh-76px)] lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)] lg:items-end lg:gap-16 lg:pb-16"]}>
     <div class="flex flex-col">
       <p class={label}>Wholesale distributor — Marhatal, Jabalpur</p>
-      <h1 class="mt-7 text-[clamp(4rem,11.6vw,10.5rem)] leading-[0.86] font-semibold tracking-[-0.058em]">
+      <h1 class="mt-7 text-[14.2vw] sm:text-[clamp(4rem,11.6vw,10.5rem)] leading-[0.86] font-semibold tracking-[-0.058em]">
         Pipes.<br />Fittings.<br />Sanitary&shy;ware.
       </h1>
       <div class="mt-12 flex flex-col gap-8 xl:flex-row xl:items-end xl:justify-between">
         <div class="max-w-lg">
-          <p class="text-[clamp(1.125rem,1.5vw,1.3rem)] leading-snug tracking-[-0.01em]">
+          <p class="text-[clamp(1.25rem,1.6vw,1.35rem)] leading-snug tracking-[-0.01em]">
             Ten brands in stock at our counter in Marhatal, for <AudienceMorph client:load />. Send your list on
             WhatsApp and we'll reply with rates the same day.
           </p>
@@ -71,7 +74,7 @@ const link = "sweep inline-flex items-center gap-1.5 font-medium";
           <a href={whatsappUrl("Hello Market Movers, here is my list:")} target="_blank" rel="noopener" class={buttonVariants({ size: "lg" })}>
             <Icon icon={WhatsappIcon} />WhatsApp your list
           </a>
-          <a href={`tel:${phone.tel}`} class:list={[link, "hidden whitespace-nowrap tabular-nums sm:inline-flex"]}>Call {phone.display}</a>
+          <a href={`tel:${phone.tel}`} class:list={["sweep hidden items-center gap-1.5 font-medium whitespace-nowrap tabular-nums sm:inline-flex"]}>Call {phone.display}</a>
         </div>
       </div>
     </div>
@@ -110,9 +113,9 @@ const link = "sweep inline-flex items-center gap-1.5 font-medium";
     <ol class="mt-14 border-b border-border">
       {categories.map((c, i) => (
         <li class="sweep grid gap-x-10 gap-y-3 border-t border-border py-8 md:grid-cols-[3rem_minmax(0,1.15fr)_minmax(0,1fr)] md:items-baseline">
-          <span class="text-[13px] text-muted-foreground tabular-nums">{String(i + 1).padStart(2, "0")}</span>
+          <span class="text-[15px] sm:text-[13px] text-muted-foreground tabular-nums">{String(i + 1).padStart(2, "0")}</span>
           <h3 class="nudge text-[clamp(1.875rem,3.6vw,3.25rem)] leading-none font-semibold tracking-[-0.045em]">{c.name}</h3>
-          <div class="text-[15px] leading-relaxed">
+          <div class="text-[17px] sm:text-[15px] leading-relaxed">
             <p class="text-muted-foreground">{c.text}</p>
             <p class="mt-2">
               {c.brands.length === 0 ? (
@@ -145,9 +148,18 @@ const link = "sweep inline-flex items-center gap-1.5 font-medium";
         <p class={label}>04 — Ordering</p>
         <p lang="hi" class="font-hindi text-muted-foreground">ऑर्डर कैसे करें</p>
       </div>
-      <p class="read-words mt-10 max-w-6xl text-[clamp(1.875rem,4.4vw,4rem)] leading-[1.08] font-medium tracking-[-0.04em]">
-        {ordering.split(" ").map((w) => <span>{w} </span>)}
-      </p>
+      <h2 class:list={[h2, "read-words mt-6 max-w-4xl"]}>
+        {"Send the list. We'll handle the rest.".split(" ").map((w) => <span>{w} </span>)}
+      </h2>
+      <ol class="mt-14 border-b border-border">
+        {steps.map((st, i) => (
+          <li class="grid gap-x-10 gap-y-2 border-t border-border py-8 md:grid-cols-[3rem_minmax(0,1.15fr)_minmax(0,1fr)] md:items-baseline" data-reveal>
+            <span class="text-[15px] sm:text-[13px] text-muted-foreground tabular-nums">{String(i + 1).padStart(2, "0")}</span>
+            <h3 class="text-[clamp(1.625rem,2.6vw,2.25rem)] leading-tight font-semibold tracking-[-0.04em] text-balance">{st.title}</h3>
+            <p class="text-[17px] sm:text-[15px] leading-relaxed text-muted-foreground">{st.text}</p>
+          </li>
+        ))}
+      </ol>
       <a href={whatsappUrl("Hello Market Movers, here is my list:")} target="_blank" rel="noopener" class={buttonVariants({ size: "lg", class: "mt-14" })}>
         <Icon icon={WhatsappIcon} />Send your list
       </a>
@@ -179,7 +191,7 @@ const link = "sweep inline-flex items-center gap-1.5 font-medium";
     </div>
     <div class="mx-auto w-full max-w-[520px]">
       <Globe client:visible />
-      <p class="mt-2 text-center text-[13px] text-muted-foreground">Jabalpur and nearby districts. Drag to spin.</p>
+      <p class="mt-2 text-center text-[15px] sm:text-[13px] text-muted-foreground">Jabalpur and nearby districts. Drag to spin.</p>
     </div>
   </section>
 

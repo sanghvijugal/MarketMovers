@@ -90,17 +90,17 @@ export default function SizeRings() {
         ))}
       </svg>
 
-      <figcaption className="mt-5 flex items-end justify-between gap-6 border-b border-foreground pb-3">
+      <figcaption className="mt-5 flex flex-col gap-2 border-b sm:flex-row sm:items-end sm:justify-between sm:gap-6 border-foreground pb-3">
         <span className="text-[clamp(2.5rem,4vw,3.5rem)] leading-none font-medium tracking-[-0.045em] tabular-nums">
           <NumberFlow value={size} />
           <span className="ml-1 text-base tracking-normal text-muted-foreground">mm</span>
         </span>
-        <span className="pb-1 text-right text-[14px] text-muted-foreground" aria-live="polite">
+        <span className="pb-1 text-[16px] sm:text-right sm:text-[14px] text-muted-foreground" aria-live="polite">
           <TextMorph>{USE[size]}</TextMorph>
         </span>
       </figcaption>
 
-      <div role="radiogroup" aria-label="Pipe outside diameter, mm" className="mt-2 grid grid-cols-8 text-center text-[13px] tabular-nums sm:grid-cols-[repeat(15,minmax(0,1fr))] sm:text-[12px]">
+      <div role="radiogroup" aria-label="Pipe outside diameter, mm" className="mt-2 grid grid-cols-8 text-center text-[14px] tabular-nums sm:grid-cols-[repeat(15,minmax(0,1fr))] sm:text-[12px]">
         {SIZES.map((s) => (
           <button
             key={s}
@@ -114,7 +114,7 @@ export default function SizeRings() {
           </button>
         ))}
       </div>
-      <p className="mt-1 text-[12px] text-muted-foreground">Outside diameters to scale, IS 4985 series. Pick one.</p>
+      <p className="mt-1 text-[14px] sm:text-[12px] text-muted-foreground">Outside diameters to scale, IS 4985 series. Pick one.</p>
     </figure>
   );
 }
