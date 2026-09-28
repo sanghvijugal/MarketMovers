@@ -22,7 +22,6 @@ npm run check    # TypeScript / Astro type check
   (placeholder), `Icon` (Hugeicons → inline SVG), `EnquiryForm.tsx` (React island),
   `brand/*` (brand page parts), `ui/*` (shadcn components).
 - `src/styles/global.css`: design tokens and the transitions.dev recipes. See `DESIGN.md`.
-- `src/assets/`: images processed by `astro:assets` (product card renders, homepage photos).
 - `public/`: files served as-is (`robots.txt`, `CNAME`, `assets/` OG image and favicons).
 - `tools/seo.py`: SEO checker that runs on `dist/` after every build.
 
@@ -51,15 +50,16 @@ npm run check    # TypeScript / Astro type check
 
 Design and UI skills are vendored in `.claude/skills/` (sources in `.claude/skills/SOURCES.md`).
 Read `DESIGN.md` before changing how anything looks.
-- Follow `baseline-ui`: no gradients or glow, one action colour (teal `primary`) plus the small
-  aqua `highlight` for status dots and step numbers only, `text-balance` on headings,
-  `tabular-nums` for numbers, `h-dvh` not `h-screen`. Buttons and chips are pills.
+- Follow `baseline-ui`: no gradients or glow, one colour (signboard teal `primary`) on ink and
+  paper, `text-balance` on headings, `tabular-nums` for numbers, `h-dvh` not `h-screen`.
+- "Trade counter" style (see DESIGN.md): ruled lists and tables, not cards; no stat tiles, icon
+  grids, chips or fake photos. Only real photos of the business.
 - Use the shadcn components in `src/components/ui/` for form controls and buttons. Use
   `buttonVariants()` for links that look like buttons in `.astro` files.
 - Icons: Hugeicons only (`@hugeicons/core-free-icons`), rendered with `Icon.astro` (or
   `HugeiconsIcon` inside React). Don't mix in other icon sets.
 - Motion: use `emil-design-eng` / `animate` before adding any animation. Reuse the
-  transitions.dev recipes and the product-card tilt in `global.css`; only animate `transform`
+  transitions.dev recipes in `global.css`; only animate `transform`
   and `opacity` (the accordion's grid-rows height is the one exception); always respect
   `prefers-reduced-motion`.
 - Use `mobile-native` for touch behaviour and `fixing-accessibility` for dialogs, forms and focus.
