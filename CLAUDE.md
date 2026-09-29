@@ -19,7 +19,7 @@ npm run check    # TypeScript / Astro type check
   PDF links). `src/pages/[brand].astro` renders every brand from these files.
 - `src/pages/index.astro`: homepage. `src/pages/404.astro`: not-found page.
 - `src/components/`: `Header`, `Footer`, `ActionBar` (phone Call/WhatsApp bar), `Logo`
-  (placeholder), `Icon` (Hugeicons → inline SVG), `EnquiryForm.tsx` (React island),
+  (mark + name), `LogoMark` (the woven MM logo as inline SVG), `Icon` (Hugeicons → inline SVG), `EnquiryForm.tsx` (React island),
   `brand/*` (brand page parts), `home/*` (homepage React islands: size rings,
   word morph, count-up stats, brand sentence, globe), `ui/*` (shadcn components).
 - `src/styles/global.css`: design tokens and the transitions.dev recipes. See `DESIGN.md`.

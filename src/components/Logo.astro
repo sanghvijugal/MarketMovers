@@ -1,9 +1,13 @@
 ---
-// Wordmark. Replace with the real logo when there is one; keep the height.
+// Header logo: the woven MM mark and the name.
+import LogoMark from "./LogoMark.astro";
 interface Props { class?: string }
 const { class: className } = Astro.props;
 ---
-<span class:list={["inline-flex items-baseline gap-2.5 leading-none", className]}>
-  <span class="text-[18px] font-semibold tracking-[-0.02em]">Market Movers</span>
-  <span lang="hi" class="hidden font-hindi text-[13px] opacity-60 sm:inline">मार्केट मूवर्स</span>
+<span class:list={["inline-flex items-center gap-2.5 leading-none", className]}>
+  <LogoMark id="mm-header" class="h-8 w-auto shrink-0" weight={18} />
+  <span class="inline-flex items-baseline gap-2.5">
+    <span class="text-[18px] font-semibold tracking-[-0.02em]">Market Movers</span>
+    <span lang="hi" class="hidden font-hindi text-[13px] opacity-60 sm:inline">मार्केट मूवर्स</span>
+  </span>
 </span>
