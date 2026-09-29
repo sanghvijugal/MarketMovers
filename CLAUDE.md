@@ -52,7 +52,7 @@ npm run check    # TypeScript / Astro type check
 Design and UI skills are vendored in `.claude/skills/` (sources in `.claude/skills/SOURCES.md`).
 Read `DESIGN.md` before changing how anything looks.
 - Follow `baseline-ui`: no gradients or glow, `text-balance` on headings, `tabular-nums` for
-  numbers, `h-dvh` not `h-screen`. Black ink, warm off-white, teal only for links and details.
+  numbers, `h-dvh` not `h-screen`. Black ink, warm off-white, teal as the single accent (primary buttons, links, small details).
 - "Precision" style (see DESIGN.md): Geist set very large, lots of space, no cards, chips, tiles,
   badges or grids of information, and no fake photos. Only real photos of the business.
 - Use the shadcn components in `src/components/ui/` for form controls and buttons. Use

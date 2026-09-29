@@ -12,7 +12,7 @@ distributor: calm, dense with real information, quick to act on (call / WhatsApp
   space and the odd hairline; let big type carry hierarchy. Lists are rows or sentences.
 - **No fake photos.** Only real photos of the shop, stock and people. Until then, type, the
   pipe-size rings (real IS 4985 sizes) and motion do the work.
-- **Teal is rare.** Links, the active pipe dimension and a status dot. Buttons are black pills.
+- **Teal is the one accent, used sparingly.** Primary buttons (teal pills), links, section numbers, the logo's outer M, the active pipe dimension and a status dot. Everything else is ink on off-white.
 - **Plain words, some Hindi.** Each section carries a short Hindi line (Tiro Devanagari Hindi).
 - **Phones first.** 44–52px buttons, a Call / WhatsApp bar pinned to the bottom on phones, 16px
   form text so iOS doesn't zoom.
@@ -26,7 +26,7 @@ distributor: calm, dense with real information, quick to act on (call / WhatsApp
 | `muted-foreground` / `faint` | secondary text `#6b6a64` / faded words (brand sentence, taglines) `#bdbbb4` |
 | `border` | hairlines (`.rule-top` draws a section hairline inside the page gutters) |
 | `primary` | black: buttons |
-| `teal` | `#0b5d63`: links, active detail, status dot |
+| `teal` | `#0b5d63`: primary buttons (`--primary`), links, section numbers, active detail, status dot |
 | `inverse*` | black footer with the full-width wordmark |
 
 ## Type
@@ -47,11 +47,13 @@ Hindi: Tiro Devanagari Hindi.
 
 ## Components
 
-- shadcn/ui (`src/components/ui`): `Button` / `buttonVariants` (black pill), `Input`, `Textarea`,
+- shadcn/ui (`src/components/ui`): `Button` / `buttonVariants` (teal pill), `Input`, `Textarea`,
   `Label`, `NativeSelect`.
 - Icons: Hugeicons, only inside buttons and arrow links.
 - `ActionBar.astro`: phone Call / Get a quote bar. `Logo.astro`: woven MM mark + wordmark + Hindi.
 - `LogoMark.astro`: the logo, two Ms woven over and under. Inner M in ink (`currentColor`), outer M in teal (`--teal-on-dark` on black). Heavier `weight` at small sizes. The favicons and OG image in `public/assets/` are drawn from the same geometry.
+- Homepage: a full-width "Market Movers" (`.wordmark-top`) sits above the hero and shrinks away on scroll while the header logo fades in (scroll-driven CSS in `global.css`). Other pages show the header logo from the start.
+- Scroll timelines are set through `--tl-view` / `--tl-page` custom properties. Lightning CSS otherwise folds `animation-timeline` into the `animation` shorthand, and browsers drop the whole rule.
 
 ## Motion (transitions.dev recipes + morphicons)
 

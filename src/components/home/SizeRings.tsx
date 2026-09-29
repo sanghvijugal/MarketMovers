@@ -95,12 +95,12 @@ export default function SizeRings() {
           <NumberFlow value={size} />
           <span className="ml-1 text-base tracking-normal text-muted-foreground">mm</span>
         </span>
-        <span className="pb-1 text-[16px] sm:text-right sm:text-[14px] text-muted-foreground" aria-live="polite">
+        <span className="pb-1 text-[18px] sm:text-right sm:text-[14px] text-muted-foreground" aria-live="polite">
           <TextMorph>{USE[size]}</TextMorph>
         </span>
       </figcaption>
 
-      <div role="radiogroup" aria-label="Pipe outside diameter, mm" className="mt-2 grid grid-cols-8 text-center text-[14px] tabular-nums sm:grid-cols-[repeat(15,minmax(0,1fr))] sm:text-[12px]">
+      <div role="radiogroup" aria-label="Pipe outside diameter, mm" className="mt-2 grid grid-cols-8 text-center text-[16px] tabular-nums sm:grid-cols-[repeat(15,minmax(0,1fr))] sm:text-[12px]">
         {SIZES.map((s) => (
           <button
             key={s}
@@ -114,7 +114,7 @@ export default function SizeRings() {
           </button>
         ))}
       </div>
-      <p className="mt-1 text-[14px] sm:text-[12px] text-muted-foreground">Outside diameters to scale, IS 4985 series. Pick one.</p>
+      <p className="mt-1 text-[16px] sm:text-[12px] text-muted-foreground">Outside diameters to scale, IS 4985 series. Pick one.</p>
     </figure>
   );
 }

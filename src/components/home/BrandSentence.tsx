@@ -23,8 +23,8 @@ export default function BrandSentence({ brands, askHref }: { brands: Brand[]; as
         <div className="sticky top-32 min-h-[14rem]" aria-live="polite">
           <p key={`t${active}`} className="fade-in text-[22px] leading-tight font-medium tracking-[-0.02em]">{title}</p>
           {/* longer text crossfades (keyed) instead of morphing, so it wraps */}
-          <p key={`b${active}`} className="fade-in mt-3 text-[17px] sm:text-[15px] leading-relaxed text-muted-foreground">{body}</p>
-          {cta && <p key={`c${active}`} className="fade-in mt-4 text-[17px] sm:text-[15px] font-medium text-teal">{cta}</p>}
+          <p key={`b${active}`} className="fade-in mt-3 text-[19px] sm:text-[15px] leading-relaxed text-muted-foreground">{body}</p>
+          {cta && <p key={`c${active}`} className="fade-in mt-4 text-[19px] sm:text-[15px] font-medium text-teal">{cta}</p>}
         </div>
       </div>
       <p className="text-[clamp(3rem,8.4vw,7.5rem)] leading-[0.98] font-semibold tracking-[-0.05em]">
