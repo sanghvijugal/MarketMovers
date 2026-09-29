@@ -50,7 +50,8 @@ Hindi: Tiro Devanagari Hindi.
 - shadcn/ui (`src/components/ui`): `Button` / `buttonVariants` (black pill), `Input`, `Textarea`,
   `Label`, `NativeSelect`.
 - Icons: Hugeicons, only inside buttons and arrow links.
-- `ActionBar.astro`: phone Call / Get a quote bar. `Logo.astro`: wordmark + Hindi.
+- `ActionBar.astro`: phone Call / Get a quote bar. `Logo.astro`: woven MM mark + wordmark + Hindi.
+- `LogoMark.astro`: the logo, two Ms woven over and under. Inner M in ink (`currentColor`), outer M in teal (`--teal-on-dark` on black). Heavier `weight` at small sizes. The favicons and OG image in `public/assets/` are drawn from the same geometry.
 
 ## Motion (transitions.dev recipes + morphicons)
 

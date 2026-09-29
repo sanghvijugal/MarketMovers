@@ -32,6 +32,7 @@
   --accent: #e3ecea;
   --accent-foreground: #0b5d63;
   --teal: #0b5d63;
+  --teal-on-dark: #5aa9ae; /* the logo's outer M on black */
   --destructive: oklch(0.53 0.2 27);
   --ring: var(--teal);
 

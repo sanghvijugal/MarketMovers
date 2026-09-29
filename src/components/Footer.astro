@@ -1,15 +1,19 @@
 ---
 import { business, brands, whatsappUrl } from "@/data/site";
+import LogoMark from "./LogoMark.astro";
 const year = new Date().getFullYear();
 const a = business.address;
 const link = "transition-colors duration-150 hover:text-inverse-foreground";
 ---
 <footer class="overflow-hidden bg-inverse text-inverse-foreground">
   <div class="mx-auto grid max-w-[88rem] gap-10 px-5 pt-20 sm:px-8 md:grid-cols-[1.4fr_1fr_1fr] lg:px-14">
-    <p class="max-w-sm text-[17px] sm:text-[15px] leading-relaxed text-inverse-muted">
-      Wholesale distributor of pipes, fittings and sanitaryware in Jabalpur, Madhya Pradesh.
-      <span lang="hi" class="mt-2 block font-hindi">पाइप, फिटिंग और सैनिटरी का सामान</span>
-    </p>
+    <div>
+      <LogoMark id="mm-footer" class="mb-8 h-14 w-auto" outer="var(--teal-on-dark)" weight={16} />
+      <p class="max-w-sm text-[17px] sm:text-[15px] leading-relaxed text-inverse-muted">
+        Wholesale distributor of pipes, fittings and sanitaryware in Jabalpur, Madhya Pradesh.
+        <span lang="hi" class="mt-2 block font-hindi">पाइप, फिटिंग और सैनिटरी का सामान</span>
+      </p>
+    </div>
     <div>
       <h2 class="text-[15px] sm:text-[13px] text-inverse-muted">Catalogues</h2>
       <ul class="mt-4 space-y-2 text-[17px] sm:text-[15px] text-inverse-muted">
