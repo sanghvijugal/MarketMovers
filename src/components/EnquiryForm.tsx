@@ -118,7 +118,7 @@ export default function EnquiryForm({ whatsapp, categories }: Props) {
           <HugeiconsIcon icon={WhatsappIcon} strokeWidth={1.5} />
           Send on WhatsApp
         </Button>
-        <p className="text-[15px] sm:text-sm text-muted-foreground">Opens WhatsApp with your message filled in.</p>
+        <p className="text-[17px] sm:text-sm text-muted-foreground">Opens WhatsApp with your message filled in.</p>
       </div>
     </form>
   );
@@ -144,7 +144,7 @@ function FieldRow({
         {optional && <span className="font-normal text-muted-foreground"> (optional)</span>}
       </Label>
       {children}
-      <p id={`${id}-error`} className={cn("text-[15px] sm:text-sm text-destructive", !error && "sr-only")} aria-live="polite">
+      <p id={`${id}-error`} className={cn("text-[17px] sm:text-sm text-destructive", !error && "sr-only")} aria-live="polite">
         {error}
       </p>
     </div>

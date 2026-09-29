@@ -25,7 +25,7 @@
   --input: #bcb8ae;
   --rule: #111111;
 
-  --primary: #111111;
+  --primary: var(--teal);
   --primary-foreground: #f1f0ec;
   --secondary: var(--muted);
   --secondary-foreground: var(--foreground);
@@ -225,12 +225,16 @@
   transform: none;
 }
 
+/* Scroll timelines go through custom properties so the CSS minifier can't fold
+   them into the `animation` shorthand, where browsers reject them. */
+:root { --tl-view: view(); --tl-page: scroll(root); }
+
 /* Paragraph that darkens word by word as it scrolls up the screen. */
 .read-words > span { opacity: 1; }
 @supports (animation-timeline: view()) {
   .read-words > span {
     animation: word-in linear both;
-    animation-timeline: view();
+    animation-timeline: var(--tl-view);
     animation-range: entry 60% cover 42%;
   }
 }
@@ -296,6 +300,32 @@
 .scaler {
   transform-origin: 220px 220px;
   transition: transform 520ms var(--ease-out);
+}
+
+/* Homepage: the name starts huge at the top and shrinks away as the page
+   scrolls, while the small header logo fades in to take its place.
+   Browsers without scroll-driven animation keep both static. */
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .wordmark-top > * {
+      transform-origin: 50% 0;
+      animation: wordmark-shrink linear both;
+      animation-timeline: var(--tl-page);
+      animation-range: 0px 17vw;
+    }
+    body:has(.wordmark-top) .header-logo {
+      animation: header-logo-in linear both;
+      animation-timeline: var(--tl-page);
+      animation-range: 9vw 17vw;
+    }
+  }
+}
+@keyframes wordmark-shrink {
+  to { transform: scale(0.42); opacity: 0; }
+}
+@keyframes header-logo-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -15,8 +15,8 @@ const variants = cva(
         inverse: "border border-inverse-foreground/25 text-inverse-foreground hover:bg-inverse-foreground/10",
       },
       size: {
-        default: "h-11 px-5",
-        sm: "h-9 px-3.5",
+        default: "h-11 px-5 text-[16px] sm:text-sm",
+        sm: "h-10 px-4 text-[16px] sm:h-9 sm:px-3.5 sm:text-sm",
         lg: "h-[52px] px-6 text-base",
         icon: "size-11",
       },

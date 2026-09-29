@@ -13,7 +13,7 @@ export default function Stats({ stats }: { stats: Stat[] }) {
     <dl ref={ref} className="flex flex-wrap gap-x-16 gap-y-10">
       {stats.map((s, i) => (
         <div key={s.label} className="flex flex-col">
-          <dt className="order-2 mt-3 max-w-[13rem] text-[16px] sm:text-[14px] leading-snug text-muted-foreground">{s.label}</dt>
+          <dt className="order-2 mt-3 max-w-[13rem] text-[18px] sm:text-[14px] leading-snug text-muted-foreground">{s.label}</dt>
           <dd className="order-1 text-[clamp(3.5rem,7vw,6.5rem)] leading-[0.85] font-medium tracking-[-0.055em] tabular-nums">
             <NumberFlow
               value={seen ? s.value : 0}

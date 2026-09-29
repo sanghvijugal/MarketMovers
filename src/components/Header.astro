@@ -18,11 +18,11 @@ const wa = whatsappUrl("Hello Market Movers, I have an enquiry.");
 <header class="sticky top-0 z-40 bg-background/85 backdrop-blur-md">
   <div class="mx-auto flex h-[68px] max-w-[88rem] items-center justify-between gap-6 px-5 sm:px-8 lg:h-[76px] lg:px-14">
     <a href="/" aria-label="Market Movers home">
-      <Logo />
+      <Logo class="header-logo" />
     </a>
 
     <nav aria-label="Main" class="hidden md:block">
-      <ul class="flex items-center gap-8 text-[16px] sm:text-[14px] text-muted-foreground">
+      <ul class="flex items-center gap-8 text-[18px] sm:text-[14px] text-muted-foreground">
         {nav.map((l) => (
           <li>
             <a href={l.href} class="sweep pb-0.5 transition-colors duration-150 hover:text-foreground">{l.label}</a>
@@ -32,7 +32,7 @@ const wa = whatsappUrl("Hello Market Movers, I have an enquiry.");
     </nav>
 
     <div class="flex items-center gap-5">
-      <p class="hidden items-center gap-2 text-[15px] sm:text-[13px] text-muted-foreground xl:flex">
+      <p class="hidden items-center gap-2 text-[17px] sm:text-[13px] text-muted-foreground xl:flex">
         <span class="size-1.5 rounded-full bg-teal" data-open-dot aria-hidden="true"></span>
         <span data-open-status>{business.hours.short}, {business.hours.display}</span>
       </p>
