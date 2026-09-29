@@ -7,6 +7,7 @@ import AudienceMorph from "@/components/home/AudienceMorph";
 import Stats from "@/components/home/Stats";
 import BrandSentence from "@/components/home/BrandSentence";
 import Globe from "@/components/home/Globe";
+import LogoMark from "@/components/LogoMark.astro";
 import { buttonVariants } from "@/components/ui/button-variants";
 import { business, brands, categories, whatsappUrl } from "@/data/site";
 import { brandPages } from "@/data/brands";
@@ -55,9 +56,12 @@ const link = "sweep inline-flex items-center gap-1.5 font-medium";
   path="/"
   jsonLd={homeSchema()}>
 
-  <!-- Name, full width; shrinks into the header logo on scroll (global.css) -->
+  <!-- Logo and name, full width; shrinks into the header logo on scroll (global.css) -->
   <div class="wordmark-top pt-4" aria-hidden="true">
-    <p class="px-3 text-center text-[14.4vw] leading-[0.8] sm:text-[clamp(3.5rem,15.2vw,15rem)] font-semibold tracking-[-0.06em] whitespace-nowrap">Market Movers</p>
+    <div class="flex items-center justify-center gap-[0.14em] px-3 text-[12.4vw] leading-[0.8] font-semibold tracking-[-0.06em] whitespace-nowrap sm:text-[clamp(3rem,13vw,13rem)]">
+      <LogoMark id="mm-top" animate class="h-[0.78em] w-auto shrink-0" weight={18} />
+      <span>Market Movers</span>
+    </div>
   </div>
 
   <!-- Hero -->

@@ -320,6 +320,20 @@
     }
   }
 }
+/* Big homepage logo: the inner M drops in, the outer M rises to meet it and
+   the two lock together. Runs once on load. */
+@media (prefers-reduced-motion: no-preference) {
+  .lm-animate .lm-inner { animation: lm-drop 900ms var(--ease-out) 150ms both; }
+  .lm-animate .lm-outer { animation: lm-rise 900ms var(--ease-out) 280ms both; }
+}
+@keyframes lm-drop {
+  from { opacity: 0; transform: translateY(-70px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes lm-rise {
+  from { opacity: 0; transform: translateY(70px); }
+  to { opacity: 1; transform: none; }
+}
 @keyframes wordmark-shrink {
   to { transform: scale(0.42); opacity: 0; }
 }

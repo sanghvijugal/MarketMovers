@@ -2,6 +2,8 @@
 // The Market Movers mark: two Ms, one inside the other, drawn as a single loop
 // that weaves over and under itself. The inner M takes `inner`, the outer M `outer`.
 // Geometry is fixed; only the stroke weight changes (heavier for small sizes).
+// Each M is its own group carrying its own gaps, so with `animate` the two can
+// slide in separately and lock together (see .lm-* in global.css).
 interface Props {
   id: string; // unique per page, used for the crossing mask
   class?: string;
@@ -9,8 +11,9 @@ interface Props {
   outer?: string;
   weight?: number;
   title?: string;
+  animate?: boolean;
 }
-const { id, class: className, inner = "currentColor", outer = "var(--teal)", weight = 14, title } = Astro.props;
+const { id, class: className, inner = "currentColor", outer = "var(--teal)", weight = 14, title, animate = false } = Astro.props;
 
 const a = 64, b = 112, s = 0.625, t2 = 24, B = 200, sw = weight, gap = Math.round(weight * 0.5);
 const v1 = a * s, v2 = t2 + b * s, yc = t2 + (b - a) * s;
@@ -30,15 +33,17 @@ const pad = sw;
 const viewBox = `${-b - pad} ${-pad * 2} ${2 * (b + pad)} ${B + pad * 3}`;
 const stroke = { fill: "none", "stroke-width": sw, "stroke-linejoin": "miter", "stroke-miterlimit": "4" } as const;
 ---
-<svg viewBox={viewBox} class={className} role={title ? "img" : undefined} aria-label={title} aria-hidden={title ? undefined : "true"} xmlns="http://www.w3.org/2000/svg">
+<svg viewBox={viewBox} class:list={[className, animate && "lm-animate"]} role={title ? "img" : undefined} aria-label={title} aria-hidden={title ? undefined : "true"} xmlns="http://www.w3.org/2000/svg">
   <mask id={id} maskUnits="userSpaceOnUse" x="-400" y="-400" width="800" height="800">
     <rect x="-400" y="-400" width="800" height="800" fill="#fff" />
     <path d={cut.left + cut.right} stroke="#000" stroke-width={sw + 2 * gap} />
   </mask>
-  <g mask={`url(#${id})`}>
-    <path d={outerPath} stroke={outer} {...stroke} />
-    <path d={innerPath} stroke={inner} stroke-linecap="square" {...stroke} />
+  <g class="lm-outer">
+    <path d={outerPath} stroke={outer} mask={`url(#${id})`} {...stroke} />
+    <path d={redraw.right} stroke={outer} {...stroke} />
   </g>
-  <path d={redraw.left} stroke={inner} {...stroke} />
-  <path d={redraw.right} stroke={outer} {...stroke} />
+  <g class="lm-inner">
+    <path d={innerPath} stroke={inner} stroke-linecap="square" mask={`url(#${id})`} {...stroke} />
+    <path d={redraw.left} stroke={inner} {...stroke} />
+  </g>
 </svg>
