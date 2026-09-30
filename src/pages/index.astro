@@ -69,7 +69,7 @@ const link = "sweep inline-flex items-center gap-1.5 font-medium";
        (smaller, medium weight) so the two don't compete. -->
   <section class:list={[wrap, "grid gap-14 pt-12 pb-24 md:pt-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)] lg:items-center lg:gap-20"]}>
     <div class="flex flex-col">
-      <p class={label}>Wholesale distributor — Marhatal, Jabalpur</p>
+      <p class={label}>Wholesale distributor in Marhatal, Jabalpur</p>
       <h1 class="mt-5 max-w-3xl text-[2.25rem] leading-[1] font-medium tracking-[-0.045em] text-balance sm:text-[clamp(2.75rem,4.8vw,4.5rem)]">
         Pipes, fittings and sanitaryware<span class="text-muted-foreground">, from stock.</span>
       </h1>
@@ -94,8 +94,7 @@ const link = "sweep inline-flex items-center gap-1.5 font-medium";
 
   <!-- Figures -->
   <section class:list={[wrap, "rule-top py-24 md:py-32"]}>
-    <p class={label}><span class="text-teal tabular-nums">01</span> — The godown</p>
-    <h2 class:list={[h2, "mt-6 max-w-4xl"]} data-reveal>Ready stock, so your site never waits on a factory.</h2>
+    <h2 class:list={[h2, "max-w-4xl"]} data-reveal>Ready stock, so your site never waits on a factory.</h2>
     <div class="mt-16">
       <Stats client:visible stats={stats} />
     </div>
@@ -103,10 +102,7 @@ const link = "sweep inline-flex items-center gap-1.5 font-medium";
 
   <!-- Brands -->
   <section id="brands" class:list={[wrap, "rule-top py-24 md:py-32"]}>
-    <div class="mb-12 flex items-baseline justify-between gap-6">
-      <p class={label}><span class="text-teal tabular-nums">02</span> — Brands</p>
-      <p lang="hi" class="font-hindi text-muted-foreground">हमारे ब्रांड</p>
-    </div>
+    <h2 class="sr-only">Brands we stock</h2>
     <BrandSentence
       client:visible
       brands={sentence}
@@ -116,15 +112,11 @@ const link = "sweep inline-flex items-center gap-1.5 font-medium";
 
   <!-- Products -->
   <section id="products" class:list={[wrap, "rule-top py-24 md:py-32"]}>
-    <div class="flex items-baseline justify-between gap-6">
-      <p class={label}><span class="text-teal tabular-nums">03</span> — Products</p>
-      <p lang="hi" class="font-hindi text-muted-foreground">हमारे पास क्या मिलता है</p>
-    </div>
-    <h2 class:list={[h2, "mt-6"]} data-reveal>What we stock</h2>
-    <ol class="mt-14 border-b border-border">
+    <h2 class={h2} data-reveal>What we stock</h2>
+    <p lang="hi" class="mt-3 font-hindi text-lg text-muted-foreground">हमारे पास क्या मिलता है</p>
+    <ol class="mt-10 md:mt-14">
       {categories.map((c, i) => (
-        <li class="sweep grid gap-x-10 gap-y-3 border-t border-border py-8 md:grid-cols-[3rem_minmax(0,1.15fr)_minmax(0,1fr)] md:items-baseline">
-          <span class="text-[17px] sm:text-[13px] text-muted-foreground tabular-nums">{String(i + 1).padStart(2, "0")}</span>
+        <li class="sweep grid gap-x-10 gap-y-3 py-7 md:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] md:items-baseline">
           <h3 class="nudge text-[clamp(1.875rem,3.6vw,3.25rem)] leading-none font-semibold tracking-[-0.045em]">{c.name}</h3>
           <div class="text-[19px] sm:text-[15px] leading-relaxed">
             <p class="text-muted-foreground">{c.text}</p>
@@ -155,13 +147,10 @@ const link = "sweep inline-flex items-center gap-1.5 font-medium";
   <!-- Ordering -->
   <section id="order" class="bg-card">
     <div class:list={[wrap, "py-24 md:py-40"]}>
-      <div class="flex items-baseline justify-between gap-6">
-        <p class={label}><span class="text-teal tabular-nums">04</span> — Ordering</p>
-        <p lang="hi" class="font-hindi text-muted-foreground">ऑर्डर कैसे करें</p>
-      </div>
-      <h2 class:list={[h2, "read-words mt-6 max-w-4xl"]}>
+      <h2 class:list={[h2, "read-words max-w-4xl"]}>
         {"Send the list. We'll handle the rest.".split(" ").map((w) => <span>{w} </span>)}
       </h2>
+      <p lang="hi" class="mt-3 font-hindi text-lg text-muted-foreground">ऑर्डर कैसे करें</p>
       <ol class="mt-14 border-b border-border">
         {steps.map((st, i) => (
           <li class="grid gap-x-10 gap-y-2 border-t border-border py-8 md:grid-cols-[3rem_minmax(0,1.15fr)_minmax(0,1fr)] md:items-baseline" data-reveal>
@@ -180,13 +169,10 @@ const link = "sweep inline-flex items-center gap-1.5 font-medium";
   <!-- Visit -->
   <section id="contact" class:list={[wrap, "grid items-center gap-14 py-24 md:py-32 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]"]}>
     <div>
-      <div class="flex items-baseline justify-between gap-6 lg:justify-start lg:gap-10">
-        <p class={label}><span class="text-teal tabular-nums">05</span> — Visit</p>
-        <p lang="hi" class="font-hindi text-muted-foreground">दुकान पर आइए</p>
-      </div>
-      <h2 class="mt-6 text-[clamp(2.75rem,6.4vw,6rem)] leading-[0.92] font-semibold tracking-[-0.055em]" data-reveal>
+      <h2 class="text-[clamp(2.75rem,6.4vw,6rem)] leading-[0.92] font-semibold tracking-[-0.055em]" data-reveal>
         {a.street}, {a.city}.
       </h2>
+      <p lang="hi" class="mt-3 font-hindi text-lg text-muted-foreground">दुकान पर आइए</p>
       <div class="mt-10 space-y-2 text-lg">
         <p>{business.hours.days}, {business.hours.display}. <span class="text-muted-foreground">Sunday closed.</span></p>
         <p class="tabular-nums">
@@ -209,8 +195,7 @@ const link = "sweep inline-flex items-center gap-1.5 font-medium";
   <!-- Enquiry -->
   <section class:list={[wrap, "rule-top grid gap-12 py-24 md:py-32 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-20"]}>
     <div>
-      <p class={label}><span class="text-teal tabular-nums">06</span> — Enquiry</p>
-      <h2 class:list={[h2, "mt-6"]} data-reveal>Tell us what you need.</h2>
+      <h2 class={h2} data-reveal>Tell us what you need.</h2>
       <p class="mt-5 max-w-md text-lg text-muted-foreground">Fill this in and it opens WhatsApp with your message ready to send. Nothing is stored on this site.</p>
     </div>
     <EnquiryForm client:idle whatsapp={business.whatsapp} categories={categories.map((c) => c.name)} />

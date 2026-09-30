@@ -2,7 +2,7 @@
  "slug": "finolex",
  "name": "Finolex",
  "tagline": "Pipes & Fittings",
- "origin": "India's Most Trusted Pipe Brand — Pune, Maharashtra | Est. 1981",
+ "origin": "India's Most Trusted Pipe Brand, Pune, Maharashtra | Est. 1981",
  "badges": [
   "BIS / ISI Certified",
   "CIPET & CFTRI Approved",
@@ -70,9 +70,9 @@
       {
        "type": "list",
        "items": [
-        "Light in weight — easy transportation and installation",
+        "Light in weight, easy transportation and installation",
         "High flow rate due to smooth inner surface",
-        "High resistance to chemicals and corrosion — extended product life",
+        "High resistance to chemicals and corrosion, extended product life",
         "Recommended for water temperatures 1°C to 45°C",
         "Available in Selfit (solvent cement) and Ringfit (rubber ring) joint types",
         "Suitable for agriculture, irrigation, swimming pools and domestic water supply",
@@ -126,8 +126,8 @@
      "title": "Pipes",
      "items": [
       {
-       "name": "PVC-U Agriculture — Selfit Pipe",
-       "std": "as per IS 4985 | Solvent cement joint | 20mm–400mm",
+       "name": "PVC-U Agriculture: Selfit Pipe",
+       "std": "as per IS 4985 | Solvent cement joint | 20mm-400mm",
        "blocks": [
         {
          "type": "text",
@@ -177,12 +177,12 @@
        ]
       },
       {
-       "name": "PVC-U Agriculture — Ringfit Pipe",
-       "std": "as per IS 4985 | Rubber ring joint | 20mm–400mm",
+       "name": "PVC-U Agriculture: Ringfit Pipe",
+       "std": "as per IS 4985 | Rubber ring joint | 20mm-400mm",
        "blocks": [
         {
          "type": "text",
-         "html": "Same pressure classes as Selfit (Class 1–5), joined using rubber ring — no solvent cement required. Ideal for field installation. Sizes 20mm to 400mm."
+         "html": "Same pressure classes as Selfit (Class 1-5), joined using rubber ring, no solvent cement required. Ideal for field installation. Sizes 20mm to 400mm."
         }
        ]
       }
@@ -192,7 +192,7 @@
      "title": "Moulded Fittings",
      "items": [
       {
-       "name": "Moulded Fittings — Complete Range",
+       "name": "Moulded Fittings: Complete Range",
        "std": "as per IS 7834 | All pressure classes",
        "blocks": [
         {
@@ -206,21 +206,21 @@
           "Reducing Tee",
           "Reducing Bush",
           "Reducing Elbow 90°",
-          "Reducing Elbow 90° – Brass Insert",
-          "Reducing Elbow 90° – Threaded",
+          "Reducing Elbow 90°, Brass Insert",
+          "Reducing Elbow 90°, Threaded",
           "Single Y",
           "Reducing Single Y",
           "Saddle Strip",
           "Flange",
-          "Butterfly Valve – Gear Type",
-          "Butterfly Valve – Handle Type",
+          "Butterfly Valve, Gear Type",
+          "Butterfly Valve, Handle Type",
           "Compact Ball Valve",
           "End Cap (Plain/Threaded)",
           "Foot Valve",
           "F.T.A. (Plain)",
-          "F.T.A. – Brass Insert",
+          "F.T.A., Brass Insert",
           "M.T.A.",
-          "Tee – Brass Insert",
+          "Tee, Brass Insert",
           "Tail Piece"
          ]
         }
@@ -233,7 +233,7 @@
      "items": [
       {
        "name": "Fabricated Fittings",
-       "std": "Large diameter — all pressure classes",
+       "std": "Large diameter, all pressure classes",
        "blocks": [
         {
          "type": "text",
@@ -265,7 +265,7 @@
       },
       {
        "type": "text",
-       "html": "Finolex PVC-U casing and ribbed screen pipes are manufactured using a special Lead Free PVC-U compound — ideal for transportation of hard, salty, sandy or chemically aggressive water. Specially designed to protect water lines from soil conditions in domestic, industrial and mining wells. Better than conventional metal pipes — lightweight, corrosion free and long lasting. CNC horizontal slotting ensures strength is maintained."
+       "html": "Finolex PVC-U casing and ribbed screen pipes are manufactured using a special Lead Free PVC-U compound, ideal for transportation of hard, salty, sandy or chemically aggressive water. Specially designed to protect water lines from soil conditions in domestic, industrial and mining wells. Better than conventional metal pipes, lightweight, corrosion free and long lasting. CNC horizontal slotting ensures strength is maintained."
       },
       {
        "type": "chips",
@@ -304,9 +304,9 @@
         "Horizontal CNC slots enable laminar flow, reducing losses at bore well entrance",
         "Maintenance free and more economical than conventional pipes",
         "Manufactured from special PVC-U compound with extra toughness",
-        "Increased permeability due to continuous ribs — keeps gravel pack away from slot opening",
-        "Easy and quick installation — threaded ends for interlocking without cement",
-        "Lead Free — does not alter water quality"
+        "Increased permeability due to continuous ribs, keeps gravel pack away from slot opening",
+        "Easy and quick installation, threaded ends for interlocking without cement",
+        "Lead Free, does not alter water quality"
        ]
       }
      ]
@@ -322,9 +322,9 @@
        "type": "list",
        "items": [
         "<strong>Standard:</strong> IS 12818 (BIS) &amp; ASTM D 1785",
-        "<strong>Types:</strong> CS (Shallow — up to 80m), CM (Medium — 80 to 250m), CD (Deep — 250 to 450m)",
+        "<strong>Types:</strong> CS (Shallow, up to 80m), CM (Medium, 80 to 250m), CD (Deep, 250 to 450m)",
         "<strong>Variants:</strong> Plain casing, Slotted casing, Ribbed Screen pipes, SDR Series Blue, CD &amp; RDS, ASTM Dark Blue (SCH 40 &amp; 80)",
-        "<strong>SDR Series:</strong> For well depth 12 to 24 metres — plain &amp; slotted",
+        "<strong>SDR Series:</strong> For well depth 12 to 24 metres, plain &amp; slotted",
         "<strong>Certifications:</strong> IS 12818, ASTM D 1785, CIPET tested"
        ]
       }
@@ -354,7 +354,7 @@
      "title": "All Casing Types",
      "items": [
       {
-       "name": "CS — Shallow Casing Pipes",
+       "name": "CS: Shallow Casing Pipes",
        "std": "IS 12818 | Well depth up to 80 metres | Plain & Slotted",
        "blocks": [
         {
@@ -364,7 +364,7 @@
        ]
       },
       {
-       "name": "CM — Medium Casing Pipes",
+       "name": "CM: Medium Casing Pipes",
        "std": "IS 12818 | Well depth 80 to 250 metres",
        "blocks": [
         {
@@ -374,7 +374,7 @@
        ]
       },
       {
-       "name": "CD — Deep Casing Pipes & RDS",
+       "name": "CD: Deep Casing Pipes & RDS",
        "std": "IS 12818 | Well depth 250 to 450 metres",
        "blocks": [
         {
@@ -471,14 +471,14 @@
       {
        "type": "list",
        "items": [
-        "Lead-free — completely safe for drinking water",
+        "Lead-free, completely safe for drinking water",
         "Anti-abrasion and anti-corrosion properties ensure long life",
-        "High Tensile Strength — withstands pump + water + pipe system load",
-        "Lightweight — easy to handle and transport",
+        "High Tensile Strength, withstands pump + water + pipe system load",
+        "Lightweight, easy to handle and transport",
         "High torque resistance double locking system (brass riveting) for extra safety",
         "EPDM rubber O-ring makes joints watertight and absorbs pump vibrations",
-        "Thick-and-Thin construction — extra material at threaded ends for strength",
-        "Square threaded coupling — ease of joining and optimum load capacity"
+        "Thick-and-Thin construction, extra material at threaded ends for strength",
+        "Square threaded coupling, ease of joining and optimum load capacity"
        ]
       }
      ]
@@ -499,7 +499,7 @@
         "<strong>Pressure Ratings:</strong> V4, Crystal, Medium, Standard, Heavy, Super Heavy",
         "<strong>Installation Depth Range:</strong> 100 to 400 metres depending on class",
         "<strong>O-ring Material:</strong> EPDM rubber",
-        "<strong>Locking System:</strong> Brass riveted — high torque resistance"
+        "<strong>Locking System:</strong> Brass riveted, high torque resistance"
        ]
       }
      ]
@@ -517,11 +517,11 @@
         "Pump delivery pressure must be less than the selected hydrostatic allowable pressure of column pipes",
         "Bore well drilling must be straight down without bending",
         "Initial 3 metre GI/steel pipe must be connected directly to pump for heat dissipation during dry run",
-        "Diameter of tube well must be at least 2\"–2.5\" more than pump diameter",
+        "Diameter of tube well must be at least 2\"-2.5\" more than pump diameter",
         "Always mount split clamp on pipe below coupler at the top",
-        "Tighten pipes by strap wrench — 50% of rubber-sealing ring on male thread gets into coupler seat",
-        "Do not over-tighten — may crush rubber seals causing leakage",
-        "Do not apply grease, oil or chemical on threads — use plain or soapy water only"
+        "Tighten pipes by strap wrench, 50% of rubber-sealing ring on male thread gets into coupler seat",
+        "Do not over-tighten, may crush rubber seals causing leakage",
+        "Do not apply grease, oil or chemical on threads, use plain or soapy water only"
        ]
       }
      ]
@@ -532,8 +532,8 @@
      "title": "Column Pipe Classes",
      "items": [
       {
-       "name": "PVC-U Column Pipes — All Classes",
-       "std": "Coupler type (25–100mm) & Bell End type (25–40mm) | 1.5 & 3 mtr lengths",
+       "name": "PVC-U Column Pipes: All Classes",
+       "std": "Coupler type (25-100mm) & Bell End type (25-40mm) | 1.5 & 3 mtr lengths",
        "blocks": [
         {
          "type": "table",
@@ -556,7 +556,7 @@
            "Crystal",
            "Coupler",
            "Intermediate",
-           "~150–200m",
+           "~150-200m",
            "25mm to 50mm"
           ],
           [
@@ -569,7 +569,7 @@
           [
            "Standard",
            "Coupler",
-           "~25–30 kg/cm²",
+           "~25-30 kg/cm²",
            "Up to ~300m",
            "25mm to 100mm"
           ],
@@ -620,7 +620,7 @@
       },
       {
        "type": "text",
-       "html": "Finolex CPVC Pipes are the premium offering — manufactured using high-quality raw materials and advanced technology. Perfect for hot and cold water applications, withstanding higher temperatures than other plastic piping systems. Certified by BIS, CIPET and CFTRI. Lead-free, UV stabilized, and corrosion free."
+       "html": "Finolex CPVC Pipes are the premium offering, manufactured using high-quality raw materials and advanced technology. Perfect for hot and cold water applications, withstanding higher temperatures than other plastic piping systems. Certified by BIS, CIPET and CFTRI. Lead-free, UV stabilized, and corrosion free."
       },
       {
        "type": "chips",
@@ -654,12 +654,12 @@
       {
        "type": "list",
        "items": [
-        "Lead-free — manufactured using lead-free compounds",
-        "High Impact Strength — ideal for demanding plumbing systems",
+        "Lead-free, manufactured using lead-free compounds",
+        "High Impact Strength, ideal for demanding plumbing systems",
         "Safe/Ideal for Hot &amp; Cold water applications",
-        "UV Stabilized — suitable for outdoor use",
+        "UV Stabilized, suitable for outdoor use",
         "Leak-Proof Joints with Finolex solvent cement",
-        "Corrosion Free — ensures pure water delivery",
+        "Corrosion Free, ensures pure water delivery",
         "Certified by BIS, CIPET and CFTRI"
        ]
       }
@@ -675,11 +675,11 @@
       {
        "type": "list",
        "items": [
-        "Hospitals — durability and hygiene for critical water needs",
-        "Academic Institutes — schools and universities water supply",
-        "Hotels and Resorts — demanding hot and cold water requirements",
-        "Swimming Pools — chemical and UV resistance",
-        "Manufacturing Plants — high pressure and temperature applications",
+        "Hospitals, durability and hygiene for critical water needs",
+        "Academic Institutes, schools and universities water supply",
+        "Hotels and Resorts, demanding hot and cold water requirements",
+        "Swimming Pools, chemical and UV resistance",
+        "Manufacturing Plants, high pressure and temperature applications",
         "High-Rise Buildings and Independent Houses"
        ]
       }
@@ -706,7 +706,7 @@
      "title": "Fittings",
      "items": [
       {
-       "name": "CPVC Fittings — Complete Range",
+       "name": "CPVC Fittings: Complete Range",
        "std": "CTS & SCH 80 | ½\" to 4\"",
        "blocks": [
         {
@@ -719,21 +719,21 @@
          "items": [
           "Coupler",
           "Elbow 90°",
-          "Elbow 90° – Brass Insert",
+          "Elbow 90°, Brass Insert",
           "Elbow 45°",
           "Tee",
           "Cross Tee",
-          "Tee – Brass Insert",
+          "Tee, Brass Insert",
           "End Cap",
-          "M.T.A. – Brass Insert",
-          "F.T.A. – Brass Insert",
+          "M.T.A., Brass Insert",
+          "F.T.A., Brass Insert",
           "Union",
           "Reducer Bush",
           "Reducing Tee",
           "Reducing Elbow 90°",
           "Step Over Bend",
           "Tank Nipple",
-          "Tank Nipple – Socket End",
+          "Tank Nipple, Socket End",
           "Ball Valve",
           "Pipe Clip"
          ]
@@ -798,13 +798,13 @@
       {
        "type": "list",
        "items": [
-        "Manufactured per ASTM D 1785 — internationally recognised standard",
-        "Lead-free compound — environment and health friendly",
+        "Manufactured per ASTM D 1785, internationally recognised standard",
+        "Lead-free compound, environment and health friendly",
         "Prolonged life advantage over conventional metal and plastic pipes",
         "Abrasion resistance, mechanical strength, toughness and durability",
-        "Light weight — reduces installation time and labour costs",
+        "Light weight, reduces installation time and labour costs",
         "Available in Schedule 40 (standard) and Schedule 80 (heavy duty)",
-        "Stringent quality assurance — preferred by leading MEP consultants and architects"
+        "Stringent quality assurance, preferred by leading MEP consultants and architects"
        ]
       }
      ]
@@ -820,7 +820,7 @@
        "type": "list",
        "items": [
         "<strong>Standard (ASTM Pipes):</strong> ASTM D 1785 (SCH 40 &amp; SCH 80)",
-        "<strong>Standard (Heavy Pipes):</strong> IS 4985 — 15 kg/cm²",
+        "<strong>Standard (Heavy Pipes):</strong> IS 4985-15 kg/cm²",
         "<strong>Lengths:</strong> 3 metres and 6 metres",
         "<strong>End Types:</strong> Plain and Threaded",
         "<strong>Sizes:</strong> ½\" (15mm) to 6\" (150mm)",
@@ -942,7 +942,7 @@
        ]
       },
       {
-       "name": "Heavy Pressure Plumbing Pipes — 15 kg/cm²",
+       "name": "Heavy Pressure Plumbing Pipes: 15 kg/cm²",
        "std": "as per IS 4985 | Grey colour",
        "blocks": [
         {
@@ -957,7 +957,7 @@
      "title": "Fittings",
      "items": [
       {
-       "name": "ASTM Fittings — Complete Range",
+       "name": "ASTM Fittings: Complete Range",
        "std": "SCH 40 & SCH 80 | ½\" to 4\"",
        "blocks": [
         {
@@ -971,17 +971,17 @@
           "Coupler",
           "Tee (Plain/Threaded)",
           "Elbow 90° (Plain/Threaded)",
-          "Elbow 90° – Brass Insert",
+          "Elbow 90°, Brass Insert",
           "Elbow 45°",
           "Cross Tee",
           "End Cap",
           "Threaded End Plug",
-          "M.T.A. – Brass Insert",
+          "M.T.A., Brass Insert",
           "F.T.A.",
           "Union",
           "Step Over Bend",
           "Tank Nipple",
-          "Tank Nipple – Socket End",
+          "Tank Nipple, Socket End",
           "Pipe Clip",
           "Ball Valve",
           "Reducing Bush",
@@ -1049,11 +1049,11 @@
       {
        "type": "list",
        "items": [
-        "Selfit pipes — self-socketed, one end plain, joined using Finolex Solvent Cement",
-        "Integrated Ring pipes — pre-fitted rubber ring, push spigot into socket without solvent cement",
-        "Integrated Ring absorbs linear expansion and contraction — seal stays intact",
+        "Selfit pipes, self-socketed, one end plain, joined using Finolex Solvent Cement",
+        "Integrated Ring pipes, pre-fitted rubber ring, push spigot into socket without solvent cement",
+        "Integrated Ring absorbs linear expansion and contraction, seal stays intact",
         "Use Finolex lubricant for easy insertion with Integrated Ring system",
-        "Complete range of fittings — IS 14735 from 40mm to 160mm",
+        "Complete range of fittings, IS 14735 from 40mm to 160mm",
         "UV-stabilized, light weight, non-corrosive and durable"
        ]
       }
@@ -1091,7 +1091,7 @@
        "items": [
         "Soil, waste and rainwater drainage in residential buildings",
         "Commercial and industrial building drainage",
-        "Hospitals, hotels, schools — hygiene-critical buildings",
+        "Hospitals, hotels, schools, hygiene-critical buildings",
         "Waste water management systems"
        ]
       }
@@ -1104,7 +1104,7 @@
      "items": [
       {
        "name": "SWR Selfit Pipes",
-       "std": "as per IS 13592 | Solvent cement joint | 75–160mm",
+       "std": "as per IS 13592 | Solvent cement joint | 75-160mm",
        "blocks": [
         {
          "type": "text",
@@ -1118,11 +1118,11 @@
       },
       {
        "name": "SWR Pipes with Integrated Rings",
-       "std": "as per IS 13592 | Push-fit — no solvent needed | 75–160mm",
+       "std": "as per IS 13592 | Push-fit, no solvent needed | 75-160mm",
        "blocks": [
         {
          "type": "text",
-         "html": "Integrated Ring pre-fitted permanently in socket groove. Simply push spigot into socket — no solvent cement needed. Use Finolex lubricant for easy insertion."
+         "html": "Integrated Ring pre-fitted permanently in socket groove. Simply push spigot into socket, no solvent cement needed. Use Finolex lubricant for easy insertion."
         },
         {
          "type": "text",
@@ -1136,7 +1136,7 @@
      "title": "Selfit Fittings",
      "items": [
       {
-       "name": "Selfit Fittings — Complete Range",
+       "name": "Selfit Fittings: Complete Range",
        "std": "as per IS 14735 | 40mm to 160mm",
        "blocks": [
         {
@@ -1149,42 +1149,42 @@
          "kind": "items",
          "items": [
           "Coupler",
-          "Bend 87.5° – Plain",
+          "Bend 87.5°, Plain",
           "Bend 45° Plain",
-          "Bend 45° – Double Socket",
-          "Bend – Double Socket Plain",
-          "Bend – Double Socket Door",
-          "Tee – Plain",
-          "Tee – Door",
-          "Tee – Double Socket Plain",
-          "Tee – Double Socket Door",
-          "Cross Tee – Plain",
+          "Bend 45°, Double Socket",
+          "Bend, Double Socket Plain",
+          "Bend, Double Socket Door",
+          "Tee, Plain",
+          "Tee, Door",
+          "Tee, Double Socket Plain",
+          "Tee, Double Socket Door",
+          "Cross Tee, Plain",
           "Cleaning Pipe",
           "Reducing Bush",
-          "Reducing Tee – Door",
-          "Swept Tee – Door",
-          "Single Y – Plain",
-          "Single Y – Door",
-          "Equal Y – Plain",
-          "Equal Y – Door",
-          "Double Y – Plain",
-          "Double Y – Door",
-          "Reducing Y – Plain",
-          "Reducing Y – Door",
-          "Reverse Y – Plain",
-          "Reverse Y – Door",
-          "Gully Trap – Single",
-          "Sq. Gully Trap – With/W.O Jali",
+          "Reducing Tee, Door",
+          "Swept Tee, Door",
+          "Single Y, Plain",
+          "Single Y, Door",
+          "Equal Y, Plain",
+          "Equal Y, Door",
+          "Double Y, Plain",
+          "Double Y, Door",
+          "Reducing Y, Plain",
+          "Reducing Y, Door",
+          "Reverse Y, Plain",
+          "Reverse Y, Door",
+          "Gully Trap, Single",
+          "Sq. Gully Trap, With/W.O Jali",
           "Height Riser (6\")",
-          "Multi Floor Trap – Square Jali",
-          "Multi Floor Trap – Without Jali",
-          "Nahani Trap – W/O Jali Short",
+          "Multi Floor Trap, Square Jali",
+          "Multi Floor Trap, Without Jali",
+          "Nahani Trap, W/O Jali Short",
           "Nahani Trap Jali (Only Jali)",
           "Q-Trap",
           "Pipe Clip",
           "Vent Cowl",
           "WC Connector",
-          "WC Connector – Bend",
+          "WC Connector, Bend",
           "Floor Trap"
          ]
         }
@@ -1201,7 +1201,7 @@
        "blocks": [
         {
          "type": "text",
-         "html": "Integrated Ring fittings are push-fit — no solvent cement required. Sizes 75mm to 160mm per IS 14735. Full range mirrors Selfit fittings but with Integrated Ring socket type."
+         "html": "Integrated Ring fittings are push-fit, no solvent cement required. Sizes 75mm to 160mm per IS 14735. Full range mirrors Selfit fittings but with Integrated Ring socket type."
         },
         {
          "type": "chips",
@@ -1210,14 +1210,14 @@
           "Coupler",
           "Bend 87.5°",
           "Bend 45°",
-          "Tee – Plain",
-          "Tee – Door",
+          "Tee, Plain",
+          "Tee, Door",
           "Cross Tee",
-          "Single Y – Plain",
-          "Single Y – Door",
-          "Equal Y – Plain",
-          "Double Y – Plain",
-          "Double Y – Door",
+          "Single Y, Plain",
+          "Single Y, Door",
+          "Equal Y, Plain",
+          "Double Y, Plain",
+          "Double Y, Door",
           "Reducing Y",
           "Swept Tee",
           "Cleaning Pipe",
@@ -1253,7 +1253,7 @@
       },
       {
        "type": "text",
-       "html": "Finolex underground drainage and sewerage pipes carry soil and waste from buildings to sewers or drains and then to treatment plants. Designed for underground non-pressure applications — gravity drainage, sewer flow and transportation of soil &amp; waste discharge. Available in sizes 110mm to 315mm in stiffness classes SN-2, SN-4 and SN-8 conforming to IS 15328."
+       "html": "Finolex underground drainage and sewerage pipes carry soil and waste from buildings to sewers or drains and then to treatment plants. Designed for underground non-pressure applications, gravity drainage, sewer flow and transportation of soil &amp; waste discharge. Available in sizes 110mm to 315mm in stiffness classes SN-2, SN-4 and SN-8 conforming to IS 15328."
       },
       {
        "type": "chips",
@@ -1288,13 +1288,13 @@
        "type": "list",
        "items": [
         "Non-reactive to most acids, alkalis, effluents, salt, minerals etc",
-        "Self-socketed pipes — 50% savings in installation time vs plain ended pipes",
+        "Self-socketed pipes, 50% savings in installation time vs plain ended pipes",
         "Smooth inner surface reduces frictional losses and scale formation",
         "Corrosion and rust proof",
-        "Does not support fire — good resistance to combustion",
-        "100% water tight — prevents ingress and seepage, ensuring hygiene",
-        "Lightweight — ideal replacement for CI and DI piping systems",
-        "EPDM rubber rings for Ringfit — long lasting, withstand high pressures"
+        "Does not support fire, good resistance to combustion",
+        "100% water tight, prevents ingress and seepage, ensuring hygiene",
+        "Lightweight, ideal replacement for CI and DI piping systems",
+        "EPDM rubber rings for Ringfit, long lasting, withstand high pressures"
        ]
       }
      ]
@@ -1330,7 +1330,7 @@
        "type": "list",
        "items": [
         "Underground drainage from buildings to sewers",
-        "Hospitals, hotels, schools — hygiene-critical environments",
+        "Hospitals, hotels, schools, hygiene-critical environments",
         "Rainwater collection and disposal",
         "Gravity drainage and sewer flow",
         "Transportation of soil and waste discharge"
@@ -1419,7 +1419,7 @@
       },
       {
        "type": "text",
-       "html": "Finolex offers a complete range of solvent cements and accessories to complement all Finolex pipe systems. Available in two ranges — Agriculture (for PVC-U agriculture pipes and fittings) and Plumbing (for ASTM, CPVC and SWR systems). Lubricant for Ringfit and Integrated Ring pipe jointing also available."
+       "html": "Finolex offers a complete range of solvent cements and accessories to complement all Finolex pipe systems. Available in two ranges, Agriculture (for PVC-U agriculture pipes and fittings) and Plumbing (for ASTM, CPVC and SWR systems). Lubricant for Ringfit and Integrated Ring pipe jointing also available."
       },
       {
        "type": "chips",
@@ -1457,12 +1457,12 @@
       {
        "type": "list",
        "items": [
-        "Agriculture Solvent Cement — for PVC-U Selfit agriculture pipes and fittings",
-        "ASTM Solvent Cement — for Finolex ASTM SCH 40 &amp; SCH 80 plumbing pipes",
-        "CPVC Solvent Cement — specially formulated for Finolex CPVC pipe systems",
-        "SWR Solvent Cement — for Selfit SWR drainage pipes and fittings",
-        "Rubber Lubricant — for Ringfit and Integrated Ring pipe jointing",
-        "Primer — for preparation of surfaces before solvent cement application (CPVC/ASTM)"
+        "Agriculture Solvent Cement, for PVC-U Selfit agriculture pipes and fittings",
+        "ASTM Solvent Cement, for Finolex ASTM SCH 40 &amp; SCH 80 plumbing pipes",
+        "CPVC Solvent Cement, specially formulated for Finolex CPVC pipe systems",
+        "SWR Solvent Cement, for Selfit SWR drainage pipes and fittings",
+        "Rubber Lubricant, for Ringfit and Integrated Ring pipe jointing",
+        "Primer, for preparation of surfaces before solvent cement application (CPVC/ASTM)"
        ]
       }
      ]
@@ -1503,7 +1503,7 @@
        "blocks": [
         {
          "type": "text",
-         "html": "For ASTM/uPVC plumbing pipes and fittings up to 2\" (50mm). Manufactured under license from Invogue Labs Inc., New York, USA. Low VOC formulation — environmentally friendly."
+         "html": "For ASTM/uPVC plumbing pipes and fittings up to 2\" (50mm). Manufactured under license from Invogue Labs Inc., New York, USA. Low VOC formulation, environmentally friendly."
         }
        ]
       },
@@ -1518,7 +1518,7 @@
        ]
       },
       {
-       "name": "CPVC Solvent Cement — Yellow Medium Bodied",
+       "name": "CPVC Solvent Cement: Yellow Medium Bodied",
        "std": "For CPVC hot & cold water | Up to 50mm",
        "blocks": [
         {
@@ -1528,7 +1528,7 @@
        ]
       },
       {
-       "name": "CPVC Solvent Cement — Orange Heavy Bodied",
+       "name": "CPVC Solvent Cement: Orange Heavy Bodied",
        "std": "For CPVC hot & cold water | Above 50mm | Meets ASTM F 493",
        "blocks": [
         {
@@ -1549,7 +1549,7 @@
       },
       {
        "name": "Primer for PVC-U and CPVC Plumbing",
-       "std": "Purple primer — surface preparation before cementing",
+       "std": "Purple primer, surface preparation before cementing",
        "blocks": [
         {
          "type": "text",

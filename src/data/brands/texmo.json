@@ -2,7 +2,7 @@
  "slug": "texmo",
  "name": "Texmo",
  "tagline": "Pipes & Products",
- "origin": "Listed Manufacturer — Burhanpur, Madhya Pradesh | Est. 1988",
+ "origin": "Listed Manufacturer, Burhanpur, Madhya Pradesh | Est. 1988",
  "badges": [
   "BIS / ISI Certified",
   "IS & ASTM Standards",
@@ -45,7 +45,7 @@
         "Hot Water up to 100°C",
         "IS 15778 & ASTM Certified",
         "Corrosion Resistant",
-        "Fire Safe — LOI 60",
+        "Fire Safe, LOI 60",
         "Lead Free",
         "Energy Efficient",
         "Leak Proof",
@@ -70,13 +70,13 @@
       {
        "type": "list",
        "items": [
-        "Hot &amp; Cold water compatible — withstands temperatures up to 100°C",
+        "Hot &amp; Cold water compatible, withstands temperatures up to 100°C",
         "Unaffected by chlorine in potable water supply",
         "Excellent chemical resistance to strong mineral acids and bases",
-        "Limiting Oxygen Index (LOI) of 60 — does not support combustion in air",
-        "Superior insulation — no heat loss or thermal expansion",
+        "Limiting Oxygen Index (LOI) of 60, does not support combustion in air",
+        "Superior insulation, no heat loss or thermal expansion",
         "Over 50 years of trouble-free performance",
-        "Easy cold welding process using solvent cement — simple and inexpensive",
+        "Easy cold welding process using solvent cement, simple and inexpensive",
         "WHO accepted and recommended for water applications"
        ]
       }
@@ -125,13 +125,13 @@
          "Pressure @23°C",
          "400 psi (28.1 kg/cm²)",
          "320 psi (22.5 kg/cm²)",
-         "—"
+         "-"
         ],
         [
          "Pressure @82°C",
          "100 psi (7 kg/cm²)",
          "80 psi (5.6 kg/cm²)",
-         "—"
+         "-"
         ],
         [
          "Colour",
@@ -161,9 +161,9 @@
       {
        "type": "list",
        "items": [
-        "High rise residential complexes, societies — bathrooms, kitchens, sinks and water distribution",
+        "High rise residential complexes, societies, bathrooms, kitchens, sinks and water distribution",
         "Hotels, office complexes and commercial buildings",
-        "Industrial — transportation of chemicals &amp; gases, milk in dairies, laboratories",
+        "Industrial, transportation of chemicals &amp; gases, milk in dairies, laboratories",
         "Villas, farm-houses and individual homes",
         "Solar water heaters and geysers"
        ]
@@ -176,7 +176,7 @@
      "title": "Pipes",
      "items": [
       {
-       "name": "CPVC Pipes — SDR 11 & SDR 13.5 (CTS)",
+       "name": "CPVC Pipes: SDR 11 & SDR 13.5 (CTS)",
        "std": "IS 15778 / ASTM D-2846 | ½\" to 2\" | Tan colour",
        "blocks": [
         {
@@ -194,7 +194,7 @@
        ]
       },
       {
-       "name": "CPVC Pipes — SCH 40 & SCH 80",
+       "name": "CPVC Pipes: SCH 40 & SCH 80",
        "std": "ASTM F441 | 2\" to 6\" | Higher sizes",
        "blocks": [
         {
@@ -209,8 +209,8 @@
      "title": "Fittings",
      "items": [
       {
-       "name": "CPVC Fittings — Full Range (SDR 11)",
-       "std": "ASTM D-2846 | 16mm to 2\" (CTS) | SCH 80: 2½\"–4\" per ASTM F439",
+       "name": "CPVC Fittings: Full Range (SDR 11)",
+       "std": "ASTM D-2846 | 16mm to 2\" (CTS) | SCH 80: 2½\"-4\" per ASTM F439",
        "blocks": [
         {
          "type": "chips",
@@ -218,14 +218,14 @@
          "items": [
           "Coupler",
           "Elbow 90°",
-          "Elbow 90° – Brass Insert",
+          "Elbow 90°, Brass Insert",
           "Elbow 45°",
           "Tee",
           "Cross Tee",
-          "Tee – Brass Insert",
+          "Tee, Brass Insert",
           "End Cap",
-          "M.T.A. – Brass Insert",
-          "F.T.A. – Brass Insert",
+          "M.T.A., Brass Insert",
+          "F.T.A., Brass Insert",
           "Union",
           "Reducer Bush",
           "Reducing Tee",
@@ -311,14 +311,14 @@
       {
        "type": "list",
        "items": [
-        "Strong and durable — strong, impact-resistant, unaffected by weather conditions",
-        "Light weight — easy to handle, transport and install",
-        "Convenient for jointing — simple and inexpensive tools required",
-        "Better flow characteristic — smooth internal surface, rust proof, no deposit formation",
-        "Leak proof — close dimensional tolerance and precise design",
-        "Energy saving — smooth surface = low frictional loss = lower power consumption",
+        "Strong and durable, strong, impact-resistant, unaffected by weather conditions",
+        "Light weight, easy to handle, transport and install",
+        "Convenient for jointing, simple and inexpensive tools required",
+        "Better flow characteristic, smooth internal surface, rust proof, no deposit formation",
+        "Leak proof, close dimensional tolerance and precise design",
+        "Energy saving, smooth surface = low frictional loss = lower power consumption",
         "Resistant to moisture, corrosion, chemicals, abrasion and wearing",
-        "UV stabilized — blue and white colour"
+        "UV stabilized, blue and white colour"
        ]
       }
      ]
@@ -408,7 +408,7 @@
       {
        "type": "list",
        "items": [
-        "High rise buildings and residential complexes — cold water plumbing",
+        "High rise buildings and residential complexes, cold water plumbing",
         "Hotels, hospitals, offices and commercial buildings",
         "Industrial water distribution systems",
         "Potable water supply systems"
@@ -422,7 +422,7 @@
      "title": "Pipes",
      "items": [
       {
-       "name": "uPVC Plumbing Pipes — SCH 40 & SCH 80",
+       "name": "uPVC Plumbing Pipes: SCH 40 & SCH 80",
        "std": "ASTM D 1785 | ½\" to 4\" | 3 & 6 mtr lengths",
        "blocks": [
         {
@@ -513,7 +513,7 @@
      "title": "Fittings (SCH 80)",
      "items": [
       {
-       "name": "uPVC Plumbing Fittings — SCH 80",
+       "name": "uPVC Plumbing Fittings: SCH 80",
        "std": "ASTM D 2467 | ½\" to 4\"",
        "blocks": [
         {
@@ -522,18 +522,18 @@
          "items": [
           "Coupler",
           "Elbow 90° (Plain/Threaded)",
-          "Elbow 90° – Brass Insert",
+          "Elbow 90°, Brass Insert",
           "Elbow 45°",
           "Tee (Plain/Threaded)",
           "Cross Tee",
           "End Cap",
           "Threaded End Plug",
-          "M.T.A. – Brass Insert",
+          "M.T.A., Brass Insert",
           "F.T.A.",
           "Union",
           "Step Over Bend",
           "Tank Nipple",
-          "Tank Nipple – Socket End",
+          "Tank Nipple, Socket End",
           "Pipe Clip",
           "Ball Valve",
           "Reducing Bush",
@@ -582,7 +582,7 @@
       },
       {
        "type": "text",
-       "html": "Texmo SWR Pipes &amp; Fittings are manufactured under strict quality control conforming to IS-13592 and IS-15328 (Pipes) and IS-14735 (Fittings). Available in Solfit Socket (solvent cement, 40–160mm) and Pushfit Socket (rubber ring, 75–160mm). Preferred for drainage in homes, offices, hotels, commercial complexes, chemical plants, power plants and public areas. Pipes rated for 50+ years life with UV stabilisers."
+       "html": "Texmo SWR Pipes &amp; Fittings are manufactured under strict quality control conforming to IS-13592 and IS-15328 (Pipes) and IS-14735 (Fittings). Available in Solfit Socket (solvent cement, 40-160mm) and Pushfit Socket (rubber ring, 75-160mm). Preferred for drainage in homes, offices, hotels, commercial complexes, chemical plants, power plants and public areas. Pipes rated for 50+ years life with UV stabilisers."
       },
       {
        "type": "chips",
@@ -616,15 +616,15 @@
       {
        "type": "list",
        "items": [
-        "Strong and durable — unaffected by weather, termites, bacteria and fungi",
-        "Easy to handle and join — lightweight construction",
-        "Better flow characteristic — smooth internal surface ensures unobstructed flow",
-        "Energy saving — low frictional loss reduces pump power consumption",
-        "Leak proof — precision design prevents any leakage",
-        "Safe — fire resistant and non-conductive",
+        "Strong and durable, unaffected by weather, termites, bacteria and fungi",
+        "Easy to handle and join, lightweight construction",
+        "Better flow characteristic, smooth internal surface ensures unobstructed flow",
+        "Energy saving, low frictional loss reduces pump power consumption",
+        "Leak proof, precision design prevents any leakage",
+        "Safe, fire resistant and non-conductive",
         "Resistant to rust, UV radiation and most chemicals",
-        "Economical and maintenance free — no rusting or environmental damage",
-        "Self-coloured — no need for painting",
+        "Economical and maintenance free, no rusting or environmental damage",
+        "Self-coloured, no need for painting",
         "50+ year durability with UV stabilisers"
        ]
       }
@@ -642,8 +642,8 @@
        "items": [
         "<strong>Pipe Standard:</strong> IS 13592 (SWR) &amp; IS 15328 (Sewerage)",
         "<strong>Fittings Standard:</strong> IS 14735",
-        "<strong>Solfit Socket:</strong> 40mm to 160mm — solvent cement joint",
-        "<strong>Pushfit Socket:</strong> 75mm, 90mm, 110mm, 160mm — rubber ring joint",
+        "<strong>Solfit Socket:</strong> 40mm to 160mm, solvent cement joint",
+        "<strong>Pushfit Socket:</strong> 75mm, 90mm, 110mm, 160mm, rubber ring joint",
         "<strong>Fittings (Solfit &amp; Pushfit):</strong> 40mm to 200mm",
         "<strong>Lengths:</strong> 3 metres and 6 metres"
        ]
@@ -722,9 +722,9 @@
       {
        "type": "list",
        "items": [
-        "Domestic — homes, offices, hotels, residential and commercial buildings, hospitals",
-        "Industrial — chemical plants, power plants, chemical waste and overflow lines",
-        "Public — airports, railway stations, bus stands, hospitals, drainage systems",
+        "Domestic, homes, offices, hotels, residential and commercial buildings, hospitals",
+        "Industrial, chemical plants, power plants, chemical waste and overflow lines",
+        "Public, airports, railway stations, bus stands, hospitals, drainage systems",
         "Vent lines and rainwater harvesting systems"
        ]
       }
@@ -755,7 +755,7 @@
        "blocks": [
         {
          "type": "text",
-         "html": "Bell type socket at one end with pre-fitted rubber ring. No solvent cement required — push spigot into socket. Use Texmo Rubber Lubricant for easy insertion."
+         "html": "Bell type socket at one end with pre-fitted rubber ring. No solvent cement required, push spigot into socket. Use Texmo Rubber Lubricant for easy insertion."
         },
         {
          "type": "text",
@@ -769,7 +769,7 @@
      "title": "Fittings",
      "items": [
       {
-       "name": "SWR Fittings — Solfit & Pushfit",
+       "name": "SWR Fittings: Solfit & Pushfit",
        "std": "IS 14735 | 40mm to 200mm",
        "blocks": [
         {
@@ -783,19 +783,19 @@
           "Coupler",
           "Bend 87.5°",
           "Bend 45°",
-          "Bend – Double Socket",
-          "Tee – Plain",
-          "Tee – Door",
+          "Bend, Double Socket",
+          "Tee, Plain",
+          "Tee, Door",
           "Cross Tee",
           "Cleaning Pipe",
           "Reducing Bush",
-          "Single Y – Plain",
-          "Single Y – Door",
-          "Equal Y – Plain",
-          "Double Y – Plain",
-          "Double Y – Door",
+          "Single Y, Plain",
+          "Single Y, Door",
+          "Equal Y, Plain",
+          "Double Y, Plain",
+          "Double Y, Door",
           "Reducing Y",
-          "Swept Tee – Door",
+          "Swept Tee, Door",
           "Gully Trap",
           "Nahani Trap",
           "Multi Floor Trap",
@@ -881,15 +881,15 @@
       {
        "type": "list",
        "items": [
-        "Strong and durable — impact-resistant, unaffected by weather conditions",
-        "Light weight — easy to handle, transport and install even on difficult terrain",
-        "Leak proof — precision design, completely free from leaks",
-        "Better flow characteristic — no deposit formation = constant flow",
-        "Energy saving — smooth internal surface = low frictional loss",
-        "Resistant to fire — self-extinguishing with good thermal and electric insulation",
-        "Termite proof and UV resistant — resistant to moisture, corrosion, chemicals, abrasion",
-        "Available in 6 metre lengths — fewer joints and couplers needed, more economical",
-        "Rust proof — long-lasting, uniform flow permanently"
+        "Strong and durable, impact-resistant, unaffected by weather conditions",
+        "Light weight, easy to handle, transport and install even on difficult terrain",
+        "Leak proof, precision design, completely free from leaks",
+        "Better flow characteristic, no deposit formation = constant flow",
+        "Energy saving, smooth internal surface = low frictional loss",
+        "Resistant to fire, self-extinguishing with good thermal and electric insulation",
+        "Termite proof and UV resistant, resistant to moisture, corrosion, chemicals, abrasion",
+        "Available in 6 metre lengths, fewer joints and couplers needed, more economical",
+        "Rust proof, long-lasting, uniform flow permanently"
        ]
       }
      ]
@@ -928,9 +928,9 @@
         [
          "Length",
          "6 Metre",
-         "5–6 Metre",
-         "3–4 Metre",
-         "3–4 Metre"
+         "5-6 Metre",
+         "3-4 Metre",
+         "3-4 Metre"
         ],
         [
          "Rust",
@@ -944,7 +944,7 @@
          "25% more, constant",
          "Reduces over time",
          "40% more initially",
-         "Reduces 40–50%"
+         "Reduces 40-50%"
         ],
         [
          "Joints",
@@ -967,9 +967,9 @@
       {
        "type": "list",
        "items": [
-        "Agriculture — irrigation schemes for farms",
-        "Domestic — potable water supply in urban areas",
-        "Industrial — disposal of chemical effluent waste, acid &amp; slurry transportation, salt water handling",
+        "Agriculture, irrigation schemes for farms",
+        "Domestic, potable water supply in urban areas",
+        "Industrial, disposal of chemical effluent waste, acid &amp; slurry transportation, salt water handling",
         "Gas, natural gas distribution and oil distribution lines",
         "Telecommunication cable ducting"
        ]
@@ -982,7 +982,7 @@
      "title": "Pipes by Class",
      "items": [
       {
-       "name": "Rigid PVC Pipes — All Pressure Classes",
+       "name": "Rigid PVC Pipes: All Pressure Classes",
        "std": "IS 4985:2021 | 20mm to 400mm O.D. | Selfit & Ringfit",
        "blocks": [
         {
@@ -1028,7 +1028,7 @@
            "Plumbing",
            "16 kg/cm²",
            "20mm to 50mm",
-           "—"
+           "-"
           ]
          ]
         },
@@ -1050,7 +1050,7 @@
        "blocks": [
         {
          "type": "text",
-         "html": "Texmo Solvent Cement — a colourless solution produced by dissolving suspension grade PVC resin with a suitable K-value in ketonic solvents. Manufactured per ASTM D-2564. Available in various pack sizes for Selfit agriculture pipe and fitting connections."
+         "html": "Texmo Solvent Cement, a colourless solution produced by dissolving suspension grade PVC resin with a suitable K-value in ketonic solvents. Manufactured per ASTM D-2564. Available in various pack sizes for Selfit agriculture pipe and fitting connections."
         }
        ]
       }
@@ -1112,14 +1112,14 @@
       {
        "type": "list",
        "items": [
-        "Leak proof — close dimensional tolerance and precision design",
-        "Strong fitting — accurate dimensions ensure secure and reliable fitting",
-        "Rust proof — dimensions remain constant, unaffected by corrosion",
-        "Unbreakable — excellent impact strength and durability",
-        "Light weight — easy to handle, transport and install",
-        "Odourless and hygienic — ideal for potable water supply",
-        "All round economy — consistent performance, reduced maintenance costs",
-        "Manufactured per IS-7834/1975 — stringent quality control"
+        "Leak proof, close dimensional tolerance and precision design",
+        "Strong fitting, accurate dimensions ensure secure and reliable fitting",
+        "Rust proof, dimensions remain constant, unaffected by corrosion",
+        "Unbreakable, excellent impact strength and durability",
+        "Light weight, easy to handle, transport and install",
+        "Odourless and hygienic, ideal for potable water supply",
+        "All round economy, consistent performance, reduced maintenance costs",
+        "Manufactured per IS-7834/1975, stringent quality control"
        ]
       }
      ]
@@ -1134,8 +1134,8 @@
       {
        "type": "list",
        "items": [
-        "Agriculture — irrigation and village water distribution systems",
-        "Industrial — chemical, sugar and dairy industries for liquid transport",
+        "Agriculture, irrigation and village water distribution systems",
+        "Industrial, chemical, sugar and dairy industries for liquid transport",
         "Building construction and potable water supply"
        ]
       }
@@ -1147,7 +1147,7 @@
      "title": "Moulded Fittings",
      "items": [
       {
-       "name": "Moulded Agriculture Fittings — Full Range",
+       "name": "Moulded Agriculture Fittings: Full Range",
        "std": "IS 7834/1975 | All pressure classes",
        "blocks": [
         {
@@ -1165,15 +1165,15 @@
           "Reducing Single Y",
           "Saddle Strip",
           "Flange",
-          "Butterfly Valve – Gear Type",
-          "Butterfly Valve – Handle Type",
+          "Butterfly Valve, Gear Type",
+          "Butterfly Valve, Handle Type",
           "Ball Valve",
           "End Cap (Plain/Threaded)",
           "Foot Valve",
           "F.T.A. (Plain)",
-          "F.T.A. – Brass Insert",
+          "F.T.A., Brass Insert",
           "M.T.A.",
-          "Tee – Brass Insert",
+          "Tee, Brass Insert",
           "Tail Piece",
           "Tank Connector"
          ]
@@ -1204,7 +1204,7 @@
       },
       {
        "type": "text",
-       "html": "Texmo is a pioneer in designing and marketing uPVC Column Pipes for submersible borewell pump setups down to 290 metres (1200 feet) depth. With over 400,000 successful installations across India. Features Texmo's unique wire locking system — aluminium wire inter-placed between coupler and pipe prevents joints from opening during pump installation and removal. Special silicone rubber ring for leak-proof performance."
+       "html": "Texmo is a pioneer in designing and marketing uPVC Column Pipes for submersible borewell pump setups down to 290 metres (1200 feet) depth. With over 400,000 successful installations across India. Features Texmo's unique wire locking system, aluminium wire inter-placed between coupler and pipe prevents joints from opening during pump installation and removal. Special silicone rubber ring for leak-proof performance."
       },
       {
        "type": "chips",
@@ -1238,13 +1238,13 @@
       {
        "type": "list",
        "items": [
-        "Pioneer design — 400,000+ successful installations across India",
-        "Wire locking system — aluminium wire prevents pipe-coupler joints from opening during pump installation/removal",
-        "Special silicone rubber ring — leak-proof performance",
-        "Lead Free and non-hazardous — safe for drinking water",
-        "Non-corrosive — does not rust or corrode",
-        "Smooth inner surface — less friction loss = energy saving",
-        "Lightweight — suitable for all types of users",
+        "Pioneer design, 400,000+ successful installations across India",
+        "Wire locking system, aluminium wire prevents pipe-coupler joints from opening during pump installation/removal",
+        "Special silicone rubber ring, leak-proof performance",
+        "Lead Free and non-hazardous, safe for drinking water",
+        "Non-corrosive, does not rust or corrode",
+        "Smooth inner surface, less friction loss = energy saving",
+        "Lightweight, suitable for all types of users",
         "24x7 technical service from Texmo"
        ]
       }
@@ -1323,7 +1323,7 @@
      "title": "Column Pipe Classes",
      "items": [
       {
-       "name": "VX Class — Yellow | 50 Mtr Pump Head",
+       "name": "VX Class: Yellow | 50 Mtr Pump Head",
        "std": "Sizes: 1\" to 2\" | Entry level | 1.5 & 3 mtr lengths",
        "blocks": [
         {
@@ -1333,7 +1333,7 @@
        ]
       },
       {
-       "name": "Medium Class — Blue | 70 Mtr Pump Head",
+       "name": "Medium Class: Blue | 70 Mtr Pump Head",
        "std": "Sizes: 1\" to 2½\" | 1.5 & 3 mtr lengths",
        "blocks": [
         {
@@ -1343,7 +1343,7 @@
        ]
       },
       {
-       "name": "Standard Class — Red | 180 Mtr Pump Head",
+       "name": "Standard Class: Red | 180 Mtr Pump Head",
        "std": "Sizes: 1\" to 3\" | 1.5 & 3 mtr lengths",
        "blocks": [
         {
@@ -1353,7 +1353,7 @@
        ]
       },
       {
-       "name": "Heavy Class — Green | 370 Mtr Pump Head",
+       "name": "Heavy Class: Green | 370 Mtr Pump Head",
        "std": "Sizes: 1\" to 4\" | Up to 1200 ft depth",
        "blocks": [
         {
@@ -1386,7 +1386,7 @@
       },
       {
        "type": "text",
-       "html": "Texmo Casing Pipes are manufactured under strict quality control as per IS-12818/2010, DIN: 4925 and ASTM-F480. Made in different sizes and ranges to meet maximum site conditions. Replace metallic MS casing with horizontal CNC-machined slot openings that reduce entrance resistance. Inert uPVC material — unaffected by corrosive soil. Available in CS, CM, CD, RMS and RDS types for depths from 80 to 450+ metres."
+       "html": "Texmo Casing Pipes are manufactured under strict quality control as per IS-12818/2010, DIN: 4925 and ASTM-F480. Made in different sizes and ranges to meet maximum site conditions. Replace metallic MS casing with horizontal CNC-machined slot openings that reduce entrance resistance. Inert uPVC material, unaffected by corrosive soil. Available in CS, CM, CD, RMS and RDS types for depths from 80 to 450+ metres."
       },
       {
        "type": "chips",
@@ -1421,13 +1421,13 @@
        "type": "list",
        "items": [
         "Strong, durable and inert to corroding factors",
-        "Light weight — 1/5th weight of steel, easy to handle and install",
-        "High precision trapezoidal threads for easy joining — no special tools or sets needed",
-        "Better flow characteristic — smooth internal surface",
-        "Low frictional loss — lower power consumption",
+        "Light weight, 1/5th weight of steel, easy to handle and install",
+        "High precision trapezoidal threads for easy joining, no special tools or sets needed",
+        "Better flow characteristic, smooth internal surface",
+        "Low frictional loss, lower power consumption",
         "Resistant to: chemical reaction, bacterial growth, corrosion, rusting",
-        "Horizontal CNC slot openings — reduce entrance resistance, prevent collapse",
-        "Ribs keep gravel pack 2mm away from slot — increased permeability",
+        "Horizontal CNC slot openings, reduce entrance resistance, prevent collapse",
+        "Ribs keep gravel pack 2mm away from slot, increased permeability",
         "Available in slot widths 0.2mm to 3mm to suit different aquifer conditions"
        ]
       }
@@ -1512,23 +1512,23 @@
         ],
         [
          "50%+ slot opening obstructed by gravel pack",
-         "Rib keeps gravel pack 2mm away — increases permeability"
+         "Rib keeps gravel pack 2mm away, increases permeability"
         ],
         [
          "Corrosive soil reduces tube well life",
-         "Inert uPVC — unaffected by soil corrosion"
+         "Inert uPVC, unaffected by soil corrosion"
         ],
         [
          "Slot enlarges due to erosion",
          "uPVC slots not subject to erosion"
         ],
         [
-         "Cumbersome to install — needs special tools",
-         "1/5th weight of steel — simple spigot ends and trapezoidal threads"
+         "Cumbersome to install, needs special tools",
+         "1/5th weight of steel, simple spigot ends and trapezoidal threads"
         ],
         [
          "Different screens needed for different aquifers",
-         "Slot widths 0.2mm to 3mm — suits any aquifer condition"
+         "Slot widths 0.2mm to 3mm, suits any aquifer condition"
         ]
        ]
       }
@@ -1540,7 +1540,7 @@
      "title": "All Types",
      "items": [
       {
-       "name": "CS — Shallow Well Casing | Up to 80 mtr",
+       "name": "CS: Shallow Well Casing | Up to 80 mtr",
        "std": "IS 12818/2010 | 150mm to 400mm | Plain & Slotted",
        "blocks": [
         {
@@ -1550,7 +1550,7 @@
        ]
       },
       {
-       "name": "CM — Medium Well Casing | 80 to 250 mtr",
+       "name": "CM: Medium Well Casing | 80 to 250 mtr",
        "std": "IS 12818/2010 | 35mm to 400mm | Plain & Slotted",
        "blocks": [
         {
@@ -1560,7 +1560,7 @@
        ]
       },
       {
-       "name": "CD — Deep Well Casing | 250 to 450 mtr",
+       "name": "CD: Deep Well Casing | 250 to 450 mtr",
        "std": "IS 12818/2010 / DIN 4925 / ASTM F480 | 100mm to 400mm",
        "blocks": [
         {
@@ -1570,12 +1570,12 @@
        ]
       },
       {
-       "name": "RMS & RDS — Ribbed Screen Pipes",
+       "name": "RMS & RDS: Ribbed Screen Pipes",
        "std": "Medium & Deep Well Screen | 35mm to 400mm",
        "blocks": [
         {
          "type": "text",
-         "html": "Ribbed Medium (RMS) and Ribbed Deep (RDS) Screen Pipes. Continuous ribs keep gravel pack 2mm away from slot openings — maximises permeability. Slot widths 0.2mm to 3mm available. Used in the filtration/aquifer zone of borewells."
+         "html": "Ribbed Medium (RMS) and Ribbed Deep (RDS) Screen Pipes. Continuous ribs keep gravel pack 2mm away from slot openings, maximises permeability. Slot widths 0.2mm to 3mm available. Used in the filtration/aquifer zone of borewells."
         }
        ]
       }
@@ -1603,7 +1603,7 @@
       },
       {
        "type": "text",
-       "html": "Texmo HDPE Pipes are manufactured conforming to IS-4984/2016 and DIN 8074. Also available as HDPE Pressure Pipes in coil form, manufactured via co-extrusion with a highly conductive copper wire encased along the length — allowing underground pipes to be located using a hand-held duct locator. Available in 20mm to 315mm in multiple pressure classes up to 20 kg/cm²."
+       "html": "Texmo HDPE Pipes are manufactured conforming to IS-4984/2016 and DIN 8074. Also available as HDPE Pressure Pipes in coil form, manufactured via co-extrusion with a highly conductive copper wire encased along the length, allowing underground pipes to be located using a hand-held duct locator. Available in 20mm to 315mm in multiple pressure classes up to 20 kg/cm²."
       },
       {
        "type": "chips",
@@ -1638,13 +1638,13 @@
        "type": "list",
        "items": [
         "Strong, resilient and impact-resistant",
-        "Available in straight and coil lengths — reduces joints and couplers",
-        "No deposit formation — internal diameter remains the same, ensuring better flow",
-        "Hygienic and odourless — resistant to scale, chemical and biological formation",
-        "Energy saving — smooth internal surface = low friction loss",
+        "Available in straight and coil lengths, reduces joints and couplers",
+        "No deposit formation, internal diameter remains the same, ensuring better flow",
+        "Hygienic and odourless, resistant to scale, chemical and biological formation",
+        "Energy saving, smooth internal surface = low friction loss",
         "Totally inert to all chemicals",
         "Lasts 10 times longer than GI or rubber pipes",
-        "Copper wire in coil form — pipe can be located underground using duct locator"
+        "Copper wire in coil form, pipe can be located underground using duct locator"
        ]
       }
      ]
@@ -1706,10 +1706,10 @@
       {
        "type": "list",
        "items": [
-        "Potable water supply — rural and urban",
+        "Potable water supply, rural and urban",
         "Irrigation schemes",
-        "Chemical effluent disposal — petrochemical, paper, dye, paint, cement industries",
-        "Gas pipeline networks — biogas, CNG, natural gas distribution",
+        "Chemical effluent disposal, petrochemical, paper, dye, paint, cement industries",
+        "Gas pipeline networks, biogas, CNG, natural gas distribution",
         "Submarine and underwater pipelines",
         "Suction, delivery and jet pump applications",
         "Acid and alkali transportation",
@@ -1724,7 +1724,7 @@
      "title": "HDPE Pipes & Coils",
      "items": [
       {
-       "name": "HDPE Pipes — Standard",
+       "name": "HDPE Pipes: Standard",
        "std": "IS 4984/2016 | 20mm to 315mm | Multiple pressure classes",
        "blocks": [
         {
@@ -1743,11 +1743,11 @@
       },
       {
        "name": "HDPE Pressure Pipes in Coil Form",
-       "std": "With copper wire — underground locating capability",
+       "std": "With copper wire, underground locating capability",
        "blocks": [
         {
          "type": "text",
-         "html": "Manufactured by co-extrusion with a highly conductive copper wire encased along the full length of the pipe. Transmits signal receivable by hand-held duct locator — gives exact depth and location of buried pipe. Supplied in coil form for flexible installation."
+         "html": "Manufactured by co-extrusion with a highly conductive copper wire encased along the full length of the pipe. Transmits signal receivable by hand-held duct locator, gives exact depth and location of buried pipe. Supplied in coil form for flexible installation."
         },
         {
          "type": "text",
@@ -1779,7 +1779,7 @@
       },
       {
        "type": "text",
-       "html": "Texmo Suction Pipes are manufactured under strict quality control conforming to IS-15265. Best preferred for suction and delivery in agriculture, domestic and industrial applications. Four product variants available — from commercial grade to ISI certified Super Plus, covering 20mm to 200mm. Safe for drinking water — no contamination."
+       "html": "Texmo Suction Pipes are manufactured under strict quality control conforming to IS-15265. Best preferred for suction and delivery in agriculture, domestic and industrial applications. Four product variants available, from commercial grade to ISI certified Super Plus, covering 20mm to 200mm. Safe for drinking water, no contamination."
       },
       {
        "type": "chips",
@@ -1814,12 +1814,12 @@
        "type": "list",
        "items": [
         "Strong and breakage free",
-        "Light weight — easy to handle, transport and install",
-        "Better flow characteristic — smooth internal surface, rust proof, no deposit formation",
-        "Energy saving — low frictional loss, lower power consumption",
-        "Safe — water flow is safe for drinking, no contamination",
+        "Light weight, easy to handle, transport and install",
+        "Better flow characteristic, smooth internal surface, rust proof, no deposit formation",
+        "Energy saving, low frictional loss, lower power consumption",
+        "Safe, water flow is safe for drinking, no contamination",
         "Resistant to rusting, chemicals, corrosion, scale and biological formation",
-        "Longer lasting and maintenance free — lifetime investment"
+        "Longer lasting and maintenance free, lifetime investment"
        ]
       }
      ]
@@ -1944,12 +1944,12 @@
       {
        "type": "list",
        "items": [
-        "Corrosion free — resistant to rusting, chemicals, scale and biological formation",
-        "Light and flexible — easy to handle and manoeuvre in gardens and fields",
-        "Better flow characteristic — smooth internal surface, no deposit formation",
-        "Safe for drinking water — no contamination of water flow",
-        "Energy saving — low frictional loss",
-        "Long lasting and maintenance free — lifetime investment"
+        "Corrosion free, resistant to rusting, chemicals, scale and biological formation",
+        "Light and flexible, easy to handle and manoeuvre in gardens and fields",
+        "Better flow characteristic, smooth internal surface, no deposit formation",
+        "Safe for drinking water, no contamination of water flow",
+        "Energy saving, low frictional loss",
+        "Long lasting and maintenance free, lifetime investment"
        ]
       }
      ]
@@ -2015,15 +2015,15 @@
       },
       {
        "type": "text",
-       "html": "Texmo Drip Irrigation System is manufactured conforming to IS-12786 &amp; IS-13488 (Laterals) and IS-12785 &amp; IS-13487 (Fittings). Delivers water drop by drop near the roots. Saves 50–70% water vs traditional irrigation. Increases crop yield by 1.5 to 2 times. Used for banana, grapes, oranges, cotton, soybean, wheat, groundnut, pulses and garden maintenance."
+       "html": "Texmo Drip Irrigation System is manufactured conforming to IS-12786 &amp; IS-13488 (Laterals) and IS-12785 &amp; IS-13487 (Fittings). Delivers water drop by drop near the roots. Saves 50-70% water vs traditional irrigation. Increases crop yield by 1.5 to 2 times. Used for banana, grapes, oranges, cotton, soybean, wheat, groundnut, pulses and garden maintenance."
       },
       {
        "type": "chips",
        "kind": "features",
        "items": [
         "IS 12786 & IS 13488",
-        "50–70% Water Saving",
-        "1.5–2x Better Yield",
+        "50-70% Water Saving",
+        "1.5-2x Better Yield",
         "Uniform Fertiliser Delivery",
         "Weed Prevention",
         "Works on Uneven Land",
@@ -2049,10 +2049,10 @@
       {
        "type": "list",
        "items": [
-        "50–70% water savings compared to traditional irrigation",
+        "50-70% water savings compared to traditional irrigation",
         "Increases crop yield by 1.5 to 2 times",
         "Uniform distribution of fertilisers, pesticides and manure without wastage",
-        "Prevents weed growth — no excess surface water spill",
+        "Prevents weed growth, no excess surface water spill",
         "Can be installed on any uneven land surface",
         "Trained engineers design system tailored to plant type and water flow",
         "Drippers deliver 2, 4 or 8 litres per hour per plant",
@@ -2116,7 +2116,7 @@
           ],
           [
            "Drip Laterals",
-           "12mm &amp; 16mm — fixed near plants for water &amp; nutrient delivery"
+           "12mm &amp; 16mm, fixed near plants for water &amp; nutrient delivery"
           ],
           [
            "Drippers",
@@ -2154,7 +2154,7 @@
       },
       {
        "type": "text",
-       "html": "Texmo HDPE Sprinkler Pipes &amp; Fittings in \"M\" Type, \"T\" Type and \"Matka\" Type are manufactured conforming to IS-17425 (Pipes) and IS-12322 (Fittings). 80–90% irrigation efficiency — saves up to 60% water. Also includes Mini Sprinkler System conforming to IS-12786 (Pipes) and IS-12232 (Fittings). Sprinkler spacing: 8–12 metres."
+       "html": "Texmo HDPE Sprinkler Pipes &amp; Fittings in \"M\" Type, \"T\" Type and \"Matka\" Type are manufactured conforming to IS-17425 (Pipes) and IS-12322 (Fittings). 80-90% irrigation efficiency, saves up to 60% water. Also includes Mini Sprinkler System conforming to IS-12786 (Pipes) and IS-12232 (Fittings). Sprinkler spacing: 8-12 metres."
       },
       {
        "type": "chips",
@@ -2163,9 +2163,9 @@
         "IS 17425 Certified",
         "M / T / Matka Types",
         "Mini Sprinkler (IS 12786)",
-        "80–90% Irrigation Efficiency",
+        "80-90% Irrigation Efficiency",
         "Up to 60% Water Saving",
-        "8–12m Sprinkler Spacing",
+        "8-12m Sprinkler Spacing",
         "UV Stabilized HDPE",
         "Easy Install & Dismantle"
        ]
@@ -2189,13 +2189,13 @@
        "type": "list",
        "items": [
         "Strong, adaptable and impervious to aggressive soils and climatic conditions",
-        "Light weight and flexible — ideal for undulated hilly and plain lands",
-        "80–90% irrigation efficiency — saves up to 60% water",
-        "Uniform water application — optimum soil moisture, uniform germination",
+        "Light weight and flexible, ideal for undulated hilly and plain lands",
+        "80-90% irrigation efficiency, saves up to 60% water",
+        "Uniform water application, optimum soil moisture, uniform germination",
         "Prevents leaching of soil and fertilisers into groundwater",
-        "Easy to install and dismantle — 2–3 crop cycles per year",
+        "Easy to install and dismantle, 2-3 crop cycles per year",
         "Made with UV-stabilized HDPE and antioxidants",
-        "Low pressure design — energy saving"
+        "Low pressure design, energy saving"
        ]
       }
      ]
@@ -2210,8 +2210,8 @@
       {
        "type": "list",
        "items": [
-        "Agriculture — cotton, soybean, wheat, gram, groundnut, pulses, banana, grapes, potato, onion, ginger, garlic, cabbage, cauliflower, strawberry, mustard, tea, nursery",
-        "Industrial — dust pollution control in cement industries and mining pits",
+        "Agriculture, cotton, soybean, wheat, gram, groundnut, pulses, banana, grapes, potato, onion, ginger, garlic, cabbage, cauliflower, strawberry, mustard, tea, nursery",
+        "Industrial, dust pollution control in cement industries and mining pits",
         "Playground and golf course maintenance",
         "Home gardens and grass watering"
        ]
@@ -2224,12 +2224,12 @@
      "title": "Sprinkler System",
      "items": [
       {
-       "name": "HDPE Sprinkler Pipes & Fittings — M / T / Matka Types",
+       "name": "HDPE Sprinkler Pipes & Fittings: M / T / Matka Types",
        "std": "IS 17425 (Pipes) | IS 12322 (Fittings)",
        "blocks": [
         {
          "type": "text",
-         "html": "<strong>Types:</strong> \"M\" Type, \"T\" Type, \"Matka\" Type | <strong>Spacing:</strong> 8–12 metres | <strong>Best for:</strong> Cotton, soybean, wheat, groundnut, banana, grapes — field crops requiring overhead irrigation"
+         "html": "<strong>Types:</strong> \"M\" Type, \"T\" Type, \"Matka\" Type | <strong>Spacing:</strong> 8-12 metres | <strong>Best for:</strong> Cotton, soybean, wheat, groundnut, banana, grapes, field crops requiring overhead irrigation"
         }
        ]
       }
@@ -2272,7 +2272,7 @@
       },
       {
        "type": "text",
-       "html": "Texmo Gaseous Fuels Pipes &amp; Coils are manufactured conforming to IS-14885/2001. Available in coil and straight form with a highly conductive copper wire co-extruded along the length — enabling precise underground location using a hand-held duct locator. Available as PE-80 (Yellow) and PE-100 (Orange). Sizes 20mm–315mm."
+       "html": "Texmo Gaseous Fuels Pipes &amp; Coils are manufactured conforming to IS-14885/2001. Available in coil and straight form with a highly conductive copper wire co-extruded along the length, enabling precise underground location using a hand-held duct locator. Available as PE-80 (Yellow) and PE-100 (Orange). Sizes 20mm-315mm."
       },
       {
        "type": "chips",
@@ -2306,11 +2306,11 @@
       {
        "type": "list",
        "items": [
-        "Copper wire co-extrusion — transmits signal for underground tracing via duct locator",
-        "PE-80 (Yellow) and PE-100 (Orange) — different pressure grades",
-        "SDR 17.6, 13.6, 11, 9 — multiple pressure class options",
-        "Light weight — easy to handle and install",
-        "Smooth internal surface — better flow",
+        "Copper wire co-extrusion, transmits signal for underground tracing via duct locator",
+        "PE-80 (Yellow) and PE-100 (Orange), different pressure grades",
+        "SDR 17.6, 13.6, 11, 9, multiple pressure class options",
+        "Light weight, easy to handle and install",
+        "Smooth internal surface, better flow",
         "Completely leak-proof precision design",
         "Fire resistant and non-conductive",
         "Resistant to rust, UV radiation and most chemicals",
@@ -2368,8 +2368,8 @@
       {
        "type": "list",
        "items": [
-        "Domestic — biogas, CNG and natural gas distribution; fuel supply in rural and urban areas",
-        "Industrial — gas pipeline networks; petrochemical, paper, dye, paint, cement industries for effluent disposal; acid and alkali transportation",
+        "Domestic, biogas, CNG and natural gas distribution; fuel supply in rural and urban areas",
+        "Industrial, gas pipeline networks; petrochemical, paper, dye, paint, cement industries for effluent disposal; acid and alkali transportation",
         "Compressed gas supply",
         "Submarine and underwater pipelines",
         "Water jet loading"
@@ -2400,7 +2400,7 @@
       },
       {
        "type": "text",
-       "html": "Texmo PLB (Permanently Lubricated) HDPE Ducts are manufactured as per TEC/GR/TX/CDS-008/03 MAR-2011 and DR/MDS-01/04 FEB-2010. Used for housing fiber optic cable (OFC) and metal cable — the backbone of communication infrastructure. Co-extruded permanently lubricated inner layer (friction coeff. max 0.06) for smooth cable insertion. Anticipated life: 50 years. Also includes MDPE Pipes per ISO 4427."
+       "html": "Texmo PLB (Permanently Lubricated) HDPE Ducts are manufactured as per TEC/GR/TX/CDS-008/03 MAR-2011 and DR/MDS-01/04 FEB-2010. Used for housing fiber optic cable (OFC) and metal cable, the backbone of communication infrastructure. Co-extruded permanently lubricated inner layer (friction coeff. max 0.06) for smooth cable insertion. Anticipated life: 50 years. Also includes MDPE Pipes per ISO 4427."
       },
       {
        "type": "chips",
@@ -2435,7 +2435,7 @@
        "type": "list",
        "items": [
         "Ductile and tough construction",
-        "Low internal coefficient of friction (max 0.06) — smooth cable insertion, avoids damage",
+        "Low internal coefficient of friction (max 0.06), smooth cable insertion, avoids damage",
         "Temperature range: -5°C to +50°C (recommended install: 5°C to 50°C)",
         "Resistant to UV and chemicals",
         "Protects cables during tectonic ground movement",
@@ -2513,7 +2513,7 @@
       },
       {
        "type": "text",
-       "html": "<strong>MDPE Pipes</strong> (ISO 4427) — Blue/Black | 16mm–315mm | PE-63, PE-80 &amp; PE-100 | 2.5 to 25 kg/cm²"
+       "html": "<strong>MDPE Pipes</strong> (ISO 4427), Blue/Black | 16mm-315mm | PE-63, PE-80 &amp; PE-100 | 2.5 to 25 kg/cm²"
       }
      ]
     }
@@ -2540,7 +2540,7 @@
       },
       {
        "type": "text",
-       "html": "Texmo offers two tank types — Blow Moulded (HDPE, 500–2500 litres, 30% more economical) and Roto Moulded (LLDPE, 200–5000 litres, 1.5× stronger than blow moulded). Both are multi-layered, anti-bacterial, food grade, UV stabilized and lead free with an Anti-Micro layer that is 99%+ effective against harmful viruses and microbes."
+       "html": "Texmo offers two tank types, Blow Moulded (HDPE, 500-2500 litres, 30% more economical) and Roto Moulded (LLDPE, 200-5000 litres, 1.5× stronger than blow moulded). Both are multi-layered, anti-bacterial, food grade, UV stabilized and lead free with an Anti-Micro layer that is 99%+ effective against harmful viruses and microbes."
       },
       {
        "type": "chips",
@@ -2580,14 +2580,14 @@
       {
        "type": "list",
        "items": [
-        "Strong and durable — unaffected by weather conditions",
-        "Food Grade material — water remains fresh, smell-free and drinkable",
-        "Easy to clean inside — smooth inner surface",
-        "UV Stabilization — prevents degradation, cracking and chalking",
-        "Anti-Micro Layer — 99%+ effective against harmful viruses and microbes",
+        "Strong and durable, unaffected by weather conditions",
+        "Food Grade material, water remains fresh, smell-free and drinkable",
+        "Easy to clean inside, smooth inner surface",
+        "UV Stabilization, prevents degradation, cracking and chalking",
+        "Anti-Micro Layer, 99%+ effective against harmful viruses and microbes",
         "Blow Moulded: 30% more economical than roto-moulded",
         "Roto Moulded: 1.5× stronger than blow moulded",
-        "Lead Free and Eco Friendly — maintenance free"
+        "Lead Free and Eco Friendly, maintenance free"
        ]
       }
      ]
@@ -2601,7 +2601,7 @@
       },
       {
        "type": "text",
-       "html": "Blow Moulded Round Tanks (HDPE) — 500L to 2500L:"
+       "html": "Blow Moulded Round Tanks (HDPE), 500L to 2500L:"
       },
       {
        "type": "table",
@@ -2645,7 +2645,7 @@
       },
       {
        "type": "text",
-       "html": "Roto Moulded Round Tanks (LLDPE) — 300L to 5000L:"
+       "html": "Roto Moulded Round Tanks (LLDPE), 300L to 5000L:"
       },
       {
        "type": "table",
@@ -2719,7 +2719,7 @@
        "items": [
         "High rise residential complexes and individual homes",
         "Rural areas domestic water storage",
-        "Commercial and industrial — milk storage in dairies, etc.",
+        "Commercial and industrial, milk storage in dairies, etc.",
         "Schools, hotels and institutions"
        ]
       }

@@ -12,7 +12,7 @@ distributor: calm, dense with real information, quick to act on (call / WhatsApp
   space and the odd hairline; let big type carry hierarchy. Lists are rows or sentences.
 - **No fake photos.** Only real photos of the shop, stock and people. Until then, type, the
   pipe-size rings (real IS 4985 sizes) and motion do the work.
-- **Teal is the one accent, used sparingly.** Primary buttons (teal pills), links, section numbers, the logo's outer M, the active pipe dimension and a status dot. Everything else is ink on off-white.
+- **Teal is the one accent, used sparingly.** Primary buttons (teal pills), links, the logo's outer M, the active pipe dimension and a status dot. Everything else is ink on off-white.
 - **Plain words, some Hindi.** Each section carries a short Hindi line (Tiro Devanagari Hindi).
 - **Phones first.** 44–52px buttons, a Call / WhatsApp bar pinned to the bottom on phones, 16px
   form text so iOS doesn't zoom.
@@ -26,13 +26,14 @@ distributor: calm, dense with real information, quick to act on (call / WhatsApp
 | `muted-foreground` / `faint` | secondary text `#6b6a64` / faded words (brand sentence, taglines) `#bdbbb4` |
 | `border` | hairlines (`.rule-top` draws a section hairline inside the page gutters) |
 | `primary` | black: buttons |
-| `teal` | `#0b5d63`: primary buttons (`--primary`), links, section numbers, active detail, status dot |
+| `teal` | `#0b5d63`: primary buttons (`--primary`), links, active detail, status dot |
 | `inverse*` | black footer with the full-width wordmark |
 
 ## Type
 
 Geist (variable) for everything. Display sizes use `clamp()` with tight tracking
-(-0.045em to -0.06em) and leading 0.85–1. Section labels: 13px muted, "01 — Brands".
+(-0.045em to -0.06em) and leading 0.85–1. No numbered section labels: the heading stands alone, with its Hindi line stacked under it. Only the hero keeps a small label.
+No em or en dashes in visible text (use a comma, colon or hyphen). Long lists are separated by space, not a hairline per row.
 Hindi: Tiro Devanagari Hindi.
 
 ## Interactive pieces (React islands, `src/components/home/`)

@@ -2,7 +2,7 @@
  "slug": "waterflo",
  "name": "Waterflo",
  "tagline": "Pipes & Fittings",
- "origin": "Always Ahead In Quality — Rajkot, Gujarat",
+ "origin": "Always Ahead In Quality, Rajkot, Gujarat",
  "badges": [
   "ISI Certified",
   "ASTM Standards",
@@ -28,11 +28,11 @@
       {
        "type": "image",
        "src": "https://waterflo.in/wp-content/uploads/2020/12/cpvc.jpg",
-       "alt": "Waterflo Strongfit — CPVC Pipes & Fittings"
+       "alt": "Waterflo Strongfit: CPVC Pipes & Fittings"
       },
       {
        "type": "heading",
-       "text": "Strongfit — CPVC Pipes & Fittings"
+       "text": "Strongfit: CPVC Pipes & Fittings"
       },
       {
        "type": "text",
@@ -90,8 +90,8 @@
       {
        "type": "list",
        "items": [
-        "<strong>Pipes:</strong> Class 1 (SDR 11) &amp; Class 2 (SDR 13.5) from 15mm–50mm CTS per IS 15778; SCH 40 &amp; 80 from 65mm–100mm per ASTM F 441",
-        "<strong>Fittings:</strong> SDR 11 from 15mm–50mm per ASTM D 2846; SCH 80 from 65mm–100mm per ASTM F 439"
+        "<strong>Pipes:</strong> Class 1 (SDR 11) &amp; Class 2 (SDR 13.5) from 15mm-50mm CTS per IS 15778; SCH 40 &amp; 80 from 65mm-100mm per ASTM F 441",
+        "<strong>Fittings:</strong> SDR 11 from 15mm-50mm per ASTM D 2846; SCH 80 from 65mm-100mm per ASTM F 439"
        ]
       }
      ]
@@ -721,11 +721,11 @@
       },
       {
        "name": "F.T.A., M.T.A., Union, End Cap, Cross Tee & Reducer Fittings",
-       "std": "CTS / SCH 80 — Full range ½\" to 4\"",
+       "std": "CTS / SCH 80, Full range ½\" to 4\"",
        "blocks": [
         {
          "type": "text",
-         "html": "Full range available — see downloadable catalogue for complete product codes and quantities."
+         "html": "Full range available, see downloadable catalogue for complete product codes and quantities."
         },
         {
          "type": "link",
@@ -737,7 +737,7 @@
       },
       {
        "name": "3-in-1 Mixer Adaptors",
-       "std": "6\" & 7\" series — ¾\"x½\"",
+       "std": "6\" & 7\" series, ¾\"x½\"",
        "blocks": [
         {
          "type": "table",
@@ -811,7 +811,7 @@
           [
            "CFKMA2015",
            "Kitchen Mixer Down",
-           "—",
+           "-",
            "30"
           ]
          ]
@@ -858,7 +858,7 @@
            "CFSCT59",
            "59ml",
            "Tin",
-           "—"
+           "-"
           ],
           [
            "CFSC118",
@@ -952,7 +952,7 @@
        ]
       },
       {
-       "name": "Clips — Plastic & Metal",
+       "name": "Clips: Plastic & Metal",
        "std": "Pipe support clips ½\" to 2\"",
        "blocks": [
         {
@@ -1055,11 +1055,11 @@
       {
        "type": "image",
        "src": "https://waterflo.in/wp-content/uploads/2021/12/upvc_ttl.png",
-       "alt": "Waterflo Surefit — uPVC Plumbing System"
+       "alt": "Waterflo Surefit: uPVC Plumbing System"
       },
       {
        "type": "heading",
-       "text": "Surefit — uPVC Plumbing System"
+       "text": "Surefit: uPVC Plumbing System"
       },
       {
        "type": "text",
@@ -1161,7 +1161,7 @@
      "items": [
       {
        "name": "Pipe SCH 40 & SCH 80",
-       "std": "as per ASTM D-1785 — ½\" to 6\"",
+       "std": "as per ASTM D-1785, ½\" to 6\"",
        "blocks": [
         {
          "type": "table",
@@ -1624,11 +1624,11 @@
       {
        "type": "image",
        "src": "https://waterflo.in/wp-content/uploads/2021/12/clickfit.png",
-       "alt": "Waterflo Clickfit — SWR Drainage System"
+       "alt": "Waterflo Clickfit: SWR Drainage System"
       },
       {
        "type": "heading",
-       "text": "Clickfit — SWR Drainage System"
+       "text": "Clickfit: SWR Drainage System"
       },
       {
        "type": "text",
@@ -1638,7 +1638,7 @@
        "type": "chips",
        "kind": "features",
        "items": [
-        "Push-fit — no paste/thread",
+        "Push-fit, no paste/thread",
         "Co-moulded rubber seal",
         "Leak proof joints",
         "Allows thermal expansion"
@@ -1678,7 +1678,7 @@
       {
        "type": "list",
        "items": [
-        "<strong>Pipes:</strong> 75mm, 90mm, 110mm &amp; 160mm — Type A &amp; Type B",
+        "<strong>Pipes:</strong> 75mm, 90mm, 110mm &amp; 160mm, Type A &amp; Type B",
         "<strong>Fittings:</strong> 75mm, 90mm, 110mm &amp; 160mm"
        ]
       }
@@ -1715,8 +1715,8 @@
      "title": "Pipes",
      "items": [
       {
-       "name": "SWR Pipes — Type A",
-       "std": "75mm–160mm, S/S & D/S, multiple lengths",
+       "name": "SWR Pipes: Type A",
+       "std": "75mm-160mm, S/S & D/S, multiple lengths",
        "blocks": [
         {
          "type": "table",
@@ -1935,8 +1935,8 @@
        ]
       },
       {
-       "name": "SWR Pipes — Type B",
-       "std": "75mm–160mm, S/S & D/S",
+       "name": "SWR Pipes: Type B",
+       "std": "75mm-160mm, S/S & D/S",
        "blocks": [
         {
          "type": "table",
@@ -2201,15 +2201,15 @@
       {
        "type": "image",
        "src": "https://waterflo.in/wp-content/uploads/2021/12/4-Selfit.png",
-       "alt": "Waterflo Selfit — SWR Pipes & Fittings"
+       "alt": "Waterflo Selfit: SWR Pipes & Fittings"
       },
       {
        "type": "heading",
-       "text": "Selfit — SWR Pipes & Fittings"
+       "text": "Selfit: SWR Pipes & Fittings"
       },
       {
        "type": "text",
-       "html": "uPVC SWR drainage system with solvent-cement jointing. Available in Type A (40mm–200mm) and Type B (75mm–160mm) pipes, plus 2.5 kg series in Ringfit and Selfit variants."
+       "html": "uPVC SWR drainage system with solvent-cement jointing. Available in Type A (40mm-200mm) and Type B (75mm-160mm) pipes, plus 2.5 kg series in Ringfit and Selfit variants."
       },
       {
        "type": "chips",
@@ -2255,10 +2255,10 @@
       {
        "type": "list",
        "items": [
-        "<strong>Type A Pipes:</strong> 40mm–200mm, 3 &amp; 6 mtr S/S",
-        "<strong>Type B Pipes:</strong> 75mm–160mm, 3 &amp; 6 mtr S/S",
-        "<strong>2.5 kg Pipes:</strong> 75mm &amp; 110mm — Ringfit &amp; Selfit variants",
-        "<strong>Fittings:</strong> 75mm–160mm"
+        "<strong>Type A Pipes:</strong> 40mm-200mm, 3 &amp; 6 mtr S/S",
+        "<strong>Type B Pipes:</strong> 75mm-160mm, 3 &amp; 6 mtr S/S",
+        "<strong>2.5 kg Pipes:</strong> 75mm &amp; 110mm, Ringfit &amp; Selfit variants",
+        "<strong>Fittings:</strong> 75mm-160mm"
        ]
       }
      ]
@@ -2270,7 +2270,7 @@
      "items": [
       {
        "name": "Pipe Type A",
-       "std": "40mm–200mm, 3 mtr & 6 mtr S/S",
+       "std": "40mm-200mm, 3 mtr & 6 mtr S/S",
        "blocks": [
         {
          "type": "table",
@@ -2368,7 +2368,7 @@
       },
       {
        "name": "Pipe Type B",
-       "std": "75mm–160mm",
+       "std": "75mm-160mm",
        "blocks": [
         {
          "type": "table",
@@ -2425,7 +2425,7 @@
        ]
       },
       {
-       "name": "2.5 kg Pipes — Ringfit & Selfit",
+       "name": "2.5 kg Pipes: Ringfit & Selfit",
        "std": "75mm & 110mm",
        "blocks": [
         {
@@ -2444,7 +2444,7 @@
            "110mm (4\")"
           ]
          ],
-         "label": "Ringfit — 3 mtr"
+         "label": "Ringfit: 3 mtr"
         },
         {
          "type": "table",
@@ -2475,7 +2475,7 @@
            "6 mtr"
           ]
          ],
-         "label": "Selfit — 3 & 6 mtr"
+         "label": "Selfit: 3 & 6 mtr"
         }
        ]
       }
@@ -2734,15 +2734,15 @@
       {
        "type": "image",
        "src": "https://waterflo.in/wp-content/uploads/2021/12/5-agri_master-1.png",
-       "alt": "Waterflo AgriMaster — Agriculture Pipes & Fittings"
+       "alt": "Waterflo AgriMaster: Agriculture Pipes & Fittings"
       },
       {
        "type": "heading",
-       "text": "AgriMaster — Agriculture Pipes & Fittings"
+       "text": "AgriMaster: Agriculture Pipes & Fittings"
       },
       {
        "type": "text",
-       "html": "uPVC Pressure Pipes and Fittings for Agriculture and Water Distribution. Manufactured per IS 4985 covering 20mm–315mm in 5 pressure classes. Colour-coded by pressure class for easy identification."
+       "html": "uPVC Pressure Pipes and Fittings for Agriculture and Water Distribution. Manufactured per IS 4985 covering 20mm-315mm in 5 pressure classes. Colour-coded by pressure class for easy identification."
       },
       {
        "type": "chips",
@@ -2789,11 +2789,11 @@
       {
        "type": "list",
        "items": [
-        "<strong>Class 1 (2.5 kg/cm²):</strong> 90mm–315mm",
-        "<strong>Class 2 (4 kg/cm²):</strong> 63mm–315mm",
-        "<strong>Class 3 (6 kg/cm²):</strong> 40mm–315mm",
-        "<strong>Class 4 (8 kg/cm²):</strong> 25mm–315mm",
-        "<strong>Class 5 (10 kg/cm²):</strong> 20mm–315mm"
+        "<strong>Class 1 (2.5 kg/cm²):</strong> 90mm-315mm",
+        "<strong>Class 2 (4 kg/cm²):</strong> 63mm-315mm",
+        "<strong>Class 3 (6 kg/cm²):</strong> 40mm-315mm",
+        "<strong>Class 4 (8 kg/cm²):</strong> 25mm-315mm",
+        "<strong>Class 5 (10 kg/cm²):</strong> 20mm-315mm"
        ]
       }
      ]
@@ -2848,8 +2848,8 @@
      "title": "Pipes",
      "items": [
       {
-       "name": "Class 1 — 2.5 kg/cm²",
-       "std": "90mm–315mm per IS 4985",
+       "name": "Class 1-2.5 kg/cm²",
+       "std": "90mm-315mm per IS 4985",
        "blocks": [
         {
          "type": "table",
@@ -2919,8 +2919,8 @@
        ]
       },
       {
-       "name": "Class 2 — 4 kg/cm²",
-       "std": "63mm–315mm per IS 4985",
+       "name": "Class 2-4 kg/cm²",
+       "std": "63mm-315mm per IS 4985",
        "blocks": [
         {
          "type": "table",
@@ -2970,8 +2970,8 @@
        ]
       },
       {
-       "name": "Class 4 — 8 kg/cm²",
-       "std": "25mm–315mm per IS 4985",
+       "name": "Class 4-8 kg/cm²",
+       "std": "25mm-315mm per IS 4985",
        "blocks": [
         {
          "type": "table",
@@ -3026,8 +3026,8 @@
        ]
       },
       {
-       "name": "Class 5 — 10 kg/cm²",
-       "std": "20mm–160mm per IS 4985",
+       "name": "Class 5-10 kg/cm²",
+       "std": "20mm-160mm per IS 4985",
        "blocks": [
         {
          "type": "table",
@@ -3108,11 +3108,11 @@
      "items": [
       {
        "name": "AgriMaster Fittings (IS 7834)",
-       "std": "20mm–250mm, 16 kg/cm² plumbing class",
+       "std": "20mm-250mm, 16 kg/cm² plumbing class",
        "blocks": [
         {
          "type": "text",
-         "html": "Full fittings range 20mm–250mm. See downloadable catalogue for complete product codes."
+         "html": "Full fittings range 20mm-250mm. See downloadable catalogue for complete product codes."
         },
         {
          "type": "link",
@@ -3137,7 +3137,7 @@
      "blocks": [
       {
        "type": "heading",
-       "text": "Boreline — Column / Borewell Pipes"
+       "text": "Boreline: Column / Borewell Pipes"
       },
       {
        "type": "text",
@@ -3192,12 +3192,12 @@
      "title": "Column Pipes",
      "items": [
       {
-       "name": "Column Pipes — All Series",
-       "std": "1\" to 6\" | HSN: 3917 — Qty per bundle",
+       "name": "Column Pipes: All Series",
+       "std": "1\" to 6\" | HSN: 3917, Qty per bundle",
        "blocks": [
         {
          "type": "text",
-         "html": "Qty per bundle. — = not available in that size for that series.",
+         "html": "Qty per bundle., = not available in that size for that series.",
          "note": true
         },
         {
@@ -3222,12 +3222,12 @@
            "25",
            "20",
            "12",
-           "—",
-           "—",
-           "—",
-           "—",
-           "—",
-           "—"
+           "-",
+           "-",
+           "-",
+           "-",
+           "-",
+           "-"
           ],
           [
            "Easy Bore",
@@ -3235,25 +3235,25 @@
            "25",
            "20",
            "12",
-           "—",
-           "—",
-           "—",
-           "—",
-           "—",
-           "—"
+           "-",
+           "-",
+           "-",
+           "-",
+           "-",
+           "-"
           ],
           [
            "Medium Bore",
-           "—",
-           "—",
-           "—",
+           "-",
+           "-",
+           "-",
            "12",
-           "—",
+           "-",
            "8",
            "5",
            "4",
-           "—",
-           "—"
+           "-",
+           "-"
           ],
           [
            "Ultra Bore",
@@ -3261,12 +3261,12 @@
            "25",
            "20",
            "12",
-           "—",
-           "—",
-           "—",
-           "—",
-           "—",
-           "—"
+           "-",
+           "-",
+           "-",
+           "-",
+           "-",
+           "-"
           ],
           [
            "Standard Bore",
@@ -3274,7 +3274,7 @@
            "25",
            "20",
            "12",
-           "—",
+           "-",
            "8",
            "5",
            "4",
@@ -3296,55 +3296,55 @@
           ],
           [
            "Heavy Plus",
-           "—",
-           "—",
-           "—",
-           "—",
+           "-",
+           "-",
+           "-",
+           "-",
            "10",
-           "—",
-           "—",
-           "—",
-           "—",
-           "—"
+           "-",
+           "-",
+           "-",
+           "-",
+           "-"
           ],
           [
            "Super Heavy",
-           "—",
-           "—",
-           "—",
+           "-",
+           "-",
+           "-",
            "8",
-           "—",
+           "-",
            "5",
            "4",
            "3",
-           "—",
-           "—"
+           "-",
+           "-"
           ],
           [
            "Eco Bore (Bell)",
            "25",
            "25",
            "20",
-           "—",
-           "—",
-           "—",
-           "—",
-           "—",
-           "—",
-           "—"
+           "-",
+           "-",
+           "-",
+           "-",
+           "-",
+           "-",
+           "-"
           ],
           [
            "Easy Bore (Bell)",
            "25",
            "25",
            "20",
-           "—",
-           "—",
-           "—",
-           "—",
-           "—",
-           "—",
-           "—"
+           "-",
+           "-",
+           "-",
+           "-",
+           "-",
+           "-",
+           "-"
           ]
          ]
         }
@@ -3369,7 +3369,7 @@
       },
       {
        "type": "text",
-       "html": "Available in PE-63, PE-80 and PE-100 grades as per IS 4984-2016, covering 20mm–110mm in multiple SDR pressure classes."
+       "html": "Available in PE-63, PE-80 and PE-100 grades as per IS 4984-2016, covering 20mm-110mm in multiple SDR pressure classes."
       },
       {
        "type": "chips",
@@ -3421,7 +3421,7 @@
      "items": [
       {
        "name": "HDPE Pipes PE-63",
-       "std": "as per IS 4984-2016 (HSN: 3917) — Rate per mtr (₹)",
+       "std": "as per IS 4984-2016 (HSN: 3917), Rate per mtr (₹)",
        "blocks": [
         {
          "type": "text",
@@ -3440,21 +3440,21 @@
          "rows": [
           [
            "20",
-           "—",
-           "—",
-           "—",
+           "-",
+           "-",
+           "-",
            "26.00"
           ],
           [
            "25",
-           "—",
-           "—",
-           "—",
+           "-",
+           "-",
+           "-",
            "39.00"
           ],
           [
            "32",
-           "—",
+           "-",
            "41.00",
            "50.00",
            "60.00"
@@ -3507,7 +3507,7 @@
       },
       {
        "name": "HDPE Pipes PE-80",
-       "std": "as per IS 4984-2016 — Rate per mtr (₹)",
+       "std": "as per IS 4984-2016, Rate per mtr (₹)",
        "blocks": [
         {
          "type": "table",
@@ -3523,7 +3523,7 @@
          "rows": [
           [
            "32",
-           "—",
+           "-",
            "42.00",
            "51.00",
            "61.00",
@@ -3590,7 +3590,7 @@
       },
       {
        "name": "HDPE Pipes PE-100",
-       "std": "as per IS 4984-2016 — Rate per mtr (₹)",
+       "std": "as per IS 4984-2016, Rate per mtr (₹)",
        "blocks": [
         {
          "type": "table",
@@ -3606,7 +3606,7 @@
          "rows": [
           [
            "32",
-           "—",
+           "-",
            "42.00",
            "52.00",
            "62.00",
