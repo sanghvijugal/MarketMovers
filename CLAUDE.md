@@ -59,4 +59,4 @@ disagrees with it, the skill wins. `DESIGN.md` records the project's current dec
 - Motion: animate only `transform` and `opacity` (the accordion's grid-rows height is the one
   exception) and always respect `prefers-reduced-motion`.
 - Never change without the owner's approval: URLs, primary nav labels (Brands, Products,
-  Ordering, Visit), form field names, the logo, legal copy.
+  How to order, Visit), form field names, the logo, legal copy.

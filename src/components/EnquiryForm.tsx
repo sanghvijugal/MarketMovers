@@ -8,7 +8,7 @@ import { NativeSelect } from "@/components/ui/native-select";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 
-type Field = "name" | "phone";
+type Field = "name";
 type Errors = Partial<Record<Field, string>>;
 
 interface Props {
@@ -19,9 +19,6 @@ interface Props {
 function validate(data: FormData): Errors {
   const errors: Errors = {};
   if (!String(data.get("name") ?? "").trim()) errors.name = "Enter your name.";
-  const digits = String(data.get("phone") ?? "").replace(/\D/g, "");
-  if (!digits) errors.phone = "Enter a phone number so we can reply.";
-  else if (digits.length < 10) errors.phone = "Enter a 10-digit mobile number.";
   return errors;
 }
 
@@ -57,7 +54,7 @@ export default function EnquiryForm({ whatsapp, categories }: Props) {
       "Hello Market Movers, I have an enquiry.",
       "",
       line("Name", "name"),
-      line("Phone", "phone"),
+      line("Delivery to", "delivery"),
       line("Product", "category"),
       line("Requirement", "message"),
     ]
@@ -84,18 +81,9 @@ export default function EnquiryForm({ whatsapp, categories }: Props) {
             onInput={() => clearError("name")}
           />
         </FieldRow>
-        <FieldRow id="enq-phone" label="Phone" error={errors.phone}>
-          <Input
-            id="enq-phone"
-            name="phone"
-            type="tel"
-            inputMode="tel"
-            autoComplete="tel"
-            className="t-input tabular-nums"
-            aria-invalid={!!errors.phone}
-            aria-describedby={errors.phone ? "enq-phone-error" : undefined}
-            onInput={() => clearError("phone")}
-          />
+        {/* No phone field: the message arrives on WhatsApp from their number. */}
+        <FieldRow id="enq-delivery" label="Delivery to" optional>
+          <Input id="enq-delivery" name="delivery" autoComplete="address-level2" placeholder="Area or town" />
         </FieldRow>
       </div>
       <FieldRow id="enq-category" label="Product" optional>
@@ -110,7 +98,7 @@ export default function EnquiryForm({ whatsapp, categories }: Props) {
         <Textarea
           id="enq-message"
           name="message"
-          placeholder="Sizes, quantities, preferred brand, delivery location"
+          placeholder="Sizes, quantities, preferred brand"
         />
       </FieldRow>
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center">

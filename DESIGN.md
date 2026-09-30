@@ -5,7 +5,10 @@ distributor: calm, dense with real information, quick to act on (call / WhatsApp
 
 `design-taste-frontend` (`.claude/skills/`) is the single source of design rules. This file
 records the project's decisions under it. Redesign mode: **preserve the brand** (logo, teal,
-Geist, Hindi lines, URLs, nav labels, form fields, plain wording); everything else is open.
+Geist, Hindi lines, URLs, plain wording); everything else is open. Owner-approved changes:
+nav "Ordering" is now "How to order"; the enquiry form asks for name, delivery area (optional),
+product (optional) and requirement (optional), with no phone field since the reply goes to
+their WhatsApp.
 
 Dials: `DESIGN_VARIANCE 6`, `MOTION_INTENSITY 5`, `VISUAL_DENSITY 4`.
 
@@ -39,9 +42,12 @@ Light and dark, following the visitor's system setting (`prefers-color-scheme`).
 
 **Radius:** buttons are full pills; everything else (inputs, images, map, menu panel) is 12px.
 
+**Theme switch:** the page keeps one theme; the black footer is the single deliberate switch
+(the skill allows one per page), kept by the owner for the full-width name.
+
 ## Type
 
-Geist (variable) for everything; Hindi in Tiro Devanagari Hindi.
+Geist (variable) for everything; Hindi in IBM Plex Sans Devanagari (sans, to sit with Geist).
 
 | Role | Size | Weight |
 |---|---|---|
@@ -61,7 +67,7 @@ Only the hero has a small label above its heading.
 |---|---|
 | Hero | split: text left, pipe-size rings right |
 | Godown | headline + one typographic line of figures |
-| Brands | sticky detail panel + brands as one large sentence |
+| Brands | index: catalogue brands one per line, "Also in stock" below; detail panel beside it on desktop, details inline on phones |
 | Products | three grouped chunks (Pipes; Farm and water; Bath and fittings), one divider each |
 | Ordering | three steps set as large type rows |
 | Visit | address headline, details, full-width Google map |
@@ -73,7 +79,7 @@ Only the hero has a small label above its heading.
 |---|---|---|
 | `SizeRings` | NumberFlow, torph | IS 4985 ODs 20–400 mm to scale; ruler of sizes below; stays still until picked |
 | `Stats` | NumberFlow, Motion `useInView` | real figures count up once |
-| `BrandSentence` | none | hover or focus a name to fade the others and show its details |
+| `BrandIndex` | none | names dim only while the list is hovered or focused; the panel shows the selected brand (Finolex first) |
 
 ## Components
 
@@ -99,7 +105,7 @@ Only the hero has a small label above its heading.
 | Ordering heading (`.read-words`) | words darken as it scrolls up | storytelling |
 | Stats | figures count up once | storytelling |
 | Size rings | settle in once; selected wall scales on pick | feedback |
-| Brand sentence | other names fade; details crossfade | feedback |
+| Brand index | other names dim; details crossfade | feedback |
 | Buttons | label rolls up on hover; press scale 0.97 | feedback |
 | Accordions, mobile menu, form errors | expand, dropdown, shake | state change |
 
