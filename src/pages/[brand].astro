@@ -40,7 +40,7 @@ const phone = business.phones[0];
       </div>
       <div class="flex shrink-0 flex-wrap items-center gap-6">
         <a href={whatsappUrl(`Hello Market Movers, I'd like ${brand.name} prices and availability.`)} target="_blank" rel="noopener" class={buttonVariants({ size: "lg" })}>
-          <Icon icon={WhatsappIcon} />Ask for {brand.name} rates
+          <Icon icon={WhatsappIcon} /><span class="roll"><span>Ask for {brand.name} rates</span></span>
         </a>
         <a href={`tel:${phone.tel}`} class="sweep font-medium tabular-nums">Call {phone.display}</a>
       </div>

@@ -53,6 +53,8 @@ Hindi: Tiro Devanagari Hindi.
 - `ActionBar.astro`: phone Call / Get a quote bar. `Logo.astro`: woven MM mark + wordmark + Hindi.
 - `LogoMark.astro`: the logo, two Ms woven over and under. Inner M in ink (`currentColor`), outer M in teal (`--teal-on-dark` on black). Heavier `weight` at small sizes. The favicons and OG image in `public/assets/` are drawn from the same geometry.
 - Homepage: the logo and a full-width "Market Movers" (`.wordmark-top`) sit above the hero. On load the two Ms slide in from above and below and lock together (`LogoMark animate`, `.lm-*`). The whole row shrinks away on scroll while the header logo fades in (scroll-driven CSS in `global.css`). Other pages show the header logo from the start.
+- Hero hierarchy: the name is the only giant line. The `<h1>` sits a clear step below it (≈ ⅓ size, medium weight, tail in muted grey) so the two don't compete.
+- Primary CTA labels are wrapped in `.roll` so the text rolls up on hover (a text-shadow copy slides in; transform only, fine pointers only). Adapted from ThreeUI's sliding-text CTA.
 - Scroll timelines are set through `--tl-view` / `--tl-page` custom properties. Lightning CSS otherwise folds `animation-timeline` into the `animation` shorthand, and browsers drop the whole rule.
 
 ## Motion (transitions.dev recipes + morphicons)
