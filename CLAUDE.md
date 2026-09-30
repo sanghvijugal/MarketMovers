@@ -65,3 +65,6 @@ Read `DESIGN.md` before changing how anything looks.
   `prefers-reduced-motion`.
 - Use `mobile-native` for touch behaviour and `fixing-accessibility` for dialogs, forms and focus.
 - Run `review-animations` / `improve-ui` for a review pass before shipping a redesign.
+- `design-taste-frontend` (anti-slop checklist) is vendored too. Where it conflicts with this file
+  or DESIGN.md (for example its dark-mode and stock-photo rules), this file wins: light only, and
+  no fake or placeholder photos.
