@@ -117,9 +117,11 @@ Everything above turns off under `prefers-reduced-motion`.
 
 | Photo | Where | Crop |
 |---|---|---|
-| `pipe-ends.jpg` | full width between the hero and the figures | 4:3 phone, 16:9, 21:9 desktop |
+| `pipe-stack.jpg` | full width between the hero and the figures | 4:3 phone, 16:9, 2:1 desktop, anchored left |
+| `hdpe-coil.jpg` | beside the "Pipes" product group | 16:9 phone, 4:5 desktop |
+| `tap.jpg` | beside the "Bath and fittings" product group | 16:9 phone, 4:5 desktop |
 | `fittings.jpg` | under the product groups | 4:3 phone, 16:9, 2:1 desktop, anchored left |
 | `counter.jpg` | beside the ordering steps (sticky on desktop) | 4:3, 4:5 desktop |
 
-Kept outside the repo for later (brand pages, social): stock shelves, HDPE coil, chrome tap. Don't
-pair the shelves photo with "our godown" wording.
+At most one photo per spot and never two back to back. Kept outside the repo: the stock shelves
+image (don't pair it with "our godown" wording).
