@@ -21,7 +21,7 @@ export const business = {
     country: "IN",
   },
   mapUrl: "https://maps.app.goo.gl/YJqPVN8XAv8VZDPh6",
-  hours: { days: "Monday to Saturday", short: "Mon–Sat", opens: "09:00", closes: "19:00", display: "9 am – 7 pm" },
+  hours: { days: "Monday to Saturday", short: "Mon to Sat", opens: "09:00", closes: "19:00", display: "9 am to 7 pm" },
 } as const;
 
 export function whatsappUrl(message?: string) {
