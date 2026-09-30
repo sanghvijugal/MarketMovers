@@ -21,7 +21,7 @@ npm run check    # TypeScript / Astro type check
 - `src/components/`: `Header`, `Footer`, `ActionBar` (phone Call/WhatsApp bar), `Logo`
   (mark + name), `LogoMark` (the woven MM logo as inline SVG), `Icon` (Hugeicons → inline SVG), `EnquiryForm.tsx` (React island),
   `brand/*` (brand page parts), `home/*` (homepage React islands: size rings,
-  word morph, count-up stats, brand sentence, globe), `ui/*` (shadcn components).
+  count-up stats, brand sentence), `ui/*` (shadcn components).
 - `src/styles/global.css`: design tokens and the transitions.dev recipes. See `DESIGN.md`.
 - `public/`: files served as-is (`robots.txt`, `CNAME`, `assets/` OG image and favicons).
 - `tools/seo.py`: SEO checker that runs on `dist/` after every build.
@@ -59,4 +59,4 @@ disagrees with it, the skill wins. `DESIGN.md` records the project's current dec
 - Motion: animate only `transform` and `opacity` (the accordion's grid-rows height is the one
   exception) and always respect `prefers-reduced-motion`.
 - Never change without the owner's approval: URLs, primary nav labels (Brands, Products,
-  Ordering, Visit), form field names, the logo, legal copy.
+  How to order, Visit), form field names, the logo, legal copy.

@@ -1,35 +1,35 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "@fontsource-variable/geist";
-@import "@fontsource/tiro-devanagari-hindi/devanagari-400.css";
-/* Devanagari glyphs for future Hindi content; unicode-range means the
+/* Hindi lines: a sans Devanagari to sit with Geist. unicode-range means the
    files only download when a page actually contains Hindi text. */
 @import "@fontsource/ibm-plex-sans-devanagari/400.css";
 @import "@fontsource/ibm-plex-sans-devanagari/600.css";
 
 /* ── Design tokens ────────────────────────────────────────────────
-   "Precision": warm off-white, black ink, Geist set very large, teal only
-   for links and the one active detail. No boxes; hairlines and space do
-   the separating. See DESIGN.md. */
+   Neutral off-white and ink, one accent (teal). Dark mode follows the
+   visitor's system setting. One corner radius (12px) for everything that
+   isn't a pill button. See DESIGN.md. */
 :root {
-  --radius: 0.375rem;
+  color-scheme: light dark;
+  --radius: 0.75rem;
 
-  --background: #f1f0ec;
+  --background: #f4f4f2;
   --foreground: #111111;
-  --card: #f7f6f2;
+  --card: #fafaf9;
   --card-foreground: var(--foreground);
-  --muted: #e8e6e0;
-  --muted-foreground: #6b6a64;
-  --faint: #bdbbb4;
-  --border: #d8d5cd;
-  --input: #bcb8ae;
+  --muted: #e8e8e5;
+  --muted-foreground: #62625e;
+  --faint: #b6b6b1;
+  --border: #dadad6;
+  --input: #8a8a85; /* 3.3:1 against card, WCAG non-text contrast */
   --rule: #111111;
 
   --primary: var(--teal);
-  --primary-foreground: #f1f0ec;
+  --primary-foreground: #f4f4f2;
   --secondary: var(--muted);
   --secondary-foreground: var(--foreground);
-  --accent: #e3ecea;
+  --accent: #e1ebea;
   --accent-foreground: #0b5d63;
   --teal: #0b5d63;
   --teal-on-dark: #5aa9ae; /* the logo's outer M on black */
@@ -38,8 +38,8 @@
 
   /* footer */
   --inverse: #111111;
-  --inverse-foreground: #f1f0ec;
-  --inverse-muted: #9a9891;
+  --inverse-foreground: #f4f4f2;
+  --inverse-muted: #9a9a95;
 
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
@@ -61,9 +61,34 @@
   --shake-ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #121212;
+    --foreground: #ececea;
+    --card: #1a1a19;
+    --muted: #242423;
+    --muted-foreground: #a2a29d;
+    --faint: #5a5a56;
+    --border: #2e2e2c;
+    --input: #707069;
+    --rule: #ececea;
+
+    --teal: #6fb9be;
+    --primary-foreground: #0c1b1c;
+    --accent: #173634;
+    --accent-foreground: #a8d9db;
+    --teal-on-dark: #6fb9be;
+    --destructive: oklch(0.7 0.17 25);
+
+    --inverse: #0a0a0a;
+    --inverse-foreground: #ececea;
+    --inverse-muted: #8e8e89;
+  }
+}
+
 @theme inline {
   --font-sans: "Geist Variable", "IBM Plex Sans Devanagari", ui-sans-serif, system-ui, sans-serif;
-  --font-hindi: "Tiro Devanagari Hindi", "IBM Plex Sans Devanagari", serif;
+  --font-hindi: "IBM Plex Sans Devanagari", ui-sans-serif, sans-serif;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -88,10 +113,12 @@
   --color-inverse-foreground: var(--inverse-foreground);
   --color-inverse-muted: var(--inverse-muted);
 
-  --radius-sm: calc(var(--radius) - 2px);
+  /* one radius: everything that isn't a pill button uses 12px */
+  --radius-sm: var(--radius);
   --radius-md: var(--radius);
-  --radius-lg: calc(var(--radius) + 2px);
-  --radius-xl: calc(var(--radius) + 6px);
+  --radius-lg: var(--radius);
+  --radius-xl: var(--radius);
+  --radius-2xl: var(--radius);
 
 }
 

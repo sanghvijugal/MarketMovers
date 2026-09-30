@@ -3,7 +3,8 @@ import NumberFlow from "@number-flow/react";
 import { TextMorph } from "torph/react";
 
 // Pipe outside diameters (mm) from the IS 4985 series, drawn to true
-// relative scale. Pick a size to see what it is usually used for.
+// relative scale. Pick a size to see what it is usually used for. It stays
+// still until someone picks one (no auto-cycling).
 const SIZES = [20, 25, 32, 40, 50, 63, 75, 90, 110, 140, 160, 200, 250, 315, 400] as const;
 type Size = (typeof SIZES)[number];
 
@@ -27,27 +28,10 @@ const USE: Record<Size, string> = {
 
 const R_MAX = 200; // 400 mm → 200 px radius in a 440 px box
 const radius = (od: number) => (od / 400) * R_MAX;
-const CYCLE_MS = 2200;
 
 export default function SizeRings() {
   const [size, setSize] = React.useState<Size>(110);
-  const [auto, setAuto] = React.useState(true);
-
-  // Walk through the sizes on its own until someone picks one.
-  React.useEffect(() => {
-    if (!auto) return;
-    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const id = window.setInterval(() => {
-      if (document.hidden) return;
-      setSize((s) => SIZES[(SIZES.indexOf(s) + 1) % SIZES.length]);
-    }, CYCLE_MS);
-    return () => window.clearInterval(id);
-  }, [auto]);
-
-  const pick = (s: Size) => {
-    setAuto(false);
-    setSize(s);
-  };
+  const pick = (s: Size) => setSize(s);
 
   const r = radius(size);
 

@@ -21,6 +21,9 @@ export const business = {
     country: "IN",
   },
   mapUrl: "https://maps.app.goo.gl/YJqPVN8XAv8VZDPh6",
+  // Google Maps embed of the shop (no API key needed); shown in the Visit section.
+  mapEmbedUrl:
+    "https://www.google.com/maps?q=Market+Movers,+Anjuman+Market,+Marhatal,+Jabalpur,+Madhya+Pradesh+482001&z=16&output=embed",
   hours: { days: "Monday to Saturday", short: "Mon to Sat", opens: "10:00", closes: "19:00", display: "10 am to 7 pm" },
 } as const;
 
@@ -87,6 +90,13 @@ export const categories = [
     brands: [],
   },
 ] as const;
+
+/** The seven categories in three groups, for the homepage product list. */
+export const categoryGroups: { name: string; ids: (typeof categories)[number]["id"][] }[] = [
+  { name: "Pipes", ids: ["pvc", "hdpe", "casing"] },
+  { name: "Farm and water", ids: ["sprinkler", "suction"] },
+  { name: "Bath and fittings", ids: ["bath", "fittings"] },
+];
 
 export const customers = [
   "Builders & contractors",
