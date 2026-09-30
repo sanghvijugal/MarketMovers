@@ -49,22 +49,14 @@ npm run check    # TypeScript / Astro type check
 
 ## UI rules
 
-Design and UI skills are vendored in `.claude/skills/` (sources in `.claude/skills/SOURCES.md`).
-Read `DESIGN.md` before changing how anything looks.
-- Follow `baseline-ui`: no gradients or glow, `text-balance` on headings, `tabular-nums` for
-  numbers, `h-dvh` not `h-screen`. Black ink, warm off-white, teal as the single accent (primary buttons, links, small details).
-- "Precision" style (see DESIGN.md): Geist set very large, lots of space, no cards, chips, tiles,
-  badges or grids of information, and no fake photos. Only real photos of the business.
+`design-taste-frontend` (in `.claude/skills/`, source in `.claude/skills/SOURCES.md`) is the only
+design skill and the single source of design rules. Where anything below or in `DESIGN.md`
+disagrees with it, the skill wins. `DESIGN.md` records the project's current decisions.
 - Use the shadcn components in `src/components/ui/` for form controls and buttons. Use
   `buttonVariants()` for links that look like buttons in `.astro` files.
 - Icons: Hugeicons only (`@hugeicons/core-free-icons`), rendered with `Icon.astro` (or
   `HugeiconsIcon` inside React). Don't mix in other icon sets.
-- Motion: use `emil-design-eng` / `animate` before adding any animation. Reuse the
-  transitions.dev recipes in `global.css`; only animate `transform`
-  and `opacity` (the accordion's grid-rows height is the one exception); always respect
-  `prefers-reduced-motion`.
-- Use `mobile-native` for touch behaviour and `fixing-accessibility` for dialogs, forms and focus.
-- Run `review-animations` / `improve-ui` for a review pass before shipping a redesign.
-- `design-taste-frontend` (anti-slop checklist) is vendored too. Where it conflicts with this file
-  or DESIGN.md (for example its dark-mode and stock-photo rules), this file wins: light only, and
-  no fake or placeholder photos.
+- Motion: animate only `transform` and `opacity` (the accordion's grid-rows height is the one
+  exception) and always respect `prefers-reduced-motion`.
+- Never change without the owner's approval: URLs, primary nav labels (Brands, Products,
+  Ordering, Visit), form field names, the logo, legal copy.

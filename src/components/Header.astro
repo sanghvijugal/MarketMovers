@@ -34,7 +34,7 @@ const wa = whatsappUrl("Hello Market Movers, I have an enquiry.");
     <div class="flex items-center gap-5">
       <p class="hidden items-center gap-2 text-[17px] sm:text-[13px] text-muted-foreground xl:flex">
         <span class="size-1.5 rounded-full bg-teal" data-open-dot aria-hidden="true"></span>
-        <span data-open-status>{business.hours.short}, {business.hours.display}</span>
+        <span data-open-status data-opens={parseInt(business.hours.opens)} data-closes={parseInt(business.hours.closes)}>{business.hours.short}, {business.hours.display}</span>
       </p>
       <a href={wa} target="_blank" rel="noopener" class={buttonVariants({ class: "hidden sm:inline-flex" })}>
         <span class="roll"><span>WhatsApp</span></span>
@@ -119,20 +119,22 @@ const wa = whatsappUrl("Hello Market Movers, I have an enquiry.");
   });
   matchMedia("(min-width: 768px)").addEventListener("change", (e) => e.matches && setOpen(false));
 
-  // "Open now" status, worked out in Jabalpur time (IST, UTC+5:30).
-  // Mon–Sat 9 am – 7 pm. Falls back to the static hours if this doesn't run.
+  // "Open now" status, worked out in Jabalpur time (IST, UTC+5:30), Monday to
+  // Saturday. Hours come from site.ts. Falls back to the static text if this doesn't run.
   const status = document.querySelector<HTMLElement>("[data-open-status]");
   const dot = document.querySelector<HTMLElement>("[data-open-dot]");
   if (status) {
+    const opens = Number(status.dataset.opens), closes = Number(status.dataset.closes);
+    const fmt = (h: number) => (h > 12 ? `${h - 12} pm` : h === 12 ? "12 pm" : `${h} am`);
     const ist = new Date(Date.now() + (5.5 * 60 + new Date().getTimezoneOffset()) * 60_000);
     const day = ist.getDay();
     const h = ist.getHours() + ist.getMinutes() / 60;
     const workday = day >= 1 && day <= 6;
-    if (workday && h >= 9 && h < 19) status.textContent = "Open now, till 7 pm";
+    if (workday && h >= opens && h < closes) status.textContent = `Open now, till ${fmt(closes)}`;
     else {
-      const opensToday = workday && h < 9;
+      const opensToday = workday && h < opens;
       const nextDay = opensToday ? "" : day === 6 || day === 0 ? " Monday" : " tomorrow";
-      status.textContent = `Closed now, opens 9 am${nextDay}`;
+      status.textContent = `Closed now, opens ${fmt(opens)}${nextDay}`;
       dot?.classList.replace("bg-teal", "bg-faint");
     }
   }
