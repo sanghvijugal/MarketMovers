@@ -18,8 +18,10 @@ Dials: `DESIGN_VARIANCE 6`, `MOTION_INTENSITY 5`, `VISUAL_DENSITY 4`.
   space and the odd hairline (one per group, never one per row of a long list).
 - **Motion must be motivated.** Every animation is hierarchy, storytelling or feedback. No
   perpetual loops.
-- **Real images only.** No stock, AI or placeholder photos. Product still lifes and tight crops
-  of the stock (see "Photos" below) go into the slots marked `TODO photo slot` in the markup.
+- **Honest images.** Photos are generated product still lifes (owner-approved) in
+  `src/assets/photos/`, served through Astro `<Picture>` (AVIF/WebP, responsive widths). They
+  show products generically and are never presented as our shop, stock or staff. No stock
+  photos, no placeholders.
 - **One accent.** Teal for primary buttons, links, the logo's outer M and the active pipe
   dimension. Everything else is ink on off-white (light) or off-white on off-black (dark).
 - **Plain words, some Hindi.** Section headings carry a short Hindi line stacked under them.
@@ -111,9 +113,13 @@ Only the hero has a small label above its heading.
 
 Everything above turns off under `prefers-reduced-motion`.
 
-## Photos (to shoot)
+## Photos
 
-Product, not premises: cut pipe ends stacked end-on; a handful of fittings from above; one tap
-close-up; a coil of HDPE or drip line; tight crops of the stock racks; hands at the counter.
-Plain background, window light or a product photographer. Brand pages keep manufacturers'
-product images.
+| Photo | Where | Crop |
+|---|---|---|
+| `pipe-ends.jpg` | full width between the hero and the figures | 4:3 phone, 16:9, 21:9 desktop |
+| `fittings.jpg` | under the product groups | 4:3 phone, 16:9, 2:1 desktop, anchored left |
+| `counter.jpg` | beside the ordering steps (sticky on desktop) | 4:3, 4:5 desktop |
+
+Kept outside the repo for later (brand pages, social): stock shelves, HDPE coil, chrome tap. Don't
+pair the shelves photo with "our godown" wording.
