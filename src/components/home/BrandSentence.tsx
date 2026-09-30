@@ -14,7 +14,7 @@ export default function BrandSentence({ brands, askHref }: { brands: Brand[]; as
     ? b.slug
       ? `${b.stock}. ${b.from}.`
       : "Also in stock. The catalogue isn't online yet; ask us for sizes and rates."
-    : "Hover a name for what we carry from them. Each one opens its full catalogue with sizes and specifications.";
+    : "Each name opens its full catalogue, with sizes and specifications.";
   const cta = b ? (b.slug ? `${b.lines} product lines →` : "Ask on WhatsApp →") : "";
 
   return (

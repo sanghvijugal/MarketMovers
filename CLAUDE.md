@@ -21,7 +21,7 @@ npm run check    # TypeScript / Astro type check
 - `src/components/`: `Header`, `Footer`, `ActionBar` (phone Call/WhatsApp bar), `Logo`
   (mark + name), `LogoMark` (the woven MM logo as inline SVG), `Icon` (Hugeicons → inline SVG), `EnquiryForm.tsx` (React island),
   `brand/*` (brand page parts), `home/*` (homepage React islands: size rings,
-  word morph, count-up stats, brand sentence, globe), `ui/*` (shadcn components).
+  count-up stats, brand sentence), `ui/*` (shadcn components).
 - `src/styles/global.css`: design tokens and the transitions.dev recipes. See `DESIGN.md`.
 - `public/`: files served as-is (`robots.txt`, `CNAME`, `assets/` OG image and favicons).
 - `tools/seo.py`: SEO checker that runs on `dist/` after every build.

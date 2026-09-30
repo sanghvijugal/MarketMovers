@@ -11,7 +11,7 @@ interface Props {
 const { id, title, subtitle, level = 3 } = Astro.props;
 const H = `h${level}` as "h3" | "h4";
 ---
-<div class="t-acc border-b" data-open="false">
+<div class="t-acc" data-open="false">
   <H class="m-0">
     <button
       type="button"
