@@ -10,11 +10,11 @@ export default function Stats({ stats }: { stats: Stat[] }) {
   const ref = React.useRef<HTMLDListElement>(null);
   const seen = useInView(ref, { once: true, margin: "-80px" });
   return (
-    <dl ref={ref} className="flex flex-wrap gap-x-16 gap-y-10">
+    <dl ref={ref} className="grid grid-cols-2 gap-x-6 gap-y-8 sm:flex sm:flex-wrap sm:gap-x-14 sm:gap-y-10">
       {stats.map((s, i) => (
         <div key={s.label} className="flex flex-col">
           <dt className="order-2 mt-3 max-w-[13rem] text-[18px] sm:text-[14px] leading-snug text-muted-foreground">{s.label}</dt>
-          <dd className="order-1 text-[clamp(3.5rem,7vw,6.5rem)] leading-[0.85] font-medium tracking-[-0.055em] tabular-nums">
+          <dd className="order-1 text-[clamp(2.75rem,6vw,5.25rem)] leading-[0.85] font-medium tracking-[-0.055em] tabular-nums">
             <NumberFlow
               value={seen ? s.value : 0}
               format={{ useGrouping: true }}

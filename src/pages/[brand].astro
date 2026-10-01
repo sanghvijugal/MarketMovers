@@ -29,7 +29,7 @@ const phone = business.phones[0];
       </ol>
     </nav>
     <h1 class="mt-10 text-[clamp(3rem,7.5vw,6.5rem)] leading-[0.9] font-semibold tracking-[-0.055em]">
-      {brand.name}{" "}<span class="block text-[0.5em] leading-[1.1] tracking-[-0.04em] text-muted-foreground">{brand.tagline}</span>
+      <span class="inline-block" style={`view-transition-name: brand-${brand.slug}`}>{brand.name}</span>{" "}<span class="block text-[0.5em] leading-[1.1] tracking-[-0.04em] text-muted-foreground">{brand.tagline}</span>
     </h1>
     <div class="mt-12 flex flex-col gap-8 border-t border-border pt-8 lg:flex-row lg:items-end lg:justify-between">
       <div class="max-w-2xl">

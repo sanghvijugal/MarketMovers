@@ -64,7 +64,7 @@ export default function StockIndex({
               >
                 <span className="relative">
                   <span aria-hidden className={`mark ${active && brandLit(b.name) && product ? "is-on" : ""}`} />
-                  <span className="text-[clamp(2.25rem,4.4vw,4rem)] leading-[1.04] font-semibold tracking-[-0.045em]">{b.name}</span>
+                  <span className="text-[clamp(2.25rem,4.4vw,4rem)] leading-[1.04] font-semibold tracking-[-0.045em]" style={{ viewTransitionName: `brand-${b.slug}` }}>{b.name}</span>
                 </span>
                 <span className="shrink-0 text-[17px] sm:text-[15px] font-medium text-teal lg:hidden">{b.lines} lines →</span>
               </a>

@@ -1,0 +1,79 @@
+---
+// A photo with content floating over it on glass panels ("baked glass").
+// Instead of a live backdrop-filter (slow on phones, drains battery), each
+// `.glass` panel inside paints a pre-blurred copy of the same photo, lined up
+// with the sharp photo underneath by the script below. Without JavaScript the
+// panels fall back to a plain frosted fill.
+import { Picture } from "astro:assets";
+
+interface Props {
+  src: ImageMetadata;
+  blur: ImageMetadata;
+  alt: string;
+  /** object-position as "x% y%", shared by the photo and the blurred copy */
+  pos?: string;
+  sizes?: string;
+  loading?: "lazy" | "eager";
+  class?: string;
+  id?: string;
+}
+const { src, blur, alt, pos = "50% 50%", sizes = "100vw", loading = "lazy", class: cls, id } = Astro.props;
+const [px, py] = pos.split(" ").map((v) => parseFloat(v) / 100);
+---
+<div
+  id={id}
+  class:list={["glass-frame relative isolate overflow-hidden", cls]}
+  data-glass
+  data-w={src.width}
+  data-h={src.height}
+  data-px={px}
+  data-py={py}
+  style={`--glass-photo: url("${blur.src}")`}>
+  <div class="absolute inset-0 -z-10">
+  <Picture
+    src={src}
+    formats={["avif", "webp"]}
+    quality={72}
+    widths={[640, 1024, 1600, 2000]}
+    sizes={sizes}
+    alt={alt}
+    loading={loading}
+    fetchpriority={loading === "eager" ? "high" : undefined}
+    class="h-full w-full object-cover"
+    style={`object-position: ${pos}`}
+  />
+  </div>
+  <slot />
+</div>
+
+<script>
+  // Line each panel's blurred copy up with the photo behind it. Runs on
+  // layout changes only (ResizeObserver), never on scroll.
+  function bake(frame: HTMLElement) {
+    const iw = +frame.dataset.w!, ih = +frame.dataset.h!;
+    const px = +frame.dataset.px!, py = +frame.dataset.py!;
+    const f = frame.getBoundingClientRect();
+    const s = Math.max(f.width / iw, f.height / ih);
+    const dw = iw * s, dh = ih * s;
+    const ox = (f.width - dw) * px, oy = (f.height - dh) * py;
+    frame.querySelectorAll<HTMLElement>(".glass").forEach((p) => {
+      const r = p.getBoundingClientRect();
+      p.style.setProperty("--bs", `${dw}px ${dh}px`);
+      p.style.setProperty("--bp", `${ox - (r.left - f.left)}px ${oy - (r.top - f.top)}px`);
+      p.dataset.baked = "";
+    });
+  }
+  const frames = document.querySelectorAll<HTMLElement>("[data-glass]");
+  const ro = new ResizeObserver((entries) => {
+    const seen = new Set<HTMLElement>();
+    for (const e of entries) {
+      const frame = (e.target as HTMLElement).closest<HTMLElement>("[data-glass]");
+      if (frame && !seen.has(frame)) { seen.add(frame); bake(frame); }
+    }
+  });
+  frames.forEach((frame) => {
+    ro.observe(frame);
+    frame.querySelectorAll(".glass").forEach((p) => ro.observe(p));
+  });
+  document.fonts?.ready.then(() => frames.forEach(bake));
+</script>

@@ -42,7 +42,16 @@ Light and dark, following the visitor's system setting (`prefers-color-scheme`).
 | `teal` = `primary` | `#0b5d63`, light text on it | `#6fb9be`, dark text on it |
 | `inverse*` (footer) | `#111111` | `#0a0a0a` |
 
-**Radius:** buttons are full pills; everything else (inputs, images, map, menu panel) is 12px.
+**Radius:** buttons and the floating header / phone bar are full pills; photo frames, glass
+panels and the map are `--radius-glass` (24px); everything else (inputs, menu panel) is 12px.
+
+**Glass (owner-approved, full glass):** photos sit in rounded frames with content on frosted
+panels over them (`GlassFrame.astro`, `.glass`). The panels use *baked* glass: a pre-blurred
+copy of the photo (`*-blur.jpg`, made with sharp: 720px wide, blur 14, saturation 1.35) lined
+up by a small ResizeObserver script, so nothing blurs live while scrolling. Only the floating
+header and phone bar (`.glass-live`) use a live `backdrop-filter`. No JS or
+`prefers-reduced-transparency` → near-solid fill. Tokens: `--glass-tint`, `--glass-solid`,
+`--glass-live`, `--glass-edge`, `--glass-shadow` (light and dark).
 
 **Theme switch:** the page keeps one theme; the black footer is the single deliberate switch
 (the skill allows one per page), kept by the owner for the full-width name.
@@ -67,13 +76,11 @@ Only the hero has a small label above its heading.
 
 | Section | Family |
 |---|---|
-| Hero | split: text left, pipe-size rings right |
-| Godown | headline + one typographic line of figures |
-| Brands | index: catalogue brands one per line, "Also in stock" below; detail panel beside it on desktop, details inline on phones |
-| Products | three grouped chunks (Pipes; Farm and water; Bath and fittings), one divider each |
-| Ordering | three steps set as large type rows |
-| Visit | address headline, details, full-width Google map |
-| Enquiry | heading and note, form stacked below |
+| Hero | pipe photo frame; headline panel and size-rings panel on glass |
+| Godown | HDPE coil frame; headline panel and figures panel (2×2 on phones) |
+| Brands + products (`#brands`, `#products`) | one linked index: brands lead, product chips below ("Or find by product"); one detail panel on desktop, inline card on phones |
+| Ordering (`#order`) | counter photo frame; steps on one glass panel, photo showing on the right |
+| Visit + enquiry | side by side on desktop: address, details and map; the form on glass over the fittings photo |
 
 ## Interactive pieces (React islands, `src/components/home/`)
 
@@ -81,7 +88,7 @@ Only the hero has a small label above its heading.
 |---|---|---|
 | `SizeRings` | NumberFlow, torph | IS 4985 ODs 20–400 mm to scale; ruler of sizes below; stays still until picked |
 | `Stats` | NumberFlow, Motion `useInView` | real figures count up once |
-| `BrandIndex` | none | names dim only while the list is hovered or focused; the panel shows the selected brand (Finolex first) |
+| `StockIndex` | none | brands and products light each other up (hover/focus, or tap a chip on phones); one panel shows the last brand or product picked; no "full range" or "authorised" claims until the owner confirms |
 
 ## Components
 
@@ -107,7 +114,8 @@ Only the hero has a small label above its heading.
 | Ordering heading (`.read-words`) | words darken as it scrolls up | storytelling |
 | Stats | figures count up once | storytelling |
 | Size rings | settle in once; selected wall scales on pick | feedback |
-| Brand index | other names dim; details crossfade | feedback |
+| Stock index | unrelated brands/chips fade, matching brands get a teal marker, panel crossfades | feedback |
+| Homepage brand → brand page | the brand name morphs into the page heading (cross-document view transition) | continuity |
 | Buttons | label rolls up on hover; press scale 0.97 | feedback |
 | Accordions, mobile menu, form errors | expand, dropdown, shake | state change |
 
@@ -117,11 +125,11 @@ Everything above turns off under `prefers-reduced-motion`.
 
 | Photo | Where | Crop |
 |---|---|---|
-| `pipe-stack.jpg` | full width between the hero and the figures | 4:3 phone, 16:9, 2:1 desktop, anchored left |
-| `hdpe-coil.jpg` | beside the "Pipes" product group | 16:9 phone, 4:5 desktop |
-| `tap.jpg` | beside the "Bath and fittings" product group | 16:9 phone, 4:5 desktop |
-| `fittings.jpg` | under the product groups | 4:3 phone, 16:9, 2:1 desktop, anchored left |
-| `counter.jpg` | beside the ordering steps (sticky on desktop) | 4:3, 4:5 desktop |
+| `pipe-stack.jpg` | hero frame | anchored left |
+| `hdpe-coil.jpg` | godown frame | 35% across |
+| `counter.jpg` | ordering frame | 70% across |
+| `fittings.jpg` | enquiry frame | anchored left |
+| `tap.jpg` | not used at the moment | |
 
 At most one photo per spot and never two back to back. Kept outside the repo: the stock shelves
 image (don't pair it with "our godown" wording).
