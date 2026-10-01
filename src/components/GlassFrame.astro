@@ -45,16 +45,19 @@ const { src, blur, alt, pos = "50% 50%", sizes = "100vw", loading = "lazy", clas
 
 <script>
   // Give each panel its offset inside the frame, so its blurred copy (a
-  // ::before the size of the photo layer) sits exactly over the photo.
+  // ::before the size and position of the photo layer) sits exactly over
+  // the photo.
   // Runs on layout changes only (ResizeObserver), never on scroll.
   function bake(frame: HTMLElement) {
     const f = frame.getBoundingClientRect();
+    const photo = frame.querySelector<HTMLElement>(".glass-photo")!;
     frame.querySelectorAll<HTMLElement>(".glass").forEach((p) => {
       const r = p.getBoundingClientRect();
       p.style.setProperty("--gx", `${r.left - f.left + p.clientLeft}px`);
       p.style.setProperty("--gy", `${r.top - f.top + p.clientTop}px`);
       p.style.setProperty("--fw", `${f.width}px`);
-      p.style.setProperty("--fh", `${f.height}px`);
+      p.style.setProperty("--pt", `${photo.offsetTop}px`);
+      p.style.setProperty("--ph", `${photo.offsetHeight}px`);
       p.dataset.baked = "";
     });
   }

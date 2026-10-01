@@ -50,7 +50,9 @@ panels over them (`GlassFrame.astro`, `.glass`). The panels use *baked* glass: a
 copy of the photo (`*-blur.jpg`, made with sharp: 720px wide, blur 14, saturation 1.35) lined
 up by a small ResizeObserver script, so nothing blurs live while scrolling. Only the floating
 header and phone bar (`.glass-live`) use a live `backdrop-filter`. No JS or
-`prefers-reduced-transparency` → near-solid fill. Tokens: `--glass-tint`, `--glass-solid`,
+`prefers-reduced-transparency` → near-solid fill. On phones the photo is a band across the top of
+each frame (66vw tall, fading into the frame's `muted` fill) instead of covering the whole tall
+frame, which zoomed the wide photos 3–4×; panels start part-way down the band. Tokens: `--glass-tint`, `--glass-solid`,
 `--glass-live`, `--glass-edge`, `--glass-shadow` (light and dark).
 
 **Theme switch:** the page keeps one theme; the black footer is the single deliberate switch

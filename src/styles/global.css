@@ -444,6 +444,22 @@
   top: calc(var(--glass-over) * -100%);
   height: calc(100% * (1 + 2 * var(--glass-over)));
 }
+/* Phones: the frames are tall and the photos wide, so covering the whole
+   frame would zoom the photo 3-4x. Instead the photo is a band across the
+   top (about 16:10.5) that fades into the frame; panels below it are frosted. */
+.glass-frame { background: var(--muted); }
+@media (max-width: 639px) {
+  .glass-frame { --band: 66vw; }
+  .glass-photo,
+  .glass[data-baked]::before {
+    -webkit-mask-image: linear-gradient(#000 55%, transparent 88%);
+    mask-image: linear-gradient(#000 55%, transparent 88%);
+  }
+  .glass-photo {
+    top: calc(var(--glass-over) * -1 * var(--band));
+    height: calc(var(--band) * (1 + 2 * var(--glass-over)));
+  }
+}
 .glass {
   border-radius: var(--radius-glass);
   background: var(--glass-solid);
@@ -456,16 +472,17 @@
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  background: transparent;
+  /* shows only where the panel runs past the photo (phones) */
+  background: var(--glass-solid);
 }
 .glass[data-baked]::before {
   content: "";
   position: absolute;
   z-index: -1;
   left: calc(-1 * var(--gx));
-  top: calc(-1 * var(--gy) - var(--glass-over) * var(--fh));
+  top: calc(var(--pt) - var(--gy));
   width: var(--fw);
-  height: calc(var(--fh) * (1 + 2 * var(--glass-over)));
+  height: var(--ph);
   background: linear-gradient(var(--glass-tint), var(--glass-tint)), var(--glass-photo) var(--glass-pos) / cover no-repeat;
   pointer-events: none;
 }
