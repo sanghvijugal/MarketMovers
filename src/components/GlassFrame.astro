@@ -2,8 +2,10 @@
 // A photo with content floating over it on glass panels ("baked glass").
 // Instead of a live backdrop-filter (slow on phones, drains battery), each
 // `.glass` panel inside paints a pre-blurred copy of the same photo, lined up
-// with the sharp photo underneath by the script below. Without JavaScript the
-// panels fall back to a plain frosted fill.
+// with the sharp photo underneath by the script below. Both the photo and the
+// blurred copies drift a little slower than the page as it scrolls (a
+// scroll-driven CSS transform, see global.css), so the panels move over the
+// photo. Without JavaScript the panels fall back to a plain frosted fill.
 import { Picture } from "astro:assets";
 
 interface Props {
@@ -18,18 +20,13 @@ interface Props {
   id?: string;
 }
 const { src, blur, alt, pos = "50% 50%", sizes = "100vw", loading = "lazy", class: cls, id } = Astro.props;
-const [px, py] = pos.split(" ").map((v) => parseFloat(v) / 100);
 ---
 <div
   id={id}
   class:list={["glass-frame relative isolate overflow-hidden", cls]}
   data-glass
-  data-w={src.width}
-  data-h={src.height}
-  data-px={px}
-  data-py={py}
-  style={`--glass-photo: url("${blur.src}")`}>
-  <div class="absolute inset-0 -z-10">
+  style={`--glass-photo: url("${blur.src}"); --glass-pos: ${pos}`}>
+  <div class="glass-photo absolute inset-x-0 -z-10">
   <Picture
     src={src}
     formats={["avif", "webp"]}
@@ -47,19 +44,17 @@ const [px, py] = pos.split(" ").map((v) => parseFloat(v) / 100);
 </div>
 
 <script>
-  // Line each panel's blurred copy up with the photo behind it. Runs on
-  // layout changes only (ResizeObserver), never on scroll.
+  // Give each panel its offset inside the frame, so its blurred copy (a
+  // ::before the size of the photo layer) sits exactly over the photo.
+  // Runs on layout changes only (ResizeObserver), never on scroll.
   function bake(frame: HTMLElement) {
-    const iw = +frame.dataset.w!, ih = +frame.dataset.h!;
-    const px = +frame.dataset.px!, py = +frame.dataset.py!;
     const f = frame.getBoundingClientRect();
-    const s = Math.max(f.width / iw, f.height / ih);
-    const dw = iw * s, dh = ih * s;
-    const ox = (f.width - dw) * px, oy = (f.height - dh) * py;
     frame.querySelectorAll<HTMLElement>(".glass").forEach((p) => {
       const r = p.getBoundingClientRect();
-      p.style.setProperty("--bs", `${dw}px ${dh}px`);
-      p.style.setProperty("--bp", `${ox - (r.left - f.left)}px ${oy - (r.top - f.top)}px`);
+      p.style.setProperty("--gx", `${r.left - f.left + p.clientLeft}px`);
+      p.style.setProperty("--gy", `${r.top - f.top + p.clientTop}px`);
+      p.style.setProperty("--fw", `${f.width}px`);
+      p.style.setProperty("--fh", `${f.height}px`);
       p.dataset.baked = "";
     });
   }

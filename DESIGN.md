@@ -115,6 +115,7 @@ Only the hero has a small label above its heading.
 | Stats | figures count up once | storytelling |
 | Size rings | settle in once; selected wall scales on pick | feedback |
 | Stock index | unrelated brands/chips fade, matching brands get a teal marker, panel crossfades | feedback |
+| Glass frames | photo (and the blurred copy in each panel) drifts slower than the page: scroll-driven `translateY` ±9.6% over the frame's pass, no JS on scroll; static where scroll timelines aren't supported | depth |
 | Homepage brand → brand page | the brand name morphs into the page heading (cross-document view transition) | continuity |
 | Buttons | label rolls up on hover; press scale 0.97 | feedback |
 | Accordions, mobile menu, form errors | expand, dropdown, shake | state change |
