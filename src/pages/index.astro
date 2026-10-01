@@ -4,23 +4,25 @@ import Icon from "@/components/Icon.astro";
 import EnquiryForm from "@/components/EnquiryForm";
 import SizeRings from "@/components/home/SizeRings";
 import Stats from "@/components/home/Stats";
-import BrandIndex from "@/components/home/BrandIndex";
+import StockIndex from "@/components/home/StockIndex";
 import LogoMark from "@/components/LogoMark.astro";
-import { Picture } from "astro:assets";
+import GlassFrame from "@/components/GlassFrame.astro";
 import pipeStack from "@/assets/photos/pipe-stack.jpg";
+import pipeStackBlur from "@/assets/photos/pipe-stack-blur.jpg";
 import hdpeCoil from "@/assets/photos/hdpe-coil.jpg";
-import tap from "@/assets/photos/tap.jpg";
-import fittings from "@/assets/photos/fittings.jpg";
+import hdpeCoilBlur from "@/assets/photos/hdpe-coil-blur.jpg";
 import counter from "@/assets/photos/counter.jpg";
+import counterBlur from "@/assets/photos/counter-blur.jpg";
+import fittings from "@/assets/photos/fittings.jpg";
+import fittingsBlur from "@/assets/photos/fittings-blur.jpg";
 import { buttonVariants } from "@/components/ui/button-variants";
-import { business, brands, categories, categoryGroups, whatsappUrl } from "@/data/site";
+import { business, brands, categories, whatsappUrl } from "@/data/site";
 import { brandPages } from "@/data/brands";
 import { homeSchema } from "@/lib/schema";
 import { ArrowRight01Icon, WhatsappIcon } from "@hugeicons/core-free-icons";
 
 const phone = business.phones[0];
 const a = business.address;
-const slugFor = (name: string) => brands.find((b) => b.name === name)?.slug;
 
 const brandInfo: Record<string, { from: string; stock: string }> = {
   finolex: { from: "Pune", stock: "Agriculture, casing, column, CPVC, ASTM, SWR and sewerage pipes, solvent cement" },
@@ -49,17 +51,14 @@ const steps = [
   { title: "Pick up or we deliver", text: "Collect from the shop in Marhatal, or we send it across Jabalpur and nearby districts." },
 ];
 
-// Photos: generated product still lifes (no shop, stock or people claimed as ours).
-const photo: { formats: ("avif" | "webp")[]; quality: number } = { formats: ["avif", "webp"], quality: 72 };
-const wideSizes = "(min-width: 1408px) 1296px, (min-width: 1024px) calc(100vw - 7rem), (min-width: 640px) calc(100vw - 4rem), calc(100vw - 2.5rem)";
-
-// One photo beside a product group, keyed by group name.
-const groupPhoto: Record<string, { src: ImageMetadata; alt: string; pos: string }> = {
-  Pipes: { src: hdpeCoil, alt: "A coil of black HDPE pipe with one cut end in front", pos: "object-[35%_50%]" },
-  "Bath and fittings": { src: tap, alt: "A chrome basin mixer tap on a white basin, with a drop of water at the spout", pos: "object-[60%_50%]" },
-};
+// Photos: generated product still lifes (no shop, stock or people claimed as ours),
+// each behind glass panels (GlassFrame).
+const wideSizes = "(min-width: 1408px) 1296px, (min-width: 1024px) calc(100vw - 7rem), (min-width: 640px) calc(100vw - 4rem), calc(100vw - 1.5rem)";
 
 const wrap = "mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-14";
+// photo frames run a little wider than the text on phones
+const frameWrap = "mx-auto max-w-[88rem] px-3 sm:px-8 lg:px-14";
+const pad = "py-16 md:py-24";
 const label = "text-[17px] sm:text-[13px] text-muted-foreground";
 const h2 = "text-[clamp(2.25rem,4.6vw,4.25rem)] leading-[0.98] font-semibold tracking-[-0.045em]";
 const link = "sweep inline-flex items-center gap-1.5 font-medium";
@@ -78,161 +77,98 @@ const link = "sweep inline-flex items-center gap-1.5 font-medium";
     </div>
   </div>
 
-  <!-- Hero: eyebrow, headline, one line of subtext, one primary and one secondary action.
+  <!-- Hero: the pipe photo with the headline and the size rings on glass over it.
        The name above is the one giant line; the headline sits a clear step below it. -->
-  <section class:list={[wrap, "grid gap-14 pt-12 pb-24 md:pt-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)] lg:items-center lg:gap-20"]}>
-    <div class="flex flex-col">
-      <p class={label}>Wholesale distributor in Marhatal, Jabalpur</p>
-      <h1 class="mt-5 max-w-3xl text-[2.25rem] leading-[1] font-medium tracking-[-0.045em] text-balance sm:text-[clamp(2.75rem,4.8vw,4.5rem)]">
-        Pipes, fittings and sanitaryware<span class="text-muted-foreground">, from stock.</span>
-      </h1>
-      <p class="mt-8 max-w-lg text-[clamp(1.25rem,1.6vw,1.35rem)] leading-snug tracking-[-0.01em]">
-        Ten brands in stock at our Marhatal counter. Send your list on WhatsApp and get rates the same day.
-      </p>
-      <div class="mt-10 flex items-center gap-6">
-        <a href={whatsappUrl("Hello Market Movers, here is my list:")} target="_blank" rel="noopener" class={buttonVariants({ size: "lg" })}>
-          <Icon icon={WhatsappIcon} /><span class="roll"><span>WhatsApp your list</span></span>
-        </a>
-        <a href={`tel:${phone.tel}`} class="sweep hidden items-center gap-1.5 font-medium whitespace-nowrap tabular-nums sm:inline-flex">Call {phone.display}</a>
-      </div>
-    </div>
-    <SizeRings client:load />
-  </section>
-  <figure class={wrap}>
-    <Picture
-      src={pipeStack}
-      {...photo}
-      widths={[640, 1024, 1600, 2000]}
-      sizes={wideSizes}
+  <div class:list={[frameWrap, "pt-6 md:pt-10"]}>
+    <GlassFrame src={pipeStack} blur={pipeStackBlur} loading="eager" sizes={wideSizes} pos="0% 50%"
       alt="A pyramid of white, cream, grey and black plastic pipes stacked on a concrete floor"
-      class="aspect-[4/3] w-full rounded-md object-cover object-left sm:aspect-[16/9] lg:aspect-[2/1]"
-    />
-  </figure>
+      class="grid gap-3 p-3 pt-28 sm:gap-6 sm:p-6 sm:pt-40 lg:grid-cols-[minmax(0,1fr)_minmax(0,28rem)] lg:items-end lg:gap-8 lg:p-10 lg:pt-56">
+      <section class="glass flex flex-col p-6 sm:p-10">
+        <p class={label}>Wholesale distributor in Marhatal, Jabalpur</p>
+        <h1 class="mt-4 max-w-3xl text-[2.25rem] leading-[1] font-medium tracking-[-0.045em] text-balance sm:text-[clamp(2.75rem,4.8vw,4.5rem)]">
+          Pipes, fittings and sanitaryware<span class="text-muted-foreground">, from stock.</span>
+        </h1>
+        <p class="mt-6 max-w-lg text-[clamp(1.25rem,1.6vw,1.35rem)] leading-snug tracking-[-0.01em]">
+          Ten brands in stock at our Marhatal counter. Send your list on WhatsApp and get rates the same day.
+        </p>
+        <div class="mt-8 flex items-center gap-6">
+          <a href={whatsappUrl("Hello Market Movers, here is my list:")} target="_blank" rel="noopener" class={buttonVariants({ size: "lg" })}>
+            <Icon icon={WhatsappIcon} /><span class="roll"><span>WhatsApp your list</span></span>
+          </a>
+          <a href={`tel:${phone.tel}`} class="sweep hidden items-center gap-1.5 font-medium whitespace-nowrap tabular-nums sm:inline-flex">Call {phone.display}</a>
+        </div>
+      </section>
+      <div class="glass p-5 sm:p-7">
+        <div class="mx-auto max-w-[17rem] sm:max-w-none">
+          <SizeRings client:load />
+        </div>
+      </div>
+    </GlassFrame>
+  </div>
 
-  <!-- Figures -->
-  <section class:list={[wrap, "rule-top py-24 md:py-32"]}>
-    <h2 class:list={[h2, "max-w-4xl"]} data-reveal>Ready stock, so your site never waits on a factory.</h2>
-    <div class="mt-16">
-      <Stats client:visible stats={stats} />
-    </div>
-  </section>
+  <!-- Figures, on glass over the HDPE coil -->
+  <div class:list={[frameWrap, "pt-16 md:pt-24"]}>
+    <GlassFrame src={hdpeCoil} blur={hdpeCoilBlur} sizes={wideSizes} pos="35% 50%"
+      alt="A coil of black HDPE pipe with one cut end in front"
+      class="grid gap-3 p-3 pt-24 sm:gap-6 sm:p-6 sm:pt-32 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] lg:items-end lg:p-10 lg:pt-48">
+      <section class="glass p-6 sm:p-10">
+        <h2 class:list={[h2, "max-w-xl"]}>Ready stock, so your site never waits on a factory.</h2>
+      </section>
+      <div class="glass p-6 sm:p-10">
+        <Stats client:visible stats={stats} />
+      </div>
+    </GlassFrame>
+  </div>
 
-  <!-- Brands -->
-  <section id="brands" class:list={[wrap, "rule-top py-24 md:py-32"]}>
+  <!-- Brands and products as one index: brands lead, product chips are the other way in -->
+  <section id="brands" class:list={[wrap, pad]}>
     <h2 class={h2} data-reveal>Brands we stock</h2>
     <p lang="hi" class="mt-3 font-hindi text-lg text-muted-foreground">हमारे ब्रांड</p>
     <div class="mt-12 md:mt-16">
-      <BrandIndex
+      <StockIndex
         client:visible
         brands={sentence}
-        askHref={whatsappUrl(`Hello Market Movers, I'd like rates for ${brands.filter((b) => !b.slug).map((b) => b.name).join(" / ")}.`)}
+        categories={categories.map((c) => ({ id: c.id, name: c.name, text: c.text, brands: [...c.brands] }))}
+        whatsapp={business.whatsapp}
+        askHref={whatsappUrl("Hello Market Movers, do you have ")}
       />
     </div>
   </section>
 
-  <!-- Products: seven categories in three groups, one divider per group -->
-  <section id="products" class:list={[wrap, "rule-top py-24 md:py-32"]}>
-    <h2 class={h2} data-reveal>What we stock</h2>
-    <p lang="hi" class="mt-3 font-hindi text-lg text-muted-foreground">हमारे पास क्या मिलता है</p>
-    <div class="mt-12 md:mt-16">
-      {categoryGroups.map((g) => (
-        <div class="grid gap-x-10 gap-y-8 border-t border-border py-10 first:border-t-0 first:pt-0 md:grid-cols-[minmax(0,17rem)_minmax(0,1fr)] md:py-14">
-          <div>
-            <h3 class="text-[19px] sm:text-[15px] font-medium text-muted-foreground">{g.name}</h3>
-            {groupPhoto[g.name] && (
-              <Picture
-                src={groupPhoto[g.name].src}
-                {...photo}
-                widths={[480, 800, 1200]}
-                sizes="(min-width: 768px) 17rem, calc(100vw - 2.5rem)"
-                alt={groupPhoto[g.name].alt}
-                class:list={["mt-5 aspect-[16/9] w-full rounded-md object-cover md:aspect-[4/5]", groupPhoto[g.name].pos]}
-              />
-            )}
-          </div>
-          <ul class="grid gap-x-12 gap-y-10 lg:grid-cols-2">
-            {g.ids.map((id) => {
-              const c = categories.find((x) => x.id === id)!;
-              return (
-                <li>
-                  <h4 class="text-[clamp(1.625rem,2.6vw,2.25rem)] leading-tight font-semibold tracking-[-0.04em]">{c.name}</h4>
-                  <p class="mt-3 max-w-[48ch] text-[19px] sm:text-[15px] leading-relaxed text-muted-foreground">{c.text}</p>
-                  <p class="mt-2 text-[19px] sm:text-[15px] leading-relaxed">
-                    {c.brands.length === 0 ? (
-                      "All brands"
-                    ) : (
-                      c.brands.map((name, j) => {
-                        const slug = slugFor(name);
-                        return (
-                          <>
-                            {j > 0 && ", "}
-                            {slug ? <a href={`/${slug}.html`} class="text-teal underline decoration-teal/30 underline-offset-4 hover:decoration-teal">{name}</a> : name}
-                          </>
-                        );
-                      })
-                    )}
-                  </p>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      ))}
-    </div>
-    <p class="mt-10 text-lg">
-      Something else? <a href={whatsappUrl("Hello Market Movers, do you have ")} target="_blank" rel="noopener" class:list={[link, "text-teal"]}>Ask us on WhatsApp</a>
-    </p>
-    <Picture
-      src={fittings}
-      {...photo}
-      widths={[640, 1024, 1600, 2000]}
-      sizes={wideSizes}
-      alt="White uPVC, cream CPVC and grey PVC fittings with brass ball valves and a tin of solvent cement, laid out on a grey surface"
-      class="mt-14 aspect-[4/3] w-full rounded-md object-cover object-left sm:aspect-[16/9] lg:aspect-[2/1]"
-    />
-  </section>
+  <!-- Ordering: the steps on glass over the counter photo -->
+  <div id="order" class={frameWrap}>
+    <GlassFrame src={counter} blur={counterBlur} sizes={wideSizes} pos="70% 50%"
+      alt="Hands writing an order list at a wooden counter, beside white PVC fittings and a phone"
+      class="p-3 pt-24 sm:p-6 sm:pt-32 lg:p-10 lg:pr-[34%]">
+      <section class="glass p-6 sm:p-10 lg:p-12">
+        <h2 class:list={[h2, "read-words max-w-4xl"]}>
+          {"Send the list. We'll handle the rest.".split(" ").map((w) => <span>{w} </span>)}
+        </h2>
+        <p lang="hi" class="mt-3 font-hindi text-lg text-muted-foreground">ऑर्डर कैसे करें</p>
+        <ol class="mt-8 md:mt-12">
+          {steps.map((st) => (
+            <li class="grid gap-y-2 border-t border-foreground/15 py-6 md:py-7">
+              <h3 class="text-[clamp(1.75rem,3.4vw,3rem)] leading-[1] font-semibold tracking-[-0.05em]">{st.title}</h3>
+              <p class="max-w-[48ch] text-[19px] sm:text-[17px] leading-relaxed text-muted-foreground">{st.text}</p>
+            </li>
+          ))}
+        </ol>
+        <a href={whatsappUrl("Hello Market Movers, here is my list:")} target="_blank" rel="noopener" class={buttonVariants({ size: "lg", class: "mt-6" })}>
+          <Icon icon={WhatsappIcon} /><span class="roll"><span>WhatsApp your list</span></span>
+        </a>
+      </section>
+    </GlassFrame>
+  </div>
 
-  <!-- Ordering: three steps set as large type, one line each -->
-  <section id="order" class="bg-card">
-    <div class:list={[wrap, "py-24 md:py-40"]}>
-      <h2 class:list={[h2, "read-words max-w-4xl"]}>
-        {"Send the list. We'll handle the rest.".split(" ").map((w) => <span>{w} </span>)}
+  <!-- Visit and enquiry side by side on desktop: the address and map on the left,
+       the form on glass over the fittings photo on the right -->
+  <div class:list={[wrap, pad, "grid gap-16 lg:grid-cols-2 lg:gap-10"]}>
+    <section id="contact" class="flex flex-col">
+      <h2 class="text-[clamp(2.25rem,4vw,3.75rem)] leading-[0.98] font-semibold tracking-[-0.045em]" data-reveal>
+        {a.street}, {a.city}.
       </h2>
-      <p lang="hi" class="mt-3 font-hindi text-lg text-muted-foreground">ऑर्डर कैसे करें</p>
-      <div class="mt-14 grid gap-12 md:mt-20 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] lg:gap-16">
-      <div>
-      <ol>
-        {steps.map((st) => (
-          <li class="grid gap-x-12 gap-y-3 border-t border-border py-8 md:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] md:items-baseline md:py-10 lg:grid-cols-1" data-reveal>
-            <h3 class="text-[clamp(2rem,4.4vw,4rem)] leading-[1] font-semibold tracking-[-0.05em]">{st.title}</h3>
-            <p class="max-w-[42ch] text-[19px] sm:text-[17px] leading-relaxed text-muted-foreground">{st.text}</p>
-          </li>
-        ))}
-      </ol>
-      <a href={whatsappUrl("Hello Market Movers, here is my list:")} target="_blank" rel="noopener" class={buttonVariants({ size: "lg", class: "mt-12" })}>
-        <Icon icon={WhatsappIcon} /><span class="roll"><span>WhatsApp your list</span></span>
-      </a>
-      </div>
-      <Picture
-        src={counter}
-        {...photo}
-        widths={[480, 800, 1200]}
-        sizes="(min-width: 1024px) 38vw, (min-width: 640px) calc(100vw - 4rem), calc(100vw - 2.5rem)"
-        alt="Hands writing an order list at a wooden counter, beside white PVC fittings and a phone"
-        class="aspect-[4/3] w-full rounded-md object-cover object-[55%_50%] lg:sticky lg:top-28 lg:aspect-[4/5]"
-      />
-      </div>
-    </div>
-  </section>
-
-  <!-- Visit: the address as the headline, details, then the map full width -->
-  <section id="contact" class:list={[wrap, "py-24 md:py-32"]}>
-    <h2 class="max-w-5xl text-[clamp(2.25rem,4.6vw,4.25rem)] leading-[0.98] font-semibold tracking-[-0.045em]" data-reveal>
-      {a.street}, {a.city}.
-    </h2>
-    <p lang="hi" class="mt-3 font-hindi text-lg text-muted-foreground">दुकान पर आइए</p>
-    <div class="mt-10 flex flex-col gap-x-16 gap-y-6 text-lg md:flex-row md:items-end md:justify-between">
-      <div class="space-y-2">
+      <p lang="hi" class="mt-3 font-hindi text-lg text-muted-foreground">दुकान पर आइए</p>
+      <div class="mt-8 space-y-2 text-lg">
         <p>{business.hours.days}, {business.hours.display}. <span class="text-muted-foreground">Sunday closed.</span></p>
         <p class="tabular-nums">
           {business.phones.map((p, i) => (
@@ -240,28 +176,32 @@ const link = "sweep inline-flex items-center gap-1.5 font-medium";
           ))}
         </p>
       </div>
-      <div class="flex flex-wrap gap-x-8 gap-y-3">
+      <div class="mt-5 flex flex-wrap gap-x-8 gap-y-3 text-lg">
         <a href={business.mapUrl} target="_blank" rel="noopener" class:list={[link, "text-teal"]}>Directions in Google Maps<Icon icon={ArrowRight01Icon} size={16} class="sweep-arrow" /></a>
         <a href={whatsappUrl()} target="_blank" rel="noopener" class:list={[link, "text-teal"]}>WhatsApp {phone.display}<Icon icon={ArrowRight01Icon} size={16} class="sweep-arrow" /></a>
       </div>
-    </div>
-    <div class="mt-10 overflow-hidden rounded-md border border-border bg-muted">
-      <iframe
-        src={business.mapEmbedUrl}
-        title="Map showing Market Movers in Anjuman Market, Marhatal, Jabalpur"
-        class="block aspect-[4/3] w-full md:aspect-[21/9]"
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
-    <p class="mt-3 text-[17px] sm:text-[13px] text-muted-foreground">We deliver across Jabalpur and to nearby districts.</p>
-  </section>
+      <div class="mt-8 flex-1 overflow-hidden border border-border bg-muted" style="border-radius: var(--radius-glass)">
+        <iframe
+          src={business.mapEmbedUrl}
+          title="Map showing Market Movers in Anjuman Market, Marhatal, Jabalpur"
+          class="block aspect-[4/3] h-full min-h-[18rem] w-full"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <p class="mt-3 text-[17px] sm:text-[13px] text-muted-foreground">We deliver across Jabalpur and to nearby districts.</p>
+    </section>
 
-  <!-- Enquiry: heading and note on top, the form below -->
-  <section class:list={[wrap, "rule-top py-24 md:py-32"]}>
-    <h2 class={h2} data-reveal>Tell us what you need.</h2>
-    <p class="mt-5 max-w-[52ch] text-lg text-muted-foreground">Fill this in and it opens WhatsApp with your message ready to send. Nothing is stored on this site.</p>
-    <div class="mt-12 max-w-3xl">
-      <EnquiryForm client:idle whatsapp={business.whatsapp} categories={categories.map((c) => c.name)} />
-    </div>
-  </section>
+    <GlassFrame src={fittings} blur={fittingsBlur} pos="0% 50%"
+      sizes="(min-width: 1024px) 50vw, calc(100vw - 2.5rem)"
+      alt="White uPVC, cream CPVC and grey PVC fittings with brass ball valves and a tin of solvent cement, laid out on a grey surface"
+      class="-mx-2 p-2 sm:mx-0 sm:p-6 lg:p-8">
+      <section class="glass p-6 sm:p-8">
+        <h2 class="text-[clamp(2rem,3.4vw,3rem)] leading-[1] font-semibold tracking-[-0.045em]">Tell us what you need.</h2>
+        <p class="mt-4 max-w-[52ch] text-[17px] text-muted-foreground">Fill this in and it opens WhatsApp with your message ready to send. Nothing is stored on this site.</p>
+        <div class="mt-8">
+          <EnquiryForm client:idle whatsapp={business.whatsapp} categories={categories.map((c) => c.name)} />
+        </div>
+      </section>
+    </GlassFrame>
+  </div>
 </Base>
