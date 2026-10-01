@@ -112,6 +112,7 @@ Only the hero has a small label above its heading.
 |---|---|---|
 | Homepage top | two Ms slide together once on load | brand moment |
 | Homepage top | name shrinks into the header logo on scroll | hierarchy |
+| Homepage top, phones | the menu links fill the empty bar, then slide right into the menu button (Visit first) before the logo arrives | wayfinding |
 | Headlines (`data-reveal`) | clip-path wipe up, once | hierarchy |
 | Ordering heading (`.read-words`) | words darken as it scrolls up | storytelling |
 | Stats | figures count up once | storytelling |

@@ -16,10 +16,21 @@ const phone = business.phones[0];
 const wa = whatsappUrl("Hello Market Movers, I have an enquiry.");
 ---
 <header class="sticky top-0 z-40 px-2.5 pt-2.5 sm:px-4 lg:px-8" style="view-transition-name: site-header">
-  <div class="glass-live mx-auto flex h-[60px] max-w-[86rem] items-center justify-between gap-6 rounded-full pr-2 pl-5 sm:pr-2.5 sm:pl-6 lg:h-[64px] lg:pl-8">
+  <div class="glass-live relative mx-auto flex h-[60px] max-w-[86rem] items-center justify-between gap-6 rounded-full pr-2 pl-5 sm:pr-2.5 sm:pl-6 lg:h-[64px] lg:pl-8">
     <a href="/" aria-label="Market Movers home">
       <Logo class="header-logo" />
     </a>
+
+    <!-- Phones, homepage only: at the top of the page the bar shows the menu
+         links; as the big name shrinks into the logo they slide away into the
+         menu button (global.css). Hidden everywhere else. -->
+    <nav aria-label="Main (top of page)" class="header-links absolute inset-y-0 right-5 left-5 items-center md:hidden">
+      <ul class="flex w-full items-center justify-between text-[clamp(13px,3.9vw,15px)] font-medium">
+        {nav.map((l) => (
+          <li><a href={l.href} class="block py-2 whitespace-nowrap">{l.label}</a></li>
+        ))}
+      </ul>
+    </nav>
 
     <nav aria-label="Main" class="hidden md:block">
       <ul class="flex items-center gap-8 text-[18px] sm:text-[14px] text-muted-foreground">

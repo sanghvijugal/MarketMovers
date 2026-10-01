@@ -367,7 +367,33 @@
       animation-timeline: var(--tl-page);
       animation-range: 9vw 17vw;
     }
+    /* Phones: the menu links fill the empty bar at the top, then slide right
+       into the menu button one by one (Visit first) as the logo arrives. */
+    @media (max-width: 767px) {
+      body:has(.wordmark-top) .header-links { display: flex; }
+    }
+    body:has(.wordmark-top) .header-links li {
+      animation: header-link-out linear both;
+      animation-timeline: var(--tl-page);
+    }
+    body:has(.wordmark-top) .header-links li:nth-child(4) { animation-range: 0vw 5vw; }
+    body:has(.wordmark-top) .header-links li:nth-child(3) { animation-range: 1vw 6vw; }
+    body:has(.wordmark-top) .header-links li:nth-child(2) { animation-range: 2vw 7vw; }
+    body:has(.wordmark-top) .header-links li:nth-child(1) { animation-range: 3vw 8vw; }
+    body:has(.wordmark-top) #menu-button {
+      animation: menu-button-in linear both;
+      animation-timeline: var(--tl-page);
+      animation-range: 5vw 10vw;
+    }
   }
+}
+.header-links { display: none; }
+@keyframes header-link-out {
+  to { opacity: 0; transform: translateX(32px) scale(0.9); visibility: hidden; }
+}
+@keyframes menu-button-in {
+  from { opacity: 0; transform: scale(0.5) rotate(-90deg); visibility: hidden; }
+  to { opacity: 1; transform: none; visibility: visible; }
 }
 /* Big homepage logo: the inner M drops in, the outer M rises to meet it and
    the two lock together. Runs once on load. */
