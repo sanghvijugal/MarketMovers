@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Market Movers identity reel (vertical)</title>
+    <script src="assets/js/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Geist"; src: url("assets/fonts/geist.woff2") format("woff2"); font-weight: 100 900; }
+      :root { --bg: #f4f4f2; --ink: #111111; --teal: #0b5d63; --teal-l: #5aa9ae; --line: #dadad6; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--ink); }
+      body { font-family: "Geist", sans-serif; -webkit-font-smoothing: antialiased; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--ink); }
+      .clip { position: absolute; inset: 0; overflow: hidden; }
+      .shot { position: absolute; inset: 0; overflow: hidden; display: none; }
+      .shot .in { position: absolute; inset: 0; }
+      .mark { position: absolute; left: 50%; top: 50%; width: 240px; height: auto; transform: translate(-50%, -50%); overflow: visible; }
+      .photo { position: absolute; inset: 0; }
+      .photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+      .tone { position: absolute; inset: 0; }
+      .lab { position: absolute; font-size: 17px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; }
+      .mono { font-family: "Geist", monospace; font-size: 24px; letter-spacing: 0.06em; text-transform: uppercase; line-height: 1.5; }
+      /* palette */
+      .band { position: absolute; left: 0; right: 0; }
+      .band .nm { position: absolute; left: 44px; top: 30px; font-size: 26px; font-weight: 600; letter-spacing: -0.01em; }
+      .band .hx { position: absolute; right: 44px; top: 30px; font-size: 20px; text-align: right; line-height: 1.5; letter-spacing: 0.04em; }
+      /* stationery */
+      .iso { position: absolute; left: 50%; top: 50%; width: 0; height: 0; transform-style: preserve-3d; }
+      .card { position: absolute; width: 760px; height: 470px; border-radius: 14px; overflow: hidden; box-shadow: 0 30px 60px rgb(0 0 0 / 0.35); }
+      /* phone */
+      .icon { position: absolute; width: 200px; height: 200px; border-radius: 48px; display: grid; place-items: center; box-shadow: 0 20px 50px rgb(0 0 0 / 0.25); }
+      .icon svg { width: 120px; height: 120px; }
+      /* end card */
+      #end { background: var(--bg); }
+      #end .lock { position: absolute; left: 0; right: 0; top: 700px; display: flex; flex-direction: column; align-items: center; }
+      #end .lock svg { width: 260px; height: auto; overflow: visible; }
+      #end .nm { margin-top: 56px; font-size: 104px; font-weight: 600; letter-spacing: -0.045em; color: var(--ink); }
+      #end .tag { position: absolute; left: 80px; right: 80px; top: 1230px; text-align: center; font-size: 44px; line-height: 1.25; color: var(--ink); letter-spacing: -0.015em; }
+      #end .url { position: absolute; left: 0; right: 0; top: 1420px; text-align: center; font-size: 30px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); font-weight: 500; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="9.6" data-width="1080" data-height="1920">
+      <section id="reel" class="clip" data-start="0" data-duration="8" data-track-index="1"></section>
+      <section id="end" class="clip" data-start="8" data-duration="1.6" data-track-index="2">
+        <div class="lock"><svg class="mmend" viewBox="0 0 1 1"></svg><p class="nm">Market Movers</p></div>
+        <p class="tag">Pipes, fittings and sanitaryware, from stock.</p>
+        <p class="url">marketmovers.co.in</p>
+      </section>
+
+      <!-- music sped 2.3% so a beat lands every 4 cuts (0.533s); a tick on every cut -->
+      <audio id="music" src="assets/audio/happy-beats-business-moves-vol-10-by-ende-dot-app.mp3" data-start="0" data-media-start="0.27" data-playback-rate="1.0229" data-duration="9.6" data-track-index="10" data-volume="0.5"
+        data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:0.5},{&quot;t&quot;:8.6,&quot;v&quot;:0.5},{&quot;t&quot;:9.6,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="ticks" src="assets/audio/ticks.wav" data-start="0" data-duration="9.6" data-track-index="11" data-volume="0.55"></audio>
+    </div>
+
+    <script>
+      (function () {
+        var C = { bg: "#f4f4f2", ink: "#111111", teal: "#0b5d63", tl: "#5aa9ae", line: "#dadad6" };
+        function rnd(s) { var x = Math.sin(s * 12.9898) * 43758.5453; return x - Math.floor(x); }
+
+        // woven MM mark (LogoMark.astro geometry) as an SVG string
+        var MARK_N = 0;
+        function mark(inner, outer, cls, style) {
+          var a = 64, b = 112, s = 0.625, t2 = 24, B = 200, sw = 18, gap = 9, id = "mk" + (MARK_N++);
+          var v1 = a * s, v2 = t2 + b * s, yc = t2 + (b - a) * s;
+          var P = function (pts) { return "M" + pts.map(function (q) { return q.join(","); }).join("L"); };
+          var len = Math.hypot(1, s), ux = -1 / len, uy = s / len, r = function (k) { return +k.toFixed(2); };
+          var seg = function (L) { return { left: "M" + -a + "," + r(yc - L) + "L" + -a + "," + r(yc + L), right: "M" + r(a - ux * L) + "," + r(yc - uy * L) + "L" + r(a + ux * L) + "," + r(yc + uy * L) }; };
+          var cut = seg(sw * 2), redraw = seg(sw * 3.6), pad = sw;
+          var st = 'fill="none" stroke-width="' + sw + '" stroke-linejoin="miter" stroke-miterlimit="4"';
+          return '<svg class="' + (cls || "mark") + '" style="' + (style || "") + '" viewBox="' + (-b - pad) + " " + (-pad * 2) + " " + (2 * (b + pad)) + " " + (B + pad * 3) + '">' +
+            '<mask id="' + id + '" maskUnits="userSpaceOnUse" x="-400" y="-400" width="800" height="800"><rect x="-400" y="-400" width="800" height="800" fill="#fff"/><path d="' + cut.left + cut.right + '" stroke="#000" stroke-width="' + (sw + 2 * gap) + '"/></mask>' +
+            '<g class="mo"><path d="' + P([[a, B], [b, B], [b, t2], [0, v2], [-b, t2], [-b, B], [-a, B]]) + '" stroke="' + outer + '" mask="url(#' + id + ')" ' + st + '/><path d="' + redraw.right + '" stroke="' + outer + '" ' + st + "/></g>" +
+            '<g class="mi"><path d="' + P([[-a, B], [-a, 0], [0, v1], [a, 0], [a, B]]) + '" stroke="' + inner + '" stroke-linecap="square" mask="url(#' + id + ')" ' + st + '/><path d="' + redraw.left + '" stroke="' + inner + '" ' + st + "/></g></svg>";
+        }
+        // dotted outline version of the mark (a pixel/dot rendering of the two Ms)
+        function dotMark(col) {
+          var pts = [], a = 64, b = 112, s = 0.625, t2 = 24, B = 200, v1 = a * s, v2 = t2 + b * s;
+          var paths = [[[-a, B], [-a, 0], [0, v1], [a, 0], [a, B]], [[a, B], [b, B], [b, t2], [0, v2], [-b, t2], [-b, B], [-a, B]]];
+          paths.forEach(function (pl) { for (var i = 0; i < pl.length - 1; i++) { var p = pl[i], q = pl[i + 1], L = Math.hypot(q[0] - p[0], q[1] - p[1]), n = Math.max(1, Math.round(L / 14)); for (var k = 0; k < n; k++) pts.push([p[0] + (q[0] - p[0]) * k / n, p[1] + (q[1] - p[1]) * k / n]); } });
+          return '<svg class="mark" viewBox="-130 -36 260 254">' + pts.map(function (p) { return '<circle cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="3.2" fill="' + col + '"/>'; }).join("") + "</svg>";
+        }
+        var WA = '<svg viewBox="0 0 24 24" fill="none"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 13.3789 2.27907 14.6926 2.78382 15.8877C3.06278 16.5481 3.20226 16.8784 3.21953 17.128C3.2368 17.3776 3.16334 17.6521 3.01642 18.2012L2 22L5.79877 20.9836C6.34788 20.8367 6.62244 20.7632 6.87202 20.7805C7.12161 20.7977 7.45185 20.9372 8.11235 21.2162C9.30745 21.7209 10.6211 22 12 22Z" stroke="#fff" stroke-linejoin="round" stroke-width="1.6"/><path d="M8.58815 12.3773L9.45909 11.2956C9.82616 10.8397 10.2799 10.4153 10.3155 9.80826C10.3244 9.65494 10.2166 8.96657 10.0008 7.58986C9.91601 7.04881 9.41086 7 8.97332 7C8.40314 7 8.11805 7 7.83495 7.12931C7.47714 7.29275 7.10979 7.75231 7.02917 8.13733C6.96539 8.44196 7.01279 8.65187 7.10759 9.07169C7.51023 10.8548 8.45481 12.6158 9.91948 14.0805C11.3842 15.5452 13.1452 16.4898 14.9283 16.8924C15.3481 16.9872 15.558 17.0346 15.8627 16.9708C16.2477 16.8902 16.7072 16.5229 16.8707 16.165C17 15.8819 17 15.5969 17 15.0267C17 14.5891 16.9512 14.084 16.4101 13.9992C15.0334 13.7834 14.3451 13.6756 14.1917 13.6845C13.5847 13.7201 13.1603 14.1738 12.7044 14.5409L11.6227 15.4118" stroke="#fff" stroke-width="1.6"/></svg>';
+
+        // ---------- shot builders: each idea in two colourways (teal, then ink) ----------
+        function photo(src, pos, tone) {
+          var t = tone === "teal"
+            ? '<div class="tone" style="background:#0b5d63;mix-blend-mode:color"></div><div class="tone" style="background:radial-gradient(circle at 50% 50%, rgb(17 17 17 / 0) 30%, rgb(17 17 17 / 0.55))"></div>'
+            : '<div class="tone" style="background:radial-gradient(circle at 50% 50%, rgb(17 17 17 / 0.62) 0%, rgb(17 17 17 / 0.35) 22%, rgb(17 17 17 / 0.1) 45%, rgb(17 17 17 / 0.45) 100%)"></div>';
+          var f = tone === "teal" ? "grayscale(1) contrast(1.25)" : "contrast(1.05)";
+          return '<div class="photo"><img src="assets/img/' + src + '.jpg" alt="" style="object-position:' + pos + ";filter:" + f + '"/></div>' + t + mark("#f4f4f2", tone === "teal" ? "#f4f4f2" : "#5aa9ae");
+        }
+        function grid(bg, ln, mi, mo) {
+          var g = '<svg style="position:absolute;inset:0" width="1080" height="1920" viewBox="0 0 1080 1920" fill="none" stroke="' + ln + '" stroke-width="2">';
+          [150, 300, 470].forEach(function (r) { g += '<circle cx="540" cy="960" r="' + r + '"/>'; });
+          for (var i = 0; i < 8; i++) {
+            var ang = i * Math.PI / 4 + Math.PI / 8, x = 540 + Math.cos(ang) * 470, y = 960 + Math.sin(ang) * 470;
+            g += '<circle cx="' + x.toFixed(0) + '" cy="' + y.toFixed(0) + '" r="56"/>';
+            g += '<path d="M' + (x - 14) + " " + (y - 14) + "L" + (x + 14) + " " + (y + 14) + "M" + (x + 14) + " " + (y - 14) + "L" + (x - 14) + " " + (y + 14) + '"/>';
+            g += '<line x1="540" y1="960" x2="' + (540 + Math.cos(ang) * 640).toFixed(0) + '" y2="' + (960 + Math.sin(ang) * 640).toFixed(0) + '" stroke-opacity="0.5"/>';
+          }
+          g += '<line x1="0" y1="960" x2="1080" y2="960" stroke-opacity="0.4"/><line x1="540" y1="0" x2="540" y2="1920" stroke-opacity="0.4"/></svg>';
+          return '<div class="in" style="background:' + bg + '"></div>' + g + mark(mi, mo, "mark", "width:220px");
+        }
+        function poster(bg, fg, mi, mo) {
+          var L = function (x, y, t, al) { return '<p class="lab" style="left:' + x + "px;top:" + y + "px;color:" + fg + ";text-align:" + (al || "left") + '">' + t + "</p>"; };
+          return '<div class="in" style="background:' + bg + '"></div>' + L(470, 150, "Market Movers") + L(140, 330, "Pipes") + L(820, 330, "Fittings") + L(140, 1560, "Sanitaryware") + L(820, 1560, "From stock") + L(476, 1760, "Jabalpur") +
+            '<div style="position:absolute;left:534px;top:340px;width:12px;height:12px;border-radius:50%;background:' + fg + '"></div>' + mark(mi, mo);
+        }
+        function dots(bg, col) { return '<div class="in" style="background:' + bg + '"></div>' + dotMark(col) + '<p class="lab" style="left:0;right:0;top:1600px;text-align:center;color:' + col + '">● ○ ○ ○</p>'; }
+        function palette(dark) {
+          var B = [["Background", "#F4F4F2", "244 244 242", C.bg, C.ink], ["Ink", "#111111", "17 17 17", C.ink, C.bg], ["Teal", "#0B5D63", "11 93 99", C.teal, C.bg], ["Teal on dark", "#5AA9AE", "90 169 174", C.tl, C.ink], ["Border", "#DADAD6", "218 218 214", C.line, C.ink]];
+          if (dark) B = [B[1], B[2], B[3], B[0], B[4]];
+          var h = 1920 / 5, out = "";
+          B.forEach(function (b, i) {
+            out += '<div class="band" style="top:' + (i * h) + "px;height:" + h + "px;background:" + b[3] + ";color:" + b[4] + '"><p class="nm">' + b[0] + '</p><p class="hx">HEX ' + b[1] + "<br>RGB " + b[2] + "</p></div>";
+          });
+          var mid = B[2];
+          return out + mark(mid[4], mid[4] === C.bg ? C.tl : C.teal, "mark", "width:200px");
+        }
+        function rays(dark) {
+          var bg = dark ? "radial-gradient(circle at 70% 50%, #2a3534, #0b0d0d 70%)" : "radial-gradient(circle at 70% 50%, #ffffff, #cfe4e5 70%)";
+          var out = '<div class="in" style="background:' + bg + '"></div>';
+          for (var c = 0; c < 3; c++) for (var r = 0; r < 9; r++) {
+            var x = 640 + c * 130 + (r % 2) * 20, y = 260 + r * 175, sz = 86 - c * 6;
+            var col = dark ? "#f6efdc" : C.teal;
+            out += '<div style="position:absolute;left:' + x + "px;top:" + y + "px;width:" + sz + "px;height:" + sz + "px;border-radius:50%;background:" + col + ";box-shadow:0 0 " + (dark ? 60 : 30) + "px " + (dark ? 18 : 6) + "px " + (dark ? "rgb(246 239 220 / 0.55)" : "rgb(11 93 99 / 0.35)") + '"></div>';
+          }
+          out += '<div class="in" style="background:linear-gradient(90deg, ' + (dark ? "rgb(246 239 220 / 0.18)" : "rgb(11 93 99 / 0.18)") + ', transparent 60%);mix-blend-mode:' + (dark ? "screen" : "multiply") + '"></div>';
+          return out + mark(dark ? C.bg : C.ink, dark ? C.tl : C.teal, "mark", "width:200px");
+        }
+        function drawing(bg, ln, mi, mo) {
+          var s = '<svg style="position:absolute;inset:0" width="1080" height="1920" viewBox="0 0 1080 1920" fill="none" stroke="' + ln + '" stroke-width="2.5">' +
+            '<rect x="420" y="360" width="240" height="1200" rx="6"/><rect x="400" y="330" width="280" height="80" rx="8"/><rect x="400" y="1510" width="280" height="80" rx="8"/>' +
+            '<path d="M380 960 H160 M700 960 H920"/><circle cx="160" cy="960" r="18"/><circle cx="920" cy="960" r="18"/>' +
+            '<path d="M420 300 V250 M660 300 V250 M420 270 H660"/><path d="M430 262 L420 270 L430 278 M650 262 L660 270 L650 278"/>' +
+            '<path d="M760 360 V1560" stroke-dasharray="10 10"/><circle cx="1000" cy="960" r="420" stroke-opacity="0.45"/></svg>' +
+            '<p class="lab" style="left:505px;top:214px;color:' + ln + '">110</p><p class="lab" style="left:130px;top:910px;color:' + ln + '">IS 4985</p><p class="lab" style="left:790px;top:1180px;color:' + ln + '">SWR</p>';
+          return '<div class="in" style="background:' + bg + '"></div>' + s + mark(mi, mo, "mark", "width:150px");
+        }
+        function billboard(panel, fg, mi, mo, tone) {
+          return '<div class="in" style="background:#0b0d0d"></div>' +
+            '<div style="position:absolute;left:0;right:0;top:300px;height:980px;background:' + panel + '"></div>' +
+            '<p class="mono" style="position:absolute;left:90px;top:560px;width:900px;color:' + fg + '">Pipes, fittings and sanitaryware,<br>from stock.</p>' +
+            '<p class="mono" style="position:absolute;left:90px;top:1150px;color:' + fg + '">marketmovers.co.in</p>' +
+            '<div class="photo" style="top:1280px;height:640px"><img src="assets/img/pipe-stack.jpg" alt="" style="object-position:30% 70%;filter:' + (tone === "teal" ? "grayscale(1) contrast(1.3)" : "brightness(0.7)") + '"/></div>' +
+            (tone === "teal" ? '<div class="tone" style="top:1280px;background:#0b5d63;mix-blend-mode:color"></div>' : "") +
+            mark(mi, mo, "mark", "width:200px;top:960px");
+        }
+        function stationery(main, alt) {
+          var circ = function (fg) { var o = ""; [[90, 120, 130], [300, 330, 100], [600, 140, 150], [640, 400, 90]].forEach(function (c) { o += '<div style="position:absolute;left:' + (c[0] - c[2]) + "px;top:" + (c[1] - c[2]) + "px;width:" + c[2] * 2 + "px;height:" + c[2] * 2 + "px;border-radius:50%;background:" + fg + '"></div>'; }); return o; };
+          var card = function (x, y, z, bg, fg, mi, mo, pat) { return '<div class="card" style="left:' + x + "px;top:" + y + "px;transform:translateZ(" + z + "px);background:" + bg + '">' + (pat ? circ(fg) : "") + mark(mi, mo, "mark", "width:150px") + "</div>"; };
+          return '<div class="in" style="background:' + (main === "teal" ? "#e9e9e6" : "#151817") + '"></div><div class="iso" style="transform:translate(120px, 220px) rotateX(55deg) rotateZ(-35deg)">' +
+            card(-640, -520, 0, alt[0], alt[1], alt[2], alt[3], false) +
+            card(-380, -235, 30, main === "teal" ? C.teal : C.ink, main === "teal" ? "#0e6d74" : "#222", C.bg, C.tl, true) +
+            card(-120, 50, 60, C.bg, "#e2e2de", C.ink, C.teal, false) + "</div>";
+        }
+        function phone(dark) {
+          var bg = dark ? "linear-gradient(180deg, #0b0d0d, #0b5d63)" : "linear-gradient(180deg, #ffffff, #5aa9ae)";
+          return '<div class="in" style="background:' + bg + '"></div>' +
+            '<div class="icon" style="left:310px;top:1380px;background:#25a35a">' + WA + "</div>" +
+            '<div class="icon" style="left:570px;top:1380px;background:' + (dark ? C.bg : C.ink) + '">' + mark(dark ? C.ink : C.bg, dark ? C.teal : C.tl, "x", "width:120px;height:auto;overflow:visible") + "</div>";
+        }
+        function pattern(bg, fg, mi, mo) {
+          var out = '<div class="in" style="background:' + bg + '"></div>';
+          for (var y = 0; y < 22; y++) for (var x = 0; x < 12; x++) {
+            var cx = 45 + x * 90, cy = 45 + y * 88, d = Math.hypot((cx - 540) / 1.0, (cy - 960) / 1.6);
+            if (d < 330) continue;
+            var k = rnd(x * 31 + y * 7);
+            if (k < 0.32) continue;
+            var pill = k > 0.82, w = pill ? 70 : 58 + Math.round(rnd(x + y * 13) * 14), h = pill ? 150 : w;
+            if (pill && y % 2) continue;
+            out += '<div style="position:absolute;left:' + (cx - w / 2) + "px;top:" + (cy - (pill ? 30 : w / 2)) + "px;width:" + w + "px;height:" + h + "px;border-radius:999px;background:" + fg + '"></div>';
+          }
+          return out + mark(mi, mo, "mark", "width:220px");
+        }
+
+        // 30 shots, 4 frames each (0.1333s): pairs flip teal -> ink, like the reference
+        var SHOTS = [
+          photo("pipe-stack", "32% 50%", "natural"), photo("pipe-stack", "32% 50%", "teal"),
+          grid(C.teal, "rgb(244 244 242 / 0.7)", C.bg, C.tl), grid(C.ink, "rgb(90 169 174 / 0.7)", C.bg, C.tl),
+          photo("hdpe-coil", "60% 50%", "natural"), photo("hdpe-coil", "60% 50%", "teal"),
+          poster(C.bg, C.ink, C.ink, C.teal), poster(C.ink, C.bg, C.bg, C.tl),
+          dots(C.bg, C.ink), dots(C.ink, C.bg),
+          palette(false), palette(true),
+          rays(true), rays(false), rays(false),
+          drawing(C.bg, C.ink, C.ink, C.teal), drawing(C.ink, C.tl, C.bg, C.tl),
+          billboard(C.teal, C.bg, C.bg, C.tl, "natural"), billboard(C.ink, C.bg, C.bg, C.tl, "teal"),
+          photo("fittings", "10% 50%", "natural"), photo("fittings", "10% 50%", "teal"),
+          stationery("teal", [C.ink, "#222", C.bg, C.tl]), stationery("ink", [C.teal, "#0e6d74", C.bg, C.tl]),
+          phone(false), phone(false), phone(true),
+          photo("tap", "60% 50%", "natural"), photo("tap", "60% 50%", "teal"),
+          pattern(C.teal, C.ink, C.bg, C.tl), pattern(C.ink, C.bg, C.bg, C.tl),
+        ];
+        var reel = document.getElementById("reel");
+        reel.innerHTML = SHOTS.map(function (h) { return '<div class="shot">' + h + "</div>"; }).join("");
+        var shots = reel.querySelectorAll(".shot");
+        document.querySelector("#end .lock").innerHTML = mark(C.ink, C.teal, "mmend", "width:260px;height:auto;overflow:visible") + '<p class="nm">Market Movers</p>';
+
+        var CUT = 4 / 30, N = shots.length;
+        Promise.all([document.fonts.ready].concat([].map.call(document.images, function (im) { return im.decode ? im.decode().catch(function () {}) : 0; }))).then(function () {
+          var tl = gsap.timeline({ paused: true });
+          // end card: the Ms snap together on the beat (8.0), then name, line, url
+          tl.fromTo("#end .mi", { y: -120, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "expo.out" }, 8.0);
+          tl.fromTo("#end .mo", { y: 120, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "expo.out" }, 8.04);
+          tl.fromTo("#end .nm", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: "power3.out" }, 8.27);
+          tl.fromTo("#end .tag", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: "power3.out" }, 8.53);
+          tl.fromTo("#end .url", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 8.8);
+
+          // the cut: one shot visible per 4 frames, the 30-shot sequence plays twice; a slight push inside each shot
+          var last = -1;
+          tl.eventCallback("onUpdate", function () {
+            var t = tl.time();
+            var k = Math.min(2 * N - 1, Math.floor(t / CUT + 1e-6)), idx = k % N;
+            if (idx !== last) { if (last >= 0) shots[last].style.display = "none"; shots[idx].style.display = "block"; last = idx; }
+            var p = (t - k * CUT) / CUT;
+            shots[idx].style.transform = "scale(" + (1.025 - 0.025 * Math.min(1, Math.max(0, p))).toFixed(4) + ")";
+          });
+          window.__timelines["main"] = tl;
+          tl.seek(0);
+        });
+      })();
+    </script>
+  </body>
+</html>
