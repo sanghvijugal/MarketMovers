@@ -75,6 +75,7 @@
       #composer .to b { color: var(--ink); font-weight: 600; }
       #composer .txt { margin-top: 26px; font-size: 38px; line-height: 1.35; letter-spacing: -0.01em; min-height: 160px; }
       #composer .caret { display: inline-block; width: 3px; height: 40px; background: var(--teal); vertical-align: -7px; margin-left: 2px; }
+      #reply { position: absolute; left: 460px; top: 790px; padding: 22px 30px; border-radius: 26px; border-top-left-radius: 8px; background: #fff; font-size: 34px; box-shadow: 0 16px 40px rgb(11 93 99 / 0.14), inset 0 0 0 2px rgb(17 17 17 / 0.05); }
       #send { position: absolute; right: 44px; bottom: 40px; display: flex; align-items: center; gap: 14px; height: 76px; padding: 0 34px; border-radius: 999px; border: 2px solid var(--ink); font-size: 32px; font-weight: 500; }
       #send svg { width: 30px; height: 30px; }
 
@@ -98,88 +99,86 @@
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-start="0" data-duration="32" data-width="1920" data-height="1080">
+    <div id="root" data-composition-id="main" data-start="0" data-duration="37.55" data-width="1920" data-height="1080">
 
-      <section id="c1" class="clip cream" data-start="0" data-duration="1.85" data-track-index="1">
+      <section id="c1" class="clip cream" data-start="0" data-duration="1.79" data-track-index="1">
         <canvas class="full" id="mo1" width="1920" height="1080"></canvas>
         <div class="sqs"></div>
         <div class="line" id="l1"></div>
       </section>
 
-      <section id="c2" class="clip dark" data-start="1.85" data-duration="2.4" data-track-index="1">
+      <section id="c2" class="clip dark" data-start="1.79" data-duration="2.71" data-track-index="1">
         <div id="tiles"></div>
         <div class="line" id="l2"></div>
       </section>
 
-      <section id="c3" class="clip cream" data-start="4.25" data-duration="2.65" data-track-index="1">
-        <div class="dots"></div>
+      <section id="c3" class="clip cream" data-start="4.5" data-duration="3.46" data-track-index="1">
         <div class="sqs"></div>
-        <canvas class="full" id="frame" width="1920" height="1080"></canvas>
         <div class="line" id="l3"></div>
       </section>
 
-      <section id="c4" class="clip cream" data-start="6.9" data-duration="1.05" data-track-index="1">
+      <section id="c3b" class="clip cream" data-start="7.96" data-duration="1.84" data-track-index="1">
+        <div class="dots"></div>
+        <div class="sqs"></div>
+        <canvas class="full" id="frame" width="1920" height="1080"></canvas>
+        <div class="line" id="l3b"></div>
+      </section>
+
+      <section id="c4" class="clip cream" data-start="9.8" data-duration="0.8" data-track-index="1">
         <div class="br" id="br1" style="left:640px;top:400px"><i style="left:0;top:0;width:170px;height:44px"></i><i style="left:0;top:0;width:44px;height:170px"></i></div>
         <div class="br" id="br2" style="left:1110px;top:510px"><i style="right:0;bottom:0;width:170px;height:44px"></i><i style="right:0;bottom:0;width:44px;height:170px"></i></div>
         <p id="meet-word">Meet</p>
       </section>
 
-      <section id="c5" class="clip dark" data-start="7.95" data-duration="1.75" data-track-index="1">
+      <section id="c5" class="clip dark" data-start="10.6" data-duration="1.2" data-track-index="1">
         <div class="glow" style="left:900px;top:300px"></div>
         <div class="logo" id="logo1"><svg class="mm" data-inner="#ecece8" data-outer="#5aa9ae"></svg><p class="nm"></p></div>
       </section>
 
-      <section id="c6" class="clip dark" data-start="9.7" data-duration="1.9" data-track-index="1">
+      <section id="c6" class="clip dark" data-start="11.8" data-duration="0.87" data-track-index="1">
         <div class="glow" style="left:-500px;top:-700px"></div>
         <div class="line" id="l6"></div>
       </section>
 
-      <section id="c7" class="clip cream" data-start="11.6" data-duration="4.4" data-track-index="1">
+      <section id="c7" class="clip cream" data-start="12.67" data-duration="4.54" data-track-index="1">
         <ul id="idx"></ul>
         <div id="panel"><canvas id="pan" width="94" height="80"></canvas><div id="win"><div class="bar"><i></i><i></i><i></i></div></div></div>
         <div class="cursor" id="cur7"><svg viewBox="0 0 24 24"><path d="M4 2l15 10-7 1.5L9 21z" fill="#6e5bd0" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/></svg><b>You</b></div>
       </section>
 
-      <section id="c8" class="clip cream" data-start="16" data-duration="2.8" data-track-index="1">
+      <section id="c8" class="clip cream" data-start="17.21" data-duration="6.46" data-track-index="1">
         <div class="line" id="l8"></div>
         <div id="composer"><p class="to">To <b>Market Movers</b> on WhatsApp</p><p class="txt"><span id="typed"></span><span class="caret"></span></p>
           <div id="send"><span>Send</span><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l16-8-6 16-2.5-6.5L4 12z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></div></div>
+        <div id="reply">Got it. Rates coming your way today.</div>
         <div class="cursor" id="cur8"><svg viewBox="0 0 24 24"><path d="M4 2l15 10-7 1.5L9 21z" fill="#6e5bd0" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/></svg><b>You</b></div>
       </section>
 
-      <section id="c9" class="clip cream" data-start="18.8" data-duration="2.2" data-track-index="1">
+      <section id="c9" class="clip cream" data-start="23.67" data-duration="2.08" data-track-index="1">
         <canvas class="full" id="mo9" width="1920" height="1080"></canvas>
         <div id="band"><div class="line" id="l9"></div></div>
       </section>
 
-      <section id="c10" class="clip cream" data-start="21" data-duration="2.7" data-track-index="1">
+      <section id="c10" class="clip cream" data-start="25.75" data-duration="3.5" data-track-index="1">
         <ul id="checks"></ul>
       </section>
 
-      <section id="c11" class="clip cream" data-start="23.7" data-duration="2" data-track-index="1">
+      <section id="c11" class="clip cream" data-start="29.25" data-duration="2.7" data-track-index="1">
         <div id="chips"></div>
         <div class="line" id="l11"></div>
       </section>
 
-      <section id="c12" class="clip cream" data-start="25.7" data-duration="1.4" data-track-index="1">
+      <section id="c12" class="clip cream" data-start="31.95" data-duration="1.45" data-track-index="1">
         <div id="pill"><div class="line" id="l12"></div></div>
       </section>
 
-      <section id="c13" class="clip cream" data-start="27.1" data-duration="4.9" data-track-index="1">
+      <section id="c13" class="clip cream" data-start="33.4" data-duration="4.15" data-track-index="1">
         <div class="logo" id="logo2"><svg class="mm" data-inner="#111111" data-outer="#0b5d63"></svg><p class="nm">Market Movers</p></div>
         <div class="line" id="l13"></div>
       </section>
 
-      <audio id="music" src="assets/music/happy-beats-business-moves-vol-11-by-ende-dot-app.mp3" data-start="0" data-duration="32" data-track-index="10" data-volume="0.45"
-        data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:0.45},{&quot;t&quot;:30.4,&quot;v&quot;:0.45},{&quot;t&quot;:32,&quot;v&quot;:0}]}]}"></audio>
-      <audio id="sx-logo" src="assets/sfx/impactSoft_medium_001.ogg" data-start="7.95" data-duration="0.18" data-track-index="11" data-volume="0.6"></audio>
-      <audio id="sx-c1" src="assets/sfx/mouseclick1.ogg" data-start="12.75" data-duration="0.059" data-track-index="12" data-volume="0.6"></audio>
-      <audio id="sx-c2" src="assets/sfx/mouseclick1.ogg" data-start="13.6" data-duration="0.059" data-track-index="13" data-volume="0.6"></audio>
-      <audio id="sx-c3" src="assets/sfx/mouseclick1.ogg" data-start="14.45" data-duration="0.059" data-track-index="14" data-volume="0.6"></audio>
-      <audio id="sx-c4" src="assets/sfx/mouseclick1.ogg" data-start="15.3" data-duration="0.059" data-track-index="15" data-volume="0.6"></audio>
-      <audio id="sx-c5" src="assets/sfx/click2.ogg" data-start="16.95" data-duration="0.055" data-track-index="16" data-volume="0.6"></audio>
-      <audio id="sx-c6" src="assets/sfx/click2.ogg" data-start="18.35" data-duration="0.055" data-track-index="17" data-volume="0.6"></audio>
-      <audio id="sx-end" src="assets/sfx/impactSoft_medium_001.ogg" data-start="27.15" data-duration="0.18" data-track-index="18" data-volume="0.55"></audio>
+      <!-- soundtrack by vanshika.motion, from her Outship launch film (used with permission); reel 0 to 16.92s + 32.62 to 53.4s -->
+      <audio id="music" src="assets/audio/soundtrack-vanshika-motion.wav" data-start="0" data-duration="37.55" data-track-index="10" data-volume="1"></audio>
     </div>
 
     <script>
@@ -225,7 +224,8 @@
         var L = {
           l1: buildLine("l1", ["Every", "site", "runs", "on", { a: "pipes." }], 540),
           l2: buildLine("l2", ["from", { a: "ten brands" }], 540),
-          l3: buildLine("l3", ["But", "a", "site", "can't", { a: "wait" }, "on", "a", "factory."], 540),
+          l3: buildLine("l3", ["But", "sites", "can't", { a: "wait" }, "on", "a", "factory."], 540),
+          l3b: buildLine("l3b", ["Ready", "stock,", "so", "your", "site", { a: "never waits." }], 540),
           l6: buildLine("l6", ["See", "what's", { a: "in stock" }], 540),
           l8: buildLine("l8", ["Send", { tile: 1 }, "your", "list"], 540),
           l9: buildLine("l9", ["Get", "rates", { spin: 1 }, { a: "the same day" }], 100),
@@ -249,7 +249,7 @@
         document.getElementById("tiles").innerHTML = TILES.map(function (t, i) {
           return '<div class="tile" style="left:' + t[4] + "px;top:" + t[5] + "px;width:" + t[6] + "px;height:" + t[6] + 'px"><canvas width="' + t[6] + '" height="' + t[6] + '" data-i="' + i + '"></canvas></div>';
         }).join("");
-        var TILE_START = 1.9;
+        var TILE_START = 1.82;
 
         // 7: brand index (src/data/brands/*.json lines; cities from index.astro)
         var BRANDS = [
@@ -263,7 +263,7 @@
         document.getElementById("win").insertAdjacentHTML("beforeend", BRANDS.map(function (b) {
           return '<div class="page"><h3>' + b[0] + "<small>" + b[1] + "</small></h3><ul>" + b[2].map(function (l) { return "<li>" + l + "</li>"; }).join("") + "</ul></div>";
         }).join(""));
-        var SWITCH = [11.9, 12.75, 13.6, 14.45, 15.3];
+        var SWITCH = [12.77, 13.58, 14.42, 15.23, 16.07]; // every other beat of the soundtrack
 
         // 10: the seven product families (site.ts categories)
         var CATS = ["PVC pipes & fittings", "HDPE pipes", "Sprinkler & drip irrigation", "Bath & sanitaryware", "Casing & column pipes", "Suction & garden hose", "Fittings & accessories"];
@@ -305,36 +305,38 @@
             });
           }
 
-          // ===== 1 (0 to 1.85) =====
-          playLine("l1", 0.15, 0, { times: [0, 0.3, 0.5, 0.7, 0.95] });
-          // ===== 2 (1.85 to 4.25): tiles rise and resolve; "from ten brands" =====
+          // ===== 1 (0 to 1.79) =====
+          playLine("l1", 0.17, 0, { times: [0, 0.23, 0.38, 0.53, 0.68] });
+          // ===== 2 (1.79 to 4.5): tiles rise and resolve; "from ten brands" =====
           document.querySelectorAll(".tile").forEach(function (tile, i) {
             tl.fromTo(tile, { y: 420 + rnd(i) * 200, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, TILE_START + i * 0.06);
             tl.to(tile, { y: -90 - rnd(i + 9) * 60, duration: 1.7, ease: "none" }, TILE_START + 0.7 + i * 0.06);
           });
-          playLine("l2", 2.35, 0, { times: [0, 0.35], dark: true });
-          // ===== 3 (4.25 to 6.9) =====
-          playLine("l3", 4.4, 0.17);
-          tl.to("#l3 .w", { color: "#0b5d63", duration: 0.2 }, 6.25);
-          // ===== 4 (6.9 to 7.95): Meet =====
-          tl.fromTo("#br1", { x: -160, y: -100, opacity: 0 }, { x: 0, y: 0, opacity: 1, duration: 0.3, ease: "expo.out" }, 6.9);
-          tl.fromTo("#br2", { x: 160, y: 100, opacity: 0 }, { x: 0, y: 0, opacity: 1, duration: 0.3, ease: "expo.out" }, 6.9);
-          tl.fromTo("#meet-word", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }, 7.0);
-          tl.to("#meet-word", { opacity: 0, duration: 0.15 }, 7.62);
-          tl.to("#br1", { x: 230, y: 70, duration: 0.25, ease: "expo.in" }, 7.65);
-          tl.to("#br2", { x: -230, y: -70, duration: 0.25, ease: "expo.in" }, 7.65);
-          // ===== 5 (7.95 to 9.7): logo types in =====
-          tl.fromTo("#logo1 svg", { scale: 0.2, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.35, ease: "steps(6)" }, 7.98);
+          playLine("l2", 2.0, 0, { times: [0, 0.3], dark: true });
+          // ===== 3 (4.5 to 9.8) =====
+          playLine("l3", 4.6, 0.15);
+          // the music drops out at 7.96 and returns at 8.41: the second line lands with it
+          playLine("l3b", 8.41, 0.12);
+          tl.to("#l3b .w", { color: "#0b5d63", duration: 0.2 }, 9.3);
+          // ===== 4 (9.8 to 10.6): Meet =====
+          tl.fromTo("#br1", { x: -160, y: -100, opacity: 0 }, { x: 0, y: 0, opacity: 1, duration: 0.3, ease: "expo.out" }, 9.8);
+          tl.fromTo("#br2", { x: 160, y: 100, opacity: 0 }, { x: 0, y: 0, opacity: 1, duration: 0.3, ease: "expo.out" }, 9.8);
+          tl.fromTo("#meet-word", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }, 9.9);
+          tl.to("#meet-word", { opacity: 0, duration: 0.15 }, 10.38);
+          tl.to("#br1", { x: 230, y: 70, duration: 0.18, ease: "expo.in" }, 10.42);
+          tl.to("#br2", { x: -230, y: -70, duration: 0.18, ease: "expo.in" }, 10.42);
+          // ===== 5 (10.6 to 11.8): logo types in =====
+          tl.fromTo("#logo1 svg", { scale: 0.2, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.35, ease: "steps(6)" }, 10.63);
           document.querySelectorAll("#logo1 .ch").forEach(function (c, i) {
-            var t = 8.25 + i * 0.045;
+            var t = 10.8 + i * 0.035;
             tl.fromTo(c, { opacity: 0, color: "#5aa9ae" }, { opacity: 1, duration: 0.01 }, t);
             tl.to(c, { color: "#ecece8", duration: 0.2 }, t + 0.18);
           });
-          // ===== 6 (9.7 to 11.6) =====
-          playLine("l6", 9.85, 0, { times: [0, 0.3, 0.6], dark: true });
-          // ===== 7 (11.6 to 16): the brand index in use =====
-          tl.fromTo("#idx li", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.4, ease: "power2.out", stagger: 0.06 }, 11.62);
-          tl.fromTo("#panel", { y: 120, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 11.65);
+          // ===== 6 (11.8 to 12.67) =====
+          playLine("l6", 11.82, 0, { times: [0, 0.18, 0.36], dark: true });
+          // ===== 7 (12.67 to 17.21): the brand index in use =====
+          tl.fromTo("#idx li", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.35, ease: "power2.out", stagger: 0.04 }, 12.68);
+          tl.fromTo("#panel", { y: 120, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 12.68);
           var lis = document.querySelectorAll("#idx li"), pages = document.querySelectorAll(".page");
           lis.forEach(function (li, i) {
             var on = SWITCH[i], off = SWITCH[i + 1];
@@ -345,58 +347,60 @@
             if (off) {
               tl.to(li.querySelector(".mk"), { scale: 0, duration: 0.2 }, off);
               tl.to(li.querySelector(".t"), { color: "#111111", duration: 0.2 }, off);
-              tl.to(pages[i], { opacity: 0, y: -20, duration: 0.25, ease: "power2.in" }, off - 0.05);
+              tl.to(pages[i], { opacity: 0, y: -20, duration: 0.12, ease: "power2.in" }, off - 0.12);
             }
           });
           // cursor glides to each brand just before it switches
-          tl.fromTo("#cur7", { x: 640, y: 980 }, { x: 640, y: 980, duration: 0.01 }, 11.6);
-          SWITCH.forEach(function (on, i) { tl.to("#cur7", { x: 420 + (i % 2) * 40, y: 316 + i * 92, duration: i ? 0.45 : 0.28, ease: "power3.inOut" }, i ? on - 0.5 : 11.62); });
-          // ===== 8 (16 to 18.8): send your list =====
-          playLine("l8", 16.1, 0, { times: [0, 0.25, 0.5, 0.7] });
-          tl.fromTo("#cur8", { x: 1300, y: 900 }, { x: 1000, y: 580, duration: 0.55, ease: "power3.inOut" }, 16.35);
-          tl.to("#l8 .tile-inline", { scale: 0.9, duration: 0.07 }, 16.95);
-          tl.to("#l8 .tile-inline", { scale: 1, duration: 0.25, ease: "back.out(3)" }, 17.02);
-          tl.to("#l8", { opacity: 0, y: -40, duration: 0.3, ease: "power2.in" }, 17.25);
-          tl.fromTo("#composer", { opacity: 0, y: 60, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "power3.out" }, 17.35);
-          tl.to("#cur8", { x: 1330, y: 680, duration: 0.6, ease: "power3.inOut" }, 17.6);
-          tl.to("#send", { scale: 0.94, duration: 0.07 }, 18.35);
-          tl.to("#send", { scale: 1, backgroundColor: "#0b5d63", color: "#f4f4f2", borderColor: "#0b5d63", duration: 0.25, ease: "back.out(3)" }, 18.42);
-          // ===== 9 (18.8 to 21): spinner band =====
-          tl.fromTo("#band", { scaleY: 0 }, { scaleY: 1, duration: 0.45, ease: "expo.out" }, 18.8);
-          playLine("l9", 19.05, 0, { times: [0, 0.25, 0.5, 0.75], dark: true });
-          // ===== 10 (21 to 23.7): the seven families tick off =====
+          tl.fromTo("#cur7", { x: 640, y: 700 }, { x: 640, y: 700, duration: 0.01 }, 12.67);
+          SWITCH.forEach(function (on, i) { tl.to("#cur7", { x: 420 + (i % 2) * 40, y: 316 + i * 92, duration: i ? 0.45 : 0.1, ease: "power3.inOut" }, i ? on - 0.5 : 12.67); });
+          // ===== 8 (17.21 to 23.67): send your list =====
+          playLine("l8", 17.25, 0, { times: [0, 0.2, 0.4, 0.55] });
+          tl.fromTo("#cur8", { x: 1300, y: 900 }, { x: 1000, y: 580, duration: 0.45, ease: "power3.inOut" }, 17.45);
+          tl.to("#l8 .tile-inline", { scale: 0.9, duration: 0.07 }, 17.95);
+          tl.to("#l8 .tile-inline", { scale: 1, duration: 0.2, ease: "back.out(3)" }, 18.02);
+          tl.to("#l8", { opacity: 0, y: -40, duration: 0.2, ease: "power2.in" }, 18.1);
+          tl.fromTo("#composer", { opacity: 0, y: 60, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "power3.out" }, 18.25);
+          tl.to("#cur8", { x: 1330, y: 680, duration: 0.6, ease: "power3.inOut" }, 19.7);
+          tl.to("#send", { scale: 0.94, duration: 0.07 }, 20.38);
+          tl.to("#send", { scale: 1, backgroundColor: "#0b5d63", color: "#f4f4f2", borderColor: "#0b5d63", duration: 0.25, ease: "back.out(3)" }, 20.45);
+          // the reply lands on the next big hit (reel 37.73s)
+          tl.fromTo("#reply", { opacity: 0, y: 30, scale: 0.9, transformOrigin: "0% 0%" }, { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, 21.95);
+          // ===== 9 (23.67 to 25.75): spinner band =====
+          tl.fromTo("#band", { scaleY: 0 }, { scaleY: 1, duration: 0.45, ease: "expo.out" }, 23.67);
+          playLine("l9", 23.9, 0, { times: [0, 0.25, 0.5, 0.75], dark: true });
+          // ===== 10 (25.75 to 29.25): the seven families tick off =====
           var items = document.querySelectorAll("#checks li");
-          tl.fromTo("#checks", { y: 540 - 54 }, { y: 540 - 54, duration: 0.01 }, 21);
-          tl.fromTo(items, { opacity: 0 }, { opacity: 0.3, duration: 0.3, stagger: 0.03 }, 21.0);
+          tl.fromTo("#checks", { y: 540 - 54 }, { y: 540 - 54, duration: 0.01 }, 25.75);
+          tl.fromTo(items, { opacity: 0 }, { opacity: 0.3, duration: 0.3, stagger: 0.03 }, 25.77);
           items.forEach(function (it, i) {
-            var t = 21.25 + i * 0.32;
+            var t = [26.39, 26.81, 27.23, 27.62, 28.04, 28.46, 28.9][i]; // beat-grid: one box per beat
             tl.to("#checks", { y: 540 - 54 - i * 108, duration: 0.3, ease: "power3.out" }, t - 0.1);
             tl.to(it, { opacity: 1, duration: 0.15 }, t - 0.1);
             tl.fromTo(it.querySelector(".fill"), { scale: 0 }, { scale: 1, duration: 0.2, ease: "back.out(2.5)" }, t);
             tl.fromTo(it.querySelector(".box svg"), { opacity: 0 }, { opacity: 1, duration: 0.1 }, t + 0.06);
             if (i < items.length - 1) tl.to(it, { opacity: 0.45, duration: 0.2 }, t + 0.25);
           });
-          // ===== 11 (23.7 to 25.7): sizes =====
+          // ===== 11 (29.25 to 31.95): sizes =====
           document.querySelectorAll(".chip").forEach(function (c, i) {
             var dx = (c.offsetLeft + 70 - 960) * 0.25, dy = (c.offsetTop + 30 - 540) * 0.25;
-            tl.fromTo(c, { x: -dx, y: -dy, opacity: 0, scale: 0.7 }, { x: dx * 0.6, y: dy * 0.6, opacity: 1, scale: 1, duration: 1.9, ease: "power2.out" }, 23.7 + rnd(i + 70) * 0.35);
+            tl.fromTo(c, { x: -dx, y: -dy, opacity: 0, scale: 0.7 }, { x: dx * 0.6, y: dy * 0.6, opacity: 1, scale: 1, duration: 2.6, ease: "power2.out" }, 29.25 + rnd(i + 70) * 0.35);
           });
-          playLine("l11", 23.8, 0.16);
-          // ===== 12 (25.7 to 27.1) =====
+          playLine("l11", 29.35, 0.16);
+          // ===== 12 (31.95 to 33.4) =====
           var pill = document.getElementById("pill");
-          tl.fromTo(pill, { xPercent: -50, yPercent: -50, scale: 0.92, opacity: 0 }, { xPercent: -50, yPercent: -50, scale: 1, opacity: 1, duration: 0.35, ease: "power3.out" }, 25.72);
-          playLine("l12", 25.85, 0, { times: [0, 0.15, 0.3, 0.5], static: true });
-          // ===== 13 (27.1 to 32): end =====
+          tl.fromTo(pill, { xPercent: -50, yPercent: -50, scale: 0.92, opacity: 0 }, { xPercent: -50, yPercent: -50, scale: 1, opacity: 1, duration: 0.3, ease: "power3.out" }, 31.97);
+          playLine("l12", 32.05, 0, { times: [0, 0.2, 0.4, 0.6], static: true });
+          // ===== 13 (33.4 to 37.55): end =====
           var nm2 = document.querySelector("#logo2 .nm"), mk2 = document.querySelector("#logo2 svg");
           var shift = (nm2.offsetWidth + 28) / 2;
-          tl.fromTo(mk2, { x: shift, scale: 0.2, opacity: 0 }, { x: shift, scale: 1, opacity: 1, duration: 0.4, ease: "steps(6)" }, 27.15);
-          tl.to(mk2, { x: 0, duration: 0.55, ease: "power3.inOut" }, 27.85);
-          tl.fromTo(nm2, { x: shift, clipPath: "inset(-20% 100% -20% 0%)" }, { x: 0, clipPath: "inset(-20% 0% -20% 0%)", duration: 0.55, ease: "power3.inOut" }, 27.85);
-          tl.to("#logo2", { y: -80, duration: 0.6, ease: "power3.inOut" }, 28.9);
-          playLine("l13", 29.15, 0.16);
+          tl.fromTo(mk2, { x: shift, scale: 0.2, opacity: 0 }, { x: shift, scale: 1, opacity: 1, duration: 0.4, ease: "steps(6)" }, 33.45);
+          tl.to(mk2, { x: 0, duration: 0.5, ease: "power3.inOut" }, 33.85);
+          tl.fromTo(nm2, { x: shift, clipPath: "inset(-20% 100% -20% 0%)" }, { x: 0, clipPath: "inset(-20% 0% -20% 0%)", duration: 0.5, ease: "power3.inOut" }, 33.85);
+          tl.to("#logo2", { y: -80, duration: 0.5, ease: "power3.inOut" }, 34.75);
+          playLine("l13", 35.05, 0.16);
 
           // ---------- per-frame drawing: mosaics, pixel squares, tile resolve, pixel frame, typing, spinner ----------
-          var L3W = document.querySelector("#l3 .ln").offsetWidth;
+          var L3W = document.querySelector("#l3b .ln").offsetWidth;
           var mo1 = document.getElementById("mo1").getContext("2d"), mo9 = document.getElementById("mo9").getContext("2d");
           var fr = document.getElementById("frame").getContext("2d");
           var pan = document.getElementById("pan").getContext("2d");
@@ -421,8 +425,8 @@
           }
           tl.eventCallback("onUpdate", function () {
             var t = tl.time(), step = Math.floor(t * 3);
-            if (t < 1.9) mosaic(mo1, t, 1);
-            if (t > 18.75 && t < 21.05) mosaic(mo9, t, 2);
+            if (t < 1.85) mosaic(mo1, t, 1);
+            if (t > 23.6 && t < 25.8) mosaic(mo9, t, 2);
             // pixel squares jump every third of a second
             sqs.forEach(function (q) {
               var s = +q.dataset.s, k = rnd(s * 31 + step * 3);
@@ -433,7 +437,7 @@
             });
             // tiles: coarse mosaic that resolves step by step
             tileCanvases.forEach(function (cv, i) {
-              var tt = TILES[i], img = IMGS[tt[0]]; if (!img || t < 1.8 || t > 4.3) return;
+              var tt = TILES[i], img = IMGS[tt[0]]; if (!img || t < 1.75 || t > 4.55) return;
               var k = Math.max(0, Math.floor((t - TILE_START - i * 0.06) / 0.09)), res = RES[Math.min(RES.length - 1, k)];
               var c = cv.getContext("2d"); c.imageSmoothingEnabled = false;
               if (!cv._small) { cv._small = document.createElement("canvas"); }
@@ -441,10 +445,10 @@
               var sc = sm.getContext("2d"); sc.imageSmoothingEnabled = true; sc.drawImage(img, tt[1], tt[2], tt[3], tt[3], 0, 0, res, res);
               c.drawImage(sm, 0, 0, res, res, 0, 0, cv.width, cv.height);
             });
-            // pixel frame grows out from the sentence and floods to the edges (6.2 to 6.9)
-            if (t > 4.2 && t < 6.95) {
+            // pixel frame grows out from the sentence and floods to the edges (9.25 to 9.8)
+            if (t > 7.9 && t < 9.85) {
               fr.clearRect(0, 0, 1920, 1080);
-              var g = Math.max(0, Math.min(1, (t - 6.2) / 0.62)); g = g * g;
+              var g = Math.max(0, Math.min(1, (t - 9.25) / 0.55)); g = g * g;
               if (g > 0) {
                 var C = 24, iw0 = L3W + 120, ix = (960 - iw0 / 2) * (1 - g), iy = 470 - g * 470, iw = iw0 + g * (1920 - iw0), ih = 140 + g * 940, th = 24 + g * 900;
                 fr.fillStyle = "#0b5d63";
@@ -459,7 +463,7 @@
               }
             }
             // typing in the composer (17.5 to 18.25)
-            var n = Math.round(CHAT.length * Math.max(0, Math.min(1, (t - 17.5) / 0.75)));
+            var n = t >= 20.45 ? 0 : Math.round(CHAT.length * Math.max(0, Math.min(1, (t - 18.6) / 1.4)));
             if (typed._n !== n) { typed.textContent = CHAT.slice(0, n); typed._n = n; }
             spinarc.setAttribute("transform", "rotate(" + ((t * 400) % 360).toFixed(1) + " 28 28)");
             // glows breathe with the music

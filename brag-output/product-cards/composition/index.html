@@ -48,32 +48,16 @@
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-start="0" data-duration="14" data-width="1920" data-height="1080">
+    <div id="root" data-composition-id="main" data-start="0" data-duration="13.5" data-width="1920" data-height="1080">
       <!-- pass 1: pipes and fittings; pass 2: tanks, farm and bath -->
-      <section id="g0" class="clip" data-start="0" data-duration="2.15" data-track-index="1"></section>
-      <section id="r0" class="clip room" data-start="2.15" data-duration="2.6" data-track-index="1"></section>
-      <section id="e0" class="clip end" data-start="4.75" data-duration="1.95" data-track-index="1"></section>
-      <section id="g1" class="clip" data-start="6.7" data-duration="2.15" data-track-index="1"></section>
-      <section id="r1" class="clip room" data-start="8.85" data-duration="2.6" data-track-index="1"></section>
-      <section id="e1" class="clip end" data-start="11.45" data-duration="2.55" data-track-index="1"></section>
-      <audio id="sx0" src="assets/sfx/impactWood_light_000.ogg" data-start="0" data-duration="0.26" data-track-index="11" data-volume="0.55"></audio>
-      <audio id="sx1" src="assets/sfx/impactWood_light_001.ogg" data-start="0.4" data-duration="0.26" data-track-index="12" data-volume="0.55"></audio>
-      <audio id="sx2" src="assets/sfx/impactWood_light_002.ogg" data-start="0.7" data-duration="0.26" data-track-index="13" data-volume="0.55"></audio>
-      <audio id="sx3" src="assets/sfx/impactWood_light_003.ogg" data-start="1.0" data-duration="0.26" data-track-index="14" data-volume="0.55"></audio>
-      <audio id="sx4" src="assets/sfx/impactWood_light_004.ogg" data-start="1.25" data-duration="0.26" data-track-index="15" data-volume="0.55"></audio>
-      <audio id="sx5" src="assets/sfx/card-slide-1.ogg" data-start="2.2" data-duration="0.6" data-track-index="16" data-volume="0.4"></audio>
-      <audio id="sx6" src="assets/sfx/drop_001.ogg" data-start="3.1" data-duration="0.11" data-track-index="17" data-volume="0.6"></audio>
-      <audio id="sx7" src="assets/sfx/impactSoft_medium_001.ogg" data-start="4.75" data-duration="0.18" data-track-index="18" data-volume="0.7"></audio>
-      <audio id="sx8" src="assets/sfx/rollover2.ogg" data-start="4.95" data-duration="0.057" data-track-index="19" data-volume="0.6"></audio>
-      <audio id="sx9" src="assets/sfx/impactWood_light_000.ogg" data-start="6.7" data-duration="0.26" data-track-index="20" data-volume="0.55"></audio>
-      <audio id="sx10" src="assets/sfx/impactWood_light_001.ogg" data-start="7.1" data-duration="0.26" data-track-index="21" data-volume="0.55"></audio>
-      <audio id="sx11" src="assets/sfx/impactWood_light_002.ogg" data-start="7.4" data-duration="0.26" data-track-index="22" data-volume="0.55"></audio>
-      <audio id="sx12" src="assets/sfx/impactWood_light_003.ogg" data-start="7.7" data-duration="0.26" data-track-index="23" data-volume="0.55"></audio>
-      <audio id="sx13" src="assets/sfx/impactWood_light_004.ogg" data-start="7.95" data-duration="0.26" data-track-index="24" data-volume="0.55"></audio>
-      <audio id="sx14" src="assets/sfx/card-slide-1.ogg" data-start="8.9" data-duration="0.6" data-track-index="25" data-volume="0.4"></audio>
-      <audio id="sx15" src="assets/sfx/drop_001.ogg" data-start="9.8" data-duration="0.11" data-track-index="26" data-volume="0.6"></audio>
-      <audio id="sx16" src="assets/sfx/impactSoft_medium_001.ogg" data-start="11.45" data-duration="0.18" data-track-index="27" data-volume="0.7"></audio>
-      <audio id="sx17" src="assets/sfx/rollover2.ogg" data-start="11.65" data-duration="0.057" data-track-index="28" data-volume="0.6"></audio>
+      <section id="g0" class="clip" data-start="0" data-duration="2.14" data-track-index="1"></section>
+      <section id="r0" class="clip room" data-start="2.14" data-duration="2.83" data-track-index="1"></section>
+      <section id="e0" class="clip end" data-start="4.97" data-duration="1.74" data-track-index="1"></section>
+      <section id="g1" class="clip" data-start="6.71" data-duration="2.14" data-track-index="1"></section>
+      <section id="r1" class="clip room" data-start="8.85" data-duration="2.83" data-track-index="1"></section>
+      <section id="e1" class="clip end" data-start="11.68" data-duration="1.82" data-track-index="1"></section>
+      <!-- sound design by vanshika.motion, from her MUJI motion ad (used with permission) -->
+      <audio id="sound" src="assets/audio/sound-design-vanshika-motion.wav" data-start="0" data-duration="13.48" data-track-index="10" data-volume="1"></audio>
     </div>
 
     <script>
@@ -114,12 +98,12 @@
         // layouts (x, y, w, h as fractions of the frame) — the grid splits like the reference
         var LAYOUTS = [
           { t: 0.0, r: [[0, 0, 1, 1], [1, 0, 0.6, 1], [1, 0, 0.45, 1], [0, 1, 1, 0.5], [1, 0.5, 0.34, 0.5]] },
-          { t: 0.4, r: [[0, 0, 0.38, 1], [0.38, 0, 0.62, 1], [1, 0, 0.45, 1], [0, 1, 1, 0.5], [1, 0.5, 0.34, 0.5]] },
-          { t: 0.7, r: [[0, 0, 0.26, 1], [0.26, 0, 0.29, 1], [0.55, 0, 0.45, 1], [0, 1, 1, 0.5], [1, 0.5, 0.34, 0.5]] },
-          { t: 1.0, r: [[0, 0, 0.26, 0.5], [0.26, 0, 0.29, 0.5], [0.55, 0, 0.45, 0.5], [0, 0.5, 1, 0.5], [1, 0.5, 0.34, 0.5]] },
-          { t: 1.25, r: [[0, 0, 0.26, 0.5], [0.26, 0, 0.29, 0.5], [0.55, 0, 0.45, 0.5], [0, 0.5, 0.66, 0.5], [0.66, 0.5, 0.34, 0.5]] },
+          { t: 0.58, r: [[0, 0, 0.38, 1], [0.38, 0, 0.62, 1], [1, 0, 0.45, 1], [0, 1, 1, 0.5], [1, 0.5, 0.34, 0.5]] },
+          { t: 0.81, r: [[0, 0, 0.26, 1], [0.26, 0, 0.29, 1], [0.55, 0, 0.45, 1], [0, 1, 1, 0.5], [1, 0.5, 0.34, 0.5]] },
+          { t: 1.09, r: [[0, 0, 0.26, 0.5], [0.26, 0, 0.29, 0.5], [0.55, 0, 0.45, 0.5], [0, 0.5, 1, 0.5], [1, 0.5, 0.34, 0.5]] },
+          { t: 1.35, r: [[0, 0, 0.26, 0.5], [0.26, 0, 0.29, 0.5], [0.55, 0, 0.45, 0.5], [0, 0.5, 0.66, 0.5], [0.66, 0.5, 0.34, 0.5]] },
         ];
-        var MOVE = 0.24, ease = gsap.parseEase("expo.inOut");
+        var MOVE = 0.2, ease = gsap.parseEase("expo.inOut");
 
         var CARDS = [];
         PASSES.forEach(function (pass, p) {
@@ -177,35 +161,35 @@
           return cur.r;
         }
         // shift: the first layout change already starts before 0.4; keep the full card on screen until then
-        LAYOUTS.forEach(function (L) { if (L.t > 0) L.t += MOVE * 0.5; });
+        
 
         document.fonts.ready.then(function () {
           var tl = gsap.timeline({ paused: true });
 
           PASSES.forEach(function (pass, p) {
-            var P = p * 6.7, r = "#r" + p, e = "#e" + p;
+            var P = p * 6.71, r = "#r" + p, e = "#e" + p;
             // room: tiles fly in one by one and stack, then sink into the window as the photo opens
             var tiles = document.querySelectorAll(r + " .tile");
             tiles.forEach(function (tile, i) {
-              tl.fromTo(tile, { x: -260, y: 1180, rotation: -8 }, { x: 260 + i * 120, y: 470 - i * 60, rotation: 0, duration: 0.5, ease: "expo.out" }, P + 2.18 + i * 0.12);
-              tl.to(tile, { x: 520 + i * 190, y: 360 + (i % 2) * 120, scale: 0.35, opacity: 0, duration: 0.45, ease: "expo.in" }, P + 3.0 + i * 0.04);
+              tl.fromTo(tile, { x: -260, y: 1180, rotation: -8 }, { x: 260 + i * 120, y: 470 - i * 60, rotation: 0, duration: 0.5, ease: "expo.out" }, P + 2.14 + i * 0.1);
+              tl.to(tile, { x: 520 + i * 190, y: 360 + (i % 2) * 120, scale: 0.35, opacity: 0, duration: 0.14, ease: "power2.in" }, P + [3.46, 3.6, 3.67, 3.76, 3.9][i] - 0.14);
             });
-            tl.fromTo(r + " .win", { clipPath: "inset(50% 50% 50% 50%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.55, ease: "expo.out" }, P + 3.12);
-            tl.fromTo(r + " .win img", { scale: 1.25 }, { scale: 1.04, duration: 1.6, ease: "power2.out" }, P + 3.12);
+            tl.fromTo(r + " .win", { clipPath: "inset(50% 50% 50% 50%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.5, ease: "expo.out" }, P + 3.15);
+            tl.fromTo(r + " .win img", { scale: 1.25 }, { scale: 1.04, duration: 1.6, ease: "power2.out" }, P + 3.15);
             tl.fromTo(r + " .node", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(3)" }, P + 2.3);
             tl.fromTo(r + " .cap", { opacity: 0, x: -12 }, { opacity: 1, x: 0, duration: 0.35, ease: "power2.out" }, P + 2.45);
             tl.fromTo(r + " .caphi", { opacity: 0 }, { opacity: 1, duration: 0.4 }, P + 2.6);
             tl.fromTo(r + " .hl", { scaleX: 0, scaleY: 0 }, { scaleX: 1, scaleY: 1, duration: 0.5, ease: "expo.out", stagger: 0.05 }, P + 2.15);
             // end card: the wordmark is there on the cut; the drawing slides in and tucks under the last letter
-            tl.fromTo(e + " .word", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: "expo.out" }, P + 4.75);
-            tl.fromTo(e + " .mm", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: "expo.out" }, P + 4.78);
-            tl.fromTo(e + " .hero", { x: 420, rotation: 12, opacity: 0 }, { x: 0, rotation: -6, opacity: 1, duration: 0.6, ease: "expo.out" }, P + 4.95);
+            tl.fromTo(e + " .word", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: "expo.out" }, P + 4.97);
+            tl.fromTo(e + " .mm", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: "expo.out" }, P + 4.99);
+            tl.fromTo(e + " .hero", { x: 420, rotation: 12, opacity: 0 }, { x: 0, rotation: -6, opacity: 1, duration: 0.6, ease: "expo.out" }, P + 5.33);
           });
 
           tl.eventCallback("onUpdate", function () {
             var t = tl.time();
             PASSES.forEach(function (pass, p) {
-              var lt = t - p * 6.7;
+              var lt = t - p * 6.71;
               if (lt < 0 || lt > 2.2) return;
               var R = layoutAt(lt);
               CARDS[p].forEach(function (card, j) {
