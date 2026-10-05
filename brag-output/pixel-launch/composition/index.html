@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Market Movers brag (pixel launch)</title>
+    <script src="assets/js/gsap.min.js"></script>
+    <script src="assets/js/audio-data.js"></script>
+    <style>
+      @font-face { font-family: "Geist"; src: url("assets/fonts/geist.woff2") format("woff2"); font-weight: 100 900; }
+      @font-face { font-family: "Serif Italic"; src: url("assets/fonts/serif-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; }
+      :root { --bg: #f4f4f2; --ink: #111111; --muted: #575753; --teal: #0b5d63; --teal-l: #5aa9ae; --dark: #0f1211; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--bg); }
+      body { font-family: "Geist", sans-serif; color: var(--ink); -webkit-font-smoothing: antialiased; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--bg); }
+      .clip { position: absolute; inset: 0; overflow: hidden; }
+      .cream { background: var(--bg); color: var(--ink); }
+      .dark { background: var(--dark); color: #ecece8; }
+      canvas.full { position: absolute; inset: 0; width: 1920px; height: 1080px; }
+
+      /* word-by-word lines */
+      .line { position: absolute; left: 0; top: 0; white-space: nowrap; }
+      .line .ln { position: absolute; display: inline-flex; align-items: baseline; font-size: 58px; font-weight: 400; letter-spacing: -0.02em; }
+      .line .w { display: inline-block; margin-right: 0.26em; }
+      .line .w:last-child { margin-right: 0; }
+      .line .acc { font-family: "Serif Italic", serif; font-style: italic; font-size: 1.16em; letter-spacing: -0.01em; color: var(--teal); }
+      .dark .line .acc { color: var(--teal-l); }
+      .line .tile-inline { display: inline-flex; align-self: center; width: 120px; height: 120px; border-radius: 30px; background: #fff; box-shadow: 0 10px 30px rgb(11 93 99 / 0.18), inset 0 0 0 2px rgb(11 93 99 / 0.12); align-items: center; justify-content: center; color: var(--teal); }
+      .line .tile-inline svg { width: 64px; height: 64px; }
+      .line .spin { display: inline-flex; align-self: center; width: 56px; height: 56px; }
+      .sq { position: absolute; width: 16px; height: 16px; background: var(--teal); }
+
+      /* 2: tiles */
+      .tile { position: absolute; border-radius: 36px; overflow: hidden; box-shadow: 0 0 0 2px rgb(255 255 255 / 0.08), 0 20px 50px rgb(0 0 0 / 0.5); }
+      .tile canvas { display: block; width: 100%; height: 100%; }
+
+      /* 3: dot matrix */
+      .dots { position: absolute; inset: 0; background-image: radial-gradient(circle, rgb(11 93 99 / 0.13) 3px, transparent 3.5px); background-size: 34px 34px; }
+
+      /* 4: meet */
+      .br { position: absolute; width: 170px; height: 170px; }
+      .br i { position: absolute; background: var(--teal); }
+      #meet-word { position: absolute; left: 0; right: 0; top: 470px; text-align: center; font-family: "Serif Italic", serif; font-style: italic; font-size: 130px; line-height: 1; }
+
+      /* 5 + 13: logo */
+      .logo { position: absolute; left: 0; right: 0; top: 0; bottom: 0; display: flex; align-items: center; justify-content: center; gap: 28px; }
+      .logo svg { height: 104px; width: auto; overflow: visible; }
+      .logo .nm { font-size: 96px; font-weight: 600; letter-spacing: -0.04em; line-height: 1; white-space: nowrap; }
+      .logo .nm .ch { display: inline-block; }
+      .glow { position: absolute; width: 1600px; height: 1600px; border-radius: 50%; background: radial-gradient(closest-side, rgb(11 93 99 / 0.55), rgb(11 93 99 / 0) 100%); }
+
+      /* 7: brand index */
+      #idx { position: absolute; left: 200px; top: 300px; list-style: none; }
+      #idx li { position: relative; font-size: 50px; letter-spacing: -0.025em; line-height: 1; height: 92px; }
+      #idx li .mk { position: absolute; left: -40px; top: 16px; width: 18px; height: 18px; background: var(--teal); }
+      #panel { position: absolute; left: 820px; top: 140px; width: 940px; height: 800px; border-radius: 40px; overflow: hidden; }
+      #panel canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+      #win { position: absolute; left: 70px; top: 80px; right: 70px; bottom: 80px; border-radius: 26px; background: #121615; box-shadow: 0 30px 70px rgb(0 0 0 / 0.45); overflow: hidden; color: #ecece8; }
+      #win .bar { height: 56px; border-bottom: 1px solid rgb(255 255 255 / 0.08); display: flex; align-items: center; gap: 10px; padding: 0 22px; }
+      #win .bar i { width: 13px; height: 13px; border-radius: 50%; background: rgb(255 255 255 / 0.16); }
+      .page { position: absolute; left: 0; right: 0; top: 56px; bottom: 0; padding: 34px 40px; }
+      .page h3 { font-size: 40px; font-weight: 600; letter-spacing: -0.03em; }
+      .page h3 small { font-size: 22px; font-weight: 400; color: #9fb3b2; margin-left: 14px; letter-spacing: 0; }
+      .page ul { list-style: none; margin-top: 26px; }
+      .page li { display: flex; align-items: center; gap: 16px; font-size: 25px; height: 50px; border-top: 1px solid rgb(255 255 255 / 0.07); }
+      .page li::before { content: ""; width: 10px; height: 10px; background: var(--teal-l); flex: none; }
+      .cursor { position: absolute; left: 0; top: 0; z-index: 30; }
+      .cursor svg { width: 40px; height: 40px; display: block; }
+      .cursor b { position: absolute; left: 30px; top: 34px; font-size: 20px; font-weight: 500; color: #fff; background: var(--teal); padding: 4px 14px; border-radius: 999px; }
+
+      /* 8: composer */
+      #composer { position: absolute; left: 460px; top: 330px; width: 1000px; height: 420px; border-radius: 34px; background: #fff; box-shadow: 0 30px 80px rgb(11 93 99 / 0.16), inset 0 0 0 2px rgb(17 17 17 / 0.06); padding: 40px 48px; }
+      #composer .to { font-size: 24px; color: var(--muted); }
+      #composer .to b { color: var(--ink); font-weight: 600; }
+      #composer .txt { margin-top: 26px; font-size: 38px; line-height: 1.35; letter-spacing: -0.01em; min-height: 160px; }
+      #composer .caret { display: inline-block; width: 3px; height: 40px; background: var(--teal); vertical-align: -7px; margin-left: 2px; }
+      #send { position: absolute; right: 44px; bottom: 40px; display: flex; align-items: center; gap: 14px; height: 76px; padding: 0 34px; border-radius: 999px; border: 2px solid var(--ink); font-size: 32px; font-weight: 500; }
+      #send svg { width: 30px; height: 30px; }
+
+      /* 9: band */
+      #band { position: absolute; left: 0; right: 0; top: 440px; height: 200px; background: #0f1211; color: #ecece8; }
+
+      /* 10: checklist */
+      #checks { position: absolute; left: 520px; top: 0; list-style: none; }
+      #checks li { display: flex; align-items: center; gap: 34px; height: 108px; font-size: 76px; letter-spacing: -0.035em; }
+      #checks .box { position: relative; width: 58px; height: 58px; border-radius: 10px; border: 4px solid rgb(17 17 17 / 0.35); flex: none; }
+      #checks .box .fill { position: absolute; inset: -4px; border-radius: 10px; background: var(--teal); }
+      #checks .box svg { position: absolute; inset: 6px; width: 38px; height: 38px; }
+
+      /* 11: chips */
+      .chip { position: absolute; padding: 14px 28px; border-radius: 16px; background: #dcebeb; color: var(--teal); font-size: 34px; font-weight: 500; white-space: nowrap; font-variant-numeric: tabular-nums; box-shadow: inset 4px 0 0 var(--teal); }
+      .chip.b { background: #e7e2f4; color: #4b3f8f; box-shadow: inset 4px 0 0 #6e5bd0; }
+
+      /* 12: pill */
+      #pill { position: absolute; left: 50%; top: 50%; border: 3px solid var(--ink); border-radius: 30px; padding: 26px 46px; }
+      #pill .line, #pill .ln { position: static; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="32" data-width="1920" data-height="1080">
+
+      <section id="c1" class="clip cream" data-start="0" data-duration="1.85" data-track-index="1">
+        <canvas class="full" id="mo1" width="1920" height="1080"></canvas>
+        <div class="sqs"></div>
+        <div class="line" id="l1"></div>
+      </section>
+
+      <section id="c2" class="clip dark" data-start="1.85" data-duration="2.4" data-track-index="1">
+        <div id="tiles"></div>
+        <div class="line" id="l2"></div>
+      </section>
+
+      <section id="c3" class="clip cream" data-start="4.25" data-duration="2.65" data-track-index="1">
+        <div class="dots"></div>
+        <div class="sqs"></div>
+        <canvas class="full" id="frame" width="1920" height="1080"></canvas>
+        <div class="line" id="l3"></div>
+      </section>
+
+      <section id="c4" class="clip cream" data-start="6.9" data-duration="1.05" data-track-index="1">
+        <div class="br" id="br1" style="left:640px;top:400px"><i style="left:0;top:0;width:170px;height:44px"></i><i style="left:0;top:0;width:44px;height:170px"></i></div>
+        <div class="br" id="br2" style="left:1110px;top:510px"><i style="right:0;bottom:0;width:170px;height:44px"></i><i style="right:0;bottom:0;width:44px;height:170px"></i></div>
+        <p id="meet-word">Meet</p>
+      </section>
+
+      <section id="c5" class="clip dark" data-start="7.95" data-duration="1.75" data-track-index="1">
+        <div class="glow" style="left:900px;top:300px"></div>
+        <div class="logo" id="logo1"><svg class="mm" data-inner="#ecece8" data-outer="#5aa9ae"></svg><p class="nm"></p></div>
+      </section>
+
+      <section id="c6" class="clip dark" data-start="9.7" data-duration="1.9" data-track-index="1">
+        <div class="glow" style="left:-500px;top:-700px"></div>
+        <div class="line" id="l6"></div>
+      </section>
+
+      <section id="c7" class="clip cream" data-start="11.6" data-duration="4.4" data-track-index="1">
+        <ul id="idx"></ul>
+        <div id="panel"><canvas id="pan" width="94" height="80"></canvas><div id="win"><div class="bar"><i></i><i></i><i></i></div></div></div>
+        <div class="cursor" id="cur7"><svg viewBox="0 0 24 24"><path d="M4 2l15 10-7 1.5L9 21z" fill="#6e5bd0" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/></svg><b>You</b></div>
+      </section>
+
+      <section id="c8" class="clip cream" data-start="16" data-duration="2.8" data-track-index="1">
+        <div class="line" id="l8"></div>
+        <div id="composer"><p class="to">To <b>Market Movers</b> on WhatsApp</p><p class="txt"><span id="typed"></span><span class="caret"></span></p>
+          <div id="send"><span>Send</span><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l16-8-6 16-2.5-6.5L4 12z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></div></div>
+        <div class="cursor" id="cur8"><svg viewBox="0 0 24 24"><path d="M4 2l15 10-7 1.5L9 21z" fill="#6e5bd0" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/></svg><b>You</b></div>
+      </section>
+
+      <section id="c9" class="clip cream" data-start="18.8" data-duration="2.2" data-track-index="1">
+        <canvas class="full" id="mo9" width="1920" height="1080"></canvas>
+        <div id="band"><div class="line" id="l9"></div></div>
+      </section>
+
+      <section id="c10" class="clip cream" data-start="21" data-duration="2.7" data-track-index="1">
+        <ul id="checks"></ul>
+      </section>
+
+      <section id="c11" class="clip cream" data-start="23.7" data-duration="2" data-track-index="1">
+        <div id="chips"></div>
+        <div class="line" id="l11"></div>
+      </section>
+
+      <section id="c12" class="clip cream" data-start="25.7" data-duration="1.4" data-track-index="1">
+        <div id="pill"><div class="line" id="l12"></div></div>
+      </section>
+
+      <section id="c13" class="clip cream" data-start="27.1" data-duration="4.9" data-track-index="1">
+        <div class="logo" id="logo2"><svg class="mm" data-inner="#111111" data-outer="#0b5d63"></svg><p class="nm">Market Movers</p></div>
+        <div class="line" id="l13"></div>
+      </section>
+
+      <audio id="music" src="assets/music/happy-beats-business-moves-vol-11-by-ende-dot-app.mp3" data-start="0" data-duration="32" data-track-index="10" data-volume="0.45"
+        data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:0.45},{&quot;t&quot;:30.4,&quot;v&quot;:0.45},{&quot;t&quot;:32,&quot;v&quot;:0}]}]}"></audio>
+      <audio id="sx-logo" src="assets/sfx/impactSoft_medium_001.ogg" data-start="7.95" data-duration="0.18" data-track-index="11" data-volume="0.6"></audio>
+      <audio id="sx-c1" src="assets/sfx/mouseclick1.ogg" data-start="12.75" data-duration="0.059" data-track-index="12" data-volume="0.6"></audio>
+      <audio id="sx-c2" src="assets/sfx/mouseclick1.ogg" data-start="13.6" data-duration="0.059" data-track-index="13" data-volume="0.6"></audio>
+      <audio id="sx-c3" src="assets/sfx/mouseclick1.ogg" data-start="14.45" data-duration="0.059" data-track-index="14" data-volume="0.6"></audio>
+      <audio id="sx-c4" src="assets/sfx/mouseclick1.ogg" data-start="15.3" data-duration="0.059" data-track-index="15" data-volume="0.6"></audio>
+      <audio id="sx-c5" src="assets/sfx/click2.ogg" data-start="16.95" data-duration="0.055" data-track-index="16" data-volume="0.6"></audio>
+      <audio id="sx-c6" src="assets/sfx/click2.ogg" data-start="18.35" data-duration="0.055" data-track-index="17" data-volume="0.6"></audio>
+      <audio id="sx-end" src="assets/sfx/impactSoft_medium_001.ogg" data-start="27.15" data-duration="0.18" data-track-index="18" data-volume="0.55"></audio>
+    </div>
+
+    <script>
+      (function () {
+        // ---------- helpers ----------
+        function rnd(seed) { var x = Math.sin(seed * 12.9898) * 43758.5453; return x - Math.floor(x); } // seeded, deterministic
+        function hex(c) { return [parseInt(c.slice(1, 3), 16), parseInt(c.slice(3, 5), 16), parseInt(c.slice(5, 7), 16)]; }
+        function mix(a, b, k) { return "rgb(" + a.map(function (v, i) { return Math.round(v + (b[i] - v) * k); }).join(",") + ")"; }
+        var CREAM = hex("#f4f4f2"), TEAL = hex("#0b5d63"), TEAL_L = hex("#9fcfd1");
+        var WA = '<svg viewBox="0 0 24 24" fill="none"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 13.3789 2.27907 14.6926 2.78382 15.8877C3.06278 16.5481 3.20226 16.8784 3.21953 17.128C3.2368 17.3776 3.16334 17.6521 3.01642 18.2012L2 22L5.79877 20.9836C6.34788 20.8367 6.62244 20.7632 6.87202 20.7805C7.12161 20.7977 7.45185 20.9372 8.11235 21.2162C9.30745 21.7209 10.6211 22 12 22Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5"/><path d="M8.58815 12.3773L9.45909 11.2956C9.82616 10.8397 10.2799 10.4153 10.3155 9.80826C10.3244 9.65494 10.2166 8.96657 10.0008 7.58986C9.91601 7.04881 9.41086 7 8.97332 7C8.40314 7 8.11805 7 7.83495 7.12931C7.47714 7.29275 7.10979 7.75231 7.02917 8.13733C6.96539 8.44196 7.01279 8.65187 7.10759 9.07169C7.51023 10.8548 8.45481 12.6158 9.91948 14.0805C11.3842 15.5452 13.1452 16.4898 14.9283 16.8924C15.3481 16.9872 15.558 17.0346 15.8627 16.9708C16.2477 16.8902 16.7072 16.5229 16.8707 16.165C17 15.8819 17 15.5969 17 15.0267C17 14.5891 16.9512 14.084 16.4101 13.9992C15.0334 13.7834 14.3451 13.6756 14.1917 13.6845C13.5847 13.7201 13.1603 14.1738 12.7044 14.5409L11.6227 15.4118" stroke="currentColor" stroke-width="1.5"/></svg>';
+        var SPIN = '<svg viewBox="0 0 56 56"><circle cx="28" cy="28" r="20" fill="none" stroke="rgb(255 255 255 / 0.15)" stroke-width="5"/><circle id="spinarc" cx="28" cy="28" r="20" fill="none" stroke="#5aa9ae" stroke-width="5" stroke-linecap="round" stroke-dasharray="40 200"/></svg>';
+
+        // woven MM mark (LogoMark.astro geometry)
+        function markSVG(svgEl, id, weight, inner, outer) {
+          var a = 64, b = 112, s = 0.625, t2 = 24, B = 200, sw = weight, gap = Math.round(weight * 0.5);
+          var v1 = a * s, v2 = t2 + b * s, yc = t2 + (b - a) * s;
+          var P = function (pts) { return "M" + pts.map(function (q) { return q.join(","); }).join("L"); };
+          var len = Math.hypot(1, s), ux = -1 / len, uy = s / len, r = function (k) { return +k.toFixed(2); };
+          var seg = function (L) { return { left: "M" + -a + "," + r(yc - L) + "L" + -a + "," + r(yc + L), right: "M" + r(a - ux * L) + "," + r(yc - uy * L) + "L" + r(a + ux * L) + "," + r(yc + uy * L) }; };
+          var cut = seg(sw * 2), redraw = seg(sw * 3.6), pad = sw;
+          svgEl.setAttribute("viewBox", (-b - pad) + " " + (-pad * 2) + " " + (2 * (b + pad)) + " " + (B + pad * 3));
+          var st = 'fill="none" stroke-width="' + sw + '" stroke-linejoin="miter" stroke-miterlimit="4"';
+          svgEl.innerHTML = '<mask id="' + id + '" maskUnits="userSpaceOnUse" x="-400" y="-400" width="800" height="800"><rect x="-400" y="-400" width="800" height="800" fill="#fff"/><path d="' + cut.left + cut.right + '" stroke="#000" stroke-width="' + (sw + 2 * gap) + '"/></mask>' +
+            '<g><path d="' + P([[a, B], [b, B], [b, t2], [0, v2], [-b, t2], [-b, B], [-a, B]]) + '" stroke="' + outer + '" mask="url(#' + id + ')" ' + st + '/><path d="' + redraw.right + '" stroke="' + outer + '" ' + st + "/></g>" +
+            '<g><path d="' + P([[-a, B], [-a, 0], [0, v1], [a, 0], [a, B]]) + '" stroke="' + inner + '" stroke-linecap="square" mask="url(#' + id + ')" ' + st + '/><path d="' + redraw.left + '" stroke="' + inner + '" ' + st + "/></g>";
+        }
+        document.querySelectorAll("svg.mm").forEach(function (el, i) { markSVG(el, "mmk" + i, 18, el.dataset.inner, el.dataset.outer); });
+        var nm1 = document.querySelector("#logo1 .nm");
+        nm1.innerHTML = "Market Movers".split("").map(function (c) { return c === " " ? '<span class="ch">&nbsp;</span>' : '<span class="ch">' + c + "</span>"; }).join("");
+
+        // word lines: parts are plain words, {a: accent}, {tile}, {spin}
+        function buildLine(id, parts, y) {
+          var el = document.getElementById(id);
+          el.innerHTML = '<div class="ln">' + parts.map(function (p) {
+            if (typeof p === "string") return '<span class="w">' + p + "</span>";
+            if (p.a) return '<span class="w acc">' + p.a + "</span>";
+            if (p.tile) return '<span class="w tile-inline">' + WA + "</span>";
+            if (p.spin) return '<span class="w spin">' + SPIN + "</span>";
+          }).join("") + "</div>";
+          el.dataset.y = y;
+          return el;
+        }
+        var L = {
+          l1: buildLine("l1", ["Every", "site", "runs", "on", { a: "pipes." }], 540),
+          l2: buildLine("l2", ["from", { a: "ten brands" }], 540),
+          l3: buildLine("l3", ["But", "a", "site", "can't", { a: "wait" }, "on", "a", "factory."], 540),
+          l6: buildLine("l6", ["See", "what's", { a: "in stock" }], 540),
+          l8: buildLine("l8", ["Send", { tile: 1 }, "your", "list"], 540),
+          l9: buildLine("l9", ["Get", "rates", { spin: 1 }, { a: "the same day" }], 100),
+          l11: buildLine("l11", ["From", "house", "plumbing", "to", { a: "400 mm" }, "mains."], 540),
+          l12: buildLine("l12", ["Pick", "up", "or", { a: "we deliver." }], 0),
+          l13: buildLine("l13", ["Pipes,", "fittings", "and", "sanitaryware,", { a: "from stock." }], 660),
+        };
+
+        // jumping pixel squares (stepped, seeded)
+        document.querySelectorAll(".sqs").forEach(function (box, b) {
+          var h = ""; for (var i = 0; i < 8; i++) h += '<i class="sq" data-s="' + (b * 10 + i) + '"></i>'; box.innerHTML = h;
+        });
+
+        // 2: photo tiles that start as a coarse mosaic and resolve
+        var TILES = [
+          ["pipe-stack", 700, 110, 420, 230, 150, 210], ["fittings", 380, 470, 380, 560, 90, 170], ["hdpe-coil", 1000, 150, 520, 1420, 120, 230],
+          ["tap", 850, 120, 620, 1560, 560, 200], ["pipe-stack", 280, 700, 420, 150, 620, 230], ["fittings", 1050, 420, 380, 1180, 760, 160],
+          ["counter", 820, 640, 480, 420, 760, 190], ["pipe-stack", 620, 330, 380, 820, 110, 150], ["hdpe-coil", 260, 300, 480, 1700, 860, 150],
+        ];
+        var IMGS = {};
+        document.getElementById("tiles").innerHTML = TILES.map(function (t, i) {
+          return '<div class="tile" style="left:' + t[4] + "px;top:" + t[5] + "px;width:" + t[6] + "px;height:" + t[6] + 'px"><canvas width="' + t[6] + '" height="' + t[6] + '" data-i="' + i + '"></canvas></div>';
+        }).join("");
+        var TILE_START = 1.9;
+
+        // 7: brand index (src/data/brands/*.json lines; cities from index.astro)
+        var BRANDS = [
+          ["Finolex", "Pune", ["Agriculture Pipes & Fittings", "Casing Pipes", "Column Pipes", "CPVC Pipes & Fittings", "ASTM Plumbing System", "SWR Drainage System", "Sewerage Pipes", "Solvent Cement & Accessories"]],
+          ["Dutron", "Ahmedabad", ["CPVC Pipes & Fittings", "uPVC Plumbing System", "Agriculture Pipes & Fittings", "SWR Drainage System", "Casing & Column Pipes", "HDPE Pipes & Fittings", "Suction Hose", "Braided & Garden Hose"]],
+          ["Texmo", "Burhanpur, MP", ["CPVC Pipes & Fittings", "uPVC Plumbing System", "SWR Drainage System", "Rigid PVC Agriculture", "HDPE Coils & Pipes", "Drip Irrigation System", "Sprinkler Pipes & Fittings", "Water Storage Tanks"]],
+          ["Waterflo", "Rajkot", ["CPVC Pipes & Fittings", "uPVC Plumbing System", "SWR Drainage System", "SWR Pipes & Fittings", "Agriculture Pipes", "Column / Borewell Pipes", "HDPE Pipes"]],
+          ["Johnson Bathrooms", "Baddi and Samba", ["Faucets & Fittings", "Sanitaryware", "Showers & Allied", "Kitchen Sinks", "Wellness & Bathtubs", "Bathroom Accessories"]],
+        ];
+        document.getElementById("idx").innerHTML = BRANDS.map(function (b) { return '<li><span class="mk"></span><span class="t">' + b[0] + "</span></li>"; }).join("");
+        document.getElementById("win").insertAdjacentHTML("beforeend", BRANDS.map(function (b) {
+          return '<div class="page"><h3>' + b[0] + "<small>" + b[1] + "</small></h3><ul>" + b[2].map(function (l) { return "<li>" + l + "</li>"; }).join("") + "</ul></div>";
+        }).join(""));
+        var SWITCH = [11.9, 12.75, 13.6, 14.45, 15.3];
+
+        // 10: the seven product families (site.ts categories)
+        var CATS = ["PVC pipes & fittings", "HDPE pipes", "Sprinkler & drip irrigation", "Bath & sanitaryware", "Casing & column pipes", "Suction & garden hose", "Fittings & accessories"];
+        var TICK = '<svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#f4f4f2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+        document.getElementById("checks").innerHTML = CATS.map(function (c) { return '<li><span class="box"><span class="fill"></span>' + TICK + "</span><span>" + c + "</span></li>"; }).join("");
+
+        // 11: pipe sizes (IS 4985 series) as chips
+        var SIZES = [20, 25, 32, 40, 50, 63, 75, 90, 110, 140, 160, 200, 250, 315, 400];
+        document.getElementById("chips").innerHTML = SIZES.map(function (s, i) {
+          var ang = (i / SIZES.length) * Math.PI * 2 + 0.2, rx = 760 + (i % 2) * 60, ry = 380 - (i % 2) * 60;
+          var x = 960 + Math.cos(ang) * rx - 70, y = 540 + Math.sin(ang) * ry - 30;
+          return '<div class="chip' + (i % 4 === 3 ? " b" : "") + '" style="left:' + x.toFixed(0) + "px;top:" + y.toFixed(0) + 'px">' + s + " mm</div>";
+        }).join("");
+
+        var CHAT = "110 mm SWR pipe × 20, 1 inch CPVC elbow × 50, solvent cement × 4";
+
+        Promise.all([document.fonts.ready].concat(["pipe-stack", "fittings", "hdpe-coil", "tap", "counter"].map(function (n) {
+          return new Promise(function (res) { var im = new Image(); im.onload = function () { IMGS[n] = im; res(); }; im.onerror = res; im.src = "assets/img/" + n + ".jpg"; });
+        }))).then(function () {
+          var tl = gsap.timeline({ paused: true });
+
+          // lay out lines centred; returns per-word reveal with re-centring (the sentence grows from the middle)
+          function playLine(id, start, step, opts) {
+            opts = opts || {};
+            var el = L[id], ln = el.querySelector(".ln"), ws = ln.querySelectorAll(".w");
+            var total = ln.offsetWidth, y = +el.dataset.y, h = ln.offsetHeight;
+            if (!opts.static) { ln.style.left = (960 - total / 2) + "px"; ln.style.top = (y - h / 2) + "px"; }
+            var cum = [], acc = 0;
+            ws.forEach(function (w, i) { acc = w.offsetLeft + w.offsetWidth; cum.push(acc); });
+            if (!opts.static) tl.fromTo(ln, { x: (total - cum[0]) / 2 }, { x: (total - cum[0]) / 2, duration: 0.01 }, start - 0.02);
+            ws.forEach(function (w, i) {
+              var t = start + (opts.times ? opts.times[i] : i * step);
+              var from = w.classList.contains("acc") ? { opacity: 0, y: 14, filter: "blur(6px)" } : { opacity: 0, y: 10 };
+              tl.fromTo(w, from, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.32, ease: "power2.out" }, t);
+              if (!opts.static && i > 0) tl.to(ln, { x: (total - cum[i]) / 2, duration: 0.36, ease: "power3.out" }, t);
+              // the newest plain word flashes teal, then settles
+              if (!w.classList.contains("acc") && !w.classList.contains("tile-inline") && !w.classList.contains("spin") && opts.flash !== false)
+                tl.fromTo(w, { color: opts.dark ? "#5aa9ae" : "#0b5d63" }, { color: opts.dark ? "#ecece8" : "#111111", duration: 0.35, ease: "power1.out" }, t + 0.12);
+            });
+          }
+
+          // ===== 1 (0 to 1.85) =====
+          playLine("l1", 0.15, 0, { times: [0, 0.3, 0.5, 0.7, 0.95] });
+          // ===== 2 (1.85 to 4.25): tiles rise and resolve; "from ten brands" =====
+          document.querySelectorAll(".tile").forEach(function (tile, i) {
+            tl.fromTo(tile, { y: 420 + rnd(i) * 200, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, TILE_START + i * 0.06);
+            tl.to(tile, { y: -90 - rnd(i + 9) * 60, duration: 1.7, ease: "none" }, TILE_START + 0.7 + i * 0.06);
+          });
+          playLine("l2", 2.35, 0, { times: [0, 0.35], dark: true });
+          // ===== 3 (4.25 to 6.9) =====
+          playLine("l3", 4.4, 0.17);
+          tl.to("#l3 .w", { color: "#0b5d63", duration: 0.2 }, 6.25);
+          // ===== 4 (6.9 to 7.95): Meet =====
+          tl.fromTo("#br1", { x: -160, y: -100, opacity: 0 }, { x: 0, y: 0, opacity: 1, duration: 0.3, ease: "expo.out" }, 6.9);
+          tl.fromTo("#br2", { x: 160, y: 100, opacity: 0 }, { x: 0, y: 0, opacity: 1, duration: 0.3, ease: "expo.out" }, 6.9);
+          tl.fromTo("#meet-word", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }, 7.0);
+          tl.to("#meet-word", { opacity: 0, duration: 0.15 }, 7.62);
+          tl.to("#br1", { x: 230, y: 70, duration: 0.25, ease: "expo.in" }, 7.65);
+          tl.to("#br2", { x: -230, y: -70, duration: 0.25, ease: "expo.in" }, 7.65);
+          // ===== 5 (7.95 to 9.7): logo types in =====
+          tl.fromTo("#logo1 svg", { scale: 0.2, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.35, ease: "steps(6)" }, 7.98);
+          document.querySelectorAll("#logo1 .ch").forEach(function (c, i) {
+            var t = 8.25 + i * 0.045;
+            tl.fromTo(c, { opacity: 0, color: "#5aa9ae" }, { opacity: 1, duration: 0.01 }, t);
+            tl.to(c, { color: "#ecece8", duration: 0.2 }, t + 0.18);
+          });
+          // ===== 6 (9.7 to 11.6) =====
+          playLine("l6", 9.85, 0, { times: [0, 0.3, 0.6], dark: true });
+          // ===== 7 (11.6 to 16): the brand index in use =====
+          tl.fromTo("#idx li", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.4, ease: "power2.out", stagger: 0.06 }, 11.62);
+          tl.fromTo("#panel", { y: 120, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 11.65);
+          var lis = document.querySelectorAll("#idx li"), pages = document.querySelectorAll(".page");
+          lis.forEach(function (li, i) {
+            var on = SWITCH[i], off = SWITCH[i + 1];
+            tl.fromTo(li.querySelector(".mk"), { scale: 0 }, { scale: 1, duration: 0.25, ease: "back.out(3)" }, on);
+            tl.fromTo(li.querySelector(".t"), { color: "#111111" }, { color: "#0b5d63", duration: 0.2 }, on);
+            tl.fromTo(pages[i], { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, on + 0.02);
+            tl.fromTo(pages[i].querySelectorAll("li"), { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.3, ease: "power2.out", stagger: 0.03 }, on + 0.08);
+            if (off) {
+              tl.to(li.querySelector(".mk"), { scale: 0, duration: 0.2 }, off);
+              tl.to(li.querySelector(".t"), { color: "#111111", duration: 0.2 }, off);
+              tl.to(pages[i], { opacity: 0, y: -20, duration: 0.25, ease: "power2.in" }, off - 0.05);
+            }
+          });
+          // cursor glides to each brand just before it switches
+          tl.fromTo("#cur7", { x: 640, y: 980 }, { x: 640, y: 980, duration: 0.01 }, 11.6);
+          SWITCH.forEach(function (on, i) { tl.to("#cur7", { x: 420 + (i % 2) * 40, y: 316 + i * 92, duration: i ? 0.45 : 0.28, ease: "power3.inOut" }, i ? on - 0.5 : 11.62); });
+          // ===== 8 (16 to 18.8): send your list =====
+          playLine("l8", 16.1, 0, { times: [0, 0.25, 0.5, 0.7] });
+          tl.fromTo("#cur8", { x: 1300, y: 900 }, { x: 1000, y: 580, duration: 0.55, ease: "power3.inOut" }, 16.35);
+          tl.to("#l8 .tile-inline", { scale: 0.9, duration: 0.07 }, 16.95);
+          tl.to("#l8 .tile-inline", { scale: 1, duration: 0.25, ease: "back.out(3)" }, 17.02);
+          tl.to("#l8", { opacity: 0, y: -40, duration: 0.3, ease: "power2.in" }, 17.25);
+          tl.fromTo("#composer", { opacity: 0, y: 60, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "power3.out" }, 17.35);
+          tl.to("#cur8", { x: 1330, y: 680, duration: 0.6, ease: "power3.inOut" }, 17.6);
+          tl.to("#send", { scale: 0.94, duration: 0.07 }, 18.35);
+          tl.to("#send", { scale: 1, backgroundColor: "#0b5d63", color: "#f4f4f2", borderColor: "#0b5d63", duration: 0.25, ease: "back.out(3)" }, 18.42);
+          // ===== 9 (18.8 to 21): spinner band =====
+          tl.fromTo("#band", { scaleY: 0 }, { scaleY: 1, duration: 0.45, ease: "expo.out" }, 18.8);
+          playLine("l9", 19.05, 0, { times: [0, 0.25, 0.5, 0.75], dark: true });
+          // ===== 10 (21 to 23.7): the seven families tick off =====
+          var items = document.querySelectorAll("#checks li");
+          tl.fromTo("#checks", { y: 540 - 54 }, { y: 540 - 54, duration: 0.01 }, 21);
+          tl.fromTo(items, { opacity: 0 }, { opacity: 0.3, duration: 0.3, stagger: 0.03 }, 21.0);
+          items.forEach(function (it, i) {
+            var t = 21.25 + i * 0.32;
+            tl.to("#checks", { y: 540 - 54 - i * 108, duration: 0.3, ease: "power3.out" }, t - 0.1);
+            tl.to(it, { opacity: 1, duration: 0.15 }, t - 0.1);
+            tl.fromTo(it.querySelector(".fill"), { scale: 0 }, { scale: 1, duration: 0.2, ease: "back.out(2.5)" }, t);
+            tl.fromTo(it.querySelector(".box svg"), { opacity: 0 }, { opacity: 1, duration: 0.1 }, t + 0.06);
+            if (i < items.length - 1) tl.to(it, { opacity: 0.45, duration: 0.2 }, t + 0.25);
+          });
+          // ===== 11 (23.7 to 25.7): sizes =====
+          document.querySelectorAll(".chip").forEach(function (c, i) {
+            var dx = (c.offsetLeft + 70 - 960) * 0.25, dy = (c.offsetTop + 30 - 540) * 0.25;
+            tl.fromTo(c, { x: -dx, y: -dy, opacity: 0, scale: 0.7 }, { x: dx * 0.6, y: dy * 0.6, opacity: 1, scale: 1, duration: 1.9, ease: "power2.out" }, 23.7 + rnd(i + 70) * 0.35);
+          });
+          playLine("l11", 23.8, 0.16);
+          // ===== 12 (25.7 to 27.1) =====
+          var pill = document.getElementById("pill");
+          tl.fromTo(pill, { xPercent: -50, yPercent: -50, scale: 0.92, opacity: 0 }, { xPercent: -50, yPercent: -50, scale: 1, opacity: 1, duration: 0.35, ease: "power3.out" }, 25.72);
+          playLine("l12", 25.85, 0, { times: [0, 0.15, 0.3, 0.5], static: true });
+          // ===== 13 (27.1 to 32): end =====
+          var nm2 = document.querySelector("#logo2 .nm"), mk2 = document.querySelector("#logo2 svg");
+          var shift = (nm2.offsetWidth + 28) / 2;
+          tl.fromTo(mk2, { x: shift, scale: 0.2, opacity: 0 }, { x: shift, scale: 1, opacity: 1, duration: 0.4, ease: "steps(6)" }, 27.15);
+          tl.to(mk2, { x: 0, duration: 0.55, ease: "power3.inOut" }, 27.85);
+          tl.fromTo(nm2, { x: shift, clipPath: "inset(-20% 100% -20% 0%)" }, { x: 0, clipPath: "inset(-20% 0% -20% 0%)", duration: 0.55, ease: "power3.inOut" }, 27.85);
+          tl.to("#logo2", { y: -80, duration: 0.6, ease: "power3.inOut" }, 28.9);
+          playLine("l13", 29.15, 0.16);
+
+          // ---------- per-frame drawing: mosaics, pixel squares, tile resolve, pixel frame, typing, spinner ----------
+          var L3W = document.querySelector("#l3 .ln").offsetWidth;
+          var mo1 = document.getElementById("mo1").getContext("2d"), mo9 = document.getElementById("mo9").getContext("2d");
+          var fr = document.getElementById("frame").getContext("2d");
+          var pan = document.getElementById("pan").getContext("2d");
+          var typed = document.getElementById("typed"), spinarc = document.getElementById("spinarc");
+          var sqs = document.querySelectorAll(".sq"), RMS = window.AUDIO_RMS || [];
+          var tileCanvases = document.querySelectorAll(".tile canvas");
+          var RES = [5, 7, 10, 14, 20, 30, 48, 90, 220];
+          // the panel backdrop: the counter photo as a coarse mosaic, drawn once
+          if (IMGS.counter) { pan.imageSmoothingEnabled = true; pan.drawImage(IMGS.counter, 300, 0, 1400, 1116, 0, 0, 94, 80); }
+          pan.canvas.style.imageRendering = "pixelated";
+
+          function mosaic(ctx, t, kind) {
+            var C = 40, step = Math.floor(t * 6);
+            for (var y = 0; y < 27; y++) for (var x = 0; x < 48; x++) {
+              var v;
+              if (kind === 1) { var d1 = Math.hypot(x - 46, y - 1) / 26, d2 = Math.hypot(x - 2, y - 26) / 30; v = Math.max(0, 1 - Math.min(d1, d2)) * 0.55; }
+              else { v = Math.pow(1 - Math.abs(y - 13.5) / 13.5, 1.6); }
+              v = Math.max(0, Math.min(1, v + (rnd(x * 97 + y * 13 + step * 7) - 0.5) * 0.16));
+              ctx.fillStyle = mix(CREAM, kind === 1 ? TEAL_L : TEAL, v);
+              ctx.fillRect(x * C, y * C, C, C);
+            }
+          }
+          tl.eventCallback("onUpdate", function () {
+            var t = tl.time(), step = Math.floor(t * 3);
+            if (t < 1.9) mosaic(mo1, t, 1);
+            if (t > 18.75 && t < 21.05) mosaic(mo9, t, 2);
+            // pixel squares jump every third of a second
+            sqs.forEach(function (q) {
+              var s = +q.dataset.s, k = rnd(s * 31 + step * 3);
+              q.style.left = (120 + rnd(s * 7 + step) * 1680).toFixed(0) + "px";
+              q.style.top = (90 + rnd(s * 11 + step * 5) * 900).toFixed(0) + "px";
+              q.style.opacity = k > 0.25 ? 1 : 0;
+              q.style.transform = "scale(" + (k > 0.7 ? 1.5 : 1) + ")";
+            });
+            // tiles: coarse mosaic that resolves step by step
+            tileCanvases.forEach(function (cv, i) {
+              var tt = TILES[i], img = IMGS[tt[0]]; if (!img || t < 1.8 || t > 4.3) return;
+              var k = Math.max(0, Math.floor((t - TILE_START - i * 0.06) / 0.09)), res = RES[Math.min(RES.length - 1, k)];
+              var c = cv.getContext("2d"); c.imageSmoothingEnabled = false;
+              if (!cv._small) { cv._small = document.createElement("canvas"); }
+              var sm = cv._small; sm.width = res; sm.height = res;
+              var sc = sm.getContext("2d"); sc.imageSmoothingEnabled = true; sc.drawImage(img, tt[1], tt[2], tt[3], tt[3], 0, 0, res, res);
+              c.drawImage(sm, 0, 0, res, res, 0, 0, cv.width, cv.height);
+            });
+            // pixel frame grows out from the sentence and floods to the edges (6.2 to 6.9)
+            if (t > 4.2 && t < 6.95) {
+              fr.clearRect(0, 0, 1920, 1080);
+              var g = Math.max(0, Math.min(1, (t - 6.2) / 0.62)); g = g * g;
+              if (g > 0) {
+                var C = 24, iw0 = L3W + 120, ix = (960 - iw0 / 2) * (1 - g), iy = 470 - g * 470, iw = iw0 + g * (1920 - iw0), ih = 140 + g * 940, th = 24 + g * 900;
+                fr.fillStyle = "#0b5d63";
+                for (var y = 0; y < 45; y++) for (var x = 0; x < 80; x++) {
+                  var px = x * C + C / 2, py = y * C + C / 2;
+                  var dx = Math.max(ix - px, 0, px - (ix + iw)), dy = Math.max(iy - py, 0, py - (iy + ih)), d = Math.max(dx, dy);
+                  var inside = px > ix && px < ix + iw && py > iy && py < iy + ih;
+                  var ring = !inside && d < th && rnd(x * 7 + y * 131 + Math.floor(t * 12)) > d / th * 0.6;
+                  var outer = d < th * 0.15 && !inside;
+                  if (ring || outer) fr.fillRect(x * C + 2, y * C + 2, C - 4, C - 4);
+                }
+              }
+            }
+            // typing in the composer (17.5 to 18.25)
+            var n = Math.round(CHAT.length * Math.max(0, Math.min(1, (t - 17.5) / 0.75)));
+            if (typed._n !== n) { typed.textContent = CHAT.slice(0, n); typed._n = n; }
+            spinarc.setAttribute("transform", "rotate(" + ((t * 400) % 360).toFixed(1) + " 28 28)");
+            // glows breathe with the music
+            var v = RMS[Math.min(RMS.length - 1, Math.max(0, Math.round(t * 30)))] || 0.3;
+            document.querySelectorAll(".glow").forEach(function (gl) { gl.style.opacity = (0.55 + v * 0.5).toFixed(3); });
+          });
+
+          window.__timelines["main"] = tl;
+        });
+      })();
+    </script>
+  </body>
+</html>

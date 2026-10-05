@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Market Movers brag (product cards)</title>
+    <script src="assets/js/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Geist"; src: url("assets/fonts/geist.woff2") format("woff2"); font-weight: 100 900; }
+      @font-face { font-family: "Plex Hindi"; src: url("assets/fonts/plex-hi.woff2") format("woff2"); font-weight: 400; }
+      :root { --teal: #0b5d63; --teal-light: #5aa9ae; --off: #f4f4f2; --lg: #dadad6; --mg: #a9a9a4; --dg: #575753; --ink: #111111; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--teal); }
+      body { font-family: "Geist", sans-serif; -webkit-font-smoothing: antialiased; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--teal); }
+      .clip { position: absolute; inset: 0; overflow: hidden; }
+
+      /* poster cards: text and drawing scale with the card (container units) */
+      .card { position: absolute; overflow: hidden; container-type: size; }
+      .card .nm { position: absolute; left: 6cqmin; top: 5cqmin; font-size: min(5.6cqw, 9cqh); font-weight: 700; letter-spacing: -0.02em; line-height: 1; max-width: 60cqw; }
+      .card .bl { position: absolute; left: 6cqmin; bottom: 5cqmin; font-size: max(13px, min(1.7cqw, 2.8cqh)); line-height: 1.35; font-weight: 500; }
+      .card .bl span { display: block; }
+      .card .hi { position: absolute; right: 6cqmin; bottom: 5cqmin; font-family: "Plex Hindi", sans-serif; font-size: max(13px, min(1.9cqw, 3.1cqh)); }
+      .card svg { position: absolute; left: 50%; top: 54%; width: min(84cqh, 88cqw); height: min(84cqh, 88cqw); transform: translate(-50%, -50%); overflow: visible; }
+      .c-teal { background: var(--teal); color: var(--off); }
+      .c-lg { background: var(--lg); color: var(--teal); }
+      .c-dg { background: var(--dg); color: #ecece8; }
+      .c-mg { background: var(--mg); color: var(--teal); }
+
+      /* room / grid scene */
+      .room { background: #e4e4e1; }
+      .room .blk { position: absolute; }
+      .room .hl { position: absolute; background: rgb(17 17 17 / 0.18); }
+      .room .node { position: absolute; width: 12px; height: 12px; margin: -6px 0 0 -6px; background: var(--teal); border-radius: 2px; }
+      .room .cap { position: absolute; font-size: 22px; font-weight: 500; letter-spacing: 0.06em; color: var(--ink); }
+      .room .caphi { position: absolute; font-family: "Plex Hindi", sans-serif; font-size: 22px; color: var(--ink); }
+      .room .win { position: absolute; overflow: hidden; }
+      .room .win img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+      .tile { position: absolute; width: 190px; height: 190px; }
+      .tile svg { position: absolute; left: 50%; top: 50%; width: 130px; height: 130px; transform: translate(-50%, -50%); overflow: visible; }
+
+      /* end card */
+      .end { background: var(--teal); }
+      .end .row { position: absolute; left: 0; right: 0; top: 0; bottom: 0; display: flex; align-items: center; justify-content: center; gap: 40px; padding-right: 200px; }
+      .end .mm { height: 190px; width: auto; overflow: visible; }
+      .end .word { position: relative; font-size: 196px; font-weight: 800; letter-spacing: -0.045em; color: #f6f1e7; line-height: 1; }
+      .end .word svg { position: absolute; left: 100%; bottom: -6px; width: 260px; height: 260px; margin-left: -70px; overflow: visible; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="14" data-width="1920" data-height="1080">
+      <!-- pass 1: pipes and fittings; pass 2: tanks, farm and bath -->
+      <section id="g0" class="clip" data-start="0" data-duration="2.15" data-track-index="1"></section>
+      <section id="r0" class="clip room" data-start="2.15" data-duration="2.6" data-track-index="1"></section>
+      <section id="e0" class="clip end" data-start="4.75" data-duration="1.95" data-track-index="1"></section>
+      <section id="g1" class="clip" data-start="6.7" data-duration="2.15" data-track-index="1"></section>
+      <section id="r1" class="clip room" data-start="8.85" data-duration="2.6" data-track-index="1"></section>
+      <section id="e1" class="clip end" data-start="11.45" data-duration="2.55" data-track-index="1"></section>
+      <audio id="sx0" src="assets/sfx/impactWood_light_000.ogg" data-start="0" data-duration="0.26" data-track-index="11" data-volume="0.55"></audio>
+      <audio id="sx1" src="assets/sfx/impactWood_light_001.ogg" data-start="0.4" data-duration="0.26" data-track-index="12" data-volume="0.55"></audio>
+      <audio id="sx2" src="assets/sfx/impactWood_light_002.ogg" data-start="0.7" data-duration="0.26" data-track-index="13" data-volume="0.55"></audio>
+      <audio id="sx3" src="assets/sfx/impactWood_light_003.ogg" data-start="1.0" data-duration="0.26" data-track-index="14" data-volume="0.55"></audio>
+      <audio id="sx4" src="assets/sfx/impactWood_light_004.ogg" data-start="1.25" data-duration="0.26" data-track-index="15" data-volume="0.55"></audio>
+      <audio id="sx5" src="assets/sfx/card-slide-1.ogg" data-start="2.2" data-duration="0.6" data-track-index="16" data-volume="0.4"></audio>
+      <audio id="sx6" src="assets/sfx/drop_001.ogg" data-start="3.1" data-duration="0.11" data-track-index="17" data-volume="0.6"></audio>
+      <audio id="sx7" src="assets/sfx/impactSoft_medium_001.ogg" data-start="4.75" data-duration="0.18" data-track-index="18" data-volume="0.7"></audio>
+      <audio id="sx8" src="assets/sfx/rollover2.ogg" data-start="4.95" data-duration="0.057" data-track-index="19" data-volume="0.6"></audio>
+      <audio id="sx9" src="assets/sfx/impactWood_light_000.ogg" data-start="6.7" data-duration="0.26" data-track-index="20" data-volume="0.55"></audio>
+      <audio id="sx10" src="assets/sfx/impactWood_light_001.ogg" data-start="7.1" data-duration="0.26" data-track-index="21" data-volume="0.55"></audio>
+      <audio id="sx11" src="assets/sfx/impactWood_light_002.ogg" data-start="7.4" data-duration="0.26" data-track-index="22" data-volume="0.55"></audio>
+      <audio id="sx12" src="assets/sfx/impactWood_light_003.ogg" data-start="7.7" data-duration="0.26" data-track-index="23" data-volume="0.55"></audio>
+      <audio id="sx13" src="assets/sfx/impactWood_light_004.ogg" data-start="7.95" data-duration="0.26" data-track-index="24" data-volume="0.55"></audio>
+      <audio id="sx14" src="assets/sfx/card-slide-1.ogg" data-start="8.9" data-duration="0.6" data-track-index="25" data-volume="0.4"></audio>
+      <audio id="sx15" src="assets/sfx/drop_001.ogg" data-start="9.8" data-duration="0.11" data-track-index="26" data-volume="0.6"></audio>
+      <audio id="sx16" src="assets/sfx/impactSoft_medium_001.ogg" data-start="11.45" data-duration="0.18" data-track-index="27" data-volume="0.7"></audio>
+      <audio id="sx17" src="assets/sfx/rollover2.ogg" data-start="11.65" data-duration="0.057" data-track-index="28" data-volume="0.6"></audio>
+    </div>
+
+    <script>
+      (function () {
+        // ---- line drawings (viewBox 0 0 400 400, stroke = currentColor) ----
+        var S = 'fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"';
+        var DRAW = {
+          pipe: '<g ' + S + '><ellipse cx="88" cy="200" rx="34" ry="66"/><ellipse cx="88" cy="200" rx="22" ry="50"/><path d="M88 134 H322 M88 266 H322"/><path d="M322 134 A34 66 0 0 1 322 266"/><path d="M262 134 A34 66 0 0 1 262 266" stroke-width="4"/><path d="M128 158 H232" stroke-width="4"/></g>',
+          elbow: '<g ' + S + '><path d="M96 112 H176 A146 146 0 0 1 322 258 V318"/><path d="M96 208 H176 A50 50 0 0 1 226 258 V318"/><rect x="58" y="94" width="48" height="132" rx="6"/><rect x="208" y="308" width="132" height="48" rx="6"/></g>',
+          valve: '<g ' + S + '><circle cx="200" cy="232" r="58"/><path d="M142 204 H96 L80 218 V246 L96 260 H142"/><path d="M258 204 H304 L320 218 V246 L304 260 H258"/><path d="M60 214 V250 M340 214 V250"/><rect x="186" y="150" width="28" height="26" rx="4"/><path d="M196 150 L338 116 L344 134 L206 166"/><circle cx="200" cy="232" r="18" stroke-width="5"/></g>',
+          coil: '<g fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round"><ellipse cx="196" cy="168" rx="150" ry="56"/><ellipse cx="196" cy="196" rx="146" ry="56"/><ellipse cx="196" cy="224" rx="142" ry="56"/><ellipse cx="196" cy="252" rx="138" ry="56"/><path d="M334 252 Q378 300 336 344"/></g>',
+          tap: '<g ' + S + '><rect x="168" y="318" width="76" height="16" rx="4"/><rect x="180" y="164" width="52" height="154" rx="10"/><path d="M180 192 H112 Q94 192 94 210 V236"/><path d="M206 164 L262 104"/><circle cx="94" cy="262" r="6" fill="currentColor"/></g>',
+          tank: '<g ' + S + '><ellipse cx="200" cy="108" rx="112" ry="28"/><path d="M88 108 V316 A112 28 0 0 0 312 316 V108"/><path d="M88 176 A112 28 0 0 0 312 176 M88 246 A112 28 0 0 0 312 246" stroke-width="4"/><ellipse cx="200" cy="100" rx="40" ry="10" stroke-width="5"/></g>',
+          tee: '<g ' + S + '><path d="M78 160 H322 V236 H240 V318 H160 V236 H78 Z"/><rect x="56" y="146" width="40" height="104" rx="6"/><rect x="304" y="146" width="40" height="104" rx="6"/><rect x="146" y="304" width="108" height="40" rx="6"/></g>',
+          sprinkler: '<g ' + S + '><path d="M200 360 V226"/><rect x="184" y="198" width="32" height="28" rx="5"/><path d="M216 208 L262 186"/><path d="M60 360 H340" stroke-width="4"/></g><g fill="currentColor"><circle cx="292" cy="170" r="7"/><circle cx="318" cy="168" r="6"/><circle cx="342" cy="176" r="6"/><circle cx="300" cy="140" r="6"/><circle cx="330" cy="132" r="5"/><circle cx="358" cy="142" r="5"/><circle cx="284" cy="110" r="5"/><circle cx="312" cy="98" r="5"/><circle cx="104" cy="170" r="7"/><circle cx="80" cy="168" r="6"/><circle cx="58" cy="176" r="6"/><circle cx="98" cy="140" r="6"/><circle cx="70" cy="132" r="5"/><circle cx="44" cy="142" r="5"/><circle cx="114" cy="110" r="5"/><circle cx="88" cy="98" r="5"/></g>',
+          basin: '<g ' + S + '><path d="M70 196 H330 Q330 296 200 296 Q70 296 70 196 Z"/><path d="M60 196 H340"/><path d="M178 296 L186 360 H214 L222 296"/><path d="M200 196 V150 H172"/><circle cx="200" cy="244" r="8" stroke-width="5"/></g>',
+          shower: '<g ' + S + '><path d="M322 46 V120 Q322 150 292 150 H238"/><path d="M168 132 H252 L238 168 H182 Z"/></g><g fill="currentColor"><rect x="186" y="188" width="6" height="34" rx="3"/><rect x="206" y="196" width="6" height="40" rx="3"/><rect x="226" y="188" width="6" height="34" rx="3"/><rect x="196" y="250" width="6" height="34" rx="3"/><rect x="216" y="258" width="6" height="40" rx="3"/><rect x="186" y="308" width="6" height="30" rx="3"/><rect x="226" y="304" width="6" height="34" rx="3"/></g>',
+        };
+        // product, card colour, bottom-left lines (brands from site.ts or the category text), Hindi name
+        var PASSES = [
+          { photo: "assets/img/fittings.jpg", cards: [
+            ["pipe", "uPVC Pipe", "c-teal", ["Finolex", "Dutron", "Texmo"], "यूपीवीसी पाइप"],
+            ["elbow", "CPVC Elbow", "c-lg", ["Elbows", "Tees", "Reducers"], "सीपीवीसी एल्बो"],
+            ["valve", "Ball Valve", "c-dg", ["Valves", "Clamps", "Solvent cement"], "बॉल वाल्व"],
+            ["coil", "HDPE Coil", "c-mg", ["Texmo", "Dutron", "Kisan"], "एचडीपीई कॉइल"],
+            ["tap", "Basin Tap", "c-teal", ["Johnson Bathrooms", "Reco"], "नल"],
+          ] },
+          { photo: "assets/img/tap.jpg", cards: [
+            ["tank", "Water Tank", "c-teal", ["Texmo"], "पानी की टंकी"],
+            ["tee", "PVC Tee", "c-lg", ["Elbows", "Tees", "Reducers"], "पीवीसी टी"],
+            ["sprinkler", "Sprinkler", "c-dg", ["Kisan", "Texmo", "Rewa"], "स्प्रिंकलर"],
+            ["basin", "Wash Basin", "c-mg", ["Johnson Bathrooms", "Reco"], "वॉश बेसिन"],
+            ["shower", "Shower", "c-teal", ["Johnson Bathrooms"], "शावर"],
+          ] },
+        ];
+        function svg(k) { return '<svg viewBox="0 0 400 400">' + DRAW[k] + "</svg>"; }
+
+        // layouts (x, y, w, h as fractions of the frame) — the grid splits like the reference
+        var LAYOUTS = [
+          { t: 0.0, r: [[0, 0, 1, 1], [1, 0, 0.6, 1], [1, 0, 0.45, 1], [0, 1, 1, 0.5], [1, 0.5, 0.34, 0.5]] },
+          { t: 0.4, r: [[0, 0, 0.38, 1], [0.38, 0, 0.62, 1], [1, 0, 0.45, 1], [0, 1, 1, 0.5], [1, 0.5, 0.34, 0.5]] },
+          { t: 0.7, r: [[0, 0, 0.26, 1], [0.26, 0, 0.29, 1], [0.55, 0, 0.45, 1], [0, 1, 1, 0.5], [1, 0.5, 0.34, 0.5]] },
+          { t: 1.0, r: [[0, 0, 0.26, 0.5], [0.26, 0, 0.29, 0.5], [0.55, 0, 0.45, 0.5], [0, 0.5, 1, 0.5], [1, 0.5, 0.34, 0.5]] },
+          { t: 1.25, r: [[0, 0, 0.26, 0.5], [0.26, 0, 0.29, 0.5], [0.55, 0, 0.45, 0.5], [0, 0.5, 0.66, 0.5], [0.66, 0.5, 0.34, 0.5]] },
+        ];
+        var MOVE = 0.24, ease = gsap.parseEase("expo.inOut");
+
+        var CARDS = [];
+        PASSES.forEach(function (pass, p) {
+          var g = document.getElementById("g" + p);
+          g.innerHTML = pass.cards.map(function (c) {
+            return '<div class="card ' + c[2] + '"><p class="nm">' + c[1] + '</p>' + svg(c[0]) +
+              '<p class="bl">' + c[3].map(function (s) { return "<span>" + s + "</span>"; }).join("") + '</p><p class="hi" lang="hi">' + c[4] + "</p></div>";
+          }).join("");
+          CARDS.push(g.querySelectorAll(".card"));
+
+          // room: pale grid, hairlines, grey blocks, a teal node, the photo window
+          var r = document.getElementById("r" + p);
+          r.innerHTML =
+            '<div class="blk" style="left:0;top:61%;width:17%;height:39%;background:#c9c9c5"></div>' +
+            '<div class="blk" style="left:74%;top:30%;width:26%;height:24%;background:#d2d2ce"></div>' +
+            '<div class="blk" style="left:17%;top:30%;width:57%;height:30%;background:#ececea"></div>' +
+            '<div class="hl" style="left:17%;top:0;width:2px;height:100%"></div>' +
+            '<div class="hl" style="left:74%;top:0;width:2px;height:100%"></div>' +
+            '<div class="hl" style="left:0;top:30%;width:100%;height:2px"></div>' +
+            '<div class="hl" style="left:0;top:61%;width:100%;height:2px"></div>' +
+            '<div class="win" style="left:17%;top:30%;width:57%;height:31%"><img src="' + pass.photo + '" alt="Products from the catalogue" /></div>' +
+            '<div class="node" style="left:17%;top:30%"></div>' +
+            '<p class="cap" style="left:calc(17% + 22px);top:calc(30% - 40px)">READY STOCK</p>' +
+            '<p class="caphi" lang="hi" style="left:calc(74% - 220px);top:calc(61% + 14px)">स्टॉक में तैयार</p>' +
+            pass.cards.map(function (c) { return '<div class="tile ' + c[2] + '">' + svg(c[0]) + "</div>"; }).join("");
+
+          var e = document.getElementById("e" + p);
+          e.innerHTML = '<div class="row"><svg class="mm" data-weight="18"></svg><p class="word">Market Movers' + svg(pass.cards[0][0]).replace("<svg ", '<svg class="hero" style="color:#5aa9ae" ') + "</p></div>";
+        });
+
+        // woven MM mark (LogoMark.astro geometry), on teal: inner off-white, outer light teal
+        function markSVG(svgEl, id, weight, inner, outer) {
+          var a = 64, b = 112, s = 0.625, t2 = 24, B = 200, sw = weight, gap = Math.round(weight * 0.5);
+          var v1 = a * s, v2 = t2 + b * s, yc = t2 + (b - a) * s;
+          var P = function (pts) { return "M" + pts.map(function (q) { return q.join(","); }).join("L"); };
+          var len = Math.hypot(1, s), ux = -1 / len, uy = s / len, r = function (k) { return +k.toFixed(2); };
+          var seg = function (L) { return { left: "M" + -a + "," + r(yc - L) + "L" + -a + "," + r(yc + L), right: "M" + r(a - ux * L) + "," + r(yc - uy * L) + "L" + r(a + ux * L) + "," + r(yc + uy * L) }; };
+          var cut = seg(sw * 2), redraw = seg(sw * 3.6), pad = sw;
+          svgEl.setAttribute("viewBox", (-b - pad) + " " + (-pad * 2) + " " + (2 * (b + pad)) + " " + (B + pad * 3));
+          var st = 'fill="none" stroke-width="' + sw + '" stroke-linejoin="miter" stroke-miterlimit="4"';
+          svgEl.innerHTML = '<mask id="' + id + '" maskUnits="userSpaceOnUse" x="-400" y="-400" width="800" height="800"><rect x="-400" y="-400" width="800" height="800" fill="#fff"/><path d="' + cut.left + cut.right + '" stroke="#000" stroke-width="' + (sw + 2 * gap) + '"/></mask>' +
+            '<g><path d="' + P([[a, B], [b, B], [b, t2], [0, v2], [-b, t2], [-b, B], [-a, B]]) + '" stroke="' + outer + '" mask="url(#' + id + ')" ' + st + '/><path d="' + redraw.right + '" stroke="' + outer + '" ' + st + "/></g>" +
+            '<g><path d="' + P([[-a, B], [-a, 0], [0, v1], [a, 0], [a, B]]) + '" stroke="' + inner + '" stroke-linecap="square" mask="url(#' + id + ')" ' + st + '/><path d="' + redraw.left + '" stroke="' + inner + '" ' + st + "/></g>";
+        }
+        document.querySelectorAll(".end .mm").forEach(function (el, i) { markSVG(el, "mme" + i, 18, "#f6f1e7", "#5aa9ae"); });
+
+        // grid layout is a pure function of time (cards resize, so it is laid out per frame)
+        function lerp(a, b, k) { return a + (b - a) * k; }
+        function layoutAt(lt) {
+          var i = 0;
+          while (i < LAYOUTS.length - 1 && lt >= LAYOUTS[i + 1].t) i++;
+          var cur = LAYOUTS[i], next = LAYOUTS[i + 1];
+          // each change happens over MOVE seconds, ending on its key time
+          if (next && lt > next.t - MOVE) { var k = ease((lt - (next.t - MOVE)) / MOVE); return cur.r.map(function (r, j) { return r.map(function (v, q) { return lerp(v, next.r[j][q], k); }); }); }
+          return cur.r;
+        }
+        // shift: the first layout change already starts before 0.4; keep the full card on screen until then
+        LAYOUTS.forEach(function (L) { if (L.t > 0) L.t += MOVE * 0.5; });
+
+        document.fonts.ready.then(function () {
+          var tl = gsap.timeline({ paused: true });
+
+          PASSES.forEach(function (pass, p) {
+            var P = p * 6.7, r = "#r" + p, e = "#e" + p;
+            // room: tiles fly in one by one and stack, then sink into the window as the photo opens
+            var tiles = document.querySelectorAll(r + " .tile");
+            tiles.forEach(function (tile, i) {
+              tl.fromTo(tile, { x: -260, y: 1180, rotation: -8 }, { x: 260 + i * 120, y: 470 - i * 60, rotation: 0, duration: 0.5, ease: "expo.out" }, P + 2.18 + i * 0.12);
+              tl.to(tile, { x: 520 + i * 190, y: 360 + (i % 2) * 120, scale: 0.35, opacity: 0, duration: 0.45, ease: "expo.in" }, P + 3.0 + i * 0.04);
+            });
+            tl.fromTo(r + " .win", { clipPath: "inset(50% 50% 50% 50%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.55, ease: "expo.out" }, P + 3.12);
+            tl.fromTo(r + " .win img", { scale: 1.25 }, { scale: 1.04, duration: 1.6, ease: "power2.out" }, P + 3.12);
+            tl.fromTo(r + " .node", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(3)" }, P + 2.3);
+            tl.fromTo(r + " .cap", { opacity: 0, x: -12 }, { opacity: 1, x: 0, duration: 0.35, ease: "power2.out" }, P + 2.45);
+            tl.fromTo(r + " .caphi", { opacity: 0 }, { opacity: 1, duration: 0.4 }, P + 2.6);
+            tl.fromTo(r + " .hl", { scaleX: 0, scaleY: 0 }, { scaleX: 1, scaleY: 1, duration: 0.5, ease: "expo.out", stagger: 0.05 }, P + 2.15);
+            // end card: the wordmark is there on the cut; the drawing slides in and tucks under the last letter
+            tl.fromTo(e + " .word", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: "expo.out" }, P + 4.75);
+            tl.fromTo(e + " .mm", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: "expo.out" }, P + 4.78);
+            tl.fromTo(e + " .hero", { x: 420, rotation: 12, opacity: 0 }, { x: 0, rotation: -6, opacity: 1, duration: 0.6, ease: "expo.out" }, P + 4.95);
+          });
+
+          tl.eventCallback("onUpdate", function () {
+            var t = tl.time();
+            PASSES.forEach(function (pass, p) {
+              var lt = t - p * 6.7;
+              if (lt < 0 || lt > 2.2) return;
+              var R = layoutAt(lt);
+              CARDS[p].forEach(function (card, j) {
+                var q = R[j];
+                card.style.left = (q[0] * 1920).toFixed(1) + "px"; card.style.top = (q[1] * 1080).toFixed(1) + "px";
+                card.style.width = (q[2] * 1920).toFixed(1) + "px"; card.style.height = (q[3] * 1080).toFixed(1) + "px";
+              });
+            });
+          });
+          window.__timelines["main"] = tl;
+          tl.seek(0);
+        });
+      })();
+    </script>
+  </body>
+</html>
