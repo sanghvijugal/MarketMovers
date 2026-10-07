@@ -1,7 +1,7 @@
 # Brag Plan: Market Movers Navratri greeting (vertical, energetic)
 
-- Format: 1080x1920, 30fps, 16.5s; cut to a 120 BPM bed (bundled vol-1 from 16.02s, a beat every 0.5s)
-- Sound: dandiya clacks (Kenney wood impacts) on the beats and on each colour cut; a bell when the MM mark locks
+- Format: 1080x1920, 30fps, 16.5s
+- Sound: a garba-style track composed for this reel (`audio-source/make_garba.py`): 6/8, one bar per second, so the edit's half-second beats land on every dotted quarter. Dhol (dagga + tilli), dandiya clacks (Kenney CC0 wood samples), manjira, shaker, tanpura drone in D and a harmonium tune. It follows the edit: pickup roll into the drop on 1.0, full groove through the nine colours, a break at 9.0 for the bell, a lighter section, a big hit on the end card at 12.5 and a final dhum at 16.0. Soft dandiya clacks stay on the stick hits and colour cuts.
 - Drawn in code (no stock): marigold toran, dandiya sticks with mirror bands and sparks, rangoli mandala, diyas
 
 | Time | Scene |
