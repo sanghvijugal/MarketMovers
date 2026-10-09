@@ -33,7 +33,6 @@
       #s2 { background: radial-gradient(circle at 50% 50%, #0e7078, #073b3f 80%); }
       .mandala { position: absolute; left: 540px; top: 960px; width: 0; height: 0; }
       .mandala svg { position: absolute; left: -500px; top: -500px; width: 1000px; height: 1000px; }
-      #s2-title { top: 1560px; font-size: 92px; font-weight: 700; letter-spacing: -0.03em; color: var(--cream); }
       /* 3: nine colours */
       #s3 { background: var(--ink); }
       .cshot { position: absolute; inset: 0; display: none; }
@@ -43,8 +42,6 @@
       .cshot .shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgb(0 0 0 / 0.45), rgb(0 0 0 / 0) 30%, rgb(0 0 0 / 0) 65%, rgb(0 0 0 / 0.55)); }
       .cshot .cname { position: absolute; left: 0; right: 0; bottom: 230px; text-align: center; font-size: 64px; font-weight: 600; color: #fff; }
       .cshot .chip { position: absolute; left: 50%; bottom: 150px; width: 120px; height: 24px; margin-left: -60px; border-radius: 12px; }
-      #s3-head { position: absolute; left: 140px; right: 140px; top: 200px; padding: 26px 0 30px; border-radius: 28px; background: rgb(17 17 17 / 0.55); margin-top: 170px; text-align: center; z-index: 5; font-size: 96px; font-weight: 600; color: #fff; text-shadow: 0 6px 30px rgb(0 0 0 / 0.5); }
-      #s3-count { position: absolute; left: 410px; right: 410px; top: 570px; padding: 10px 0; border-radius: 999px; background: rgb(17 17 17 / 0.55); text-align: center; z-index: 5; font-size: 34px; letter-spacing: 0.3em; color: #fff; font-weight: 600; }
       /* 4: wish */
       #s4 { background: radial-gradient(circle at 50% 38%, #fff8e8, #f6e3bd 80%); color: var(--ink); }
       #s4 .mandala { top: 760px; }
@@ -74,13 +71,10 @@
 
       <section id="s2" class="clip" data-start="2.5" data-duration="2" data-track-index="1">
         <div class="mandala" id="m2"></div>
-        <p class="center hi" id="s2-title">नौ रातें, नौ रंग</p>
       </section>
 
       <section id="s3" class="clip" data-start="4.5" data-duration="4.5" data-track-index="1">
         <div id="shots"></div>
-        <p id="s3-head" class="hi">नौ रातें, नौ रंग</p>
-        <p id="s3-count"></p>
       </section>
 
       <section id="s4" class="clip" data-start="9" data-duration="3.5" data-track-index="1">
@@ -174,7 +168,7 @@
             (white ? "" : '<div class="tint" style="background:' + c[1] + '"></div>') + '<div class="shade"></div>' +
             '<p class="cname hi">' + c[0] + '</p><div class="chip" style="background:' + c[1] + ';box-shadow:0 0 0 3px #fff"></div></div>';
         }).join("");
-        var cshots = document.querySelectorAll(".cshot"), count = document.getElementById("s3-count");
+        var cshots = document.querySelectorAll(".cshot");
 
         // ---- diyas ----
         var DIYA = '<svg viewBox="0 0 170 150" width="170" height="150"><ellipse cx="85" cy="70" rx="40" ry="60" fill="rgb(255 190 80 / 0.25)" class="glow"/><path class="flame" d="M85 18 C100 45 102 62 85 76 C68 62 70 45 85 18Z" fill="#ffc23a"/><path class="flame" d="M85 40 C92 54 92 64 85 72 C78 64 78 54 85 40Z" fill="#fff4c2"/><path d="M10 88 H160 C150 130 120 146 85 146 C50 146 20 130 10 88Z" fill="#b5501f"/><path d="M10 88 H160" stroke="#f5a300" stroke-width="8" stroke-linecap="round"/><path d="M40 112 H130" stroke="#f5a300" stroke-width="4" stroke-dasharray="6 10"/></svg>';
@@ -216,9 +210,7 @@
             tl.fromTo(rg, { scale: 0, rotation: -90, transformOrigin: "0 0" }, { scale: 1, rotation: 0, transformOrigin: "0 0", duration: 0.6, ease: "back.out(1.6)" }, 2.5 + (4 - i) * 0.08);
           });
           tl.fromTo("#m2 svg", { rotation: 0 }, { rotation: 40, duration: 2, ease: "none" }, 2.5);
-          tl.fromTo("#s2-title", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(2)" }, 3.0);
           // ===== 3 (4.5 to 9): nine colours, one per beat (handled per frame) =====
-          tl.fromTo("#s3-head", { scale: 1.2, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "expo.out" }, 4.5);
           // ===== 4 (9 to 12.5): the mark blooms inside the rangoli, then the wish =====
           document.querySelectorAll("#m4 .ring").forEach(function (rg, i) {
             tl.fromTo(rg, { scale: 0, transformOrigin: "0 0" }, { scale: 1, transformOrigin: "0 0", duration: 0.55, ease: "back.out(1.6)" }, 9.0 + (4 - i) * 0.07);
@@ -242,7 +234,7 @@
           tl.eventCallback("onUpdate", function () {
             var t = tl.time();
             var k = t >= 4.5 && t < 9 ? Math.min(8, Math.floor((t - 4.5) / 0.5)) : -1;
-            if (k !== last) { cshots.forEach(function (c, j) { c.style.display = j === k ? "block" : "none"; }); if (k >= 0) count.textContent = (k + 1) + " / 9"; last = k; }
+            if (k !== last) { cshots.forEach(function (c, j) { c.style.display = j === k ? "block" : "none"; }); last = k; }
             if (k >= 0) { var p = (t - 4.5 - k * 0.5) / 0.5; cshots[k].querySelector(".photo").style.transform = "scale(" + (1.12 - 0.08 * p).toFixed(3) + ")"; }
             strands.forEach(function (st, i) { st.style.rotate = (Math.sin(t * 5 + i * 0.9) * 3.5).toFixed(2) + "deg"; });
             flames.forEach(function (f, i) { f.style.scale = (1 + Math.sin(t * 23 + i * 1.7) * 0.06 + Math.sin(t * 37 + i) * 0.04).toFixed(3); });
