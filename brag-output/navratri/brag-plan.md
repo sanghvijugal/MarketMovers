@@ -1,7 +1,7 @@
 # Brag Plan: Market Movers Navratri greeting (vertical, energetic)
 
 - Format: 1080x1920, 30fps, 16.5s
-- Sound: a garba-style track composed for this reel (`audio-source/make_garba.py`): 6/8, one bar per second, so the edit's half-second beats land on every dotted quarter. Dhol (dagga + tilli), dandiya clacks (Kenney CC0 wood samples), manjira, shaker, tanpura drone in D and a harmonium tune. It follows the edit: pickup roll into the drop on 1.0, full groove through the nine colours, a break at 9.0 for the bell, a lighter section, a big hit on the end card at 12.5 and a final dhum at 16.0. Soft dandiya clacks stay on the stick hits and colour cuts.
+- Sound: no music bed yet (the composed garba track was dropped). Only the soft dandiya clacks on the stick hits and colour cuts and the bell at 9.45 remain; add a licensed garba track before posting.
 - Drawn in code (no stock): marigold toran, dandiya sticks with mirror bands and sparks, rangoli mandala, diyas
 
 | Time | Scene |
@@ -13,3 +13,5 @@
 | 12.5 to 16.5 | end card with diyas: Market Movers, शुभ नवरात्रि, Marhatal, Jabalpur, marketmovers.co.in |
 
 Draft: online Navratri photos not added yet (image libraries blocked by the environment's network policy).
+
+- Paint wipes (p5.brush 2.2.3, MIT): at each cut (2.5, 4.5, 9.0, 12.5s) a two-layer torn-paper band (`brush.wash` with a hand-torn edge, plus crayon and charcoal strokes) sweeps up over 0.6s and covers the screen on the cut frame. Drawn per frame on a transparent WEBGL canvas with fixed seeds, so every render is identical; the canvas is hidden between wipes.
