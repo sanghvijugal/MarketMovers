@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="hi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Market Movers Dussehra</title>
+    <script src="assets/js/gsap.min.js"></script>
+    <script src="assets/js/p5.min.js"></script>
+    <script src="assets/js/p5.brush.js"></script>
+    <style>
+      @font-face { font-family: "Geist"; src: url("assets/fonts/geist.woff2") format("woff2"); font-weight: 100 900; }
+      @font-face { font-family: "Plex Hindi"; src: url("assets/fonts/ibm-plex-sans-devanagari-devanagari-400-normal.woff2") format("woff2"); font-weight: 400; }
+      @font-face { font-family: "Plex Hindi"; src: url("assets/fonts/ibm-plex-sans-devanagari-devanagari-600-normal.woff2") format("woff2"); font-weight: 600; }
+      :root { --paper: #f3e7cf; --ink: #3b1f1a; --deep: #5a0d18; --marigold: #f5a300; --cream: #fbf3e2; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--paper); }
+      body { font-family: "Geist", "Plex Hindi", sans-serif; -webkit-font-smoothing: antialiased; color: var(--ink); }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--paper); }
+      .clip { position: absolute; inset: 0; overflow: hidden; }
+      .hi { font-family: "Plex Hindi", sans-serif; }
+      .center { position: absolute; left: 0; right: 0; text-align: center; }
+      svg { overflow: visible; }
+      /* everything you see that isn't type is painted by p5.brush on this canvas */
+      #paint { position: absolute; inset: 0; z-index: 1; }
+      #paint canvas { display: block; }
+      .words { z-index: 10; pointer-events: none; }
+      #t1-title { top: 190px; font-size: 150px; font-weight: 600; line-height: 1.15; color: var(--deep); }
+      #t1-sub { top: 390px; font-size: 38px; font-weight: 600; letter-spacing: 0.32em; text-transform: uppercase; color: var(--ink); }
+      #t2-hi { top: 1640px; font-size: 66px; font-weight: 600; color: var(--cream); }
+      #t2-en { top: 1755px; font-size: 34px; color: #f6dcc0; }
+      #end-lock { position: absolute; left: 0; right: 0; top: 640px; display: flex; flex-direction: column; align-items: center; }
+      #end-name { margin-top: 44px; font-size: 104px; font-weight: 700; letter-spacing: -0.045em; color: var(--cream); }
+      #end-hi { top: 1110px; font-size: 60px; font-weight: 600; color: var(--marigold); }
+      #end-url { top: 1235px; font-size: 32px; letter-spacing: 0.16em; text-transform: uppercase; color: #cfe7e6; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="13" data-width="1080" data-height="1920">
+      <div id="paint"></div>
+
+      <section id="t1" class="clip words" data-start="0" data-duration="8.1" data-track-index="1">
+        <p class="center hi" id="t1-title">शुभ दशहरा</p>
+        <p class="center" id="t1-sub">Happy Dussehra</p>
+      </section>
+
+      <section id="t2" class="clip words" data-start="5.8" data-duration="2.3" data-track-index="2">
+        <p class="center hi" id="t2-hi">बुराई पर अच्छाई की जीत</p>
+        <p class="center" id="t2-en">Good wins over evil</p>
+      </section>
+
+      <section id="end" class="clip words" data-start="8.3" data-duration="4.7" data-track-index="3">
+        <div id="end-lock"><svg class="mm" data-inner="#fbf3e2" data-outer="#5aa9ae" style="width:230px;height:auto"></svg><p id="end-name">Market Movers</p></div>
+        <p class="center hi" id="end-hi">विजयादशमी की हार्दिक शुभकामनाएँ</p>
+        <p class="center" id="end-url">Marhatal, Jabalpur · marketmovers.co.in</p>
+      </section>
+    </div>
+
+    <script>
+      (function () {
+        function rnd(s) { var x = Math.sin(s * 12.9898) * 43758.5453; return x - Math.floor(x); }
+        function clamp(x) { return Math.max(0, Math.min(1, x)); }
+        function seg(t, a, b) { return clamp((t - a) / (b - a)); }
+        var eo = gsap.parseEase("power3.out"), eio = gsap.parseEase("power2.inOut"), eback = gsap.parseEase("back.out(2)");
+
+        // ---- woven MM mark (LogoMark.astro geometry, unchanged) ----
+        function markSVG(svgEl, id, inner, outer) {
+          var a = 64, b = 112, s = 0.625, t2 = 24, B = 200, sw = 18, gap = 9;
+          var v1 = a * s, v2 = t2 + b * s, yc = t2 + (b - a) * s;
+          var P = function (pts) { return "M" + pts.map(function (q) { return q.join(","); }).join("L"); };
+          var len = Math.hypot(1, s), ux = -1 / len, uy = s / len, r = function (k) { return +k.toFixed(2); };
+          var sg = function (L) { return { left: "M" + -a + "," + r(yc - L) + "L" + -a + "," + r(yc + L), right: "M" + r(a - ux * L) + "," + r(yc - uy * L) + "L" + r(a + ux * L) + "," + r(yc + uy * L) }; };
+          var cut = sg(sw * 2), redraw = sg(sw * 3.6), pad = sw;
+          svgEl.setAttribute("viewBox", (-b - pad) + " " + (-pad * 2) + " " + (2 * (b + pad)) + " " + (B + pad * 3));
+          var st = 'fill="none" stroke-width="' + sw + '" stroke-linejoin="miter" stroke-miterlimit="4"';
+          svgEl.innerHTML = '<mask id="' + id + '" maskUnits="userSpaceOnUse" x="-400" y="-400" width="800" height="800"><rect x="-400" y="-400" width="800" height="800" fill="#fff"/><path d="' + cut.left + cut.right + '" stroke="#000" stroke-width="' + (sw + 2 * gap) + '"/></mask>' +
+            '<g class="mo"><path d="' + P([[a, B], [b, B], [b, t2], [0, v2], [-b, t2], [-b, B], [-a, B]]) + '" stroke="' + outer + '" mask="url(#' + id + ')" ' + st + '/><path d="' + redraw.right + '" stroke="' + outer + '" ' + st + "/></g>" +
+            '<g class="mi"><path d="' + P([[-a, B], [-a, 0], [0, v1], [a, 0], [a, B]]) + '" stroke="' + inner + '" stroke-linecap="square" mask="url(#' + id + ')" ' + st + '/><path d="' + redraw.left + '" stroke="' + inner + '" ' + st + "/></g>";
+        }
+        document.querySelectorAll("svg.mm").forEach(function (el, i) { markSVG(el, "mmd" + i, el.dataset.inner, el.dataset.outer); });
+
+        // ================= the painting (WEBGL coords: origin at centre, y down) =================
+        var GROUND = 600, HIT = 4.5, WIPE = 8.0;
+        var HEADS = []; for (var i = 0; i < 10; i++) HEADS.push(-450 + 100 * i);
+        var ORDER = HEADS.slice().sort(function (a, b) { return Math.abs(a) - Math.abs(b) || a - b; });
+        function thick(pts, w) {
+          var L = [], R = [];
+          pts.forEach(function (q, i) {
+            var a = pts[Math.max(0, i - 1)], b = pts[Math.min(pts.length - 1, i + 1)], dx = b[0] - a[0], dy = b[1] - a[1], d = Math.hypot(dx, dy) || 1, ww = w * (q[2] == null ? 1 : q[2]);
+            L.push([q[0] - dy / d * ww, q[1] + dx / d * ww]); R.push([q[0] + dy / d * ww, q[1] - dx / d * ww]);
+          });
+          return L.concat(R.reverse());
+        }
+        function seed(n) { P.randomSeed(n); P.noiseSeed(n); }
+        // hand-drawn "boil": strokes re-roll their texture 8 times a second
+        function boil(t, n) { seed(n * 31 + Math.floor(t * 8)); }
+
+        function sky(t) {
+          var k = eo(seg(t, 0, 1.4));
+          if (k <= 0) return;
+          brush.noStroke();
+          seed(1); brush.wash("#f7cf94", 255); brush.circle(0, -380, 1250 * k);
+          seed(2); brush.wash("#f4ab62", 255); brush.circle(0, -400, 860 * k);
+          seed(3); brush.wash("#f08a3c", 255); brush.circle(0, -400, 520 * k);
+          brush.noWash();
+          seed(4); brush.fill("#e0662a", 110); brush.fillBleed(0.25); brush.fillTexture(0.6, 0.5); brush.circle(0, -400, 700 * k);
+          var ks = eback(seg(t, 0.5, 1.3));
+          if (ks > 0) { seed(5); brush.wash("#ffd75e", 255); brush.circle(0, -390, 150 * ks); brush.noWash(); seed(6); brush.fill("#ffb820", 120); brush.fillBleed(0.08); brush.fillTexture(0.6, 0.3); brush.circle(0, -390, 150 * ks); }
+          brush.noFill();
+          var kd = eo(seg(t, 0.4, 1.6));
+          if (kd > 0) {
+            boil(t, 7);
+            [[-330, -560, 520], [-200, -60, 640], [-90, -520, 380], [110, -200, 720], [250, -480, 460]].forEach(function (c, d) {
+              brush.set(d % 2 ? "charcoal" : "crayon", d % 2 ? "#e8803f" : "#fbe3b8", d % 2 ? 4 : 7);
+              brush.spline([[c[1], c[0]], [c[1] + c[2] * kd * 0.5, c[0] - 12], [c[1] + c[2] * kd, c[0] + 6]], 0.6);
+            });
+          }
+          var kr = eo(seg(t, 1.1, 1.9));
+          if (kr > 0) {
+            boil(t, 8); brush.set("charcoal", "#e0662a", 4);
+            for (var r = 0; r < 18; r++) { var a = r / 18 * Math.PI * 2 + t * 0.15, r0 = 175, r1 = 175 + (r % 2 ? 50 : 85) * kr; brush.line(Math.cos(a) * r0, -390 + Math.sin(a) * r0, Math.cos(a) * r1, -390 + Math.sin(a) * r1); }
+          }
+        }
+
+        function ravana(t) {
+          var kb = eo(seg(t, 1.3, 2.3)), sink = 950 * gsap.parseEase("power2.in")(seg(t, 4.9, 6.1));
+          if (kb <= 0) return;
+          var top = GROUND - 560 * kb, y0 = sink;
+          // body
+          brush.noStroke(); seed(10);
+          brush.wash("#7a1020", 255);
+          brush.polygon([[-150, GROUND + y0], [150, GROUND + y0], [120, top + y0], [-120, top + y0]]);
+          brush.wash("#f5a300", 255);
+          if (kb > 0.6) brush.polygon([[-140, 380 + y0], [140, 380 + y0], [135, 420 + y0], [-135, 420 + y0]]);
+          brush.noWash();
+          seed(15); brush.fill("#4a0a14", 120); brush.fillBleed(0.04); brush.fillTexture(0.8, 0.6); brush.polygon([[-140, GROUND + y0], [140, GROUND + y0], [112, top + 10 + y0], [-112, top + 10 + y0]]); brush.noFill();
+          boil(t, 11); brush.set("charcoal", "#3b1f1a", 3);
+          brush.line(-150, GROUND + y0, -120, top + y0); brush.line(150, GROUND + y0, 120, top + y0);
+          // skirt pleats and arms
+          if (kb > 0.6) {
+            boil(t, 12); brush.set("2B", "#3b1f1a", 2);
+            for (var p = -100; p <= 100; p += 50) brush.line(p, 430 + y0, p * 1.15, GROUND - 10 + y0);
+            var ka = eo(seg(t, 1.9, 2.5));
+            brush.noStroke(); seed(13); brush.wash("#7a1020", 255);
+            [-1, 1].forEach(function (sd) { brush.polygon(thick([[sd * 105, 85 + y0], [sd * (105 + 120 * ka), 165 + y0], [sd * (105 + 175 * ka), 300 + y0 - 70 * ka, 0.8]], 20)); });
+            brush.wash("#c8102e", 255);
+            if (ka > 0) [-1, 1].forEach(function (sd) { brush.circle(sd * (105 + 175 * ka), 300 + y0 - 70 * ka, 22); });
+            brush.noWash();
+            if (ka > 0.9) { // sword in the right hand
+              boil(t, 14); brush.set("rotring", "#5b6670", 6); brush.line(285, 240 + y0, 300, -40 + y0);
+            }
+          }
+          // ten heads pop in from the centre out
+          ORDER.forEach(function (x, j) {
+            var kh = eback(seg(t, 1.9 + j * 0.09, 2.25 + j * 0.09));
+            if (kh <= 0) return;
+            var big = Math.abs(x) === 50, r = (big ? 58 : 48) * kh, y = -40 + (big ? 0 : 14) + y0;
+            brush.noStroke(); seed(20 + j);
+            brush.wash(big ? "#c8102e" : "#b3122b", 255); brush.circle(x, y, r);
+            brush.wash("#f5a300", 255); brush.polygon([[x - r * 0.8, y - r * 0.7], [x - r * 0.5, y - r * 1.7], [x, y - r * 1.05], [x + r * 0.5, y - r * 1.7], [x + r * 0.8, y - r * 0.7]]);
+            brush.noWash();
+            if (kh > 0.8) {
+              boil(t, 40 + j); brush.set("pen", "#1b0f0c", 2);
+              brush.line(x - r * 0.45, y - r * 0.15, x - r * 0.15, y - r * 0.05); brush.line(x + r * 0.15, y - r * 0.05, x + r * 0.45, y - r * 0.15);
+              brush.spline([[x - r * 0.55, y + r * 0.45], [x, y + r * 0.25], [x + r * 0.55, y + r * 0.45]], 0.8);
+              brush.set("charcoal", "#3b1f1a", 2); brush.circle(x, y, r);
+            }
+          });
+        }
+
+        function arrow(t) {
+          var k = seg(t, 3.9, HIT);
+          if (k <= 0 || t > 6.2) return;
+          var sx = -760, sy = 980, ex = -20, ey = 230, e = gsap.parseEase("power2.in")(k);
+          var tx = sx + (ex - sx) * e, ty = sy + (ey - sy) * e, L = 380, dx = (ex - sx), dy = (ey - sy), d = Math.hypot(dx, dy), ux = dx / d, uy = dy / d;
+          var bx = tx - ux * L, by = ty - uy * L;
+          brush.noStroke(); seed(50); brush.wash("#3b1f1a", 255); brush.polygon(thick([[bx, by], [tx, ty]], 6));
+          brush.wash("#2c3a40", 255);
+          brush.polygon([[tx + ux * 60, ty + uy * 60], [tx - uy * 26, ty + ux * 26], [tx + uy * 26, ty - ux * 26]]);
+          brush.wash("#c8102e", 255);
+          for (var f = 0; f < 2; f++) { var fx = bx + ux * (f * 34 + 10), fy = by + uy * (f * 34 + 10); brush.polygon([[fx, fy], [fx - ux * 40 - uy * 34, fy - uy * 40 + ux * 34], [fx - ux * 14, fy - uy * 14]]); brush.polygon([[fx, fy], [fx - ux * 40 + uy * 34, fy - uy * 40 - ux * 34], [fx - ux * 14, fy - uy * 14]]); }
+          brush.noWash();
+          // motion streaks while it flies
+          if (k < 1) { boil(t, 52); brush.set("2H", "#7a1020", 1.5); brush.line(bx - ux * 160 - uy * 20, by - uy * 160 + ux * 20, bx - uy * 20, by + ux * 20); brush.line(bx - ux * 220 + uy * 24, by - uy * 220 - ux * 24, bx + uy * 24, by - ux * 24); }
+        }
+
+        function burst(t) {
+          var k = seg(t, HIT, HIT + 0.45);
+          if (k <= 0 || k >= 1) return;
+          var r = 60 + 300 * eo(k);
+          brush.noStroke(); seed(60); brush.fill("#ffcf4a", 220 * (1 - k)); brush.fillBleed(0.15); brush.circle(-20, 230, r); brush.noFill();
+          boil(t, 61); brush.set("spray", "#f26b1d", 3);
+          for (var i = 0; i < 12; i++) { var a = i / 12 * Math.PI * 2 + 0.2; brush.line(-20 + Math.cos(a) * r * 0.5, 230 + Math.sin(a) * r * 0.5, -20 + Math.cos(a) * r * 1.1, 230 + Math.sin(a) * r * 1.1); }
+        }
+
+        function flames(t) {
+          var g = eo(seg(t, HIT + 0.05, 6.0)) - 0.45 * eio(seg(t, 6.6, 8.0));
+          if (g <= 0) return;
+          [["#c8102e", 1.0, 70, "#8e0d22"], ["#f26b1d", 0.75, 71, "#d94a12"], ["#ffcf4a", 0.45, 72, "#ffa51f"]].forEach(function (L, li) {
+            var pts = [[-520, GROUND + 20]];
+            for (var i = 0; i <= 26; i++) {
+              var x = -520 + i * 40, shape = 0.2 + 0.8 * Math.pow(Math.cos((x / 560) * Math.PI / 2), 0.8);
+              var lick = 0.5 + 0.5 * Math.pow(Math.abs(Math.sin(x * 0.011 + t * (3.2 + li) + li * 1.3)), 0.7) + 0.08 * Math.sin(t * 13 + i * 0.9);
+              pts.push([x + Math.sin(t * 6 + i * 0.5 + li) * 14, GROUND - 1050 * g * L[1] * shape * lick]);
+            }
+            pts.push([520, GROUND + 20]);
+            brush.noStroke(); seed(L[2]); brush.wash(L[0], 255); brush.polygon(pts); brush.noWash();
+            if (li === 0) { boil(t, 76); brush.set("crayon", "#6e0a1a", 3); brush.spline(pts.slice(1, -1), 0.4); }
+            boil(t, L[2] + 5); brush.fill(L[3], 150); brush.fillBleed(0.1, "out"); brush.fillTexture(0.6, 0.6); brush.polygon(pts); brush.noFill();
+          });
+          // embers
+          boil(t, 75); brush.set("spray", "#ffcf4a", 2);
+          for (var j = 0; j < 14; j++) {
+            var life = (t * 0.9 + rnd(j)) % 1, ex = (rnd(j + 20) - 0.5) * 760 + Math.sin(t * 3 + j) * 40, ey = GROUND - 200 - life * 1200 * g;
+            if (life < 0.85) brush.line(ex, ey, ex + 6, ey - 26);
+          }
+        }
+
+        function smoke(t) {
+          var k = seg(t, 6.3, 8.0);
+          if (k <= 0) return;
+          // charcoal smoke curls rising off the fire, staying below the greeting
+          for (var j = 0; j < 5; j++) {
+            var x0 = -240 + j * 120, ph = t * 2.2 + j * 1.7, h = 100 + 260 * eo(seg(t, 6.3 + j * 0.12, 7.6 + j * 0.12)), pts = [];
+            for (var i = 0; i <= 8; i++) { var f = i / 8; pts.push([x0 + Math.sin(ph + f * 5) * (20 + 40 * f), -60 - f * h, 1.2 - f * 0.8]); }
+            boil(t, 80 + j); brush.set("charcoal", j % 2 ? "#5e5450" : "#7a706b", 6); brush.spline(pts, 0.7);
+          }
+        }
+
+        function ground(t) {
+          var k = eo(seg(t, 0.7, 1.5));
+          if (k <= 0) return;
+          var R = -560 + 1120 * k, pts = [];
+          for (var i = 0; i <= 28; i++) { var x = -560 + i * 40; if (x > R) break; pts.push([x, GROUND + Math.sin(i * 0.8) * 8 + (rnd(i) - 0.5) * 10]); }
+          pts.push([R, GROUND]); pts.push([R, 1000]); pts.push([-560, 1000]);
+          brush.noStroke(); seed(90); brush.wash("#6b3a1f", 255); brush.polygon(pts); brush.noWash();
+          seed(91); brush.fill("#3b1f1a", 90); brush.fillBleed(0.1); brush.fillTexture(0.6, 0.3); brush.polygon([[-560, 700], [R, 690], [R, 1000], [-560, 1000]]); brush.noFill();
+          boil(t, 92); brush.set("charcoal", "#2a140f", 4); brush.line(-560, GROUND - 4, R, GROUND + 2);
+          boil(t, 93); brush.set("2B", "#9a6a3a", 2);
+          for (var g = 0; g < 9; g++) { var gx = -500 + g * 125; if (gx < R) brush.line(gx, 700 + (g % 3) * 70, gx + 70, 702 + (g % 3) * 70); }
+        }
+
+        // torn-paper wipe into the end card (same move as the Navratri reel)
+        function torn(y, s, dir) { var pts = []; for (var i = 0; i <= 40; i++) pts.push([-600 + i * 30, y + dir * (Math.sin(i * 0.55 + s) * 22 + (rnd(s * 97 + i) - 0.5) * 34)]); return pts; }
+        function wipe(t) {
+          var k = seg(t, WIPE, WIPE + 0.5);
+          if (k <= 0 || k >= 1) return;
+          var y = 1000 - eio(k) * 2200;
+          brush.noStroke(); seed(100);
+          brush.wash("#f5a300", 255); brush.polygon(torn(y, 3, 1).concat([[600, 1100], [-600, 1100]]));
+          brush.wash("#0b5d63", 255); brush.polygon(torn(y + 80, 5, 1).concat([[600, 1100], [-600, 1100]]));
+          brush.noWash();
+          boil(t, 101); brush.set("crayon", "#fbf3e2", 5); brush.line(-540, y + 150, 540, y + 125);
+        }
+
+        function endCard(t) {
+          brush.noStroke();
+          var kb = eo(seg(t, WIPE + 0.3, WIPE + 2.5));
+          seed(110); brush.fill("#13706f", 120); brush.fillBleed(0.3); brush.fillTexture(0.5, 0.5); brush.circle(0, -60, 300 + 520 * kb);
+          seed(111); brush.fill("#5aa9ae", 90); brush.fillBleed(0.3); brush.circle(-300, 650, 160 + 200 * kb);
+          seed(112); brush.fill("#f5a300", 70); brush.fillBleed(0.3); brush.circle(330, -720, 140 + 180 * kb);
+          brush.noFill();
+          // a painted arrow flies in under the name (the reel's arrow, now pointing forward)
+          var ka = eo(seg(t, 9.3, 9.9));
+          if (ka > 0) {
+            var x1 = -300, x2 = -300 + 600 * ka, yb = 82, pts = [];
+            for (var i = 0; i <= 12; i++) { var x = x1 + (x2 - x1) * i / 12; pts.push([x, yb + Math.sin(i / 12 * Math.PI) * -8, 0.5 + 0.5 * i / 12]); }
+            brush.noStroke(); seed(113); brush.wash("#f5a300", 255); brush.polygon(thick(pts, 6));
+            brush.polygon([[x2 + 36, yb], [x2 - 6, yb - 22], [x2 - 6, yb + 22]]);
+            brush.wash("#5aa9ae", 255);
+            brush.polygon([[x1 + 4, yb], [x1 - 34, yb - 22], [x1 - 18, yb]]); brush.polygon([[x1 + 4, yb], [x1 - 34, yb + 22], [x1 - 18, yb]]);
+            brush.noWash();
+          }
+        }
+
+        var state = { t: 0 }, P = null;
+        new p5(function (p) {
+          brush.instance(p);
+          p.setup = function () { p.createCanvas(1080, 1920, p.WEBGL); p.pixelDensity(1); p.noLoop(); P = p; };
+          p.draw = function () {
+            var t = state.t;
+            brush.scaleBrushes(1);
+            if (t < WIPE + 0.25) {
+              p.background("#f3e7cf");
+              sky(t); ravana(t); arrow(t); flames(t); burst(t); smoke(t); ground(t);
+            } else {
+              p.background("#0b5d63");
+              endCard(t);
+            }
+            wipe(t);
+          };
+        }, document.getElementById("paint"));
+
+        document.fonts.ready.then(function () {
+          var tl = gsap.timeline({ paused: true });
+          tl.to(state, { t: 13, duration: 13, ease: "none", onUpdate: function () { if (P) P.redraw(); } }, 0);
+          tl.fromTo("#t1-title", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 1.0);
+          tl.fromTo("#t1-sub", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, 1.3);
+          tl.fromTo("#t2-hi", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, 5.9);
+          tl.fromTo("#t2-en", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 6.2);
+          tl.fromTo("#end-lock .mi", { y: -120, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "expo.out" }, 8.6);
+          tl.fromTo("#end-lock .mo", { y: 120, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "expo.out" }, 8.65);
+          tl.fromTo("#end-name", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "power3.out" }, 8.95);
+          tl.fromTo("#end-hi", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, 9.8);
+          tl.fromTo("#end-url", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 10.3);
+          var ready = setInterval(function () { if (P) { clearInterval(ready); window.__timelines["main"] = tl; tl.seek(0); } }, 20);
+        });
+      })();
+    </script>
+  </body>
+</html>
