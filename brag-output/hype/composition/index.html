@@ -24,6 +24,8 @@
       .trails svg.light { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; mix-blend-mode: screen; }
       .trails svg.mm { position: absolute; left: 540px; top: 960px; width: 300px; margin: -150px 0 0 -150px; filter: drop-shadow(0 0 18px rgb(255 255 255 / 0.85)); }
       .streaks { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; mix-blend-mode: screen; pointer-events: none; }
+      .tname p { position: absolute; left: 0; right: 0; top: 1190px; text-align: center; font-size: 50px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; transform: scaleX(1.35); text-shadow: 0 0 24px rgb(0 0 0 / 0.9); }
+      .tname small { position: absolute; left: 0; right: 0; top: 1280px; text-align: center; font-size: 26px; letter-spacing: 0.3em; text-transform: uppercase; color: #cfe7e6; text-shadow: 0 0 16px rgb(0 0 0 / 0.9); }
       #name { display: none; }
       #name p { position: absolute; left: 0; right: 0; top: 920px; text-align: center; font-size: 50px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; transform: scaleX(1.35); }
       #name small { position: absolute; left: 0; right: 0; top: 1010px; text-align: center; font-size: 26px; letter-spacing: 0.3em; text-transform: uppercase; color: #9fc9c8; }
@@ -48,11 +50,13 @@
         // the photos in cut order: Unsplash stock (see credits.txt) mixed with the website's own product photos
         var ORDER = [
           "crane-tower", "towers", "river",
-          "site-team", "brick-pipes", "wave", "pipework", "rebar-crew", "chrome-tap", "earthmovers", "water-pour", "pipe-stack", "drill", "surf-aerial",
+          "site-team", "brick-pipes", "wave", "under-sink", "rebar-crew", "chrome-tap", "earthmovers", "water-pour", "pipe-stack", "drill", "surf-aerial",
           "underwater", "rebar-crew", "truck-road", "warehouse-aisle",
           "hardhat-portrait", "fittings", "gold-taps", "wrenches", "shower", "hdpe-coil", "blueprint", "truck", "basin", "warehouse", "tap",
-          "crane-tower", "brick-pipes", "wave", "counter", "pipework", "house", "rebar-crew", "chrome-tap", "river", "earthmovers", "surf-aerial",
-          "pipework"];
+          "crane-tower", "hdpe-coil", "wave", "counter", "pipe-stack", "house", "rebar-crew", "chrome-tap", "river", "earthmovers", "surf-aerial",
+          "fittings"];
+        // PVC and fittings shots stay readable: a clean punch-in, no heavy blur
+        var CLEAN = { "under-sink": "teal", fittings: "real", "pipe-stack": "mono", "hdpe-coil": "real" };
         var POS = { "pipe-stack": "40% 50%", fittings: "30% 50%", "hdpe-coil": "55% 50%", tap: "60% 50%", counter: "55% 50%" };
         var GRADES = {
           mono: { f: "grayscale(1) contrast(1.35) brightness(0.95)" },
@@ -70,7 +74,7 @@
         var SEG = [];
         function shot(t0, t1, opts) { SEG.push(Object.assign({ kind: "shot", t0: t0, t1: t1 }, opts || {})); }
         // intro: light-trail logo, then word cards between shots
-        SEG.push({ kind: "trails", t0: 0.2, t1: 0.7, intro: true });
+        SEG.push({ kind: "trails", t0: 0, t1: 0.7, intro: true });
         SEG.push({ kind: "card", t0: 0.7, t1: 1.08, word: "Build" });
         shot(1.08, 1.7, { fx: "streak", grade: "amber" });
         SEG.push({ kind: "card", t0: 1.7, t1: 2.18, word: "Big" });
@@ -87,9 +91,8 @@
         var D2 = [33, 35, 37, 38, 39, 41, 43, 45, 46, 47, 49, 51, 53, 54, 55, 57, 59, 61, 62, 63, 65, 67, 69];
         for (var k = 0; k < D2.length - 1; k++) shot(b(D2[k]), b(D2[k + 1]), { flash: k % 4 === 0 });
         // outro: one long light-painted shot, the light-trail logo, then the name
-        shot(b(69), b(73), { fx: "streak", grade: "amber", long: true });
-        SEG.push({ kind: "trails", t0: b(73), t1: b(78) });
-        SEG.push({ kind: "name", t0: b(78), t1: 32 });
+        shot(b(69), b(71), { fx: "streak", grade: "amber", long: true });
+        SEG.push({ kind: "trails", t0: b(71), t1: 32, nameAt: b(77) });
 
         // ---------- build DOM ----------
         var stage = document.getElementById("stage"), html = "", si = 0;
@@ -114,7 +117,9 @@
         }
         SEG.forEach(function (sg, idx) {
           if (sg.kind === "shot") {
-            var p = [ORDER[si % ORDER.length], POS[ORDER[si % ORDER.length]] || "50% 50%"], fx = sg.fx || FX[si % FX.length], gr = GRADES[sg.grade || GL[si % GL.length]];
+            var p = [ORDER[si % ORDER.length], POS[ORDER[si % ORDER.length]] || "50% 50%"], clean = CLEAN[p[0]];
+            if (clean && !sg.long) { sg.fx = "push"; sg.grade = clean; }
+            var fx = sg.fx || FX[si % FX.length], gr = GRADES[sg.grade || GL[si % GL.length]];
             sg.fx = fx; sg.dir = si % 2 ? 1 : -1; sg.seed = si;
             var pos = (sg.slow ? 50 : 20 + rnd(si) * 60).toFixed(0) + "% 50%";
             var layers = fx === "ghost" ? 4 : fx === "zoom" || fx === "spin" ? 6 : 1, im = "";
@@ -124,7 +129,7 @@
           } else if (sg.kind === "card") {
             html += '<div class="card" data-i="' + idx + '"><p>' + sg.word + "</p></div>";
           } else if (sg.kind === "trails") {
-            html += '<div class="trails" data-i="' + idx + '"><img class="bg" src="assets/img/pipe-stack.jpg" alt="">' + swirlSVG(sg.intro ? 11 : 29) + '<svg class="mm" data-inner="#ffffff" data-outer="#cfe7e6"></svg></div>';
+            html += '<div class="trails" data-i="' + idx + '"><img class="bg" src="assets/img/pipe-stack.jpg" alt="">' + swirlSVG(sg.intro ? 11 : 29) + '<svg class="mm" data-inner="#ffffff" data-outer="#cfe7e6"></svg>' + (sg.nameAt ? '<div class="tname"><p>Market Movers</p><small>Jabalpur · marketmovers.co.in</small></div>' : "") + "</div>";
           } else {
             html += '<div class="card" id="name" data-i="' + idx + '"><p>Market Movers</p><small>Jabalpur · marketmovers.co.in</small></div>';
           }
@@ -187,6 +192,13 @@
             el.querySelector("svg.mm").style.scale = (sg.intro ? 0.9 + 0.25 * p : 0.85 + 0.2 * clamp(lt / 0.4)).toFixed(3);
             el.querySelector(".bg").style.transform = "scale(" + (1.05 + 0.08 * p).toFixed(3) + ")";
             if (lt < 0.06) flash.style.opacity = 0.5;
+            if (sg.nameAt) {
+              var kn = clamp((t - sg.nameAt) / 0.35);
+              el.querySelector(".tname p").style.opacity = kn;
+              el.querySelector(".tname small").style.opacity = clamp((t - sg.nameAt - 0.4) / 0.35);
+              el.querySelector("svg.light").style.opacity = (1 - 0.72 * kn).toFixed(3);
+              el.querySelector("svg.mm").style.translate = "0 " + (-70 * gsap.parseEase("power3.out")(kn)).toFixed(1) + "px";
+            }
           } else {
             el.querySelector("p").style.opacity = clamp(lt / 0.05);
             el.querySelector("small").style.opacity = clamp((lt - 0.35) / 0.3);
