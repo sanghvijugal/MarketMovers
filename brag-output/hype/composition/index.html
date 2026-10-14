@@ -45,8 +45,15 @@
         var BEAT = 0.32955, B0 = 5.035;
         function b(n) { return +(B0 + BEAT * n).toFixed(3); }
 
-        // photo pool: [file, object-position]. Stock photos join this list.
-        var POOL = [["pipe-stack", "40% 50%"], ["fittings", "30% 50%"], ["hdpe-coil", "55% 50%"], ["tap", "60% 50%"], ["counter", "55% 50%"]];
+        // the photos in cut order: Unsplash stock (see credits.txt) mixed with the website's own product photos
+        var ORDER = [
+          "crane-tower", "towers", "river",
+          "site-team", "brick-pipes", "wave", "pipework", "rebar-crew", "chrome-tap", "earthmovers", "water-pour", "pipe-stack", "drill", "surf-aerial",
+          "underwater", "rebar-crew", "truck-road", "warehouse-aisle",
+          "hardhat-portrait", "fittings", "gold-taps", "wrenches", "shower", "hdpe-coil", "blueprint", "truck", "basin", "warehouse", "tap",
+          "crane-tower", "brick-pipes", "wave", "counter", "pipework", "house", "rebar-crew", "chrome-tap", "river", "earthmovers", "surf-aerial",
+          "pipework"];
+        var POS = { "pipe-stack": "40% 50%", fittings: "30% 50%", "hdpe-coil": "55% 50%", tap: "60% 50%", counter: "55% 50%" };
         var GRADES = {
           mono: { f: "grayscale(1) contrast(1.35) brightness(0.95)" },
           blue: { f: "grayscale(1) contrast(1.25)", tint: "#1f5f95" },
@@ -107,7 +114,7 @@
         }
         SEG.forEach(function (sg, idx) {
           if (sg.kind === "shot") {
-            var p = POOL[si % POOL.length], fx = sg.fx || FX[si % FX.length], gr = GRADES[sg.grade || GL[si % GL.length]];
+            var p = [ORDER[si % ORDER.length], POS[ORDER[si % ORDER.length]] || "50% 50%"], fx = sg.fx || FX[si % FX.length], gr = GRADES[sg.grade || GL[si % GL.length]];
             sg.fx = fx; sg.dir = si % 2 ? 1 : -1; sg.seed = si;
             var pos = (sg.slow ? 50 : 20 + rnd(si) * 60).toFixed(0) + "% 50%";
             var layers = fx === "ghost" ? 4 : fx === "zoom" || fx === "spin" ? 6 : 1, im = "";

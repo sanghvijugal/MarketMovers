@@ -1,0 +1,30 @@
+Stock photos: Unsplash (https://unsplash.com/license), free for commercial use, no attribution required.
+Fetched from images.unsplash.com by photo ID, cropped to 1080x1920:
+
+basin              https://images.unsplash.com/photo-1552321554-5fefe8c9ef14
+blueprint          https://images.unsplash.com/photo-1503387762-592deb58ef4e
+brick-pipes        https://images.unsplash.com/photo-1607472586893-edb57bdc0e39
+chrome-tap         https://images.unsplash.com/photo-1585704032915-c3400ca199e7
+crane-tower        https://images.unsplash.com/photo-1565008447742-97f6f38c985c
+drill              https://images.unsplash.com/photo-1504148455328-c376907d081c
+earthmovers        https://images.unsplash.com/photo-1517089596392-fb9a9033e05b
+gold-taps          https://images.unsplash.com/photo-1564540583246-934409427776
+hardhat-portrait   https://images.unsplash.com/photo-1621905252507-b35492cc74b4
+house              https://images.unsplash.com/photo-1600585154340-be6161a56a0c
+pipework           https://images.unsplash.com/photo-1513828583688-c52646db42da
+rebar-crew         https://images.unsplash.com/photo-1504307651254-35680f356dfd
+river              https://images.unsplash.com/photo-1437482078695-73f5ca6c96e2
+shower             https://images.unsplash.com/photo-1584622650111-993a426fbf0a
+site-team          https://images.unsplash.com/photo-1541888946425-d81bb19240f5
+surf-aerial        https://images.unsplash.com/photo-1505142468610-359e7d316be0
+towers             https://images.unsplash.com/photo-1486406146926-c627a92ad1ab
+truck              https://images.unsplash.com/photo-1601584115197-04ecc0da31d7
+truck-road         https://images.unsplash.com/photo-1519003722824-194d4455a60c
+underwater         https://images.unsplash.com/photo-1559825481-12a05cc00344
+warehouse          https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d
+warehouse-aisle    https://images.unsplash.com/photo-1553413077-190dd305871c
+water-pour         https://images.unsplash.com/photo-1548839140-29a749e1cf4d
+wave               https://images.unsplash.com/photo-1500375592092-40eb2168fd21
+wrenches           https://images.unsplash.com/photo-1530124566582-a618bc2615dc
+
+Market Movers' own photos: pipe-stack, fittings, hdpe-coil, tap, counter (src/assets/photos).
