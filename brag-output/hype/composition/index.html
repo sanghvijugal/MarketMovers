@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Market Movers hype reel</title>
+    <script src="assets/js/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Geist"; src: url("assets/fonts/geist.woff2") format("woff2"); font-weight: 100 900; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; }
+      body { font-family: "Geist", sans-serif; -webkit-font-smoothing: antialiased; color: #fff; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #000; }
+      .clip { position: absolute; inset: 0; overflow: hidden; }
+      svg { overflow: visible; }
+      .shot { position: absolute; inset: 0; display: none; overflow: hidden; background: #000; }
+      .shot img { position: absolute; inset: -4%; width: 108%; height: 108%; object-fit: cover; transform-origin: 50% 50%; }
+      .shot .tint { position: absolute; inset: 0; mix-blend-mode: color; }
+      .shot .vig { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 50%, rgb(0 0 0 / 0) 45%, rgb(0 0 0 / 0.6) 100%); }
+      .card { position: absolute; inset: 0; display: none; background: #000; }
+      .card p { position: absolute; left: 0; right: 0; top: 920px; text-align: center; font-size: 50px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; transform: scaleX(1.35); }
+      .trails { position: absolute; inset: 0; display: none; }
+      .trails .bg { position: absolute; inset: -4%; width: 108%; height: 108%; object-fit: cover; filter: grayscale(1) brightness(0.28) contrast(1.3) blur(3px); }
+      .trails svg.light { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; mix-blend-mode: screen; }
+      .trails svg.mm { position: absolute; left: 540px; top: 960px; width: 300px; margin: -150px 0 0 -150px; filter: drop-shadow(0 0 18px rgb(255 255 255 / 0.85)); }
+      .streaks { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; mix-blend-mode: screen; pointer-events: none; }
+      #name { display: none; }
+      #name p { position: absolute; left: 0; right: 0; top: 920px; text-align: center; font-size: 50px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; transform: scaleX(1.35); }
+      #name small { position: absolute; left: 0; right: 0; top: 1010px; text-align: center; font-size: 26px; letter-spacing: 0.3em; text-transform: uppercase; color: #9fc9c8; }
+      #flash { position: absolute; inset: 0; background: #fff; opacity: 0; pointer-events: none; z-index: 50; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="32" data-width="1080" data-height="1920">
+      <section id="stage" class="clip" data-start="0" data-duration="32" data-track-index="1"></section>
+      <div id="flash"></div>
+      <!-- reference reel audio, for timing only: the post uses the same sound from Instagram's library -->
+      <audio id="ref" src="assets/audio/reference-audio.wav" data-start="0" data-duration="32" data-track-index="10" data-volume="1"></audio>
+    </div>
+
+    <script>
+      (function () {
+        function rnd(s) { var x = Math.sin(s * 12.9898 + 78.233) * 43758.5453; return x - Math.floor(x); }
+        function clamp(x) { return Math.max(0, Math.min(1, x)); }
+        var BEAT = 0.32955, B0 = 5.035;
+        function b(n) { return +(B0 + BEAT * n).toFixed(3); }
+
+        // photo pool: [file, object-position]. Stock photos join this list.
+        var POOL = [["pipe-stack", "40% 50%"], ["fittings", "30% 50%"], ["hdpe-coil", "55% 50%"], ["tap", "60% 50%"], ["counter", "55% 50%"]];
+        var GRADES = {
+          mono: { f: "grayscale(1) contrast(1.35) brightness(0.95)" },
+          blue: { f: "grayscale(1) contrast(1.25)", tint: "#1f5f95" },
+          red: { f: "grayscale(1) contrast(1.4) brightness(0.9)", tint: "#c8102e" },
+          amber: { f: "sepia(1) saturate(1.7) contrast(1.2) brightness(0.9)" },
+          teal: { f: "grayscale(1) contrast(1.25)", tint: "#0b8a8f" },
+          ice: { f: "grayscale(1) contrast(1.1) brightness(1.15)", tint: "#9cc8e8" },
+          real: { f: "contrast(1.15) saturate(1.1)" }
+        };
+        var FX = ["zoom", "ghost", "zoom", "streak", "push", "ghost", "zoom", "spin"];
+        var GL = ["blue", "mono", "red", "amber", "teal", "ice", "real", "mono", "blue", "amber"];
+
+        // ---------- timeline of segments ----------
+        var SEG = [];
+        function shot(t0, t1, opts) { SEG.push(Object.assign({ kind: "shot", t0: t0, t1: t1 }, opts || {})); }
+        // intro: light-trail logo, then word cards between shots
+        SEG.push({ kind: "trails", t0: 0.2, t1: 0.7, intro: true });
+        SEG.push({ kind: "card", t0: 0.7, t1: 1.08, word: "Build" });
+        shot(1.08, 1.7, { fx: "streak", grade: "amber" });
+        SEG.push({ kind: "card", t0: 1.7, t1: 2.18, word: "Big" });
+        shot(2.18, 3.18, { fx: "ghost", grade: "blue" });
+        SEG.push({ kind: "card", t0: 3.18, t1: 3.78, word: "Flow" });
+        shot(3.78, 4.28, { fx: "zoom", grade: "teal" });
+        SEG.push({ kind: "card", t0: 4.28, t1: 4.77, word: "Stronger" });
+        // first drop: a cut every two beats, doubled up in places
+        var D1 = [-1, 1, 3, 4, 5, 7, 9, 10, 11, 13, 15, 17];
+        for (var i = 0; i < D1.length - 1; i++) shot(i === 0 ? 4.77 : b(D1[i]), b(D1[i + 1]), { flash: i % 3 === 0 });
+        // break: four long, slow-blur shots
+        [17, 21, 25, 29, 33].forEach(function (n, j, a) { if (j < a.length - 1) shot(b(n), b(a[j + 1]), { fx: j % 2 ? "ghost" : "zoom", slow: true, grade: ["blue", "mono", "ice", "teal"][j] }); });
+        // second drop
+        var D2 = [33, 35, 37, 38, 39, 41, 43, 45, 46, 47, 49, 51, 53, 54, 55, 57, 59, 61, 62, 63, 65, 67, 69];
+        for (var k = 0; k < D2.length - 1; k++) shot(b(D2[k]), b(D2[k + 1]), { flash: k % 4 === 0 });
+        // outro: one long light-painted shot, the light-trail logo, then the name
+        shot(b(69), b(73), { fx: "streak", grade: "amber", long: true });
+        SEG.push({ kind: "trails", t0: b(73), t1: b(78) });
+        SEG.push({ kind: "name", t0: b(78), t1: 32 });
+
+        // ---------- build DOM ----------
+        var stage = document.getElementById("stage"), html = "", si = 0;
+        function streakSVG(seed, n) {
+          var s = '<svg class="streaks" viewBox="0 0 1080 1920"><defs><filter id="g' + seed + '" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><g filter="url(#g' + seed + ')">';
+          for (var i = 0; i < n; i++) {
+            var y0 = rnd(seed + i) * 1920, y1 = rnd(seed + i + 50) * 1920, c = 540 + (rnd(seed + i + 9) - 0.5) * 900;
+            s += '<path class="ln" d="M-100 ' + y0.toFixed(0) + " Q" + c.toFixed(0) + " " + ((y0 + y1) / 2 + (rnd(seed + i + 3) - 0.5) * 900).toFixed(0) + " 1180 " + y1.toFixed(0) + '" stroke="#fff" stroke-width="' + (3 + rnd(seed + i + 7) * 9).toFixed(1) + '" fill="none" stroke-linecap="round" pathLength="1" stroke-dasharray="0.35 1" opacity="0.9"/>';
+          }
+          return s + "</g></svg>";
+        }
+        function swirlSVG(seed) {
+          var s = '<svg class="light" viewBox="0 0 1080 1920"><defs><filter id="w' + seed + '" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><g class="spin" filter="url(#w' + seed + ')" style="transform-origin:540px 960px">';
+          for (var i = 0; i < 18; i++) {
+            var r = 170 + rnd(seed + i) * 420, e = 0.45 + rnd(seed + i + 20) * 0.5, rot = rnd(seed + i + 40) * 180, turns = "";
+            // a loose spiral: arcs whose radius grows each half turn
+            var d = "M" + (540 + r) + " 960", rr = r;
+            for (var h = 0; h < 4; h++) { rr *= 1.12; d += " A" + rr.toFixed(0) + " " + (rr * e).toFixed(0) + " 0 0 1 " + (h % 2 ? 540 + rr : 540 - rr).toFixed(0) + " 960"; }
+            s += '<path class="sw" d="' + d + '" transform="rotate(' + rot.toFixed(0) + ' 540 960)" stroke="#fff" stroke-width="' + (4 + rnd(seed + i + 60) * 10).toFixed(1) + '" fill="none" stroke-linecap="round" pathLength="1" stroke-dasharray="0.5 1" opacity="' + (0.55 + rnd(seed + i + 80) * 0.45).toFixed(2) + '"/>';
+          }
+          return s + "</g></svg>";
+        }
+        SEG.forEach(function (sg, idx) {
+          if (sg.kind === "shot") {
+            var p = POOL[si % POOL.length], fx = sg.fx || FX[si % FX.length], gr = GRADES[sg.grade || GL[si % GL.length]];
+            sg.fx = fx; sg.dir = si % 2 ? 1 : -1; sg.seed = si;
+            var pos = (sg.slow ? 50 : 20 + rnd(si) * 60).toFixed(0) + "% 50%";
+            var layers = fx === "ghost" ? 4 : fx === "zoom" || fx === "spin" ? 6 : 1, im = "";
+            for (var L = 0; L < layers; L++) im += '<img src="assets/img/' + p[0] + '.jpg" alt="" style="object-position:' + (L === 0 ? p[1] : p[1]) + ";filter:" + gr.f + (L ? ";opacity:" + (L === 0 ? 1 : (0.42 * (1 - L / layers)).toFixed(2)) : "") + '">';
+            html += '<div class="shot" data-i="' + idx + '">' + im + (gr.tint ? '<div class="tint" style="background:' + gr.tint + '"></div>' : "") + '<div class="vig"></div>' + (fx === "streak" ? streakSVG(si * 7 + 3, 9) : "") + "</div>";
+            si++;
+          } else if (sg.kind === "card") {
+            html += '<div class="card" data-i="' + idx + '"><p>' + sg.word + "</p></div>";
+          } else if (sg.kind === "trails") {
+            html += '<div class="trails" data-i="' + idx + '"><img class="bg" src="assets/img/pipe-stack.jpg" alt="">' + swirlSVG(sg.intro ? 11 : 29) + '<svg class="mm" data-inner="#ffffff" data-outer="#cfe7e6"></svg></div>';
+          } else {
+            html += '<div class="card" id="name" data-i="' + idx + '"><p>Market Movers</p><small>Jabalpur · marketmovers.co.in</small></div>';
+          }
+        });
+        stage.innerHTML = html;
+        var EL = SEG.map(function (sg, idx) { return stage.querySelector('[data-i="' + idx + '"]'); });
+
+        // ---------- woven MM mark (LogoMark.astro geometry) ----------
+        function markSVG(svgEl, id, inner, outer) {
+          var a = 64, b2 = 112, s = 0.625, t2 = 24, B = 200, sw = 18, gap = 9;
+          var v1 = a * s, v2 = t2 + b2 * s, yc = t2 + (b2 - a) * s;
+          var P = function (pts) { return "M" + pts.map(function (q) { return q.join(","); }).join("L"); };
+          var len = Math.hypot(1, s), ux = -1 / len, uy = s / len, r = function (k) { return +k.toFixed(2); };
+          var sg = function (L) { return { left: "M" + -a + "," + r(yc - L) + "L" + -a + "," + r(yc + L), right: "M" + r(a - ux * L) + "," + r(yc - uy * L) + "L" + r(a + ux * L) + "," + r(yc + uy * L) }; };
+          var cut = sg(sw * 2), redraw = sg(sw * 3.6), pad = sw;
+          svgEl.setAttribute("viewBox", (-b2 - pad) + " " + (-pad * 2) + " " + (2 * (b2 + pad)) + " " + (B + pad * 3));
+          var st = 'fill="none" stroke-width="' + sw + '" stroke-linejoin="miter" stroke-miterlimit="4"';
+          svgEl.innerHTML = '<mask id="' + id + '" maskUnits="userSpaceOnUse" x="-400" y="-400" width="800" height="800"><rect x="-400" y="-400" width="800" height="800" fill="#fff"/><path d="' + cut.left + cut.right + '" stroke="#000" stroke-width="' + (sw + 2 * gap) + '"/></mask>' +
+            '<g><path d="' + P([[a, B], [b2, B], [b2, t2], [0, v2], [-b2, t2], [-b2, B], [-a, B]]) + '" stroke="' + outer + '" mask="url(#' + id + ')" ' + st + '/><path d="' + redraw.right + '" stroke="' + outer + '" ' + st + "/></g>" +
+            '<g><path d="' + P([[-a, B], [-a, 0], [0, v1], [a, 0], [a, B]]) + '" stroke="' + inner + '" stroke-linecap="square" mask="url(#' + id + ')" ' + st + '/><path d="' + redraw.left + '" stroke="' + inner + '" ' + st + "/></g>";
+        }
+        document.querySelectorAll("svg.mm").forEach(function (el, i) { markSVG(el, "mmh" + i, el.dataset.inner, el.dataset.outer); });
+
+        // ---------- per-frame look ----------
+        var flash = document.getElementById("flash"), active = -1;
+        function render(t) {
+          var cur = -1;
+          for (var i = 0; i < SEG.length; i++) if (t >= SEG[i].t0 && t < SEG[i].t1) { cur = i; break; }
+          if (cur !== active) { EL.forEach(function (e, j) { e.style.display = j === cur ? "block" : "none"; }); active = cur; }
+          flash.style.opacity = 0;
+          if (cur < 0) return;
+          var sg = SEG[cur], el = EL[cur], lt = t - sg.t0, d = sg.t1 - sg.t0, p = lt / d;
+          if (sg.kind === "shot") {
+            var imgs = el.querySelectorAll("img"), hit = Math.exp(-lt / (sg.slow ? 0.6 : 0.16)), push = sg.slow ? 1.04 + 0.1 * p : 1.02 + 0.06 * p;
+            var jx = (rnd(sg.seed * 3 + Math.floor(t * 30)) - 0.5) * 26 * hit, jy = (rnd(sg.seed * 5 + Math.floor(t * 30)) - 0.5) * 26 * hit;
+            imgs.forEach(function (im, L) {
+              var tr;
+              if (sg.fx === "zoom" || sg.fx === "spin") {
+                var amt = sg.slow ? 0.6 + 0.4 * Math.sin(p * Math.PI) : 0.25 + 0.75 * hit;
+                tr = "translate(" + jx.toFixed(1) + "px," + jy.toFixed(1) + "px) scale(" + (push * (1 + L * 0.05 * amt)).toFixed(4) + ")" + (sg.fx === "spin" ? " rotate(" + (L * 1.6 * amt * sg.dir).toFixed(2) + "deg)" : "");
+              } else if (sg.fx === "ghost") {
+                var amt2 = sg.slow ? 0.7 + 0.3 * Math.sin(p * Math.PI * 2) : 0.35 + 0.65 * hit;
+                tr = "translate(" + (jx + L * 46 * amt2 * sg.dir).toFixed(1) + "px," + jy.toFixed(1) + "px) scale(" + push.toFixed(4) + ")";
+              } else if (sg.fx === "push") {
+                tr = "translate(" + jx.toFixed(1) + "px," + jy.toFixed(1) + "px) scale(" + (1.18 - 0.14 * (1 - hit) + 0.04 * p).toFixed(4) + ")";
+              } else {
+                tr = "translate(" + jx.toFixed(1) + "px," + jy.toFixed(1) + "px) scale(" + push.toFixed(4) + ")";
+              }
+              im.style.transform = tr;
+            });
+            var lines = el.querySelectorAll(".ln");
+            lines.forEach(function (ln, j) { ln.style.strokeDashoffset = (1.2 - ((p * (sg.long ? 2.2 : 1.4) + j * 0.13) % 1.6)).toFixed(3); });
+            if (sg.flash) flash.style.opacity = (0.55 * Math.max(0, 1 - lt / 0.07)).toFixed(3);
+          } else if (sg.kind === "card") {
+            el.querySelector("p").style.scale = (1.06 - 0.06 * clamp(lt / 0.12)).toFixed(3);
+          } else if (sg.kind === "trails") {
+            var sw = el.querySelectorAll(".sw");
+            sw.forEach(function (s, j) { s.style.strokeDashoffset = (1 - ((lt * (sg.intro ? 2.6 : 1.1) + j * 0.17) % 1.5)).toFixed(3); });
+            el.querySelector(".spin").style.rotate = (lt * (sg.intro ? 140 : 60)) + "deg";
+            el.querySelector("svg.mm").style.scale = (sg.intro ? 0.9 + 0.25 * p : 0.85 + 0.2 * clamp(lt / 0.4)).toFixed(3);
+            el.querySelector(".bg").style.transform = "scale(" + (1.05 + 0.08 * p).toFixed(3) + ")";
+            if (lt < 0.06) flash.style.opacity = 0.5;
+          } else {
+            el.querySelector("p").style.opacity = clamp(lt / 0.05);
+            el.querySelector("small").style.opacity = clamp((lt - 0.35) / 0.3);
+          }
+        }
+
+        Promise.all([document.fonts.ready].concat([].map.call(document.images, function (im) { return im.decode ? im.decode().catch(function () {}) : 0; }))).then(function () {
+          var tl = gsap.timeline({ paused: true }), clock = { t: 0 };
+          tl.to(clock, { t: 32, duration: 32, ease: "none", onUpdate: function () { render(clock.t); } }, 0);
+          window.__timelines["main"] = tl;
+          tl.seek(0);
+        });
+      })();
+    </script>
+  </body>
+</html>
