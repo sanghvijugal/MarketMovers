@@ -2,3 +2,5 @@ composition/assets/audio/
 composition/.hyperframes/
 composition/snapshots/
 hype-with-audio.mp4
+.*.hf-transaction-*/
+work-*/
