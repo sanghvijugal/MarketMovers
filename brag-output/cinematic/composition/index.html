@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Market Movers brag (cinematic)</title>
+    <script src="assets/js/gsap.min.js"></script>
+    <script src="assets/js/audio-data.js"></script>
+    <style>
+      @font-face { font-family: "Geist"; src: url("assets/fonts/geist.woff2") format("woff2"); font-weight: 100 900; }
+      :root { --bg: #0b0d0d; --fg: #ecece8; --dim: #a7b0af; --teal: #5aa9ae; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--bg); }
+      body { font-family: "Geist", sans-serif; color: var(--fg); -webkit-font-smoothing: antialiased; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--bg); }
+      .clip { position: absolute; inset: 0; overflow: hidden; }
+      .photo { position: absolute; inset: 0; will-change: transform; }
+      .photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(0.5) contrast(1.18) saturate(0.75); }
+      .vignette { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 50%, rgb(11 13 13 / 0) 35%, rgb(11 13 13 / 0.85) 100%); }
+      .caps { font-size: 26px; font-weight: 500; letter-spacing: 0.42em; text-transform: uppercase; color: var(--dim); white-space: nowrap; }
+      .line { font-size: 84px; font-weight: 600; letter-spacing: -0.035em; line-height: 1.08; }
+      .line .w { display: inline-block; }
+      .line em { font-style: normal; color: var(--teal); }
+
+      /* letterbox, grain and light (persistent) */
+      #bars { z-index: 80; pointer-events: none; }
+      #bars i { position: absolute; left: 0; right: 0; height: 138px; background: #000; }
+      #bars i:first-child { top: 0; } #bars i:last-child { bottom: 0; }
+      #grain { position: absolute; inset: -60px; opacity: 0.07; mix-blend-mode: screen;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='240' height='240' filter='url(%23n)'/></svg>"); }
+      #bloom { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 50%, rgb(236 236 232 / 0.9), rgb(90 169 174 / 0.35) 40%, rgb(11 13 13 / 0) 75%); opacity: 0; }
+
+      /* 1: hook */
+      #c1-place { position: absolute; left: 0; right: 0; top: 470px; text-align: center; }
+      #c1-sweep { position: absolute; top: -200px; bottom: -200px; width: 700px; left: -800px; background: linear-gradient(90deg, rgb(255 255 255 / 0), rgb(255 255 255 / 0.22), rgb(255 255 255 / 0)); transform: rotate(14deg); mix-blend-mode: screen; }
+      #c1-line { position: absolute; left: 150px; top: 640px; width: 1300px; }
+
+      /* 2: rings */
+      #c2-rings { position: absolute; left: 960px; top: 540px; width: 0; height: 0; }
+      #c2-rings svg { position: absolute; left: -540px; top: -540px; width: 1080px; height: 1080px; overflow: visible; }
+      #c2-num { position: absolute; left: 0; right: 0; top: 400px; text-align: center; font-size: 230px; font-weight: 600; letter-spacing: -0.05em; line-height: 1; font-variant-numeric: tabular-nums; }
+      #c2-num small { font-size: 64px; letter-spacing: 0; color: var(--dim); margin-left: 14px; font-weight: 500; }
+      #c2-cap { position: absolute; left: 0; right: 0; top: 768px; text-align: center; font-size: 60px; }
+
+      /* 3: coil */
+      #c3-fig { position: absolute; left: 150px; top: 300px; }
+      #c3-num { display: flex; font-size: 280px; font-weight: 600; letter-spacing: -0.05em; line-height: 1; height: 280px; overflow: hidden; font-variant-numeric: tabular-nums; }
+      #c3-num .col { display: block; height: 280px; overflow: hidden; padding: 0 20px; margin: 0 -20px; }
+      #c3-num .reel { display: block; }
+      #c3-num .reel span { display: block; height: 280px; }
+      #c3-num .acc { color: var(--teal); }
+      #c3-fig .caps { margin-top: 30px; }
+      #c3-line { position: absolute; left: 150px; top: 560px; width: 1250px; }
+
+      /* 4: brands */
+      #c4-title { position: absolute; left: 0; right: 0; top: 230px; text-align: center; font-size: 170px; font-weight: 700; letter-spacing: -0.04em; line-height: 1; }
+      #c4-names { position: absolute; left: 160px; right: 160px; top: 500px; display: flex; flex-wrap: wrap; justify-content: center; gap: 30px 70px; }
+      #c4-names span { display: block; font-size: 38px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--fg); }
+      #c4-names span.pg { color: var(--teal); }
+      #c4-cap { position: absolute; left: 0; right: 0; top: 780px; text-align: center; font-size: 50px; color: var(--dim); }
+
+      /* 5: title */
+      #c5-row { position: absolute; left: 0; right: 0; top: 300px; display: flex; flex-direction: column; align-items: center; }
+      #c5-mark { height: 200px; width: auto; overflow: visible; }
+      #c5-name { margin-top: 40px; font-size: 128px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; line-height: 1; white-space: nowrap; }
+      #c5-name .ch, #c5-name .sp { display: inline-block; }
+      #c5-tag { position: absolute; left: 0; right: 0; top: 720px; text-align: center; font-size: 46px; letter-spacing: -0.015em; }
+      #c5-url { position: absolute; left: 0; right: 0; top: 800px; text-align: center; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="25" data-width="1920" data-height="1080">
+
+      <section id="c1" class="clip" data-start="0" data-duration="6.7" data-track-index="1">
+        <div class="photo" id="c1-photo"><img src="assets/img/pipe-stack.jpg" alt="Stacked plastic pipes in low light" /></div>
+        <div id="c1-sweep"></div>
+        <div class="vignette"></div>
+        <div id="c1-place"><p class="caps" id="c1-caps">Jabalpur, Madhya Pradesh</p></div>
+        <p class="line" id="c1-line"></p>
+      </section>
+
+      <section id="c2" class="clip" data-start="6.25" data-duration="4.6" data-track-index="2">
+        <div id="c2-rings"><svg viewBox="-540 -540 1080 1080" id="c2-svg"></svg></div>
+        <div class="vignette"></div>
+        <p id="c2-num"><span id="c2-val">20</span><small>mm</small></p>
+        <p class="line" id="c2-cap"></p>
+      </section>
+
+      <section id="c3" class="clip" data-start="10.4" data-duration="5.1" data-track-index="3">
+        <div id="c3-wrap" style="position: absolute; inset: 0">
+          <div class="photo" id="c3-photo"><img src="assets/img/hdpe-coil.jpg" alt="A coil of black HDPE pipe in low light" style="object-position: 35% 50%" /></div>
+          <div class="vignette"></div>
+        </div>
+        <div id="c3-fig"><div id="c3-num"></div><p class="caps">Products in stock at the godown</p></div>
+        <p class="line" id="c3-line"></p>
+      </section>
+
+      <section id="c4" class="clip" data-start="15.2" data-duration="4.4" data-track-index="4">
+        <div class="photo" id="c4-photo" style="opacity: 0.35"><img src="assets/img/fittings.jpg" alt="PVC fittings in low light" /></div>
+        <div class="vignette"></div>
+        <h2 id="c4-title">Ten brands.</h2>
+        <div id="c4-names"></div>
+        <p id="c4-cap">In stock at our Marhatal counter.</p>
+      </section>
+
+      <section id="c5" class="clip" data-start="19.4" data-duration="5.6" data-track-index="5">
+        <div id="bloom"></div>
+        <div id="c5-row"><svg class="mm" id="c5-mark" data-weight="16"></svg><p id="c5-name"></p></div>
+        <p id="c5-tag">Pipes, fittings and sanitaryware, from stock.</p>
+        <div id="c5-url"><p class="caps">marketmovers.co.in · WhatsApp your list</p></div>
+      </section>
+
+      <section id="bars" class="clip" data-start="0" data-duration="25" data-track-index="0"><div id="grain"></div><i></i><i></i></section>
+
+      <!-- music: lowpassed at first, opening up step by step, fully open on the title boom (19.48s) -->
+      <audio id="music" src="assets/music/happy-beats-business-moves-vol-9-by-ende-dot-app.mp3" data-start="0" data-duration="25" data-track-index="10" data-volume="0.6"
+        data-fx-chain="{&quot;version&quot;:1,&quot;nodes&quot;:[{&quot;type&quot;:&quot;lowpass&quot;,&quot;id&quot;:&quot;n1&quot;,&quot;label&quot;:&quot;Muffle then open&quot;,&quot;params&quot;:{&quot;frequency&quot;:380,&quot;q&quot;:0.9,&quot;poles&quot;:&quot;2&quot;}},{&quot;type&quot;:&quot;reverb&quot;,&quot;id&quot;:&quot;n2&quot;,&quot;label&quot;:&quot;Hall&quot;,&quot;params&quot;:{&quot;size&quot;:0.85,&quot;damping&quot;:0.55,&quot;wet&quot;:0.32,&quot;dry&quot;:0.85}}]}"
+        data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:0},{&quot;t&quot;:2.5,&quot;v&quot;:0.6},{&quot;t&quot;:23.4,&quot;v&quot;:0.6},{&quot;t&quot;:25,&quot;v&quot;:0}]},{&quot;target&quot;:&quot;fx.n1.frequency&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:380},{&quot;t&quot;:6.3,&quot;v&quot;:520},{&quot;t&quot;:10.5,&quot;v&quot;:800},{&quot;t&quot;:15.2,&quot;v&quot;:1200},{&quot;t&quot;:19.3,&quot;v&quot;:2600,&quot;curve&quot;:0.5},{&quot;t&quot;:19.5,&quot;v&quot;:19000}]}]}"></audio>
+      <audio id="sx-open" src="assets/sfx/impactSoft_heavy_001.ogg" data-start="0.4" data-duration="0.57" data-track-index="11" data-volume="0.5"></audio>
+      <audio id="sx-dive" src="assets/sfx/whoosh.wav" data-start="5.55" data-duration="1.4" data-track-index="12" data-volume="0.4"></audio>
+      <audio id="sx-ring" src="assets/sfx/impactBell_heavy_004.ogg" data-start="6.34" data-duration="0.3" data-track-index="13" data-volume="0.45"></audio>
+      <audio id="sx-coil" src="assets/sfx/impactSoft_heavy_003.ogg" data-start="10.54" data-duration="0.54" data-track-index="14" data-volume="0.6"></audio>
+      <audio id="sx-out" src="assets/sfx/whoosh.wav" data-start="14.6" data-duration="1.4" data-track-index="15" data-volume="0.35"></audio>
+      <audio id="sx-riser" src="assets/sfx/riser.wav" data-start="16.88" data-duration="2.6" data-track-index="16" data-volume="0.55"></audio>
+      <audio id="sx-boom" src="assets/sfx/boom.wav" data-start="19.48" data-duration="3.5" data-track-index="17" data-volume="0.85"></audio>
+      <audio id="sx-bell" src="assets/sfx/impactBell_heavy_003.ogg" data-start="19.5" data-duration="0.65" data-track-index="18" data-volume="0.5"></audio>
+    </div>
+
+    <script>
+      (function () {
+        // Woven MM mark: same geometry as src/components/LogoMark.astro (on-dark colours, as in the site footer)
+        function markSVG(svg, id, weight, inner, outer) {
+          var a = 64, b = 112, s = 0.625, t2 = 24, B = 200, sw = weight, gap = Math.round(weight * 0.5);
+          var v1 = a * s, v2 = t2 + b * s, yc = t2 + (b - a) * s;
+          var P = function (pts) { return "M" + pts.map(function (p) { return p.join(","); }).join("L"); };
+          var len = Math.hypot(1, s), ux = -1 / len, uy = s / len, r = function (k) { return +k.toFixed(2); };
+          var seg = function (L) { return { left: "M" + -a + "," + r(yc - L) + "L" + -a + "," + r(yc + L), right: "M" + r(a - ux * L) + "," + r(yc - uy * L) + "L" + r(a + ux * L) + "," + r(yc + uy * L) }; };
+          var cut = seg(sw * 2), redraw = seg(sw * 3.6), pad = sw;
+          svg.setAttribute("viewBox", (-b - pad) + " " + (-pad * 2) + " " + (2 * (b + pad)) + " " + (B + pad * 3));
+          var st = 'fill="none" stroke-width="' + sw + '" stroke-linejoin="miter" stroke-miterlimit="4"';
+          svg.innerHTML = '<mask id="' + id + '" maskUnits="userSpaceOnUse" x="-400" y="-400" width="800" height="800"><rect x="-400" y="-400" width="800" height="800" fill="#fff"/><path d="' + cut.left + cut.right + '" stroke="#000" stroke-width="' + (sw + 2 * gap) + '"/></mask>' +
+            '<g class="lm-outer"><path d="' + P([[a, B], [b, B], [b, t2], [0, v2], [-b, t2], [-b, B], [-a, B]]) + '" stroke="' + outer + '" mask="url(#' + id + ')" ' + st + '/><path d="' + redraw.right + '" stroke="' + outer + '" ' + st + "/></g>" +
+            '<g class="lm-inner"><path d="' + P([[-a, B], [-a, 0], [0, v1], [a, 0], [a, B]]) + '" stroke="' + inner + '" stroke-linecap="square" mask="url(#' + id + ')" ' + st + '/><path d="' + redraw.left + '" stroke="' + inner + '" ' + st + "/></g>";
+        }
+        markSVG(document.getElementById("c5-mark"), "mmc", 16, "#ecece8", "#5aa9ae");
+
+        function words(el, html) {
+          el.innerHTML = html.split(" ").map(function (w) { return '<span class="w">' + w + "</span>"; }).join(" ");
+          return el.querySelectorAll(".w");
+        }
+        var w1 = words(document.getElementById("c1-line"), "Every building starts with what runs through its walls.");
+        var w2 = words(document.getElementById("c2-cap"), "From house plumbing to <em>400&nbsp;mm</em> mains.");
+        var w3 = words(document.getElementById("c3-line"), "Ready stock, so your site never waits on a factory.");
+        document.getElementById("c5-name").innerHTML = "Market Movers".split("").map(function (c) { return c === " " ? '<span class="sp">&nbsp;</span>' : '<span class="ch">' + c + "</span>"; }).join("");
+
+        // pipe-size rings, to scale (IS 4985 series, SizeRings.tsx)
+        var SIZES = [20, 25, 32, 40, 50, 63, 75, 90, 110, 140, 160, 200, 250, 315, 400], NS = "http://www.w3.org/2000/svg";
+        var svg = document.getElementById("c2-svg");
+        var rings = SIZES.map(function (s) {
+          var c = document.createElementNS(NS, "circle");
+          c.setAttribute("r", (s / 400) * 500); c.setAttribute("fill", "none"); c.setAttribute("stroke", "#5aa9ae");
+          c.setAttribute("stroke-width", "2"); c.setAttribute("stroke-opacity", "0.35");
+          svg.appendChild(c); return c;
+        });
+
+        // odometer
+        var num = document.getElementById("c3-num");
+        num.innerHTML = "1,500".split("").map(function (ch) {
+          if (ch === ",") return "<span>,</span>";
+          var cells = ""; for (var k = 0; k < 20; k++) cells += "<span>" + (k % 10) + "</span>";
+          return '<span class="col" data-d="' + ch + '"><span class="reel">' + cells + "</span></span>";
+        }).join("") + '<span class="acc">+</span>';
+
+        var BRANDS = [["Finolex", 1], ["Dutron", 1], ["Texmo", 1], ["Waterflo", 1], ["Johnson", 1], ["Kisan", 0], ["Plasto", 0], ["MBH", 0], ["Rewa", 0], ["Reco", 0]];
+        document.getElementById("c4-names").innerHTML = BRANDS.map(function (b) { return '<span class="' + (b[1] ? "pg" : "") + '">' + b[0] + "</span>"; }).join("");
+
+        document.fonts.ready.then(function () {
+          var tl = gsap.timeline({ paused: true });
+          var reveal = function (els, t, stagger) {
+            tl.fromTo(els, { opacity: 0, y: 26, filter: "blur(14px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.9, ease: "power2.out", stagger: stagger }, t);
+          };
+
+          // ===== 1: hook (0 to 6.34) =====
+          gsap.set("#c1-photo", { transformOrigin: "815px 194px" });
+          tl.fromTo("#c1-photo", { opacity: 0, scale: 1.3 }, { opacity: 1, scale: 1.12, duration: 5.6, ease: "power1.out" }, 0.6);
+          tl.fromTo("#c1-sweep", { x: 0 }, { x: 3200, duration: 3.2, ease: "power1.inOut" }, 1.4);
+          tl.fromTo("#c1-caps", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 1.8, ease: "power2.out" }, 0.4);
+          tl.to("#c1-caps", { opacity: 0, filter: "blur(8px)", duration: 0.6, ease: "power2.in" }, 2.2);
+          reveal(w1, 2.6, 0.1);
+          tl.to("#c1-line", { opacity: 0, filter: "blur(12px)", duration: 0.5, ease: "power2.in" }, 5.6);
+          // the camera dives into one pipe opening
+          tl.to("#c1-photo", { scale: 9, opacity: 0, duration: 0.85, ease: "power3.in" }, 5.55);
+
+          // ===== 2: size rings (6.34 to 10.54) =====
+          // beat-locked: 6.34s, the rings pull back out of the pipe
+          tl.fromTo("#c2-rings", { scale: 5, opacity: 0 }, { scale: 1, opacity: 1, duration: 2.0, ease: "power3.out" }, 6.3);
+          tl.fromTo("#c2-rings", { rotation: 0 }, { rotation: 20, duration: 4.5, ease: "none" }, 6.3);
+          tl.fromTo("#c2-num", { opacity: 0, scale: 0.9, filter: "blur(18px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 1.0, ease: "power2.out" }, 6.6);
+          reveal(w2, 7.5, 0.1);
+          tl.to("#c2-num, #c2-cap", { opacity: 0, filter: "blur(14px)", duration: 0.45, ease: "power2.in" }, 10.15);
+          tl.to("#c2-rings", { scale: 3.5, opacity: 0, duration: 0.6, ease: "power3.in" }, 10.15);
+
+          // ===== 3: coil (10.54 to 15.28) =====
+          // beat-locked: 10.54s, the coil opens out from the centre of the rings
+          tl.fromTo("#c3-wrap", { clipPath: "circle(0px at 960px 540px)" }, { clipPath: "circle(1200px at 960px 540px)", duration: 1.1, ease: "power2.inOut" }, 10.45);
+          tl.fromTo("#c3-photo", { scale: 1.22, rotation: -3 }, { scale: 1.05, rotation: 2, duration: 5.1, ease: "power1.out" }, 10.4);
+          tl.fromTo("#c3-fig", { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.8, ease: "power2.out" }, 10.9);
+          document.querySelectorAll("#c3-num .col").forEach(function (col, j) {
+            tl.fromTo(col.querySelector(".reel"), { y: 0 }, { y: -(10 + +col.dataset.d) * 280, duration: 1.3 + j * 0.15, ease: "power3.out" }, 10.9);
+          });
+          tl.to("#c3-fig", { opacity: 0, filter: "blur(14px)", duration: 0.5, ease: "power2.in" }, 12.4);
+          // beat-locked: 12.65s
+          reveal(w3, 12.65, 0.08);
+          tl.to("#c3-line", { opacity: 0, filter: "blur(12px)", duration: 0.45, ease: "power2.in" }, 14.8);
+          tl.to("#c3-wrap", { opacity: 0, duration: 0.6, ease: "power2.in" }, 14.75);
+
+          // ===== 4: brands (15.28 to 19.48) =====
+          tl.fromTo("#c4-photo", { scale: 1.2, opacity: 0 }, { scale: 1.08, opacity: 0.35, duration: 4.2, ease: "power1.out" }, 15.2);
+          tl.fromTo("#c4-title", { opacity: 0, scale: 1.08, filter: "blur(20px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 1.0, ease: "power2.out" }, 15.28);
+          reveal("#c4-names span", 15.9, 0.12);
+          tl.fromTo("#c4-cap", { opacity: 0 }, { opacity: 1, duration: 0.8, ease: "power1.out" }, 17.0);
+          tl.to("#c4-title, #c4-names, #c4-cap, #c4-photo", { opacity: 0, duration: 0.35, ease: "power2.in" }, 19.1);
+
+          // ===== 5: title (19.48 to 25) =====
+          // beat-locked: 19.48s, light blooms and the Ms lock on the boom
+          tl.fromTo("#bloom", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1.4, duration: 0.18, ease: "power2.out" }, 19.42);
+          tl.to("#bloom", { opacity: 0, duration: 1.4, ease: "power2.out" }, 19.6);
+          tl.fromTo("#c5-mark .lm-inner", { y: -160, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "expo.out" }, 19.42);
+          tl.fromTo("#c5-mark .lm-outer", { y: 160, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "expo.out" }, 19.46);
+          var chs = document.querySelectorAll("#c5-name .ch, #c5-name .sp"), mid = (chs.length - 1) / 2;
+          chs.forEach(function (c, i) {
+            tl.fromTo(c, { x: (i - mid) * 46 }, { x: 0, duration: 2.6, ease: "power3.out" }, 19.6);
+          });
+          tl.fromTo("#c5-name .ch", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.6, ease: "power2.out", stagger: 0.05 }, 19.6);
+          reveal("#c5-tag", 21.1, 0);
+          reveal("#c5-url", 21.7, 0);
+          tl.fromTo("#c5-row", { scale: 1 }, { scale: 1.04, duration: 5.5, ease: "none" }, 19.5);
+
+          // grain moves every frame; the rings glow breathes with the music (precomputed RMS)
+          var grain = document.getElementById("grain"), RMS = window.AUDIO_RMS || [], ringsEl = document.getElementById("c2-svg");
+          var valEl = document.getElementById("c2-val"), sweep = gsap.parseEase("power2.inOut"), lastIdx = -1;
+          tl.eventCallback("onUpdate", function () {
+            var t = tl.time(), f = Math.round(t * 30);
+            // size sweep 20 -> 400 mm (7.3-9.3); the matching ring lights up as it passes
+            var idx = Math.round(14 * sweep(Math.max(0, Math.min(1, (t - 7.3) / 2.0))));
+            if (idx !== lastIdx) {
+              valEl.textContent = SIZES[idx];
+              rings.forEach(function (c, j) { c.setAttribute("stroke-opacity", j === idx ? "1" : "0.35"); c.setAttribute("stroke-width", j === idx ? "4" : "2"); });
+              lastIdx = idx;
+            }
+            grain.style.transform = "translate(" + ((f * 37) % 60 - 30) + "px," + ((f * 53) % 60 - 30) + "px)";
+            var v = RMS[Math.min(RMS.length - 1, Math.max(0, f))] || 0.3;
+            ringsEl.style.filter = "drop-shadow(0 0 " + (6 + v * 18).toFixed(1) + "px rgb(90 169 174 / 0.55))";
+          });
+
+          window.__timelines["main"] = tl;
+        });
+      })();
+    </script>
+  </body>
+</html>

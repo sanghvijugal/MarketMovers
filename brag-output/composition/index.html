@@ -1,0 +1,590 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Market Movers brag</title>
+    <script src="assets/js/gsap.min.js"></script>
+    <script src="assets/js/audio-data.js"></script>
+    <style>
+      @font-face {
+        font-family: "Geist";
+        src: url("assets/fonts/geist.woff2") format("woff2");
+        font-weight: 100 900;
+      }
+      @font-face {
+        font-family: "Plex Hindi";
+        src: url("assets/fonts/plex-hi.woff2") format("woff2");
+        font-weight: 400;
+      }
+      :root {
+        --bg: #f4f4f2;
+        --card: #fafaf9;
+        --ink: #111111;
+        --muted: #575753;
+        --faint: #b6b6b1;
+        --teal: #0b5d63;
+        --glass-tint: rgb(250 250 249 / 0.74);
+        --glass-edge: rgb(255 255 255 / 0.75);
+        --glass-shadow: inset 0 1.5px 0 rgb(255 255 255 / 0.85), 0 24px 70px rgb(17 17 17 / 0.16);
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--bg); }
+      body { font-family: "Geist", sans-serif; color: var(--ink); -webkit-font-smoothing: antialiased; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--bg); }
+      .clip { position: absolute; inset: 0; }
+      .hi { font-family: "Plex Hindi", sans-serif; font-weight: 400; }
+
+      /* shared pieces */
+      .frame { position: absolute; inset: 32px; border-radius: 32px; overflow: hidden; background: #d9d9d5; }
+      .frame-img { position: absolute; inset: 0; will-change: transform; }
+      .frame-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+      .glass {
+        position: absolute; border-radius: 32px;
+        background: var(--glass-tint);
+        backdrop-filter: blur(30px) saturate(1.35);
+        -webkit-backdrop-filter: blur(30px) saturate(1.35);
+        border: 1.5px solid var(--glass-edge);
+        box-shadow: var(--glass-shadow);
+      }
+      .btn {
+        display: inline-flex; align-items: center; gap: 16px; height: 84px; padding: 0 40px 0 32px;
+        border-radius: 999px; background: var(--teal); color: #f4f4f2; font-size: 32px; font-weight: 550;
+        letter-spacing: -0.01em; white-space: nowrap;
+      }
+      .btn svg { width: 38px; height: 38px; }
+      .glow {
+        position: absolute; width: 1400px; height: 1400px; border-radius: 50%;
+        background: radial-gradient(closest-side, rgb(11 93 99 / 0.2), rgb(11 93 99 / 0.07) 55%, rgb(11 93 99 / 0) 100%);
+        will-change: transform, opacity;
+      }
+
+      /* brand lockup + floating header pill (persistent) */
+      #brand-layer { z-index: 50; pointer-events: none; }
+      #pill {
+        position: absolute; left: 64px; top: 58px; height: 88px; border-radius: 999px;
+        background: rgb(244 244 242 / 0.86);
+        backdrop-filter: blur(24px) saturate(1.3); -webkit-backdrop-filter: blur(24px) saturate(1.3);
+        border: 1.5px solid var(--glass-edge); box-shadow: var(--glass-shadow);
+      }
+      #brand {
+        position: absolute; left: 92px; top: 76px; display: flex; align-items: center; gap: 14px;
+        transform-origin: 0 0; white-space: nowrap; line-height: 1;
+      }
+      #brand .mark { height: 52px; width: auto; display: block; overflow: visible; }
+      #brand-name { display: block; font-size: 34px; font-weight: 600; letter-spacing: -0.03em; }
+      #brand-hi { display: block; font-size: 22px; color: #4a4a47; margin-left: 4px; margin-top: 6px; }
+
+      /* scene: pipe stack */
+      #s-pipe { z-index: 2; }
+      #pipe-panel { right: 72px; bottom: 72px; width: 900px; padding: 56px 60px 60px; }
+      .label { font-size: 28px; color: var(--muted); letter-spacing: -0.005em; }
+      #pipe-h1 { margin-top: 22px; font-size: 92px; line-height: 1.06; font-weight: 500; letter-spacing: -0.05em; }
+      #pipe-h1 .w { display: inline-block; }
+      #pipe-h1 .tail { color: var(--muted); }
+      #pipe-btn { margin-top: 44px; }
+
+      /* scene: size rings */
+      #s-rings { z-index: 3; background: var(--bg); }
+      #rings-copy { position: absolute; left: 150px; top: 290px; width: 760px; }
+      #rings-h2 { font-size: 104px; line-height: 0.98; font-weight: 600; letter-spacing: -0.05em; }
+      #rings-h2 .line { display: block; overflow: hidden; padding-bottom: 6px; }
+      #rings-h2 .line > span { display: block; }
+      #rings-sub { margin-top: 36px; font-size: 30px; color: var(--muted); max-width: 640px; line-height: 1.3; }
+      #rings-fig { position: absolute; left: 1010px; top: 92px; width: 760px; }
+      #rings-svg { display: block; width: 640px; height: 640px; margin: 0 auto; overflow: visible; }
+      #rings-cap {
+        margin-top: 26px; display: flex; align-items: flex-end; justify-content: space-between;
+        border-bottom: 2px solid var(--ink); padding-bottom: 14px;
+      }
+      #rings-num { font-size: 104px; line-height: 0.9; font-weight: 500; letter-spacing: -0.05em; font-variant-numeric: tabular-nums; }
+      #rings-num small { font-size: 30px; letter-spacing: 0; color: var(--muted); margin-left: 8px; font-weight: 400; }
+      #rings-use { font-size: 28px; color: var(--muted); padding-bottom: 8px; text-align: right; }
+      #rings-ruler { margin-top: 12px; display: grid; grid-template-columns: repeat(15, 1fr); font-size: 21px; text-align: center; color: var(--faint); font-variant-numeric: tabular-nums; }
+      #rings-ruler span.on { color: var(--ink); font-weight: 650; }
+
+      /* scene: HDPE coil + stats */
+      #s-coil { z-index: 4; }
+      #coil-wrap { position: absolute; inset: 0; }
+      #coil-panel { left: 72px; bottom: 72px; width: 700px; padding: 56px 60px; }
+      #coil-h2 { font-size: 76px; line-height: 1.08; font-weight: 600; letter-spacing: -0.05em; }
+      #coil-h2 .w { display: inline-block; }
+      #stats-panel { right: 72px; bottom: 72px; width: 940px; padding: 52px 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px 56px; }
+      .stat .num { display: flex; font-size: 116px; line-height: 1; height: 116px; overflow: hidden; font-weight: 500; letter-spacing: -0.055em; font-variant-numeric: tabular-nums; }
+      .stat .col { display: block; position: relative; }
+      .stat .col .reel { display: block; }
+      .stat .col .reel span { display: block; height: 116px; }
+      .stat .sep, .stat .plus { display: block; }
+      .stat .plus { color: var(--teal); }
+      .stat .lbl { margin-top: 12px; font-size: 25px; line-height: 1.25; color: var(--muted); max-width: 380px; }
+
+      /* scene: brands */
+      #s-brands { z-index: 1; }
+      #brands-head { position: absolute; left: 150px; top: 190px; }
+      #brands-h2 { font-size: 112px; line-height: 1; font-weight: 600; letter-spacing: -0.05em; }
+      #brands-hi { margin-top: 10px; font-size: 34px; color: var(--muted); }
+      #brands-rule { position: absolute; left: 150px; right: 150px; top: 418px; height: 2px; background: var(--ink); transform-origin: 0 50%; }
+      #brands-list { position: absolute; left: 150px; top: 456px; width: 1640px; display: flex; flex-wrap: wrap; gap: 6px 64px; }
+      .bn { position: relative; display: block; overflow: hidden; padding: 4px 0 10px; }
+      .bn > span { display: block; font-size: 96px; line-height: 1.02; font-weight: 600; letter-spacing: -0.05em; }
+      .bn.dim > span { color: var(--muted); }
+      .bn .mk { position: absolute; left: -2px; top: 50%; width: 0; height: 0; }
+      .mk-sq { position: absolute; left: -30px; top: -9px; width: 18px; height: 18px; border-radius: 4px; background: var(--teal); }
+      .bn.has { overflow: visible; }
+      .bn.has > .mask { display: block; overflow: hidden; }
+      .bn.has > .mask > span { display: block; font-size: 96px; line-height: 1.02; font-weight: 600; letter-spacing: -0.05em; }
+      #brands-sub { position: absolute; left: 150px; bottom: 120px; font-size: 40px; letter-spacing: -0.02em; }
+      #brands-sub b { color: var(--teal); font-weight: 600; }
+
+      /* scene: order */
+      #s-order { z-index: 6; }
+      #order-wrap { position: absolute; inset: 0; }
+      #order-panel { left: 72px; top: 176px; bottom: 72px; width: 900px; padding: 56px 64px; }
+      #order-h2 { font-size: 84px; line-height: 1.06; font-weight: 600; letter-spacing: -0.05em; }
+      #order-h2 .w { display: inline-block; }
+      #order-hi { margin-top: 14px; font-size: 30px; color: var(--muted); }
+      #steps { margin-top: 40px; list-style: none; }
+      #steps li { position: relative; display: flex; align-items: baseline; gap: 26px; border-top: 2px solid rgb(17 17 17 / 0.16); padding: 24px 0 20px; }
+      #steps .n { font-size: 28px; color: var(--muted); font-variant-numeric: tabular-nums; width: 34px; }
+      #steps .t { font-size: 52px; line-height: 1; font-weight: 600; letter-spacing: -0.05em; }
+      #steps .dot { position: absolute; right: 4px; top: 50%; width: 20px; height: 20px; margin-top: -10px; border-radius: 6px; background: var(--teal); }
+
+      #phone { position: absolute; left: 1190px; top: 96px; width: 470px; height: 900px; border-radius: 68px; background: #111; padding: 14px; box-shadow: 0 40px 90px rgb(17 17 17 / 0.35); }
+      #screen { position: relative; width: 100%; height: 100%; border-radius: 56px; overflow: hidden; background: #efeae2; }
+      #chat-top { position: absolute; left: 0; right: 0; top: 0; height: 150px; background: var(--teal); color: #f4f4f2; display: flex; align-items: flex-end; gap: 16px; padding: 0 26px 22px; }
+      #chat-av { width: 60px; height: 60px; border-radius: 50%; background: #f4f4f2; display: grid; place-items: center; }
+      #chat-av svg { width: 38px; height: auto; }
+      #chat-name { font-size: 27px; font-weight: 600; letter-spacing: -0.01em; }
+      #chat-status { font-size: 19px; opacity: 0.85; margin-top: 4px; }
+      #msgs { position: absolute; left: 18px; right: 18px; top: 172px; bottom: 112px; }
+      .msg { position: absolute; max-width: 360px; padding: 16px 20px 14px; border-radius: 22px; font-size: 23px; line-height: 1.35; box-shadow: 0 1px 1px rgb(17 17 17 / 0.12); }
+      .msg .meta { display: flex; justify-content: flex-end; gap: 6px; margin-top: 6px; font-size: 16px; color: #667; }
+      .msg.out { right: 0; background: #d9fdd3; border-top-right-radius: 6px; transform-origin: 100% 100%; }
+      .msg.in { left: 0; background: #fff; border-top-left-radius: 6px; transform-origin: 0 100%; }
+      #m1 { top: 24px; width: 360px; }
+      #m1 .ln { display: block; }
+      #m2 { top: 330px; width: 330px; }
+      #typing { position: absolute; left: 0; top: 330px; width: 104px; height: 56px; border-radius: 22px; border-top-left-radius: 6px; background: #fff; display: flex; align-items: center; justify-content: center; gap: 9px; }
+      #typing i { display: block; width: 11px; height: 11px; border-radius: 50%; background: #9a9a96; }
+      .ticks { position: relative; display: inline-block; width: 26px; height: 16px; }
+      .ticks svg { position: absolute; inset: 0; width: 26px; height: 16px; }
+      #chat-bar { position: absolute; left: 14px; right: 14px; bottom: 18px; display: flex; gap: 12px; align-items: flex-end; }
+      #chat-input { flex: 1; min-height: 76px; border-radius: 38px; background: #fff; padding: 16px 26px; font-size: 22px; line-height: 1.3; color: var(--ink); }
+      #chat-input .ph { color: #9a9a96; }
+      #chat-input .caret { display: inline-block; width: 2px; height: 26px; margin-left: 2px; vertical-align: -5px; background: var(--teal); }
+      #chat-send { width: 76px; height: 76px; border-radius: 50%; background: var(--teal); display: grid; place-items: center; flex: none; }
+      #chat-send svg { width: 34px; height: 34px; }
+
+      /* scene: outro */
+      #s-outro { z-index: 5; }
+      #outro-cta { position: absolute; left: 0; right: 0; top: 650px; display: flex; flex-direction: column; align-items: center; }
+      #outro-line { margin-top: 44px; font-size: 38px; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+      #outro-line .sep { color: var(--faint); margin: 0 18px; }
+      #outro-addr { margin-top: 14px; font-size: 28px; color: var(--muted); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="25" data-width="1920" data-height="1080">
+
+      <!-- Scene 5 sits lowest so the coil frame can slide up off it -->
+      <section id="s-brands" class="clip" data-start="14.6" data-duration="4.3" data-track-index="5">
+        <div class="glow" id="glow-brands" style="left: 820px; top: -260px"></div>
+        <div id="brands-head">
+          <h2 id="brands-h2">Brands we stock</h2>
+          <p id="brands-hi" class="hi" lang="hi">हमारे ब्रांड</p>
+        </div>
+        <div id="brands-rule"></div>
+        <div id="brands-list" data-layout-allow-overlap></div>
+        <p id="brands-sub">Ten brands in stock at our <b>Marhatal</b> counter.</p>
+      </section>
+
+      <section id="s-pipe" class="clip" data-start="2.6" data-duration="5.3" data-track-index="2">
+        <div id="pipe-frame" class="frame">
+          <div id="pipe-img" class="frame-img"><img src="assets/img/pipe-stack.jpg" alt="A pyramid of white, cream, grey and black plastic pipes" /></div>
+          <div id="pipe-panel" class="glass">
+            <p id="pipe-label" class="label">Wholesale distributor in Marhatal, Jabalpur</p>
+            <h1 id="pipe-h1"></h1>
+            <div id="pipe-btn" class="btn"><svg viewBox="0 0 24 24" fill="none" class="wa"></svg><span>WhatsApp your list</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="s-rings" class="clip" data-start="7.3" data-duration="4.3" data-track-index="3">
+        <div class="glow" id="glow-rings" style="left: 690px; top: -290px"></div>
+        <div id="rings-copy">
+          <h2 id="rings-h2"><span class="line"><span>From house</span></span><span class="line"><span>plumbing to</span></span><span class="line"><span>400 mm mains.</span></span></h2>
+          <p id="rings-sub">Outside diameters to scale, IS 4985 series.</p>
+        </div>
+        <figure id="rings-fig">
+          <svg id="rings-svg" viewBox="0 0 640 640"></svg>
+          <figcaption>
+            <div id="rings-cap"><span id="rings-num"><span id="rings-val">20</span><small>mm</small></span><span id="rings-use">House plumbing: taps and bathrooms</span></div>
+            <div id="rings-ruler"></div>
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="s-coil" class="clip" data-start="10.5" data-duration="5.1" data-track-index="4">
+        <div id="coil-wrap">
+          <div id="coil-frame" class="frame">
+            <div id="coil-img" class="frame-img"><img src="assets/img/hdpe-coil.jpg" alt="A coil of black HDPE pipe with one cut end in front" style="object-position: 35% 50%" /></div>
+            <div id="coil-panel" class="glass"><h2 id="coil-h2"></h2></div>
+            <div id="stats-panel" class="glass"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="s-outro" class="clip" data-start="22.2" data-duration="2.8" data-track-index="6">
+        <div class="glow" id="glow-outro" style="left: 260px; top: -160px"></div>
+        <div id="outro-cta">
+          <div id="outro-btn" class="btn"><svg viewBox="0 0 24 24" fill="none" class="wa"></svg><span>WhatsApp your list</span></div>
+          <p id="outro-line"><span>+91 94250 66923</span><span class="sep">·</span><span>marketmovers.co.in</span></p>
+          <p id="outro-addr">4 &amp; 5 Anjuman Market, Marhatal, Jabalpur</p>
+        </div>
+      </section>
+
+      <section id="s-order" class="clip" data-start="18.1" data-duration="4.85" data-track-index="7">
+        <div id="order-wrap">
+          <div id="order-frame" class="frame">
+            <div id="order-img" class="frame-img"><img src="assets/img/counter.jpg" alt="Hands writing an order list at a wooden counter beside white PVC fittings" style="object-position: 70% 50%" /></div>
+            <div id="order-panel" class="glass">
+              <h2 id="order-h2"></h2>
+              <p id="order-hi" class="hi" lang="hi">ऑर्डर कैसे करें</p>
+              <ol id="steps">
+                <li><span class="n">1</span><span class="t">Send your list</span><span class="dot"></span></li>
+                <li><span class="n">2</span><span class="t">Get rates the same day</span><span class="dot"></span></li>
+                <li><span class="n">3</span><span class="t">Pick up or we deliver</span><span class="dot"></span></li>
+              </ol>
+            </div>
+            <div id="phone">
+              <div id="screen">
+                <div id="chat-top">
+                  <div id="chat-av"><svg class="mm" data-weight="20"></svg></div>
+                  <div><div id="chat-name">Market Movers</div><div id="chat-status">Marhatal, Jabalpur</div></div>
+                </div>
+                <div id="msgs">
+                  <div id="m1" class="msg out">
+                    <span class="ln">Hello Market Movers, here is my list:</span>
+                    <span class="ln">110 mm SWR pipe × 20</span>
+                    <span class="ln">1 inch CPVC elbow × 50</span>
+                    <span class="ln">Solvent cement × 4</span>
+                    <span class="meta">11:02 <span class="ticks"><svg viewBox="0 0 26 16" fill="none"><path id="tick-path" d="M1.5 8.5l4.5 4.5L14 4.5M10 13l1 0.5L22.5 3" stroke="#8a8f94" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+                  </div>
+                  <div id="typing"><i></i><i></i><i></i></div>
+                  <div id="m2" class="msg in">Got it. Rates coming your way today.<span class="meta">11:04</span></div>
+                </div>
+                <div id="chat-bar">
+                  <div id="chat-input"><span id="chat-text"></span><span class="caret" id="caret"></span></div>
+                  <div id="chat-send"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l16-8-6 16-2.5-6.5L4 12z" fill="#f4f4f2"/></svg></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Logo: big lockup in scene 1, then the floating header pill, then back to centre -->
+      <section id="brand-layer" class="clip" data-start="0" data-duration="25" data-track-index="1">
+        <div id="pill"></div>
+        <div id="brand">
+          <svg class="mark mm" id="brand-mark" data-weight="18" data-animate="1"></svg>
+          <span id="brand-name">Market Movers</span>
+          <span id="brand-hi" class="hi" lang="hi">मार्केट मूवर्स</span>
+        </div>
+      </section>
+
+      <audio id="music" src="assets/music/happy-beats-business-moves-vol-12-by-ende-dot-app.mp3" data-start="0" data-duration="25" data-track-index="10" data-volume="0.36"
+        data-automation='{"version":1,"lanes":[{"target":"volume","points":[{"t":0,"v":0.36},{"t":23.3,"v":0.36},{"t":25,"v":0}]}]}'></audio>
+      <audio id="sfx-lock" src="assets/sfx/impactSoft_medium_001.ogg" data-start="1.0" data-duration="0.18" data-track-index="11" data-volume="0.7"></audio>
+      <audio id="sfx-frame" src="assets/sfx/drop_001.ogg" data-start="3.55" data-duration="0.11" data-track-index="12" data-volume="0.45"></audio>
+      <audio id="sfx-iris" src="assets/sfx/impactSoft_medium_004.ogg" data-start="7.4" data-duration="0.15" data-track-index="13" data-volume="0.55"></audio>
+      <audio id="sfx-sweep" src="assets/sfx/card-slide-1.ogg" data-start="8.74" data-duration="0.6" data-track-index="14" data-volume="0.35"></audio>
+      <audio id="sfx-coil" src="assets/sfx/impactSoft_medium_001.ogg" data-start="10.93" data-duration="0.18" data-track-index="15" data-volume="0.55"></audio>
+      <audio id="sfx-stat" src="assets/sfx/bong_001.ogg" data-start="12.02" data-duration="0.12" data-track-index="16" data-volume="0.4"></audio>
+      <audio id="sfx-brands" src="assets/sfx/card-slide-1.ogg" data-start="15.3" data-duration="0.6" data-track-index="17" data-volume="0.35"></audio>
+      <audio id="sfx-wipe" src="assets/sfx/impactSoft_medium_004.ogg" data-start="18.2" data-duration="0.15" data-track-index="18" data-volume="0.5"></audio>
+      <audio id="sfx-k1" src="assets/sfx/keypress-001.wav" data-start="19.2" data-duration="0.3" data-track-index="19" data-volume="0.22"></audio>
+      <audio id="sfx-k2" src="assets/sfx/keypress-003.wav" data-start="19.45" data-duration="0.3" data-track-index="20" data-volume="0.2"></audio>
+      <audio id="sfx-k3" src="assets/sfx/keypress-005.wav" data-start="19.7" data-duration="0.3" data-track-index="21" data-volume="0.22"></audio>
+      <audio id="sfx-k4" src="assets/sfx/keypress-002.wav" data-start="19.92" data-duration="0.3" data-track-index="22" data-volume="0.2"></audio>
+      <audio id="sfx-send" src="assets/sfx/click_003.ogg" data-start="20.12" data-duration="0.01" data-track-index="23" data-volume="0.55"></audio>
+      <audio id="sfx-reply" src="assets/sfx/drop_002.ogg" data-start="21.28" data-duration="0.19" data-track-index="24" data-volume="0.45"></audio>
+      <audio id="sfx-bell" src="assets/sfx/impactBell_heavy_000.ogg" data-start="22.93" data-duration="1.48" data-track-index="25" data-volume="0.5"></audio>
+    </div>
+
+    <script>
+      (function () {
+        // ---------- static content (deterministic, built once) ----------
+        // Woven MM mark: same geometry as src/components/LogoMark.astro
+        function markSVG(svg, id, weight) {
+          var a = 64, b = 112, s = 0.625, t2 = 24, B = 200, sw = weight, gap = Math.round(weight * 0.5);
+          var v1 = a * s, v2 = t2 + b * s, yc = t2 + (b - a) * s;
+          var P = function (pts) { return "M" + pts.map(function (p) { return p.join(","); }).join("L"); };
+          var innerPath = P([[-a, B], [-a, 0], [0, v1], [a, 0], [a, B]]);
+          var outerPath = P([[a, B], [b, B], [b, t2], [0, v2], [-b, t2], [-b, B], [-a, B]]);
+          var len = Math.hypot(1, s), ux = -1 / len, uy = s / len;
+          var r = function (k) { return +k.toFixed(2); };
+          var seg = function (L) {
+            return {
+              left: "M" + -a + "," + r(yc - L) + "L" + -a + "," + r(yc + L),
+              right: "M" + r(a - ux * L) + "," + r(yc - uy * L) + "L" + r(a + ux * L) + "," + r(yc + uy * L),
+            };
+          };
+          var cut = seg(sw * 2), redraw = seg(sw * 3.6), pad = sw;
+          svg.setAttribute("viewBox", (-b - pad) + " " + (-pad * 2) + " " + (2 * (b + pad)) + " " + (B + pad * 3));
+          var st = 'fill="none" stroke-width="' + sw + '" stroke-linejoin="miter" stroke-miterlimit="4"';
+          svg.innerHTML =
+            '<mask id="' + id + '" maskUnits="userSpaceOnUse" x="-400" y="-400" width="800" height="800">' +
+            '<rect x="-400" y="-400" width="800" height="800" fill="#fff"/>' +
+            '<path d="' + cut.left + cut.right + '" stroke="#000" stroke-width="' + (sw + 2 * gap) + '"/></mask>' +
+            '<g class="lm-outer"><path d="' + outerPath + '" stroke="#0b5d63" mask="url(#' + id + ')" ' + st + '/>' +
+            '<path d="' + redraw.right + '" stroke="#0b5d63" ' + st + '/></g>' +
+            '<g class="lm-inner"><path d="' + innerPath + '" stroke="#111111" stroke-linecap="square" mask="url(#' + id + ')" ' + st + '/>' +
+            '<path d="' + redraw.left + '" stroke="#111111" ' + st + '/></g>';
+        }
+        document.querySelectorAll("svg.mm").forEach(function (svg, i) { markSVG(svg, "mm-mask-" + i, +svg.dataset.weight); });
+
+        // Hugeicons WhatsappIcon (stroke 1.5)
+        var WA = '<path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 13.3789 2.27907 14.6926 2.78382 15.8877C3.06278 16.5481 3.20226 16.8784 3.21953 17.128C3.2368 17.3776 3.16334 17.6521 3.01642 18.2012L2 22L5.79877 20.9836C6.34788 20.8367 6.62244 20.7632 6.87202 20.7805C7.12161 20.7977 7.45185 20.9372 8.11235 21.2162C9.30745 21.7209 10.6211 22 12 22Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5"/><path d="M8.58815 12.3773L9.45909 11.2956C9.82616 10.8397 10.2799 10.4153 10.3155 9.80826C10.3244 9.65494 10.2166 8.96657 10.0008 7.58986C9.91601 7.04881 9.41086 7 8.97332 7C8.40314 7 8.11805 7 7.83495 7.12931C7.47714 7.29275 7.10979 7.75231 7.02917 8.13733C6.96539 8.44196 7.01279 8.65187 7.10759 9.07169C7.51023 10.8548 8.45481 12.6158 9.91948 14.0805C11.3842 15.5452 13.1452 16.4898 14.9283 16.8924C15.3481 16.9872 15.558 17.0346 15.8627 16.9708C16.2477 16.8902 16.7072 16.5229 16.8707 16.165C17 15.8819 17 15.5969 17 15.0267C17 14.5891 16.9512 14.084 16.4101 13.9992C15.0334 13.7834 14.3451 13.6756 14.1917 13.6845C13.5847 13.7201 13.1603 14.1738 12.7044 14.5409L11.6227 15.4118" stroke="currentColor" stroke-width="1.5"/>';
+        document.querySelectorAll("svg.wa").forEach(function (s) { s.innerHTML = WA; });
+
+        function words(el, text, tailFrom) {
+          el.innerHTML = text.split(" ").map(function (w, i) {
+            return '<span class="w' + (tailFrom != null && i >= tailFrom ? " tail" : "") + '">' + w + "</span>";
+          }).join(" ");
+          return el.querySelectorAll(".w");
+        }
+        // "Pipes, fittings and sanitaryware" + muted ", from stock." (as on the site)
+        var h1 = document.getElementById("pipe-h1");
+        h1.innerHTML = '<span class="w">Pipes,</span> <span class="w">fittings</span> <span class="w">and</span> <span class="w">sanitaryware</span><span class="w tail">,&nbsp;from</span> <span class="w tail">stock.</span>';
+        var coilWords = words(document.getElementById("coil-h2"), "Ready stock, so your site never waits on a factory.");
+        var orderWords = words(document.getElementById("order-h2"), "Send the list. We'll handle the rest.");
+
+        // Size rings: IS 4985 outside diameters, to scale (SizeRings.tsx)
+        var SIZES = [20, 25, 32, 40, 50, 63, 75, 90, 110, 140, 160, 200, 250, 315, 400];
+        var USE = {
+          20: "House plumbing: taps and bathrooms", 25: "House plumbing: taps and bathrooms", 32: "House plumbing: main supply lines",
+          40: "Plumbing risers and garden lines", 50: "Plumbing risers and garden lines", 63: "Farm lines and sprinkler laterals",
+          75: "Waste lines and farm mains", 90: "Farm and irrigation mains", 110: "Soil and waste drainage, farm mains",
+          140: "Irrigation and water mains", 160: "Irrigation and water mains", 200: "Water supply mains",
+          250: "Water supply mains", 315: "Large mains and sewerage", 400: "Large mains and sewerage",
+        };
+        var RMAX = 300, C = 320, NS = "http://www.w3.org/2000/svg";
+        var svg = document.getElementById("rings-svg");
+        var wall = document.createElementNS(NS, "g");
+        wall.setAttribute("id", "ring-wall");
+        wall.innerHTML = '<circle cx="' + C + '" cy="' + C + '" r="' + RMAX * 0.935 + '" fill="none" stroke="#111" stroke-opacity="0.08" stroke-width="' + RMAX * 0.13 + '"/>' +
+          '<line x1="' + (C - RMAX) + '" y1="' + C + '" x2="' + (C + RMAX) + '" y2="' + C + '" stroke="#0b5d63" stroke-width="3" vector-effect="non-scaling-stroke"/>';
+        svg.appendChild(wall);
+        var rings = SIZES.map(function (s) {
+          var c = document.createElementNS(NS, "circle");
+          var r = (s / 400) * RMAX;
+          c.setAttribute("cx", C); c.setAttribute("cy", C); c.setAttribute("r", r);
+          c.setAttribute("fill", "none"); c.setAttribute("stroke", "#111"); c.setAttribute("stroke-width", "1.5"); c.setAttribute("stroke-opacity", "0.4");
+          var circ = 2 * Math.PI * r;
+          c.setAttribute("stroke-dasharray", circ); c.setAttribute("stroke-dashoffset", circ);
+          c.setAttribute("transform", "rotate(-90 " + C + " " + C + ")");
+          svg.appendChild(c);
+          return { el: c, circ: circ, r: r };
+        });
+        var ruler = document.getElementById("rings-ruler");
+        ruler.innerHTML = SIZES.map(function (s) { return "<span>" + s + "</span>"; }).join("");
+        var rulerEls = ruler.querySelectorAll("span");
+
+        // Brands (site.ts); the five with pages get the teal marker, as in StockIndex
+        var BRANDS = [["Finolex", 1], ["Dutron", 1], ["Texmo", 1], ["Waterflo", 1], ["Johnson Bathrooms", 1], ["Kisan", 0], ["Plasto", 0], ["MBH", 0], ["Rewa", 0], ["Reco", 0]];
+        document.getElementById("brands-list").innerHTML = BRANDS.map(function (b) {
+          return b[1]
+            ? '<span class="bn has"><span class="mk"><span class="mk-sq"></span></span><span class="mask"><span class="nm">' + b[0] + "</span></span></span>"
+            : '<span class="bn"><span class="nm">' + b[0] + "</span></span>";
+        }).join("");
+
+        // Stats (index.astro): odometer reels
+        var STATS = [["1,500", "+", "products in stock at the godown"], ["10", "", "brands on our shelves"],
+          ["44", "", "product lines with full specifications online"], ["7", "", "product families, house plumbing to 400 mm mains"]];
+        document.getElementById("stats-panel").innerHTML = STATS.map(function (s) {
+          var cols = s[0].split("").map(function (ch) {
+            if (ch === ",") return '<span class="sep">,</span>';
+            var cells = ""; for (var k = 0; k < 20; k++) cells += "<span>" + (k % 10) + "</span>";
+            return '<span class="col" data-d="' + ch + '"><span class="reel">' + cells + "</span></span>";
+          }).join("");
+          return '<div class="stat"><div class="num">' + cols + (s[1] ? '<span class="plus">' + s[1] + "</span>" : "") + '</div><p class="lbl">' + s[2] + "</p></div>";
+        }).join("");
+
+        var CHAT = "110 mm SWR pipe × 20, 1 inch CPVC elbow × 50, solvent cement × 4";
+
+        // ---------- timeline (built after fonts load; layout measured once) ----------
+        document.fonts.ready.then(function () {
+          var tl = gsap.timeline({ paused: true });
+
+          // Brand lockup geometry: centre the mark + name (Hindi joins only in the pill)
+          var brand = document.getElementById("brand");
+          var name = document.getElementById("brand-name");
+          var hi = document.getElementById("brand-hi");
+          var lockW = name.offsetLeft + name.offsetWidth, lockH = brand.offsetHeight;
+          var fullW = brand.offsetWidth;
+          var BX = 92, BY = 76;
+          function centred(k, cy) { return { x: 960 - (lockW * k) / 2 - BX, y: cy - (lockH * k) / 2 - BY, scale: k }; }
+          var big = centred(4.4, 540), outroPos = centred(3.4, 470);
+          gsap.set("#pill", { width: fullW + 56, opacity: 0, scale: 0.92, transformOrigin: "0% 50%" });
+
+          // ===== Scene 1: logo lock (0 to 3.3) =====
+          tl.fromTo(brand, { x: big.x, y: big.y, scale: big.scale * 1.06 }, { x: big.x, y: big.y, scale: big.scale, duration: 2.7, ease: "power1.out" }, 0);
+          tl.fromTo("#brand-mark .lm-inner", { y: -90, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, ease: "expo.out" }, 0.15);
+          tl.fromTo("#brand-mark .lm-outer", { y: 90, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, ease: "expo.out" }, 0.28);
+          // the mark starts centred and slides left as the name wipes in
+          var markShift = (lockW - (name.offsetLeft - 14)) / 2;
+          tl.fromTo("#brand-mark", { x: markShift }, { x: 0, duration: 0.8, ease: "power3.inOut" }, 1.0);
+          tl.fromTo(name, { clipPath: "inset(-10% 100% -20% -20%)", x: markShift }, { clipPath: "inset(-10% 0% -20% -20%)", x: 0, duration: 0.8, ease: "power3.inOut" }, 1.0);
+          tl.fromTo(hi, { opacity: 0 }, { opacity: 0, duration: 0.01 }, 0);
+          // logo shrinks into the header pill as the first photo rises (continuity, like the site's scroll)
+          tl.to(brand, { x: 0, y: 0, scale: 1, duration: 0.75, ease: "power3.inOut" }, 2.73);
+          tl.to("#pill", { opacity: 1, scale: 1, duration: 0.45, ease: "power2.out" }, 3.2);
+          tl.to(hi, { opacity: 1, duration: 0.4, ease: "power1.out" }, 3.35);
+
+          // ===== Scene 2: from stock (3.3 to 7.6) =====
+          tl.fromTo("#pipe-frame", { y: 1080, scale: 0.9 }, { y: 0, scale: 1, duration: 0.85, ease: "power3.out" }, 2.68);
+          gsap.set("#pipe-img", { transformOrigin: "789px 176px" });
+          tl.fromTo("#pipe-img", { scale: 1.14 }, { scale: 1, duration: 4.3, ease: "power1.out" }, 2.68);
+          tl.fromTo("#pipe-panel", { y: 140, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 3.55);
+          tl.fromTo("#pipe-label", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }, 3.75);
+          tl.fromTo("#pipe-h1 .w", { yPercent: 60, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.6, ease: "power3.out", stagger: 0.07 }, 3.85);
+          tl.fromTo("#pipe-btn", { scale: 0.85, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(1.6)" }, 4.55);
+          // exit: panel drops, camera dives into one pipe opening
+          tl.to("#pipe-panel", { y: 90, opacity: 0, duration: 0.4, ease: "power2.in" }, 6.85);
+          tl.to("#pipe-img", { scale: 16, duration: 0.75, ease: "power3.in" }, 7.0);
+
+          // ===== Scene 3: size rings (7.6 to 11) =====
+          // iris opens from the pipe opening (screen 821,208)
+          tl.fromTo("#s-rings", { clipPath: "circle(0px at 821px 208px)" }, { clipPath: "circle(2300px at 821px 208px)", duration: 0.75, ease: "power2.inOut" }, 7.38);
+          tl.fromTo("#rings-h2 .line > span", { yPercent: 105 }, { yPercent: 0, duration: 0.7, ease: "power3.out", stagger: 0.09 }, 7.6);
+          tl.fromTo("#rings-sub", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 8.0);
+          rings.forEach(function (rg, i) {
+            tl.to(rg.el, { attr: { "stroke-dashoffset": 0 }, duration: 0.7, ease: "power2.out" }, 7.6 + i * 0.05);
+          });
+          tl.fromTo("#rings-cap, #rings-ruler", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out", stagger: 0.08 }, 7.95);
+          // beat-locked: 8.74s, the selected size sweeps 20 -> 400 mm (driven by tick() below)
+          var valEl = document.getElementById("rings-val"), useEl = document.getElementById("rings-use");
+          var lastIdx = -1;
+          function applyPick(pi, wallScale) {
+            var idx = Math.round(pi), s = SIZES[idx];
+            if (idx !== lastIdx) {
+              valEl.textContent = s;
+              useEl.textContent = USE[s];
+              rings.forEach(function (rg, j) {
+                rg.el.setAttribute("stroke-width", j === idx ? "3" : "1.5");
+                rg.el.setAttribute("stroke-opacity", j === idx ? "1" : "0.4");
+              });
+              rulerEls.forEach(function (el, j) { el.className = j === idx ? "on" : ""; });
+              lastIdx = idx;
+            }
+            wall.setAttribute("transform", "translate(" + C + " " + C + ") scale(" + wallScale.toFixed(4) + ") translate(" + -C + " " + -C + ")");
+          }
+          tl.to("#rings-copy, #rings-cap, #rings-ruler", { opacity: 0, y: -24, duration: 0.4, ease: "power2.in" }, 10.75);
+
+          // ===== Scene 4: ready stock (11 to 15.3) =====
+          // the 400 mm ring opens onto the coil (ring centre 1390,412 on screen)
+          tl.fromTo("#coil-wrap", { clipPath: "circle(0px at 1390px 412px)" }, { clipPath: "circle(300px at 1390px 412px)", duration: 0.35, ease: "power2.out" }, 10.58);
+          // beat-locked: 10.93s
+          tl.to("#coil-wrap", { clipPath: "circle(2400px at 1390px 412px)", duration: 0.7, ease: "power3.in" }, 10.93);
+          tl.fromTo("#coil-img", { scale: 1.25, rotation: -4 }, { scale: 1.02, rotation: 0, duration: 4.4, ease: "power2.out" }, 10.58);
+          tl.fromTo("#coil-panel", { x: -120, opacity: 0 }, { x: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 11.25);
+          tl.fromTo(coilWords, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out", stagger: 0.05 }, 11.35);
+          tl.fromTo("#stats-panel", { x: 140, opacity: 0 }, { x: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 11.5);
+          // beat-grid: figures at 12.02, 12.55, 13.11, 13.64
+          var beats = [12.02, 12.55, 13.11, 13.64];
+          document.querySelectorAll(".stat").forEach(function (st, i) {
+            tl.fromTo(st.querySelector(".lbl"), { opacity: 0 }, { opacity: 1, duration: 0.4 }, beats[i] - 0.3);
+            tl.fromTo(st.querySelector(".num"), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, beats[i] - 0.25);
+            st.querySelectorAll(".col").forEach(function (col, j) {
+              var d = +col.dataset.d;
+              tl.fromTo(col.querySelector(".reel"), { y: 0 }, { y: -(10 + d) * 116, duration: 0.85 + j * 0.1, ease: "power3.out" }, beats[i] - 0.2);
+            });
+            var plus = st.querySelector(".plus");
+            if (plus) tl.fromTo(plus, { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, beats[i] + 0.6);
+          });
+          // exit: the frame slides up off the brand index
+          tl.to("#coil-wrap", { y: -1100, scale: 0.94, duration: 0.75, ease: "power3.inOut" }, 14.7);
+
+          // ===== Scene 5: brands (15.3 to 18.6) =====
+          tl.fromTo("#brands-h2", { yPercent: 60, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 15.0);
+          tl.fromTo("#brands-hi", { opacity: 0 }, { opacity: 1, duration: 0.5 }, 15.25);
+          tl.fromTo("#brands-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.9, ease: "power3.inOut" }, 15.1);
+          tl.fromTo("#brands-list .nm", { yPercent: 110 }, { yPercent: 0, duration: 0.6, ease: "power3.out", stagger: 0.075 }, 15.3);
+          tl.fromTo(".mk-sq", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(2.2)", stagger: 0.1 }, 16.38);
+          tl.fromTo("#brands-sub", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 15.6);
+          tl.to("#brands-head, #brands-rule, #brands-list, #brands-sub", { y: -90, opacity: 0, duration: 0.5, ease: "power2.in", stagger: 0.04 }, 18.15);
+
+          // ===== Scene 6: send the list (18.6 to 22.9) =====
+          tl.fromTo("#order-frame", { clipPath: "inset(100% 0% 0% 0% round 32px)" }, { clipPath: "inset(0% 0% 0% 0% round 32px)", duration: 0.65, ease: "power3.inOut" }, 18.18);
+          tl.fromTo("#order-img", { scale: 1.18, y: 60 }, { scale: 1.03, y: 0, duration: 4.6, ease: "power2.out" }, 18.18);
+          tl.fromTo("#order-panel", { x: -100, opacity: 0 }, { x: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 18.5);
+          // words darken one by one, like the site's .read-words heading
+          tl.fromTo(orderWords, { opacity: 0.15 }, { opacity: 1, duration: 0.3, stagger: 0.09, ease: "none" }, 18.6);
+          tl.fromTo("#order-hi", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 19.0);
+          tl.fromTo("#steps li", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out", stagger: 0.12 }, 19.15);
+          tl.fromTo("#steps .dot", { scale: 0 }, { scale: 0, duration: 0.01 }, 18.1);
+          tl.fromTo("#phone", { y: 700, rotation: 6 }, { y: 0, rotation: 0, duration: 0.8, ease: "power3.out" }, 18.6);
+          // typing the list
+          var textEl = document.getElementById("chat-text"), lastTyped = -1;
+          // send (20.12): button press, input clears, bubble pops in; step 1 lights
+          tl.to("#chat-send", { scale: 0.86, duration: 0.08, ease: "power2.out" }, 20.12);
+          tl.to("#chat-send", { scale: 1, duration: 0.25, ease: "back.out(3)" }, 20.2);
+          tl.fromTo("#caret", { opacity: 1 }, { opacity: 1, duration: 0.01 }, 18.1);
+          tl.fromTo("#m1", { scale: 0.7, opacity: 0, y: 30 }, { scale: 1, opacity: 1, y: 0, duration: 0.45, ease: "back.out(1.7)" }, 20.19);
+          tl.to("#steps li:nth-child(1) .dot", { scale: 1, duration: 0.35, ease: "back.out(2.5)" }, 20.19);
+          // read ticks turn teal, the other side types, then replies (21.28); step 2 lights
+          tl.to("#tick-path", { attr: { stroke: "#2a9fd8" }, duration: 0.2 }, 20.75);
+          tl.fromTo("#typing", { opacity: 0, scale: 0.7, transformOrigin: "0% 100%" }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)" }, 20.75);
+          tl.fromTo("#typing i", { y: 0 }, { y: -7, duration: 0.18, ease: "sine.inOut", yoyo: true, repeat: 1, stagger: 0.1 }, 20.85);
+          tl.to("#typing", { opacity: 0, scale: 0.7, duration: 0.15 }, 21.2);
+          tl.fromTo("#m2", { scale: 0.7, opacity: 0, y: 30 }, { scale: 1, opacity: 1, y: 0, duration: 0.45, ease: "back.out(1.7)" }, 21.28);
+          tl.to("#steps li:nth-child(2) .dot", { scale: 1, duration: 0.35, ease: "back.out(2.5)" }, 21.28);
+          tl.to("#steps li:nth-child(3) .dot", { scale: 1, duration: 0.35, ease: "back.out(2.5)" }, 21.84);
+          // exit: frame recedes, revealing the outro
+          tl.to("#order-wrap", { scale: 0.86, opacity: 0, duration: 0.6, ease: "power3.inOut" }, 22.3);
+
+          // ===== Scene 7: outro (22.9 to 25) =====
+          tl.to("#pill", { opacity: 0, scale: 0.9, duration: 0.3, ease: "power2.in" }, 22.3);
+          tl.to(hi, { opacity: 0, duration: 0.25 }, 22.3);
+          // beat-locked: 22.93s, the header logo lands back in the centre
+          tl.to(brand, { x: outroPos.x, y: outroPos.y, scale: outroPos.scale, duration: 0.63, ease: "power3.inOut" }, 22.3);
+          tl.fromTo("#outro-btn", { y: 40, opacity: 0, scale: 0.9 }, { y: 0, opacity: 1, scale: 1, duration: 0.55, ease: "back.out(1.5)" }, 22.95);
+          tl.fromTo("#outro-line", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 23.1);
+          tl.fromTo("#outro-addr", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 23.22);
+
+          // ambient: slow drift on the teal glows
+          tl.fromTo("#glow-rings", { x: -60, y: 20 }, { x: 40, y: -20, duration: 4.3, ease: "sine.inOut" }, 7.3);
+          tl.fromTo("#glow-brands", { x: 80 }, { x: -40, duration: 4.3, ease: "sine.inOut" }, 14.6);
+          tl.fromTo("#glow-outro", { y: 40 }, { y: -20, duration: 2.8, ease: "sine.inOut" }, 22.2);
+
+          // Per-frame state that is a pure function of time: size sweep, typed text,
+          // and the audio-reactive glows (glows breathe with precomputed music RMS).
+          var glows = document.querySelectorAll(".glow");
+          var RMS = window.AUDIO_RMS || [];
+          var sweepEase = gsap.parseEase("power2.inOut");
+          var clamp01 = function (v) { return Math.max(0, Math.min(1, v)); };
+          function tick() {
+            var t = tl.time();
+            // size rings: wall grows in (8.2-8.7), then sweeps 20 -> 400 mm (8.74-10.49)
+            var pi = 14 * sweepEase(clamp01((t - 8.74) / 1.75));
+            var lo = SIZES[Math.floor(pi)], hiS = SIZES[Math.min(14, Math.ceil(pi))];
+            var od = lo + (hiS - lo) * (pi - Math.floor(pi));
+            var wallScale = (od / 400) * clamp01((t - 8.2) / 0.5);
+            applyPick(pi, wallScale);
+            // chat input: types 19.15-20.05, clears on send at 20.19
+            var n = t < 19.15 ? 0 : t >= 20.19 ? 0 : Math.round(CHAT.length * clamp01((t - 19.15) / 0.9));
+            if (n !== lastTyped) { textEl.textContent = n === 0 && t >= 20.19 ? "" : CHAT.slice(0, n); lastTyped = n; }
+            // glows
+            var v = RMS[Math.min(RMS.length - 1, Math.max(0, Math.round(t * 30)))] || 0.3;
+            for (var g = 0; g < glows.length; g++) { glows[g].style.opacity = (0.55 + v * 0.6).toFixed(3); glows[g].style.scale = (0.92 + v * 0.14).toFixed(3); }
+          }
+          tl.eventCallback("onUpdate", tick);
+          tick();
+
+          window.__timelines["main"] = tl;
+        });
+      })();
+    </script>
+  </body>
+</html>

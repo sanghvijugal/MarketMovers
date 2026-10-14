@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="hi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Market Movers Navratri card</title>
+    <script src="assets/js/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Geist"; src: url("assets/fonts/geist.woff2") format("woff2"); font-weight: 100 900; }
+      @font-face { font-family: "Plex Hindi"; src: url("assets/fonts/ibm-plex-sans-devanagari-devanagari-400-normal.woff2") format("woff2"); font-weight: 400; }
+      @font-face { font-family: "Plex Hindi"; src: url("assets/fonts/ibm-plex-sans-devanagari-devanagari-600-normal.woff2") format("woff2"); font-weight: 600; }
+      :root { --marigold: #f5a300; --cream: #fbf3e2; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #062e31; }
+      body { font-family: "Geist", "Plex Hindi", sans-serif; -webkit-font-smoothing: antialiased; color: var(--cream); }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #062e31; }
+      .clip { position: absolute; inset: 0; overflow: hidden; }
+      .hi { font-family: "Plex Hindi", sans-serif; }
+      .center { position: absolute; left: 0; right: 0; text-align: center; }
+      svg { overflow: visible; }
+      #card { background: radial-gradient(circle at 50% 40%, #13706f, #062e31 85%); }
+      #glow { position: absolute; left: 540px; top: 860px; width: 1100px; height: 1100px; margin: -550px 0 0 -550px; border-radius: 50%; background: radial-gradient(closest-side, rgb(90 169 174 / 0.28), rgb(90 169 174 / 0) 100%); }
+      #content { position: absolute; inset: 0; transform-origin: 540px 1000px; }
+      #lock { position: absolute; left: 0; right: 0; top: 760px; display: flex; flex-direction: column; align-items: center; }
+      #name { margin-top: 44px; font-size: 104px; font-weight: 700; letter-spacing: -0.045em; color: var(--cream); }
+      #hi { top: 1215px; font-size: 64px; font-weight: 600; color: var(--marigold); }
+      #url { top: 1345px; font-size: 32px; letter-spacing: 0.16em; text-transform: uppercase; color: #cfe7e6; }
+      .diya { position: absolute; top: 1560px; width: 170px; height: 150px; margin-left: -85px; }
+      .flame { transform-origin: 85px 70px; }
+      #toran { z-index: 40; pointer-events: none; }
+      .strand { position: absolute; top: -20px; width: 60px; transform-origin: 50% 0; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="8" data-width="1080" data-height="1920">
+      <section id="card" class="clip" data-start="0" data-duration="8" data-track-index="1">
+        <div id="glow"></div>
+        <div id="content">
+          <div id="lock"><svg class="mm" data-inner="#fbf3e2" data-outer="#5aa9ae" style="width:230px;height:auto"></svg><p id="name">Market Movers</p></div>
+          <p class="center hi" id="hi">शुभ नवरात्रि</p>
+          <p class="center" id="url">Marhatal, Jabalpur · marketmovers.co.in</p>
+          <div id="diyas"></div>
+        </div>
+      </section>
+      <section id="toran" class="clip" data-start="0" data-duration="8" data-track-index="0"></section>
+    </div>
+
+    <script>
+      (function () {
+        // marigold toran (same as the reel)
+        function flower(cx, cy, r, c1, c2) {
+          var p = "";
+          for (var i = 0; i < 14; i++) { var a = i / 14 * Math.PI * 2; p += '<circle cx="' + (cx + Math.cos(a) * r * 0.62).toFixed(1) + '" cy="' + (cy + Math.sin(a) * r * 0.62).toFixed(1) + '" r="' + (r * 0.42).toFixed(1) + '" fill="' + c1 + '"/>'; }
+          return p + '<circle cx="' + cx + '" cy="' + cy + '" r="' + (r * 0.62) + '" fill="' + c2 + '"/><circle cx="' + cx + '" cy="' + cy + '" r="' + (r * 0.22) + '" fill="#c25a00" opacity="0.6"/>';
+        }
+        var tor = "";
+        for (var s = 0; s < 9; s++) {
+          var n = 3 + (s % 2 ? 2 : 4), svg = '<svg class="strand" style="left:' + (s * 128 + 4) + 'px" width="60" height="' + (n * 52 + 90) + '" viewBox="0 0 60 ' + (n * 52 + 90) + '"><path d="M30 0 V' + (n * 52 + 20) + '" stroke="#5a3b12" stroke-width="2"/>';
+          for (var k = 0; k < n; k++) svg += flower(30, 30 + k * 52, 26, k % 2 ? "#f5a300" : "#f26b1d", k % 2 ? "#ffc23a" : "#ff8a3d");
+          svg += '<path d="M30 ' + (n * 52 + 10) + ' q22 20 0 70 q-22 -50 0 -70z" fill="#2f7d32"/></svg>';
+          tor += svg;
+        }
+        tor += '<svg style="position:absolute;left:0;top:0" width="1080" height="40"><path d="M0 14 Q270 40 540 14 T1080 14" stroke="#5a3b12" stroke-width="4" fill="none"/></svg>';
+        document.getElementById("toran").innerHTML = tor;
+
+        // diyas
+        var DIYA = '<svg viewBox="0 0 170 150" width="170" height="150"><ellipse cx="85" cy="70" rx="40" ry="60" fill="rgb(255 190 80 / 0.25)" class="halo"/><path class="flame" d="M85 18 C100 45 102 62 85 76 C68 62 70 45 85 18Z" fill="#ffc23a"/><path class="flame" d="M85 40 C92 54 92 64 85 72 C78 64 78 54 85 40Z" fill="#fff4c2"/><path d="M10 88 H160 C150 130 120 146 85 146 C50 146 20 130 10 88Z" fill="#b5501f"/><path d="M10 88 H160" stroke="#f5a300" stroke-width="8" stroke-linecap="round"/><path d="M40 112 H130" stroke="#f5a300" stroke-width="4" stroke-dasharray="6 10"/></svg>';
+        document.getElementById("diyas").innerHTML = [180, 400, 680, 900].map(function (x) { return '<div class="diya" style="left:' + x + 'px">' + DIYA + "</div>"; }).join("");
+
+        // woven MM mark (LogoMark.astro geometry)
+        function markSVG(svgEl, id, inner, outer) {
+          var a = 64, b = 112, s = 0.625, t2 = 24, B = 200, sw = 18, gap = 9;
+          var v1 = a * s, v2 = t2 + b * s, yc = t2 + (b - a) * s;
+          var P = function (pts) { return "M" + pts.map(function (q) { return q.join(","); }).join("L"); };
+          var len = Math.hypot(1, s), ux = -1 / len, uy = s / len, r = function (k) { return +k.toFixed(2); };
+          var seg = function (L) { return { left: "M" + -a + "," + r(yc - L) + "L" + -a + "," + r(yc + L), right: "M" + r(a - ux * L) + "," + r(yc - uy * L) + "L" + r(a + ux * L) + "," + r(yc + uy * L) }; };
+          var cut = seg(sw * 2), redraw = seg(sw * 3.6), pad = sw;
+          svgEl.setAttribute("viewBox", (-b - pad) + " " + (-pad * 2) + " " + (2 * (b + pad)) + " " + (B + pad * 3));
+          var st = 'fill="none" stroke-width="' + sw + '" stroke-linejoin="miter" stroke-miterlimit="4"';
+          svgEl.innerHTML = '<mask id="' + id + '" maskUnits="userSpaceOnUse" x="-400" y="-400" width="800" height="800"><rect x="-400" y="-400" width="800" height="800" fill="#fff"/><path d="' + cut.left + cut.right + '" stroke="#000" stroke-width="' + (sw + 2 * gap) + '"/></mask>' +
+            '<g><path d="' + P([[a, B], [b, B], [b, t2], [0, v2], [-b, t2], [-b, B], [-a, B]]) + '" stroke="' + outer + '" mask="url(#' + id + ')" ' + st + '/><path d="' + redraw.right + '" stroke="' + outer + '" ' + st + "/></g>" +
+            '<g><path d="' + P([[-a, B], [-a, 0], [0, v1], [a, 0], [a, B]]) + '" stroke="' + inner + '" stroke-linecap="square" mask="url(#' + id + ')" ' + st + '/><path d="' + redraw.left + '" stroke="' + inner + '" ' + st + "/></g>";
+        }
+        document.querySelectorAll("svg.mm").forEach(function (el, i) { markSVG(el, "mmc" + i, el.dataset.inner, el.dataset.outer); });
+
+        document.fonts.ready.then(function () {
+          var tl = gsap.timeline({ paused: true });
+          // Gentle, seamless 8s loop: every motion is a sine whose period divides 8s, so frame 0 and frame 240 match.
+          var T = 8, W = function (cycles) { return 2 * Math.PI * cycles / T; };
+          var strands = document.querySelectorAll(".strand"), flames = document.querySelectorAll(".flame"), halos = document.querySelectorAll(".halo");
+          var content = document.getElementById("content"), glow = document.getElementById("glow");
+          var clock = { t: 0 };
+          tl.to(clock, { t: T, duration: T, ease: "none", onUpdate: function () {
+            var t = clock.t;
+            strands.forEach(function (st, i) { st.style.rotate = (Math.sin(W(2) * t + i * 0.7) * 2.2).toFixed(2) + "deg"; });
+            flames.forEach(function (f, i) { f.style.scale = (1 + Math.sin(W(24) * t + i * 1.7) * 0.05 + Math.sin(W(37) * t + i) * 0.035).toFixed(3); });
+            halos.forEach(function (h, i) { h.style.opacity = (0.75 + Math.sin(W(17) * t + i * 2.1) * 0.25).toFixed(3); });
+            content.style.scale = (1.008 + Math.sin(W(1) * t - Math.PI / 2) * 0.008).toFixed(4);
+            glow.style.opacity = (0.8 + Math.sin(W(2) * t) * 0.2).toFixed(3);
+            glow.style.scale = (1 + Math.sin(W(2) * t) * 0.04).toFixed(3);
+          } }, 0);
+          window.__timelines["main"] = tl;
+          tl.seek(0);
+        });
+      })();
+    </script>
+  </body>
+</html>
