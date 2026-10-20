@@ -1,7 +1,7 @@
 // Punchy electronic soundtrack for "Water finds its shape", written with the Web Audio API.
-// 120 BPM, D minor, 15 s. Rendered offline to a 16-bit stereo WAV (returned as base64).
+// 120 BPM, D minor, 18 s (two-bar outro on the Market Movers lockup). Rendered offline to a 16-bit stereo WAV (returned as base64).
 window.makeSoundtrack = async function () {
-  const SR = 48000, DUR = 15, B = 0.5, S16 = B / 4;
+  const SR = 48000, DUR = 18, B = 0.5, S16 = B / 4, BEATS = 36;
   const ctx = new OfflineAudioContext(2, SR * DUR, SR);
 
   // ---- master: glue compressor, then a gentle soft clip for loudness ----
@@ -11,7 +11,7 @@ window.makeSoundtrack = async function () {
   const drums = ctx.createGain(); drums.gain.value = 0.6; drums.connect(comp);
   // everything melodic goes through a bus that ducks on every kick (sidechain pump)
   const synth = ctx.createGain(); synth.gain.value = 1; const synthOut = ctx.createGain(); synthOut.gain.value = 2.4; synth.connect(synthOut); synthOut.connect(comp);
-  for (let i = 0; i < 30; i++) { const t = i * B; synth.gain.setValueAtTime(0.28, t); synth.gain.setTargetAtTime(1, t + 0.02, 0.06); }
+  for (let i = 0; i < BEATS; i++) { const t = i * B; synth.gain.setValueAtTime(0.28, t); synth.gain.setTargetAtTime(1, t + 0.02, 0.06); }
   // stereo widener for the leads: a short delay on the right
   const wideL = ctx.createGain(), wideR = ctx.createDelay(); wideR.delayTime.value = 0.012;
   const merge = ctx.createChannelMerger(2); wideL.connect(merge, 0, 0); wideR.connect(merge, 0, 1); merge.connect(synth);
@@ -37,7 +37,7 @@ window.makeSoundtrack = async function () {
   function hat(t, amp, open) { noise(t, open ? 0.25 : 0.05, "highpass", open ? 7000 : 9000, 0.8, amp, open ? 0.18 : 0.035); }
   function snare(t, amp) { noise(t, 0.2, "bandpass", 2200, 0.8, amp, 0.12); const o = ctx.createOscillator(), g = ctx.createGain(); o.type = "triangle"; o.frequency.setValueAtTime(240, t); o.frequency.exponentialRampToValueAtTime(160, t + 0.06); env(g, t, 0.001, amp * 0.5, 0.09); o.connect(g); g.connect(drums); o.start(t); o.stop(t + 0.12); }
 
-  for (let i = 0; i < 30; i++) {
+  for (let i = 0; i < BEATS; i++) {
     const t = i * B;
     kick(t, i % 4 === 0 ? 1.0 : 0.88);
     if (i >= 4 && i % 2 === 1 && !(i >= 20 && i < 24)) clap(t, i >= 24 ? 1.0 : 0.8);
@@ -51,8 +51,8 @@ window.makeSoundtrack = async function () {
 
   // ---- harmony: D minor, one chord per bar ----
   const mid = n => 440 * Math.pow(2, (n - 69) / 12);
-  const CHORDS = [[50, 53, 57], [50, 53, 57], [46, 50, 53], [48, 52, 55], [50, 53, 57], [53, 57, 60], [50, 53, 57], [50, 53, 57]]; // Dm Dm Bb C Dm F Dm Dm
-  const chordAt = t => CHORDS[Math.min(7, Math.floor(t / 2))];
+  const CHORDS = [[50, 53, 57], [50, 53, 57], [46, 50, 53], [48, 52, 55], [50, 53, 57], [53, 57, 60], [50, 53, 57], [46, 50, 53], [50, 53, 57]]; // Dm Dm Bb C Dm F Dm Bb Dm
+  const chordAt = t => CHORDS[Math.min(8, Math.floor(t / 2))];
 
   // offbeat pumping saw bass from bar 2, opening its filter through the build
   function bass(t, note, dur, cutoff, amp) {
@@ -62,17 +62,17 @@ window.makeSoundtrack = async function () {
     const sub = ctx.createOscillator(); sub.type = "sine"; sub.frequency.value = mid(note - 12); sub.connect(g); sub.start(t); sub.stop(t + dur + 0.02);
     env(g, t, 0.004, amp, dur); f.connect(g); g.connect(synth);
   }
-  for (let i = 4; i < 30; i++) {
+  for (let i = 4; i < BEATS - 1; i++) {
     const t = i * B + B / 2, root = chordAt(t)[0] - 12, build = t >= 10 && t < 12 ? (t - 10) / 2 : 0, drop = t >= 12 ? 1 : 0;
     bass(t, root, B / 2 - 0.02, 340 + 1600 * build + 1000 * drop, 0.6 + 0.2 * drop);
   }
   // 16th-note square arp over the chord, bars 3 to 7
   const arpOrder = [0, 1, 2, 3, 2, 1, 0, 2];
-  for (let t = 4; t < 14; t += S16) {
+  for (let t = 4; t < 17.5; t += S16) {
     if (t >= 11.75 && t < 12) continue;
     const ch = chordAt(t), idx = Math.round((t - 4) / S16), n = ch[arpOrder[idx % 8] % 3] + 12 + (arpOrder[idx % 8] === 3 ? 12 : 0);
     const o = ctx.createOscillator(), f = ctx.createBiquadFilter(), g = ctx.createGain(); o.type = "square"; o.frequency.value = mid(n);
-    f.type = "lowpass"; f.Q.value = 3; f.frequency.setValueAtTime(t >= 12 ? 5200 : 1800 + (t - 4) * 260, t); f.frequency.exponentialRampToValueAtTime(600, t + 0.1);
+    f.type = "lowpass"; f.Q.value = 3; f.frequency.setValueAtTime(t >= 16 ? 5200 - (t - 16) * 2400 : t >= 12 ? 5200 : 1800 + (t - 4) * 260, t); f.frequency.exponentialRampToValueAtTime(600, t + 0.1);
     env(g, t, 0.003, t >= 12 ? 0.11 : 0.08, 0.11); o.connect(f); f.connect(g); g.connect(wide); o.start(t); o.stop(t + 0.14);
   }
   // supersaw chord stabs on every scene change, held longer on the drop and the end
@@ -88,11 +88,13 @@ window.makeSoundtrack = async function () {
   { const o = ctx.createOscillator(), g = ctx.createGain(); o.type = "sine"; o.frequency.setValueAtTime(90, 12); o.frequency.exponentialRampToValueAtTime(38, 12.5); env(g, 12, 0.003, 0.9, 0.9); o.connect(g); g.connect(drums); o.start(12); o.stop(13); }
   noise(12, 1.6, "highpass", 5000, 0.5, 0.35, 1.4);
   [12.75, 13.25, 13.75].forEach(t => stab(t, [62, 65, 69, 74], 0.2, 0.085, 7500));
-  // end title stab, then a tape-stop pitch fall as everything pours back into the drop
+  // end title stab, then the outro: a stab as the ranges land, and a last held chord on the final beat
   stab(14, [62, 65, 69, 74, 81], 0.5, 0.13, 9500);
-  { const f = ctx.createBiquadFilter(), g = ctx.createGain(); f.type = "lowpass"; f.frequency.value = 3000;
-    [62, 69].forEach(n => { const o = ctx.createOscillator(); o.type = "sawtooth"; o.frequency.setValueAtTime(mid(n), 14.5); o.frequency.exponentialRampToValueAtTime(mid(n) / 6, 14.9); o.connect(f); o.start(14.5); o.stop(14.95); });
-    env(g, 14.5, 0.01, 0.06, 0.4); f.connect(g); g.connect(synth); }
+  stab(16, [58, 62, 65, 70, 77], 0.42, 0.11, 8000);
+  [15, 16.5, 17].forEach(t => { const c = chordAt(t); stab(t, [c[0] + 12, c[1] + 12, c[2] + 12], 0.16, 0.06, 6000); });
+  stab(17.5, [50, 62, 65, 69, 74, 81], 0.48, 0.16, 11000);
+  { const o = ctx.createOscillator(), g = ctx.createGain(); o.type = "sine"; o.frequency.setValueAtTime(80, 17.5); o.frequency.exponentialRampToValueAtTime(36, 17.95); env(g, 17.5, 0.003, 0.8, 0.47); o.connect(g); g.connect(drums); o.start(17.5); o.stop(17.99); }
+  noise(17.5, 0.49, "highpass", 5000, 0.5, 0.3, 0.46);
 
   // ---- ear candy that follows the picture ----
   // a laser zap for every brand that flashes through the pipe

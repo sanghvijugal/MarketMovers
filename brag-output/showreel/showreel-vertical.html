@@ -17,7 +17,7 @@
   <g id="world"></g>
 </svg>
 <script>
-/* Water finds its shape. Market Movers showreel, vertical 1080x1920, 15s at 120 BPM.
+/* Water finds its shape. Market Movers showreel, vertical 1080x1920, 18s at 120 BPM.
    Every style is computed from t inside window.seek(t). No CSS animation, no timers, no state between frames. */
 window.ready = document.fonts.load("800 100px Geist").then(function () { return Promise.all([document.fonts.load("700 30px Geist"), document.fonts.load("600 30px Geist")]); }).then(function () {
   "use strict";
@@ -350,17 +350,31 @@ window.ready = document.fonts.load("800 100px Geist").then(function () { return 
     var flowI = P2(inner.getAttribute("d"), C.saffron, { mask: "url(#mmcut)", "stroke-width": sw * 0.42, "stroke-linecap": "round" });
     var LO = outer.getTotalLength(), LI = inner.getTotalLength();
     var TS = Math.min(112, 112 * 960 / measure("MARKET MOVERS", 112, 800, 0.04).w), title = letters("MARKET MOVERS", TS, 800, C.ink, g, 0.04), tx0 = CX - title.m.w / 2;
-    var sub = el("text", { x: CX, y: 1235, "font-size": 30, "font-weight": 700, fill: C.teal, "text-anchor": "middle", "letter-spacing": "12" }, g); sub.textContent = "JABALPUR";
+    var sub = el("text", { x: CX, y: 1175, "font-size": 30, "font-weight": 700, fill: C.teal, "text-anchor": "middle", "letter-spacing": "12" }, g); sub.textContent = "JABALPUR";
+    var url = el("text", { x: CX, y: 1232, "font-size": 30, "font-weight": 600, fill: C.ink, "text-anchor": "middle", "letter-spacing": "4" }, g); url.textContent = "MARKETMOVERS.CO.IN";
+    var under = el("line", { x1: 0, y1: 1118, x2: 0, y2: 1118, stroke: C.saffron, "stroke-width": 10, "stroke-linecap": "round" }, g);
+    // the three ranges, one per beat (from the site's categories)
+    var CHIPS = [["PIPES", C.teal], ["FITTINGS", C.saffron], ["SANITARYWARE", C.teal]], CS = 40, cgap = 56;
+    var cw = CHIPS.map(function (c) { return measure(c[0], CS, 800, 0.06).w; }), ctot = cw.reduce(function (a, b) { return a + b; }, 0) + cgap * 2, cx0 = CX - ctot / 2;
+    var chips = CHIPS.map(function (c, i) {
+      var x = cx0 + cw.slice(0, i).reduce(function (a, b) { return a + b; }, 0) + cgap * i;
+      var n = el("text", { x: x.toFixed(1), y: 1345, "font-size": CS, "font-weight": 800, fill: c[1], "letter-spacing": (CS * 0.06).toFixed(1) }, g); n.textContent = c[0];
+      var dot = i < 2 ? el("circle", { cx: (x + cw[i] + cgap / 2).toFixed(1), cy: 1331, r: 0, fill: C.ink }, g) : null;
+      return { n: n, dot: dot, f: blurFilter() };
+    });
     var fg = blurFilter();
-    function markScale(t) { return lerp(3.1, 1.45, expoInOut(seg(t, 13.5, 13.95))) * (1 + 0.04 * seg(t, 12.0, 13.5)); }
-    function markY(t) { return lerp(CY, 760, expoInOut(seg(t, 13.5, 13.95))); }
+    function markScale(t) { return lerp(3.1, 1.7, expoInOut(seg(t, 13.5, 13.95))) * (1 + 0.04 * seg(t, 12.0, 13.5)); }
+    function markY(t) { return lerp(CY, 670, expoInOut(seg(t, 13.5, 13.95))); }
     scenes.markSeek = function (t) {
       var on = t >= 11.95; vis(g, on); if (!on) return;
       // the collapsed brand wall arrives as a teal point; on the downbeat it floods the frame white
       var fl = expoOut(seg(t, 12.0, 12.3));
       set(flood, { r: (1150 * fl).toFixed(1) });
-      // the end: everything pours back into the teal dot that opened the film
-      var back = expoIn(seg(t, 14.5, 14.82)), dotR = t < 12.0 ? 24 * expoOut(seg(t, 11.95, 12.0)) : (t < 14.5 ? 24 * (1 - expoOut(seg(t, 12.0, 12.12))) : 24 * expoOut(seg(t, 14.68, 14.86)));
+      // the film now closes on the Market Movers lockup: no pour-back
+      var back = 0, dotR = t < 12.0 ? 24 * expoOut(seg(t, 11.95, 12.0)) : 24 * (1 - expoOut(seg(t, 12.0, 12.12)));
+      // closing camera: a slow push in on the lockup from the title on, with a last push on the final beat
+      var endS = 1 + 0.05 * (1 - Math.cos(PI * seg(t, 14.0, 18.0))) / 2 + 0.03 * expoOut(seg(t, 17.5, 17.9));
+      if (t >= 14.0) set(g, { transform: "translate(" + CX + " 1000) scale(" + endS.toFixed(4) + ") translate(" + (-CX) + " -1000)" }); else g.removeAttribute("transform");
       set(dot, { r: dotR.toFixed(2) });
       g.appendChild(dot);
       vis(mg, t >= 12.0 && back < 1);
@@ -373,7 +387,7 @@ window.ready = document.fonts.load("800 100px Geist").then(function () { return 
       vis(outerR, dO > 0.98); vis(innerR, dI > 0.98);
       var ck = expoOut(seg(t, 13.0, 13.14)); set(cutP, { "stroke-width": ((sw + 2 * gap) * ck).toFixed(2) });
       // water racing through the strokes, a pulse per beat
-      var fOn = t >= 13.0 && t < 14.5; vis(flowO, fOn); vis(flowI, fOn);
+      var fOn = t >= 13.0; vis(flowO, fOn); vis(flowI, fOn);
       if (fOn) {
         var ph = (t - 13.0) / BEAT;
         set(flowO, { "stroke-dasharray": "60 " + (LO / 2 - 60).toFixed(1), "stroke-dashoffset": (-(ph * LO * 0.5)).toFixed(1) });
@@ -386,19 +400,29 @@ window.ready = document.fonts.load("800 100px Geist").then(function () { return 
         title.L.forEach(function (n, j) {
           var fy = function (tt) { return 120 * (1 - expoOut((tt - 14.0 - 0.016 * j) / 0.26)); };
           var y = fy(t); mv = Math.max(mv, Math.abs(speed(fy, t)));
-          var x = tx0 + title.m.x[j], X = lerp(x, CX, back), Y = lerp(1150 + y, CY, back);
+          var x = tx0 + title.m.x[j], X = lerp(x, CX, back), Y = lerp(1090 + y, CY, back);
           set(n, { x: X.toFixed(1), y: Y.toFixed(1), transform: "translate(" + X + " " + Y + ") scale(" + (1 - back).toFixed(4) + ") translate(" + (-X) + " " + (-Y) + ")" });
         });
         blurFor(title.g, title.f, 0, mv);
         var sk = expoOut(seg(t, 14.16, 14.4));
-        set(sub, { opacity: sk.toFixed(3), transform: "translate(" + CX + " " + lerp(1235, CY, back) + ") scale(" + (1 - back).toFixed(4) + ") translate(" + (-CX) + " " + (-1235) + ")" });
+        set(sub, { opacity: sk.toFixed(3), transform: "translate(0 " + (24 * (1 - sk)).toFixed(1) + ")" });
       }
+      // the outro: site, ranges, underline, one thing per beat
+      var uk = expoOut(seg(t, 15.0, 15.28)); vis(url, uk > 0); set(url, { opacity: uk.toFixed(3), transform: "translate(0 " + (24 * (1 - uk)).toFixed(1) + ")" });
+      chips.forEach(function (c, i) {
+        var s0 = 15.5 + i * BEAT, fy = function (tt) { return 70 * (1 - expoOut((tt - s0) / 0.24)); }, k = expoOut(seg(t, s0, s0 + 0.24));
+        vis(c.n, k > 0); set(c.n, { opacity: k.toFixed(3), transform: "translate(0 " + fy(t).toFixed(1) + ")" });
+        blurFor(c.n, c.f, 0, speed(fy, t));
+        if (c.dot) set(c.dot, { r: (6 * spring(seg(t, s0 + 0.3, s0 + 0.5), 8)).toFixed(2) });
+      });
+      var ul = expoInOut(seg(t, 17.0, 17.32)); vis(under, ul > 0);
+      set(under, { x1: tx0.toFixed(1), x2: (tx0 + title.m.w * ul).toFixed(1) });
     };
   })();
 
   // =========================== timeline ===========================
   window.seek = function (t) {
-    t = Math.max(0, Math.min(14.999, t));
+    t = Math.max(0, Math.min(17.999, t));
     // the hook's white and black band live on until the camera has pushed into the O
     bg.setAttribute("fill", t >= 4.0 && t < 12.3 ? C.ink : C.white);
     scenes.hookSeek(t); scenes.typeSeek(t); scenes.morphSeek(t); scenes.cylSeek(t); scenes.dataSeek(t); scenes.wallSeek(t); scenes.markSeek(t);

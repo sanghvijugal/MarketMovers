@@ -8,7 +8,7 @@ import path from 'node:path';
 const [pwPath, outDir, mode] = process.argv.slice(2);
 const { chromium } = await import(pwPath);
 const here = path.dirname(fileURLToPath(import.meta.url));
-const FPS = 60, SUB = 3, DUR = 15, W = 1080, H = 1920;
+const FPS = 60, SUB = 3, DUR = 18, W = 1080, H = 1920;
 
 const b = await chromium.launch({ args: ['--force-device-scale-factor=1', '--autoplay-policy=no-user-gesture-required'] });
 const pg = await b.newPage({ viewport: { width: W, height: H } });
