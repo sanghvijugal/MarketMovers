@@ -135,19 +135,20 @@ window.ready = document.fonts.load("800 100px Geist").then(function () { return 
       var z = expoIn(seg(t, 3.7, 4.0)), sc = 1 + 13 * z;
       set(g, { transform: "translate(" + oc[0] + " " + oc[1] + ") scale(" + sc.toFixed(3) + ") translate(" + (-oc[0]) + " " + (-oc[1]) + ")" });
       words.forEach(function (o, wi) {
-        var s0 = 2.0 + wi * 0.5, s1 = s0 + 0.5, show = t >= s0 - 0.01 && (wi === 3 || t < s1 + 0.25);
+        var s0 = 2.0 + wi * 0.5, s1 = s0 + 0.5, show = t >= s0 - 0.01 && (wi === 3 || t < s1 + 0.05);
         vis(o.g, show); if (!show) return;
         var maxV = 0;
+        // slot move inside the pipe: each name rises in from below on its beat, and leaves upwards just before the next
         o.L.forEach(function (n, j) {
-          var fx = function (tt) {
-            var inK = expoOut((tt - s0 - 0.02 * j) / 0.28), x = -220 * (1 - inK);
-            if (wi < 3) x += 260 * expoIn((tt - s1 + 0.12 - 0.012 * j) / 0.14);
-            return x;
+          var fy = function (tt) {
+            var y = 230 * (1 - expoOut((tt - s0 - 0.018 * j) / 0.26));
+            if (wi < 3) y -= 230 * expoIn((tt - (s1 - 0.16) - 0.008 * j) / 0.14);
+            return y;
           };
-          var x = fx(t), v = speed(fx, t); maxV = Math.max(maxV, Math.abs(v));
-          set(n, { x: (o.x0 + o.m.x[j] + x).toFixed(1), y: CY + 52 });
+          var y = fy(t), v = speed(fy, t); maxV = Math.max(maxV, Math.abs(v));
+          set(n, { x: (o.x0 + o.m.x[j]).toFixed(1), y: (CY + 52 + y).toFixed(1) });
         });
-        blurFor(o.g, o.f, wi === 3 && t > 3.7 ? 0 : maxV, 0);
+        blurFor(o.g, o.f, 0, wi === 3 && t > 3.7 ? 0 : maxV);
       });
     };
   })();
