@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Water finds its shape</title>
+<style>
+  @font-face { font-family: "Geist"; src: url("geist.woff2") format("woff2"); font-weight: 100 900; }
+  html, body { margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: #fff; }
+  svg { display: block; }
+  text { font-family: "Geist", sans-serif; }
+</style>
+</head>
+<body>
+<svg id="S" width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+  <defs id="defs"></defs>
+  <rect id="bg" x="0" y="0" width="1080" height="1920" fill="#fff" />
+  <g id="world"></g>
+</svg>
+<script>
+/* Water finds its shape. Market Movers showreel, vertical 1080x1920, 15s at 120 BPM.
+   Every style is computed from t inside window.seek(t). No CSS animation, no timers, no state between frames. */
+window.ready = document.fonts.load("800 100px Geist").then(function () { return Promise.all([document.fonts.load("700 30px Geist"), document.fonts.load("600 30px Geist")]); }).then(function () {
+  "use strict";
+  var W = 1080, H = 1920, CX = 540, CY = 960, BEAT = 0.5;
+  var C = { teal: "#0b5d63", aqua: "#5aa9ae", saffron: "#f26b1d", ink: "#0d0d0d", white: "#ffffff" };
+  var NS = "http://www.w3.org/2000/svg";
+
+  // ---------------- easing, written as functions of time ----------------
+  function clamp(x, a, b) { return Math.max(a === undefined ? 0 : a, Math.min(b === undefined ? 1 : b, x)); }
+  function seg(t, a, b) { return clamp((t - a) / (b - a)); }
+  function lerp(a, b, k) { return a + (b - a) * k; }
+  function expoOut(x) { x = clamp(x); return x >= 1 ? 1 : 1 - Math.pow(2, -10 * x); }
+  function expoIn(x) { x = clamp(x); return x <= 0 ? 0 : Math.pow(2, 10 * x - 10); }
+  function expoInOut(x) { x = clamp(x); if (x <= 0) return 0; if (x >= 1) return 1; return x < 0.5 ? Math.pow(2, 20 * x - 10) / 2 : (2 - Math.pow(2, -20 * x + 10)) / 2; }
+  // critically damped spring (no bounce): x(u) = 1 - (1 + w u) e^(-w u), normalised so x(1) = 1
+  function spring(x, w) { x = clamp(x); w = w || 9; var e = function (u) { return 1 - (1 + w * u) * Math.exp(-w * u); }; return e(x) / e(1); }
+  function quadIn(x) { x = clamp(x); return x * x; }
+  // speed of any position function at t (px per second), for blur that follows speed and direction
+  function speed(fn, t) { var d = 1 / 240; return (fn(t + d) - fn(t - d)) / (2 * d); }
+  function mixHex(a, b, k) {
+    var pa = [1, 3, 5].map(function (i) { return parseInt(a.substr(i, 2), 16); }), pb = [1, 3, 5].map(function (i) { return parseInt(b.substr(i, 2), 16); });
+    return "#" + pa.map(function (v, i) { var c = Math.round(lerp(v, pb[i], clamp(k))); return (c < 16 ? "0" : "") + c.toString(16); }).join("");
+  }
+
+  // ---------------- tiny DOM helpers (built once; seek only sets attributes) ----------------
+  var defs = document.getElementById("defs"), world = document.getElementById("world"), bg = document.getElementById("bg");
+  function el(tag, attrs, parent) { var e = document.createElementNS(NS, tag); for (var k in attrs) e.setAttribute(k, attrs[k]); (parent || world).appendChild(e); return e; }
+  function set(e, attrs) { for (var k in attrs) e.setAttribute(k, attrs[k]); }
+  function vis(e, on) { e.setAttribute("display", on ? "inline" : "none"); }
+  var blurN = 0;
+  function blurFilter() { var id = "mb" + (blurN++), f = el("filter", { id: id, x: "-50%", y: "-50%", width: "200%", height: "200%", "color-interpolation-filters": "sRGB" }, defs); var g = el("feGaussianBlur", { stdDeviation: "0 0" }, f); return { id: id, g: g }; }
+  // directional blur from velocity (vx, vy in px/s); one 60fps frame of travel, a third of it as std deviation
+  function blurFor(e, f, vx, vy) {
+    var sx = Math.min(Math.abs(vx) / 60 / 3, 60), sy = Math.min(Math.abs(vy) / 60 / 3, 60);
+    if (sx < 0.4 && sy < 0.4) { e.removeAttribute("filter"); return; }
+    f.g.setAttribute("stdDeviation", sx.toFixed(2) + " " + sy.toFixed(2)); e.setAttribute("filter", "url(#" + f.id + ")");
+  }
+
+  // ---------------- polylines for shape morphing ----------------
+  function resample(pts, n) {
+    var L = [0]; for (var i = 1; i < pts.length; i++) L.push(L[i - 1] + Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]));
+    var out = [], tot = L[L.length - 1], j = 1;
+    for (var k = 0; k < n; k++) { var d = tot * k / (n - 1); while (j < L.length - 1 && L[j] < d) j++; var f = (d - L[j - 1]) / ((L[j] - L[j - 1]) || 1); out.push([lerp(pts[j - 1][0], pts[j][0], f), lerp(pts[j - 1][1], pts[j][1], f)]); }
+    return out;
+  }
+  function arc(cx, cy, r, a0, a1, n) { var p = []; for (var i = 0; i <= n; i++) { var a = lerp(a0, a1, i / n); p.push([cx + Math.cos(a) * r, cy + Math.sin(a) * r]); } return p; }
+  function morph(A, B, k) { return A.map(function (p, i) { return [lerp(p[0], B[i][0], k), lerp(p[1], B[i][1], k)]; }); }
+  function toD(pts, dx, dy, s) { s = s || 1; dx = dx || 0; dy = dy || 0; return "M" + pts.map(function (p) { return (dx + p[0] * s).toFixed(1) + " " + (dy + p[1] * s).toFixed(1); }).join("L"); }
+  var N = 180, PI = Math.PI;
+  // product glyphs, drawn as one continuous stroke each (centred on 0,0, about 340 px tall)
+  var GLYPH = {
+    ring: resample(arc(0, 0, 150, -PI / 2, PI * 1.5, 120), N),
+    coil: resample((function () { var p = []; for (var i = 0; i <= 300; i++) { var u = i / 300, a = -PI / 2 + u * PI * 2 * 2.6, r = 30 + 130 * u; p.push([Math.cos(a) * r, Math.sin(a) * r]); } return p; })(), N),
+    sprinkler: resample([[0, 170], [0, -30], [-150, -30]].concat(arc(0, -30, 150, PI, PI * 2, 60)), N),
+    tap: resample([[-120, 170], [-120, -60]].concat(arc(-20, -60, 100, PI, PI * 1.5, 30), [[110, -160], [110, -80]]), N),
+    line: resample([[-400, 0], [400, 0]], N)
+  };
+
+  // ---------------- text measuring (static layout, done once) ----------------
+  var ctx = document.createElement("canvas").getContext("2d");
+  function measure(str, size, weight, track) { ctx.font = (weight || 800) + " " + size + "px Geist"; var w = [], x = 0; for (var i = 0; i < str.length; i++) { w.push(x); x += ctx.measureText(str[i]).width + (track || 0) * size; } return { x: w, w: x - (track || 0) * size }; }
+  function letters(str, size, weight, fill, parent, track) {
+    var m = measure(str, size, weight, track), g = el("g", {}, parent), L = [];
+    for (var i = 0; i < str.length; i++) L.push(el("text", { x: 0, y: 0, "font-size": size, "font-weight": weight, fill: fill }, g));
+    L.forEach(function (n, i) { n.textContent = str[i]; });
+    return { g: g, L: L, m: m, str: str, size: size, f: blurFilter() };
+  }
+
+  var scenes = {};
+  // =========================== 1 · HOOK: a drop becomes a line becomes a pipe ===========================
+  (function () {
+    var g = el("g", {}); scenes.hook = g;
+    var band = el("rect", { x: 0, y: CY, width: W, height: 0, fill: C.ink }, g);
+    var w1 = el("line", { x1: 0, y1: CY, x2: W, y2: CY, stroke: C.teal, "stroke-width": 8, "stroke-linecap": "round" }, g);
+    var w2 = el("line", { x1: 0, y1: CY, x2: W, y2: CY, stroke: C.teal, "stroke-width": 8, "stroke-linecap": "round" }, g);
+    var drop = el("ellipse", { cx: CX, cy: CY, rx: 24, ry: 24, fill: C.teal }, g), fd = blurFilter(), fl = blurFilter();
+    scenes.hookParts = { band: band, w1: w1, w2: w2, drop: drop };
+    function dropY(t) { if (t < 0.5) return CY - 380 * spring(t / 0.5, 9); return CY - 380 + 380 * quadIn((t - 0.5) / 0.5); }
+    function halfLen(t) { return 580 * expoOut((t - 1.0) / 0.35); }
+    scenes.hookSeek = function (t) {
+      var on = t < 4.0; vis(g, on); if (!on) return;
+      var dt = t < 1.0;
+      vis(drop, t < 1.06);
+      if (t < 1.06) {
+        var y = dropY(Math.min(t, 1.0)), v = speed(dropY, Math.min(t, 0.999)), stretch = 1 + Math.abs(v) / 1400;
+        var squash = t >= 1.0 ? 1 - seg(t, 1.0, 1.06) : 1;
+        set(drop, { cy: y.toFixed(1), rx: (24 / Math.sqrt(stretch) * (1 + 3 * (1 - squash))).toFixed(2), ry: (24 * stretch * squash).toFixed(2) });
+        blurFor(drop, fd, 0, t < 1.0 ? v : 0);
+      }
+      var lineOn = t >= 1.0; vis(w1, lineOn); vis(w2, lineOn); vis(band, t >= 1.5);
+      if (lineOn) {
+        var hl = halfLen(t), th = lerp(24, 10, seg(t, 1.0, 1.3)), d = 110 * spring(seg(t, 1.5, 1.9), 8);
+        set(w1, { x1: CX - hl, x2: CX + hl, y1: CY - d, y2: CY - d, "stroke-width": th });
+        set(w2, { x1: CX - hl, x2: CX + hl, y1: CY + d, y2: CY + d, "stroke-width": th });
+        set(band, { y: CY - d, height: 2 * d });
+        blurFor(w1, fl, speed(halfLen, t) * 0.5, 0); w2.setAttribute("filter", w1.getAttribute("filter") || "");
+        if (!w1.getAttribute("filter")) w2.removeAttribute("filter");
+      }
+    };
+  })();
+
+  // =========================== 2 · KINETIC TYPE: brand names flow through the pipe ===========================
+  (function () {
+    var clip = el("clipPath", { id: "bandclip" }, defs); el("rect", { x: 0, y: CY - 110, width: W, height: 220 }, clip);
+    var g = el("g", { "clip-path": "url(#bandclip)" }); scenes.type = g;
+    var WORDS = ["FINOLEX", "ASTRAL", "DUTRON", "SINTEX", "TEXMO", "VECTUS", "WATERFLO"], S0 = [2.0, 2.25, 2.5, 2.75, 3.0, 3.25, 3.5], LASTI = 6;
+    var words = WORDS.map(function (w) { var sz = Math.min(150, 150 * 960 / measure(w, 150, 800, -0.02).w); var o = letters(w, sz, 800, C.white, g, -0.02); o.x0 = CX - o.m.w / 2; o.size = sz; return o; });
+    var last = words[LASTI], SIZE = last.size; last.L[last.L.length - 1].setAttribute("fill", C.teal);
+    var oi = last.L.length - 1, oSize = measure("O", SIZE, 800).w;
+    var oc = [last.x0 + last.m.x[oi] + oSize / 2, CY - 0.01 * SIZE];
+    scenes.typeO = oc;
+    scenes.typeSeek = function (t) {
+      var on = t >= 2.0 && t < 4.0; vis(g, on); if (!on) return;
+      // camera: push into the teal O on the last half beat
+      var z = expoIn(seg(t, 3.78, 4.0)), sc = 1 + 13 * z;
+      set(g, { transform: "translate(" + oc[0] + " " + oc[1] + ") scale(" + sc.toFixed(3) + ") translate(" + (-oc[0]) + " " + (-oc[1]) + ")" });
+      words.forEach(function (o, wi) {
+        var s0 = S0[wi], s1 = wi < LASTI ? S0[wi + 1] : 4.0, show = t >= s0 - 0.01 && (wi === LASTI || t < s1 + 0.03);
+        vis(o.g, show); if (!show) return;
+        var maxV = 0;
+        // slot move inside the pipe: each name rises in from below on its beat, and leaves upwards just before the next
+        o.L.forEach(function (n, j) {
+          var fy = function (tt) {
+            var y = 230 * (1 - expoOut((tt - s0 - (wi === LASTI ? 0.006 : 0.01) * j) / (wi === LASTI ? 0.12 : 0.15)));
+            if (wi < LASTI) y -= 230 * expoIn((tt - (s1 - 0.09) - 0.005 * j) / 0.08);
+            return y;
+          };
+          var y = fy(t), v = speed(fy, t); maxV = Math.max(maxV, Math.abs(v));
+          set(n, { x: (o.x0 + o.m.x[j]).toFixed(1), y: (CY + 0.35 * o.size + y).toFixed(1) });
+        });
+        blurFor(o.g, o.f, 0, wi === LASTI && t > 3.78 ? 0 : maxV);
+      });
+    };
+  })();
+
+  // =========================== 3 · SHAPE MORPH: the O becomes product shapes, each with its brand ===========================
+  (function () {
+    var g = el("g", {}); scenes.morph = g;
+    var path = el("path", { d: "", fill: "none", stroke: C.teal, "stroke-width": 34, "stroke-linecap": "round", "stroke-linejoin": "round" }, g);
+    var SEQ = [["ring", "PVC PIPES", "ASTRAL"], ["coil", "HDPE PIPES", "REWA"], ["sprinkler", "SPRINKLER & DRIP", "KISAN"], ["tap", "BATH & SANITARYWARE", "JOHNSON BATHROOMS"]];
+    var ICX = CX, ICY = 740, TX = CX, TY = 1110;
+    var labels = SEQ.map(function (s) {
+      var cat = el("text", { x: TX, y: TY, "font-size": 34, "font-weight": 600, fill: C.aqua, "letter-spacing": "6", "text-anchor": "middle" }, g); cat.textContent = s[1];
+      var size = Math.min(130, 130 * 960 / measure(s[2], 130, 800).w);
+      var name = el("text", { x: TX, y: TY + 30 + size * 0.78, "font-size": size.toFixed(1), "font-weight": 800, fill: C.white, "text-anchor": "middle" }, g); name.textContent = s[2];
+      return { cat: cat, name: name, f: blurFilter() };
+    });
+    var fp = blurFilter();
+    function shapeAt(t) {
+      if (t < 4.5) return GLYPH.ring;
+      var k = Math.min(3, Math.floor((t - 4.0) / BEAT)), a = GLYPH[SEQ[k - 1][0]], b = GLYPH[SEQ[k][0]];
+      return morph(a, b, expoInOut((t - 4.0 - k * BEAT) / 0.32));
+    }
+    scenes.morphSeek = function (t) {
+      var on = t >= 4.0 && t < 6.0; vis(g, on); if (!on) return;
+      var pts = shapeAt(t), cx = ICX, cy = ICY, s = 1, sw = 34;
+      // entry: the zoomed O shrinks into the pipe-end ring
+      var ent = expoOut(seg(t, 4.0, 4.32)); s = lerp(4.4, 1, ent); sw = lerp(240, 34, ent); cy = lerp(CY, ICY, ent);
+      // exit: the tap's spout straightens into a pipe across the centre
+      var ex = expoInOut(seg(t, 5.72, 6.0)); if (ex > 0) { pts = morph(pts, GLYPH.line, ex); cy = lerp(ICY, CY, ex); }
+      set(path, { d: toD(pts, cx, cy, s), "stroke-width": sw.toFixed(1) });
+      blurFor(path, fp, 0, ex > 0 && ex < 1 ? speed(function (tt) { return lerp(ICY, CY, expoInOut(seg(tt, 5.72, 6.0))); }, t) : 0);
+      labels.forEach(function (lb, k) {
+        var s0 = 4.0 + k * BEAT, s1 = s0 + BEAT, show = t >= s0 && t < s1 + 0.2 && t < 5.9;
+        vis(lb.cat, show); vis(lb.name, show); if (!show) return;
+        var fy = function (tt) { return 70 * (1 - expoOut((tt - s0 - 0.04) / 0.3)) - (k < 3 ? 90 * expoIn((tt - s1 + 0.1) / 0.12) : 90 * expoIn((tt - 5.72) / 0.14)); };
+        var y = fy(t), v = speed(fy, t);
+        set(lb.cat, { transform: "translate(0 " + (y * 0.6).toFixed(1) + ")" }); set(lb.name, { transform: "translate(0 " + y.toFixed(1) + ")" });
+        blurFor(lb.name, lb.f, 0, v); if (lb.name.getAttribute("filter")) lb.cat.setAttribute("filter", lb.name.getAttribute("filter")); else lb.cat.removeAttribute("filter");
+      });
+    };
+  })();
+
+  // =========================== 4 · 2D TO 3D: the line becomes a pipe, turns, and we look down its bore ===========================
+  (function () {
+    var g = el("g", {}); scenes.cyl = g;
+    var NF = 40, faces = [], inner = el("path", { d: "", fill: C.ink, "fill-rule": "evenodd" }, g);
+    for (var i = 0; i < NF; i++) faces.push(el("path", { d: "", stroke: "none" }, g));
+    var capFar = el("path", { d: "", "fill-rule": "evenodd" }, g), capNear = el("path", { d: "", "fill-rule": "evenodd" }, g);
+    var print = el("text", { "font-size": 34, "font-weight": 800, fill: C.white, "letter-spacing": "3", "text-anchor": "middle" }, g);
+    print.textContent = "DUTRON  ·  TEXMO  ·  WATERFLO  ·  FINOLEX";
+    function rot(p, yaw, pitch) {
+      var x = p[0] * Math.cos(yaw) + p[2] * Math.sin(yaw), z = -p[0] * Math.sin(yaw) + p[2] * Math.cos(yaw), y = p[1];
+      var y2 = y * Math.cos(pitch) - z * Math.sin(pitch), z2 = y * Math.sin(pitch) + z * Math.cos(pitch);
+      return [x, y2, z2];
+    }
+    scenes.cylSeek = function (t) {
+      var on = t >= 6.0 && t < 8.0; vis(g, on); if (!on) return;
+      var R = lerp(17, 80, spring(seg(t, 6.0, 6.35), 8)), r = R * 0.7, L = 800;
+      var sio = function (x) { return (1 - Math.cos(PI * clamp(x))) / 2; };
+      var pitch = 0.95 * Math.sin(PI * sio(seg(t, 6.35, 7.92))), yaw = (PI / 2) * sio(seg(t, 6.45, 7.92));
+      var k = lerp(1, 187 / ((80 + 56) / 2), sio(seg(t, 6.9, 7.95)));
+      var shade3d = expoOut(seg(t, 6.45, 6.8));
+      var light = [ -0.35, 0.75, 0.56 ];
+      function P(p) { var q = rot(p, yaw, pitch); return [CX + q[0] * k, CY - q[1] * k, q[2]]; }
+      var list = [];
+      for (var i = 0; i < NF; i++) {
+        var a0 = i / NF * 2 * PI, a1 = (i + 1) / NF * 2 * PI, am = (a0 + a1) / 2;
+        var n = rot([0, Math.cos(am), Math.sin(am)], yaw, pitch);
+        if (n[2] <= 0) { vis(faces[i], false); continue; }
+        var pts = [P([-L / 2, R * Math.cos(a0), R * Math.sin(a0)]), P([L / 2, R * Math.cos(a0), R * Math.sin(a0)]), P([L / 2, R * Math.cos(a1), R * Math.sin(a1)]), P([-L / 2, R * Math.cos(a1), R * Math.sin(a1)])];
+        var lam = clamp(n[0] * light[0] + n[1] * light[1] + n[2] * light[2]);
+        var col = mixHex(C.teal, mixHex(C.ink, C.aqua, 0.15 + 0.85 * lam), shade3d);
+        vis(faces[i], true); set(faces[i], { d: "M" + pts.map(function (q) { return q[0].toFixed(1) + " " + q[1].toFixed(1); }).join("L") + "Z", fill: col, stroke: col, "stroke-width": 0.8 });
+        list.push([pts.reduce(function (s, q) { return s + q[2]; }, 0), faces[i]]);
+      }
+      list.sort(function (a, b) { return a[0] - b[0]; }).forEach(function (e) { g.insertBefore(e[1], capFar); });
+      function ring(x, rr) { var o = []; for (var i = 0; i <= 64; i++) { var a = i / 64 * 2 * PI; o.push(P([x, rr * Math.cos(a), rr * Math.sin(a)])); } return o; }
+      [[capNear, L / 2], [capFar, -L / 2]].forEach(function (c) {
+        var nx = rot([c[1] > 0 ? 1 : -1, 0, 0], yaw, pitch), show = nx[2] > 0.001 && shade3d > 0;
+        vis(c[0], show); if (!show) return;
+        var o = ring(c[1], R), ii = ring(c[1], r);
+        set(c[0], { d: toD(o) + "Z" + toD(ii) + "Z", fill: mixHex(C.teal, C.aqua, 0.5 * clamp(nx[2] * 0.9 + 0.1) * (1 - expoOut(seg(t, 7.6, 7.95)))) });
+        set(inner, { d: toD(ii) + "Z" });
+      });
+      vis(inner, shade3d > 0 && yaw > 0.05);
+      // brand names printed along the pipe like real pipe markings, mapped onto the front of the cylinder
+      var aF = 0, best = -9; for (var q = 0; q < 72; q++) { var aq = q / 72 * 2 * PI, nz = rot([0, Math.cos(aq), Math.sin(aq)], yaw, pitch)[2]; if (nz > best) { best = nz; aF = aq; } }
+      var front = rot([1, 0, 0], yaw, pitch), base = P([0, R * Math.cos(aF), R * Math.sin(aF)]);
+      var showP = shade3d > 0.2 && yaw < 1.05; vis(print, showP);
+      if (showP) {
+        var tan = rot([0, -Math.sin(aF), Math.cos(aF)], yaw, pitch);
+        set(print, { transform: "matrix(" + [front[0] * k, -front[1] * k, tan[0] * k * 0.9, -tan[1] * k * 0.9, base[0], base[1]].map(function (v) { return v.toFixed(4); }).join(" ") + ") translate(0 12)", "font-size": 34, opacity: 1 });
+      }
+    };
+  })();
+
+  // =========================== 5 · DATA / UI: the bore becomes a chart of brands per category ===========================
+  (function () {
+    var g = el("g", {}); scenes.data = g;
+    var CATS = [["PVC", 10], ["HDPE", 5], ["SPRINKLER", 4], ["CASING", 4], ["BATH", 2], ["HOSE", 2]], TOT = 27;
+    var COL = [C.teal, C.aqua, C.saffron, C.teal, C.aqua, C.saffron];
+    var RAD = 187, SW = 66, BX = 380, BY0 = 1090, ROW = 86, UNIT = 58;
+    var arcs = [], acc = 0;
+    CATS.forEach(function (c, i) {
+      var a0 = -PI / 2 + acc / TOT * 2 * PI, a1 = -PI / 2 + (acc + c[1]) / TOT * 2 * PI; acc += c[1];
+      var p = el("path", { d: "", fill: "none", stroke: C.teal, "stroke-width": SW, "stroke-linecap": "butt" }, g);
+      var lab = el("text", { x: BX - 28, y: 0, "font-size": 30, "font-weight": 700, fill: C.white, "text-anchor": "end", "letter-spacing": "3" }, g); lab.textContent = c[0];
+      var num = el("text", { x: 0, y: 0, "font-size": 34, "font-weight": 800, fill: C.white }, g); num.textContent = c[1];
+      arcs.push({ a0: a0, a1: a1, p: p, lab: lab, num: num, n: c[1], col: COL[i], y: BY0 + i * ROW });
+    });
+    var count = el("text", { x: 0, y: 0, "font-size": 200, "font-weight": 800, fill: C.white, "text-anchor": "middle" }, g);
+    var cap = el("text", { x: 0, y: 0, "font-size": 30, "font-weight": 700, fill: C.aqua, "text-anchor": "middle", "letter-spacing": "8" }, g); cap.textContent = "BRANDS";
+    var title = el("text", { x: CX, "text-anchor": "middle", y: 1000, "font-size": 30, "font-weight": 700, fill: C.aqua, "letter-spacing": "8" }, g); title.textContent = "BRANDS PER CATEGORY";
+    var fb = blurFilter();
+    scenes.countPos = function (t) { var m = spring(seg(t, 9.0, 9.4), 8); return [CX, lerp(CY, 690, m)]; };
+    scenes.dataSeek = function (t) {
+      var on = t >= 8.0 && t < 10.0; vis(g, on); if (!on) return;
+      var gap = expoOut(seg(t, 8.0, 8.25)) * 0.07, un = expoInOut(seg(t, 9.0, 9.38)), out = expoIn(seg(t, 9.72, 10.0));
+      var cp = scenes.countPos(t);
+      arcs.forEach(function (a, i) {
+        var A = resample(arc(CX, CY, RAD, a.a0 + gap, a.a1 - gap, 40), 60);
+        var len = a.n * UNIT, B = resample([[BX, a.y], [BX + len, a.y]], 60);
+        var pts = morph(A, B, un);
+        if (out > 0) pts = pts.map(function (p) { return [lerp(p[0], cp[0], out), lerp(p[1], cp[1], out)]; });
+        set(a.p, { d: toD(pts), stroke: t >= 8.0 && gap > 0.001 ? a.col : C.teal, "stroke-width": lerp(SW, 30, un) * (1 - out) });
+        var lk = expoOut(seg(t, 9.1 + i * 0.04, 9.4 + i * 0.04)) * (1 - out);
+        vis(a.lab, lk > 0); set(a.lab, { y: a.y + 11, transform: "translate(" + (-60 * (1 - lk)).toFixed(1) + " 0)", opacity: lk.toFixed(3) });
+        var nk = expoOut(seg(t, 9.5 + i * 0.05, 9.7 + i * 0.05)) * (1 - out);
+        vis(a.num, nk > 0); set(a.num, { x: BX + len + 22, y: a.y + 12, transform: "translate(" + (BX + len + 22) * (1 - nk) * 0 + " 0) scale(1)", opacity: nk.toFixed(3) });
+      });
+      var ck = expoOut(seg(t, 8.5, 8.92)), n = Math.round(13 * ck);
+      vis(count, t >= 8.5); vis(cap, t >= 8.5);
+      count.textContent = n;
+      var csc = 1 + 0.18 * expoIn(seg(t, 9.75, 10.0));
+      set(count, { x: cp[0], y: cp[1] + 70, transform: "translate(" + cp[0] + " " + cp[1] + ") scale(" + csc.toFixed(3) + ") translate(" + (-cp[0]) + " " + (-cp[1]) + ")" });
+      set(cap, { x: cp[0], y: cp[1] + 125, opacity: (1 - out).toFixed(3) });
+      vis(title, un > 0.5 && out < 1); set(title, { opacity: (expoOut(seg(t, 9.15, 9.4)) * (1 - out)).toFixed(3) });
+      blurFor(count, fb, 0, speed(function (tt) { return scenes.countPos(tt)[1]; }, t));
+    };
+  })();
+
+  // =========================== 6 · BRAND WALL: "10" splits into ten brand tiles, flashing on the beat ===========================
+  (function () {
+    var g = el("g", {}); scenes.wall = g;
+    var B = [["FINOLEX", "ring"], ["ASTRAL", "ring"], ["DUTRON", "coil"], ["SINTEX", "ring"], ["TEXMO", "sprinkler"], ["VECTUS", "ring"], ["WATERFLO", "ring"], ["JOHNSON BATHROOMS", "tap"], ["KISAN", "sprinkler"], ["PLASTO", "ring"], ["MBH", "coil"], ["REWA", "coil"], ["RECO", "tap"]];
+    var TW = 300, TH = 190, GAP = 24, X0 = CX - (3 * TW + 2 * GAP) / 2, Y0 = CY - (5 * TH + 4 * GAP) / 2;
+    var GROUPS = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [9, 10, 11, 12]], HCOL = [C.teal, C.saffron, C.teal, C.saffron];
+    var tiles = B.map(function (b, i) {
+      var tg = el("g", {}, g), col = i < 12 ? i % 3 : 1, row = Math.floor(i / 3);
+      var box = el("rect", { x: -TW / 2, y: -TH / 2, width: TW, height: TH, rx: 18, fill: "none", stroke: C.aqua, "stroke-width": 2 }, tg);
+      var ic = el("path", { d: toD(GLYPH[b[1]], -TW / 2 + 60, -TH / 2 + 62, 0.2), fill: "none", stroke: C.aqua, "stroke-width": 7, "stroke-linecap": "round", "stroke-linejoin": "round" }, tg);
+      var size = Math.min(40, 40 * (TW - 48) / measure(b[0], 40, 800).w);
+      var nm = el("text", { x: -TW / 2 + 24, y: TH / 2 - 28, "font-size": size.toFixed(1), "font-weight": 800, fill: C.white }, tg); nm.textContent = b[0];
+      var grp = GROUPS.findIndex(function (G) { return G.indexOf(i) >= 0; });
+      return { g: tg, box: box, ic: ic, nm: nm, cx: X0 + col * (TW + GAP) + TW / 2, cy: Y0 + row * (TH + GAP) + TH / 2, grp: grp, f: blurFilter() };
+    });
+    scenes.wallSeek = function (t) {
+      var on = t >= 10.0 && t < 12.0; vis(g, on); if (!on) return;
+      var push = 1 + 0.06 * seg(t, 10.0, 11.6);
+      var col = expoIn(seg(t, 11.55, 11.95));
+      tiles.forEach(function (tl, i) {
+        var em = spring(seg(t, 10.0 + i * 0.022, 10.42 + i * 0.022), 8);
+        var fx = function (tt) { var e = spring(seg(tt, 10.0 + i * 0.022, 10.42 + i * 0.022), 8), c = expoIn(seg(tt, 11.55, 11.95)); var x = lerp(CX, tl.cx, e); x = CX + (x - CX) * push; return lerp(x, CX, c); };
+        var fy = function (tt) { var e = spring(seg(tt, 10.0 + i * 0.022, 10.42 + i * 0.022), 8), c = expoIn(seg(tt, 11.55, 11.95)); var y = lerp(690, tl.cy, e); y = CY + (y - CY) * push; return lerp(y, CY, c); };
+        var s = lerp(0.12, 1, em) * push * (1 - col);
+        // flash: the group for this beat fills with colour, the previous group wipes back to outline
+        var hs = 10.0 + tl.grp * BEAT, hk = expoOut(seg(t, hs, hs + 0.12)) * (1 - expoIn(seg(t, hs + BEAT, hs + BEAT + 0.12)));
+        var pop = 1 + 0.06 * hk;
+        set(tl.g, { transform: "translate(" + fx(t).toFixed(1) + " " + fy(t).toFixed(1) + ") scale(" + (s * pop).toFixed(4) + ")" });
+        set(tl.box, { fill: hk > 0.02 ? HCOL[tl.grp] : "none", "fill-opacity": 1, stroke: hk > 0.02 ? HCOL[tl.grp] : C.aqua });
+        set(tl.ic, { stroke: hk > 0.02 ? C.white : C.aqua });
+        blurFor(tl.g, tl.f, speed(fx, t), speed(fy, t));
+      });
+    };
+  })();
+
+  // =========================== 7 · THE MARK: the point floods white, the woven MM draws itself, water runs through it ===========================
+  (function () {
+    var g = el("g", {}); scenes.mark = g;
+    var flood = el("circle", { cx: CX, cy: CY, r: 0, fill: C.white }, g);
+    var dot = el("circle", { cx: CX, cy: CY, r: 0, fill: C.teal }, g);
+    var mg = el("g", {}, g);
+    var a = 64, b = 112, s = 0.625, t2 = 24, Bt = 200, sw = 18, gap = 9;
+    var v1 = a * s, v2 = t2 + b * s, yc = t2 + (b - a) * s;
+    var Pp = function (pts) { return "M" + pts.map(function (q) { return q.join(","); }).join("L"); };
+    var len = Math.hypot(1, s), ux = -1 / len, uy = s / len, rr = function (k) { return +k.toFixed(2); };
+    var sg = function (L) { return { left: "M" + -a + "," + rr(yc - L) + "L" + -a + "," + rr(yc + L), right: "M" + rr(a - ux * L) + "," + rr(yc - uy * L) + "L" + rr(a + ux * L) + "," + rr(yc + uy * L) }; };
+    var cut = sg(sw * 2), redraw = sg(sw * 3.6);
+    var mask = el("mask", { id: "mmcut", maskUnits: "userSpaceOnUse", x: -400, y: -400, width: 800, height: 800 }, defs);
+    el("rect", { x: -400, y: -400, width: 800, height: 800, fill: "#fff" }, mask);
+    var cutP = el("path", { d: cut.left + cut.right, stroke: "#000", "stroke-width": 0 }, mask);
+    var st = { fill: "none", "stroke-width": sw, "stroke-linejoin": "miter", "stroke-miterlimit": 4 };
+    function P2(d, col, extra) { var o = Object.assign({ d: d, stroke: col }, st, extra || {}); return el("path", o, mg); }
+    var outer = P2(Pp([[a, Bt], [b, Bt], [b, t2], [0, v2], [-b, t2], [-b, Bt], [-a, Bt]]), C.teal, { mask: "url(#mmcut)" });
+    var outerR = P2(redraw.right, C.teal);
+    var inner = P2(Pp([[-a, Bt], [-a, 0], [0, v1], [a, 0], [a, Bt]]), C.ink, { mask: "url(#mmcut)", "stroke-linecap": "square" });
+    var innerR = P2(redraw.left, C.ink);
+    var flowO = P2(outer.getAttribute("d"), C.saffron, { mask: "url(#mmcut)", "stroke-width": sw * 0.42, "stroke-linecap": "round" });
+    var flowI = P2(inner.getAttribute("d"), C.saffron, { mask: "url(#mmcut)", "stroke-width": sw * 0.42, "stroke-linecap": "round" });
+    var LO = outer.getTotalLength(), LI = inner.getTotalLength();
+    var TS = Math.min(112, 112 * 960 / measure("MARKET MOVERS", 112, 800, 0.04).w), title = letters("MARKET MOVERS", TS, 800, C.ink, g, 0.04), tx0 = CX - title.m.w / 2;
+    var sub = el("text", { x: CX, y: 1235, "font-size": 30, "font-weight": 700, fill: C.teal, "text-anchor": "middle", "letter-spacing": "12" }, g); sub.textContent = "JABALPUR";
+    var fg = blurFilter();
+    function markScale(t) { return lerp(3.1, 1.45, expoInOut(seg(t, 13.5, 13.95))) * (1 + 0.04 * seg(t, 12.0, 13.5)); }
+    function markY(t) { return lerp(CY, 760, expoInOut(seg(t, 13.5, 13.95))); }
+    scenes.markSeek = function (t) {
+      var on = t >= 11.95; vis(g, on); if (!on) return;
+      // the collapsed brand wall arrives as a teal point; on the downbeat it floods the frame white
+      var fl = expoOut(seg(t, 12.0, 12.3));
+      set(flood, { r: (1150 * fl).toFixed(1) });
+      // the end: everything pours back into the teal dot that opened the film
+      var back = expoIn(seg(t, 14.5, 14.82)), dotR = t < 12.0 ? 24 * expoOut(seg(t, 11.95, 12.0)) : (t < 14.5 ? 24 * (1 - expoOut(seg(t, 12.0, 12.12))) : 24 * expoOut(seg(t, 14.68, 14.86)));
+      set(dot, { r: dotR.toFixed(2) });
+      g.appendChild(dot);
+      vis(mg, t >= 12.0 && back < 1);
+      var sc = markScale(t) * (1 - back), my = lerp(markY(t), CY, back);
+      set(mg, { transform: "translate(" + CX + " " + my.toFixed(1) + ") scale(" + sc.toFixed(4) + ") translate(0 " + (-(Bt + 24) / 2 + 12) + ")" });
+      blurFor(mg, fg, 0, speed(markY, t));
+      var dO = expoInOut(seg(t, 12.0, 12.48)), dI = expoInOut(seg(t, 12.5, 12.95));
+      set(outer, { "stroke-dasharray": LO + " " + LO, "stroke-dashoffset": (LO * (1 - dO)).toFixed(1) });
+      set(inner, { "stroke-dasharray": LI + " " + LI, "stroke-dashoffset": (LI * (1 - dI)).toFixed(1) });
+      vis(outerR, dO > 0.98); vis(innerR, dI > 0.98);
+      var ck = expoOut(seg(t, 13.0, 13.14)); set(cutP, { "stroke-width": ((sw + 2 * gap) * ck).toFixed(2) });
+      // water racing through the strokes, a pulse per beat
+      var fOn = t >= 13.0 && t < 14.5; vis(flowO, fOn); vis(flowI, fOn);
+      if (fOn) {
+        var ph = (t - 13.0) / BEAT;
+        set(flowO, { "stroke-dasharray": "60 " + (LO / 2 - 60).toFixed(1), "stroke-dashoffset": (-(ph * LO * 0.5)).toFixed(1) });
+        set(flowI, { "stroke-dasharray": "50 " + (LI / 2 - 50).toFixed(1), "stroke-dashoffset": (ph * LI * 0.5).toFixed(1) });
+      }
+      // end title
+      var tOn = t >= 14.0 && back < 1; vis(title.g, tOn); vis(sub, tOn);
+      if (tOn) {
+        var mv = 0;
+        title.L.forEach(function (n, j) {
+          var fy = function (tt) { return 120 * (1 - expoOut((tt - 14.0 - 0.016 * j) / 0.26)); };
+          var y = fy(t); mv = Math.max(mv, Math.abs(speed(fy, t)));
+          var x = tx0 + title.m.x[j], X = lerp(x, CX, back), Y = lerp(1150 + y, CY, back);
+          set(n, { x: X.toFixed(1), y: Y.toFixed(1), transform: "translate(" + X + " " + Y + ") scale(" + (1 - back).toFixed(4) + ") translate(" + (-X) + " " + (-Y) + ")" });
+        });
+        blurFor(title.g, title.f, 0, mv);
+        var sk = expoOut(seg(t, 14.16, 14.4));
+        set(sub, { opacity: sk.toFixed(3), transform: "translate(" + CX + " " + lerp(1235, CY, back) + ") scale(" + (1 - back).toFixed(4) + ") translate(" + (-CX) + " " + (-1235) + ")" });
+      }
+    };
+  })();
+
+  // =========================== timeline ===========================
+  window.seek = function (t) {
+    t = Math.max(0, Math.min(14.999, t));
+    // the hook's white and black band live on until the camera has pushed into the O
+    bg.setAttribute("fill", t >= 4.0 && t < 12.3 ? C.ink : C.white);
+    scenes.hookSeek(t); scenes.typeSeek(t); scenes.morphSeek(t); scenes.cylSeek(t); scenes.dataSeek(t); scenes.wallSeek(t); scenes.markSeek(t);
+    // during the push into the O, the hook's band must zoom with the type so the frame fills with black
+    if (t >= 3.78 && t < 4.0) {
+      var oc = scenes.typeO, sc = 1 + 13 * expoIn(seg(t, 3.78, 4.0));
+      scenes.hook.setAttribute("transform", "translate(" + oc[0] + " " + oc[1] + ") scale(" + sc.toFixed(3) + ") translate(" + (-oc[0]) + " " + (-oc[1]) + ")");
+    } else scenes.hook.removeAttribute("transform");
+  };
+  window.seek(0);
+  return true;
+});
+</script>
+</body>
+</html>
