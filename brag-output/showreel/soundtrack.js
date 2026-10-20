@@ -110,10 +110,10 @@ window.makeSoundtrack = async function () {
   // the riser: filtered noise and a climbing saw, cut dead on the drop
   { const s = ctx.createBufferSource(); s.buffer = noiseBuf; s.loop = true; const f = ctx.createBiquadFilter(); f.type = "bandpass"; f.Q.value = 2.5;
     f.frequency.setValueAtTime(300, 10); f.frequency.exponentialRampToValueAtTime(9000, 11.98);
-    const g = ctx.createGain(); g.gain.setValueAtTime(0.0001, 10); g.gain.exponentialRampToValueAtTime(0.5, 11.97); g.gain.setValueAtTime(0.0001, 11.99);
+    const g = ctx.createGain(); g.gain.setValueAtTime(0.0001, 10); g.gain.exponentialRampToValueAtTime(0.5, 11.97); g.gain.exponentialRampToValueAtTime(0.0001, 11.995);
     s.connect(f); f.connect(g); g.connect(drums); s.start(10); s.stop(12);
     const o = ctx.createOscillator(); o.type = "sawtooth"; o.frequency.setValueAtTime(110, 10); o.frequency.exponentialRampToValueAtTime(1320, 11.98);
-    const og = ctx.createGain(); og.gain.setValueAtTime(0.0001, 10); og.gain.exponentialRampToValueAtTime(0.07, 11.97); og.gain.setValueAtTime(0.0001, 11.99); o.connect(og); og.connect(wide); o.start(10); o.stop(12); }
+    const og = ctx.createGain(); og.gain.setValueAtTime(0.0001, 10); og.gain.exponentialRampToValueAtTime(0.07, 11.97); og.gain.exponentialRampToValueAtTime(0.0001, 11.995); o.connect(og); og.connect(wide); o.start(10); o.stop(12); }
 
   // ---- render and encode ----
   const buf = await ctx.startRendering();
