@@ -39,6 +39,9 @@ export const brands: { name: string; slug?: string }[] = [
   { name: "Texmo", slug: "texmo" },
   { name: "Waterflo", slug: "waterflo" },
   { name: "Johnson Bathrooms", slug: "johnson" },
+  { name: "Astral" },
+  { name: "Sintex" },
+  { name: "Vectus" },
   { name: "Kisan" },
   { name: "Plasto" },
   { name: "MBH" },
@@ -51,7 +54,7 @@ export const categories = [
     id: "pvc",
     name: "PVC pipes & fittings",
     text: "uPVC, CPVC, rigid PVC and SWR for water supply, drainage and industrial lines.",
-    brands: ["Finolex", "Dutron", "Texmo", "Waterflo", "Kisan", "Plasto", "MBH"],
+    brands: ["Finolex", "Dutron", "Texmo", "Waterflo", "Astral", "Sintex", "Vectus", "Kisan", "Plasto", "MBH"],
   },
   {
     id: "hdpe",
