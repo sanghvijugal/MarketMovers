@@ -159,11 +159,16 @@ window.ready = document.fonts.load("800 100px Geist").then(function () { return 
     var path = el("path", { d: "", fill: "none", stroke: C.teal, "stroke-width": 34, "stroke-linecap": "round", "stroke-linejoin": "round" }, g);
     var SEQ = [["ring", "PVC PIPES", "ASTRAL"], ["coil", "HDPE PIPES", "REWA"], ["sprinkler", "SPRINKLER & DRIP", "KISAN"], ["tap", "BATH & SANITARYWARE", "JOHNSON BATHROOMS"]];
     var ICX = CX, ICY = 740, TX = CX, TY = 1110;
+    // each line of text lives in its own clipped slot, so the old label has fully left before the new one rises in
+    var CAT_H = 58, NAME_H = 150, NAME_TOP = TY + 26;
+    var cc = el("clipPath", { id: "catslot" }, defs); el("rect", { x: 0, y: TY - 42, width: W, height: CAT_H }, cc);
+    var nc = el("clipPath", { id: "nameslot" }, defs); el("rect", { x: 0, y: NAME_TOP, width: W, height: NAME_H }, nc);
+    var gCat = el("g", { "clip-path": "url(#catslot)" }, g), gName = el("g", { "clip-path": "url(#nameslot)" }, g);
     var labels = SEQ.map(function (s) {
-      var cat = el("text", { x: TX, y: TY, "font-size": 34, "font-weight": 600, fill: C.aqua, "letter-spacing": "6", "text-anchor": "middle" }, g); cat.textContent = s[1];
+      var cat = el("text", { x: TX, y: TY, "font-size": 34, "font-weight": 600, fill: C.aqua, "letter-spacing": "6", "text-anchor": "middle" }, gCat); cat.textContent = s[1];
       var size = Math.min(130, 130 * 960 / measure(s[2], 130, 800).w);
-      var name = el("text", { x: TX, y: TY + 30 + size * 0.78, "font-size": size.toFixed(1), "font-weight": 800, fill: C.white, "text-anchor": "middle" }, g); name.textContent = s[2];
-      return { cat: cat, name: name, f: blurFilter() };
+      var name = el("text", { x: TX, y: NAME_TOP + NAME_H / 2 + size * 0.36, "font-size": size.toFixed(1), "font-weight": 800, fill: C.white, "text-anchor": "middle" }, gName); name.textContent = s[2];
+      return { cat: cat, name: name, f: blurFilter(), fc: blurFilter() };
     });
     var fp = blurFilter();
     function shapeAt(t) {
@@ -181,12 +186,13 @@ window.ready = document.fonts.load("800 100px Geist").then(function () { return 
       set(path, { d: toD(pts, cx, cy, s), "stroke-width": sw.toFixed(1) });
       blurFor(path, fp, 0, ex > 0 && ex < 1 ? speed(function (tt) { return lerp(ICY, CY, expoInOut(seg(tt, 5.72, 6.0))); }, t) : 0);
       labels.forEach(function (lb, k) {
-        var s0 = 4.0 + k * BEAT, s1 = s0 + BEAT, show = t >= s0 && t < s1 + 0.2 && t < 5.9;
-        vis(lb.cat, show); vis(lb.name, show); if (!show) return;
-        var fy = function (tt) { return 70 * (1 - expoOut((tt - s0 - 0.04) / 0.3)) - (k < 3 ? 90 * expoIn((tt - s1 + 0.1) / 0.12) : 90 * expoIn((tt - 5.72) / 0.14)); };
-        var y = fy(t), v = speed(fy, t);
-        set(lb.cat, { transform: "translate(0 " + (y * 0.6).toFixed(1) + ")" }); set(lb.name, { transform: "translate(0 " + y.toFixed(1) + ")" });
-        blurFor(lb.name, lb.f, 0, v); if (lb.name.getAttribute("filter")) lb.cat.setAttribute("filter", lb.name.getAttribute("filter")); else lb.cat.removeAttribute("filter");
+        // in: rises from below its slot on the beat (category first, name a frame later); out: leaves upwards and is gone before the next beat
+        var s0 = 4.0 + k * BEAT + (k === 0 ? 0.12 : 0), out0 = k < 3 ? 4.0 + (k + 1) * BEAT - 0.11 : 5.7, outD = k < 3 ? 0.1 : 0.14;
+        var show = t >= s0 && t < out0 + outD; vis(lb.cat, show); vis(lb.name, show); if (!show) return;
+        var mk = function (H, d) { return function (tt) { return H * (1 - expoOut((tt - s0 - d) / 0.26)) - H * expoIn((tt - out0 - d * 0.5) / outD); }; };
+        var fc = mk(CAT_H, 0), fn = mk(NAME_H, 0.035);
+        set(lb.cat, { transform: "translate(0 " + fc(t).toFixed(1) + ")" }); set(lb.name, { transform: "translate(0 " + fn(t).toFixed(1) + ")" });
+        blurFor(lb.cat, lb.fc, 0, speed(fc, t)); blurFor(lb.name, lb.f, 0, speed(fn, t));
       });
     };
   })();
