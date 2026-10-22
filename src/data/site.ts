@@ -87,6 +87,12 @@ export const categories = [
     brands: ["Dutron", "Texmo"],
   },
   {
+    id: "tanks",
+    name: "Water tanks",
+    text: "Plastic water storage tanks for rooftops, homes and projects.",
+    brands: ["Sintex", "Vectus"],
+  },
+  {
     id: "fittings",
     name: "Fittings & accessories",
     text: "Elbows, tees, reducers, valves, clamps, solvent cement and more.",
@@ -97,7 +103,7 @@ export const categories = [
 /** The seven categories in three groups, for the homepage product list. */
 export const categoryGroups: { name: string; ids: (typeof categories)[number]["id"][] }[] = [
   { name: "Pipes", ids: ["pvc", "hdpe", "casing"] },
-  { name: "Farm and water", ids: ["sprinkler", "suction"] },
+  { name: "Farm and water", ids: ["sprinkler", "suction", "tanks"] },
   { name: "Bath and fittings", ids: ["bath", "fittings"] },
 ];
 
