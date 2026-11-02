@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Market Movers Diwali</title>
+    <script src="assets/js/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Geist"; src: url("assets/fonts/geist.woff2") format("woff2"); font-weight: 100 900; }
+      @font-face { font-family: "Plex Hindi"; src: url("assets/fonts/ibm-plex-sans-devanagari-devanagari-600-normal.woff2") format("woff2"); font-weight: 600; }
+      :root { --pink: #e8336e; --cyan: #00b4d8; --yellow: #f2e21b; --teal: #0b5d63; --cream: #fbf3e2; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--cyan); }
+      body { font-family: "Geist", sans-serif; -webkit-font-smoothing: antialiased; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--cyan); }
+      .clip { position: absolute; inset: 0; overflow: hidden; }
+      img { position: absolute; display: block; }
+      .c { left: 50%; top: 50%; transform-origin: 50% 50%; }
+      #s1 { background: var(--pink); }
+      #s2 { background: #11b5d4; }
+      #s3, #s5, #s6 { background: var(--cyan); }
+      #s4 { background: var(--pink); }
+      .card .face { position: absolute; inset: 0; width: 100%; height: 100%; }
+      .card { position: absolute; left: 540px; top: 960px; width: 540px; height: 784px; margin: -392px 0 0 -270px; transform-origin: 50% 50%; }
+      .card p { position: absolute; left: 22%; right: 22%; top: 22%; bottom: 22%; display: flex; align-items: center; justify-content: center; text-align: center;
+        font-weight: 800; font-size: 50px; line-height: 1.08; letter-spacing: -0.01em; color: #2b1a10; }
+      .card .end { flex-direction: column; gap: 10px; top: 31%; bottom: 31%; }
+      .card .end b { font-size: 44px; line-height: 1.0; color: var(--teal); }
+      .card .end i { font-style: normal; font-size: 21px; line-height: 1.3; letter-spacing: 0.14em; color: #5a3b2e; font-weight: 700; }
+      .nb { white-space: nowrap; }
+      .card .end svg { width: 96px; height: auto; overflow: visible; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="12.16" data-width="1080" data-height="1920">
+      <!-- 1 · doodle plumber, two poses -->
+      <section id="s1" class="clip" data-start="0" data-duration="0.53" data-track-index="1">
+        <img id="d1" class="c" src="assets/img/doodle-1.png" alt="" style="width:620px;margin:-384px 0 0 -310px" />
+        <img id="d2" class="c" src="assets/img/doodle-2.png" alt="" style="width:470px;margin:-397px 0 0 -235px" />
+      </section>
+      <!-- 2 · BEHENO AUR BHAIYON -->
+      <section id="s2" class="clip" data-start="0.53" data-duration="0.97" data-track-index="1">
+        <img id="l1" class="c" src="assets/img/lettering-1.jpg" alt="" style="width:1080px;margin:-540px 0 0 -540px" />
+      </section>
+      <!-- 3 · sticker pile-up, three beats -->
+      <section id="s3" class="clip" data-start="1.5" data-duration="1.5" data-track-index="1"><div id="pile"></div></section>
+      <!-- 4 · collage poster -->
+      <section id="s4" class="clip" data-start="3.0" data-duration="1.37" data-track-index="1">
+        <img id="poster" src="assets/img/poster.jpg" alt="" style="left:0;top:0;width:1080px;height:1920px;object-fit:cover" />
+        <img id="l2" class="c" src="assets/img/lettering-2.jpg" alt="" style="width:600px;margin:-370px 0 0 -300px;clip-path:inset(7% 4% 7% 4%)" />
+      </section>
+      <!-- 5 · the truck rolls in, YEH -->
+      <section id="s5" class="clip" data-start="4.37" data-duration="0.93" data-track-index="1">
+        <div id="truck" class="c" style="position:absolute;width:760px;height:979px;margin:-489px 0 0 -380px">
+          <img src="assets/img/truck.png" alt="" style="left:0;top:0;width:760px" />
+          <p id="yeh" style="position:absolute;left:0;right:0;top:395px;text-align:center;font-size:120px;font-weight:900;color:#ffd21f;-webkit-text-stroke:5px #1b1b1b;letter-spacing:0.02em">YEH</p>
+        </div>
+      </section>
+      <!-- 6 · the arch, then the cards -->
+      <section id="s6" class="clip" data-start="5.3" data-duration="6.86" data-track-index="1">
+        <img id="arch" src="assets/img/arch.png" alt="" style="left:90px;top:120px;width:900px;transform-origin:50% 0" />
+        <div id="cards"></div>
+      </section>
+      <!-- reference reel audio, for timing only: the post uses the same sound from Instagram's library -->
+      <audio id="ref" src="assets/audio/reference-audio.wav" data-start="0" data-duration="12.16" data-track-index="10" data-volume="1"></audio>
+    </div>
+
+    <script>
+      (function () {
+        // ---- sticker pile-up: three beats, each adds a cluster, like the reference ----
+        var P = [
+          // beat 1 (1.50)
+          ["st-toran", 300, 250, 520, -8], ["st-diya", 210, 760, 400, 6], ["st-tank", 820, 640, 330, -10], ["st-pipes", 740, 1300, 520, 12], ["st-kandil", 230, 1420, 330, -6],
+          // beat 2 (2.00)
+          ["st-mithai", 760, 260, 470, 9], ["st-auto", 600, 1010, 560, -5], ["amitabh", 205, 1660, 480, 0], ["st-rangoli", 920, 1650, 360, 14],
+          // beat 3 (2.50)
+          ["st-elbow", 300, 520, 470, -12], ["st-crackers", 820, 960, 430, 8], ["st-diya", 560, 1560, 320, -9], ["st-kandil", 890, 260, 260, 10], ["st-toran", 560, 1880, 600, 4]
+        ];
+        var BEATS = [1.5, 2.0, 2.5];
+        document.getElementById("pile").innerHTML = P.map(function (p, i) {
+          return '<img class="st" data-b="' + (i < 5 ? 0 : i < 9 ? 1 : 2) + '" src="assets/img/' + p[0] + '.png" alt="" style="left:' + p[1] + 'px;top:' + p[2] + 'px;width:' + p[3] + 'px;transform:translate(-50%,-50%) rotate(' + p[4] + 'deg)">';
+        }).join("");
+
+        // ---- cards: five wishes and the end card, one every ~0.76 s on the pulse ----
+        var CARDS = [
+          ["card-1", "Ghar mein khushiyon ka full pressure"],
+          ["card-2", "Rishte majboot, joint <span class=\"nb\">leak-proof</span>"],
+          ["card-3", "Sukh-samriddhi ki seedhi pipeline"],
+          ["card-4", "Har nal se behe Lakshmi"],
+          ["card-1", "Aapke saath 13 brands ki roshni"],
+          ["card-end", "END"]
+        ];
+        var CT = [6.6, 7.36, 8.12, 8.88, 9.64, 10.4];
+        document.getElementById("cards").innerHTML = CARDS.map(function (c, i) {
+          var inner = c[1] === "END"
+            ? '<p class="end"><svg class="mm" data-inner="#1b1b1b" data-outer="#0b5d63"></svg><b>Shubh Deepavali</b><i>MARKET MOVERS<br>JABALPUR</i></p>'
+            : "<p><span>" + c[1] + "</span></p>";
+          return '<div class="card" data-i="' + i + '"><img class="face" src="assets/img/' + c[0] + '.png" alt="">' + inner + "</div>";
+        }).join("");
+
+        // ---- woven MM mark (LogoMark.astro geometry, unchanged) ----
+        function markSVG(svgEl, id, inner, outer) {
+          var a = 64, b = 112, s = 0.625, t2 = 24, B = 200, sw = 18, gap = 9;
+          var v1 = a * s, v2 = t2 + b * s, yc = t2 + (b - a) * s;
+          var Pp = function (pts) { return "M" + pts.map(function (q) { return q.join(","); }).join("L"); };
+          var len = Math.hypot(1, s), ux = -1 / len, uy = s / len, r = function (k) { return +k.toFixed(2); };
+          var sg = function (L) { return { left: "M" + -a + "," + r(yc - L) + "L" + -a + "," + r(yc + L), right: "M" + r(a - ux * L) + "," + r(yc - uy * L) + "L" + r(a + ux * L) + "," + r(yc + uy * L) }; };
+          var cut = sg(sw * 2), redraw = sg(sw * 3.6), pad = sw;
+          svgEl.setAttribute("viewBox", (-b - pad) + " " + (-pad * 2) + " " + (2 * (b + pad)) + " " + (B + pad * 3));
+          var st = 'fill="none" stroke-width="' + sw + '" stroke-linejoin="miter" stroke-miterlimit="4"';
+          svgEl.innerHTML = '<mask id="' + id + '" maskUnits="userSpaceOnUse" x="-400" y="-400" width="800" height="800"><rect x="-400" y="-400" width="800" height="800" fill="#fff"/><path d="' + cut.left + cut.right + '" stroke="#000" stroke-width="' + (sw + 2 * gap) + '"/></mask>' +
+            '<g><path d="' + Pp([[a, B], [b, B], [b, t2], [0, v2], [-b, t2], [-b, B], [-a, B]]) + '" stroke="' + outer + '" mask="url(#' + id + ')" ' + st + '/><path d="' + redraw.right + '" stroke="' + outer + '" ' + st + "/></g>" +
+            '<g><path d="' + Pp([[-a, B], [-a, 0], [0, v1], [a, 0], [a, B]]) + '" stroke="' + inner + '" stroke-linecap="square" mask="url(#' + id + ')" ' + st + '/><path d="' + redraw.left + '" stroke="' + inner + '" ' + st + "/></g>";
+        }
+        document.querySelectorAll("svg.mm").forEach(function (el, i) { markSVG(el, "mmw" + i, el.dataset.inner, el.dataset.outer); });
+
+        Promise.all([document.fonts.ready].concat([].map.call(document.images, function (im) { return im.decode ? im.decode().catch(function () {}) : 0; }))).then(function () {
+          var tl = gsap.timeline({ paused: true });
+          // 1 · doodle: namaste, then the yoga pose on the cut at 0.25
+          tl.set("#d2", { opacity: 0 }, 0);
+          tl.fromTo("#d1", { scale: 0.9 }, { scale: 1, duration: 0.25, ease: "power2.out" }, 0);
+          tl.set("#d1", { opacity: 0 }, 0.25); tl.set("#d2", { opacity: 1 }, 0.25);
+          tl.fromTo("#d2", { scale: 0.92, rotation: -4 }, { scale: 1, rotation: 0, duration: 0.25, ease: "power2.out" }, 0.25);
+          // 2 · lettering pops, then wobbles gently
+          tl.fromTo("#l1", { scale: 0.6, rotation: -6 }, { scale: 1, rotation: 0, duration: 0.3, ease: "back.out(2.4)" }, 0.53);
+          tl.to("#l1", { rotation: 2, scale: 1.04, duration: 0.6, ease: "sine.inOut" }, 0.86);
+          // 3 · stickers slap on in three clusters, each with a tiny settle
+          document.querySelectorAll(".st").forEach(function (el, i) {
+            var t = BEATS[+el.dataset.b] + (i % 5) * 0.035;
+            tl.fromTo(el, { scale: 1.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.16, ease: "power3.out", immediateRender: true }, t);
+          });
+          tl.fromTo("#pile", { scale: 1 }, { scale: 1.06, duration: 1.5, ease: "none" }, 1.5);
+          // 4 · poster: push in, the line punches in on the beat
+          tl.fromTo("#poster", { scale: 1.12 }, { scale: 1.0, duration: 1.37, ease: "power2.out" }, 3.0);
+          tl.fromTo("#l2", { scale: 0.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.28, ease: "back.out(2.2)" }, 3.07);
+          // 5 · truck drives at the camera, YEH slams on the windshield
+          tl.fromTo("#truck", { scale: 0.35, y: 160 }, { scale: 1.0, y: 0, duration: 0.5, ease: "power3.out" }, 4.37);
+          tl.to("#truck", { scale: 1.08, duration: 0.43, ease: "none" }, 4.87);
+          tl.fromTo("#yeh", { scale: 2.2, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.18, ease: "power4.out" }, 4.81);
+          // 6 · arch swings down from the top, then cards drop into it
+          tl.fromTo("#arch", { rotation: -14, y: -1700 }, { rotation: 0, y: 0, duration: 0.55, ease: "back.out(1.4)" }, 5.3);
+          tl.to("#arch", { rotation: 2.5, duration: 0.3, ease: "sine.inOut", yoyo: true, repeat: 1 }, 5.85);
+          document.querySelectorAll(".card").forEach(function (el, i) {
+            var t = CT[i], tilt = [-5, 4, -3, 5, -4, 0][i], last = i === 5;
+            tl.fromTo(el, { y: -1500, rotation: tilt * 3, scale: 1.05 }, { y: 0, rotation: tilt, scale: 1, duration: 0.3, ease: "power3.out", immediateRender: true }, t);
+            // older cards sink back into the stack as the next lands
+            if (!last) { tl.to(el, { scale: 0.94, y: 26 + i * 4, duration: 0.2, ease: "power2.out" }, CT[i + 1] + 0.05); tl.set(el.querySelector("p"), { opacity: 0 }, CT[i + 1] + 0.25); }
+            if (last) tl.to(el, { scale: 1.06, rotation: 0, duration: 1.4, ease: "sine.inOut" }, t + 0.35);
+          });
+          window.__timelines["main"] = tl;
+          tl.seek(0);
+        });
+      })();
+    </script>
+  </body>
+</html>
