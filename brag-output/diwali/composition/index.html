@@ -19,7 +19,7 @@
       #s1 { background: var(--pink); }
       #s2 { background: #11b5d4; }
       #s3, #s5, #s6 { background: var(--cyan); }
-      #s4, #s7 { background: var(--pink); }
+      #s4 { background: var(--pink); }
       .card .face { position: absolute; inset: 0; width: 100%; height: 100%; }
       .card { position: absolute; left: 540px; top: 960px; width: 540px; height: 784px; margin: -392px 0 0 -270px; transform-origin: 50% 50%; }
       .card p { position: absolute; left: 22%; right: 22%; top: 22%; bottom: 22%; display: flex; align-items: center; justify-content: center; text-align: center;
@@ -57,21 +57,9 @@
         </div>
       </section>
       <!-- 6 · the arch, then the cards -->
-      <section id="s6" class="clip" data-start="5.3" data-duration="5.1" data-track-index="1">
+      <section id="s6" class="clip" data-start="5.3" data-duration="6.86" data-track-index="1">
         <img id="arch" src="assets/img/arch.png" alt="" style="left:90px;top:120px;width:900px;transform-origin:50% 0" />
         <div id="cards"></div>
-      </section>
-      <!-- 7 · end: Happy Diwali and the Market Movers logo -->
-      <section id="s7" class="clip" data-start="10.4" data-duration="1.76" data-track-index="1">
-        <img id="e-toran" src="assets/img/st-toran.png" alt="" style="left:170px;top:30px;width:740px" />
-        <div id="e-badge" style="position:absolute;left:540px;top:770px;width:420px;height:420px;margin:-210px 0 0 -220px;border-radius:50%;background:#fbf3e2;box-shadow:0 0 0 14px #f2e21b, 0 0 0 22px #1b1b1b;display:flex;align-items:center;justify-content:center">
-          <svg class="mm" data-inner="#1b1b1b" data-outer="#0b5d63" style="width:250px;height:auto;overflow:visible"></svg>
-        </div>
-        <p id="e-name" style="position:absolute;left:0;right:0;top:1040px;text-align:center;font-size:62px;font-weight:800;letter-spacing:0.02em;color:#fbf3e2;-webkit-text-stroke:3px #1b1b1b;paint-order:stroke fill">MARKET MOVERS</p>
-        <p id="e-hd" style="position:absolute;left:0;right:0;top:1150px;text-align:center;font-size:178px;line-height:0.95;font-weight:900;color:#f2e21b;-webkit-text-stroke:7px #1b1b1b;paint-order:stroke fill;text-shadow:0 12px 0 #a3123f">HAPPY<br>DIWALI</p>
-        <p id="e-loc" style="position:absolute;left:0;right:0;top:1530px;text-align:center;font-size:34px;font-weight:700;letter-spacing:0.22em;color:#fbf3e2">JABALPUR</p>
-        <img id="e-d1" src="assets/img/st-diya.png" alt="" style="left:50px;top:1610px;width:290px" />
-        <img id="e-d2" src="assets/img/st-diya.png" alt="" style="left:740px;top:1610px;width:290px" />
       </section>
       <!-- reference reel audio, for timing only: the post uses the same sound from Instagram's library -->
       <audio id="ref" src="assets/audio/reference-audio.wav" data-start="0" data-duration="12.16" data-track-index="10" data-volume="1"></audio>
@@ -99,9 +87,10 @@
           ["card-2", "Rishte majboot, joint <span class=\"nb\">leak-proof</span>"],
           ["card-3", "Sukh-samriddhi ki seedhi pipeline"],
           ["card-4", "Har nal se behe Lakshmi"],
-          ["card-5", "Aapke saath 13 brands ki roshni"]
+          ["card-5", "Aapke saath 13 brands ki roshni"],
+          ["card-end", "END"]
         ];
-        var CT = [6.6, 7.36, 8.12, 8.88, 9.64];
+        var CT = [6.6, 7.36, 8.12, 8.88, 9.64, 10.4];
         document.getElementById("cards").innerHTML = CARDS.map(function (c, i) {
           var inner = c[1] === "END"
             ? '<p class="end"><svg class="mm" data-inner="#1b1b1b" data-outer="#0b5d63"></svg><b>Shubh Deepavali</b><i>MARKET MOVERS<br>JABALPUR</i></p>'
@@ -152,21 +141,12 @@
           tl.fromTo("#arch", { rotation: -14, y: -1700 }, { rotation: 0, y: 0, duration: 0.55, ease: "back.out(1.4)" }, 5.3);
           tl.to("#arch", { rotation: 2.5, duration: 0.3, ease: "sine.inOut", yoyo: true, repeat: 1 }, 5.85);
           document.querySelectorAll(".card").forEach(function (el, i) {
-            var t = CT[i], tilt = [-5, 4, -3, 5, -4][i], last = i === CT.length - 1;
+            var t = CT[i], tilt = [-5, 4, -3, 5, -4, 0][i], last = i === 5;
             tl.fromTo(el, { y: -1500, rotation: tilt * 3, scale: 1.05 }, { y: 0, rotation: tilt, scale: 1, duration: 0.3, ease: "power3.out", immediateRender: true }, t);
             // older cards sink back into the stack as the next lands
             if (!last) { tl.to(el, { scale: 0.94, y: 26 + i * 4, duration: 0.2, ease: "power2.out" }, CT[i + 1] + 0.05); tl.set(el.querySelector("p"), { opacity: 0 }, CT[i + 1] + 0.25); }
             if (last) tl.to(el, { scale: 1.06, rotation: 0, duration: 1.4, ease: "sine.inOut" }, t + 0.35);
           });
-          // 7 · end card: everything lands on the beat, then a slow push
-          tl.fromTo("#e-badge", { scale: 0, rotation: -90 }, { scale: 1, rotation: 0, duration: 0.35, ease: "back.out(1.8)" }, 10.4);
-          tl.fromTo("#e-toran", { y: -420 }, { y: 0, duration: 0.3, ease: "power3.out" }, 10.4);
-          tl.fromTo("#e-name", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.22, ease: "power3.out" }, 10.55);
-          tl.fromTo("#e-hd", { scale: 2.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.24, ease: "power4.out" }, 10.63);
-          tl.fromTo("#e-loc", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 10.9);
-          tl.fromTo("#e-d1", { x: -420 }, { x: 0, duration: 0.3, ease: "power3.out" }, 10.7);
-          tl.fromTo("#e-d2", { x: 420 }, { x: 0, duration: 0.3, ease: "power3.out" }, 10.7);
-          tl.fromTo("#s7", { scale: 1 }, { scale: 1.04, duration: 1.76, ease: "none" }, 10.4);
           window.__timelines["main"] = tl;
           tl.seek(0);
         });
