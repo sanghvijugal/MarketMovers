@@ -1,0 +1,8 @@
+composition/.hyperframes/
+composition/snapshots/
+send/
+.*.hf-transaction-*/
+work-*/
+chanakya.wav
+composition-chanakya/assets/audio/
+composition-chanakya/.hyperframes/
