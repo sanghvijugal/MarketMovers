@@ -32,14 +32,15 @@
         <img id="diyaR" src="assets/img/st-diya.png" alt="" style="left:830px;top:1300px;width:230px" />
         <svg id="brands" width="1080" height="1920" viewBox="0 0 1080 1920" style="left:0;top:0"></svg>
         <div id="end">
-          <div id="badge" style="position:absolute;left:540px;top:665px;width:300px;height:300px;margin:-150px 0 0 -150px;border-radius:50%;background:#fbf3e2;box-shadow:0 0 0 12px #f5c542, 0 0 0 20px #2b1a10;display:flex;align-items:center;justify-content:center">
-            <svg class="mm" data-inner="#1b1b1b" data-outer="#0b5d63" style="position:relative;width:176px;height:auto"></svg>
+          <div id="badge" style="position:absolute;left:540px;top:465px;width:270px;height:270px;margin:-135px 0 0 -135px;border-radius:50%;background:#fbf3e2;box-shadow:0 0 0 12px #f5c542, 0 0 0 20px #2b1a10;display:flex;align-items:center;justify-content:center">
+            <svg class="mm" data-inner="#1b1b1b" data-outer="#0b5d63" style="position:relative;width:158px;height:auto"></svg>
           </div>
-          <p id="e1" style="top:845px;font-size:138px;line-height:0.95;font-weight:900;color:#f5c542;-webkit-text-stroke:6px #2b1a10;paint-order:stroke fill;text-shadow:0 10px 0 #1c0307">Shubh<br>Dhanteras</p>
-          <p id="e2" style="top:1112px;font-family:'Plex Hindi',sans-serif;font-size:58px;font-weight:600;color:#fbf3e2">शुभ धनतेरस</p>
+          <p id="brand" style="top:650px;font-size:80px;font-weight:600;letter-spacing:-0.02em;color:#fbf3e2;line-height:1">Market Movers</p>
+          <p id="e1" style="top:785px;font-size:132px;line-height:0.95;font-weight:900;color:#f5c542;-webkit-text-stroke:6px #2b1a10;paint-order:stroke fill;text-shadow:0 10px 0 #1c0307">Shubh<br>Dhanteras</p>
+          <p id="e2" style="top:1045px;font-family:'Plex Hindi',sans-serif;font-size:58px;font-weight:600;color:#fbf3e2">शुभ धनतेरस</p>
         </div>
         <img id="toran" src="assets/img/st-toran.png" alt="" style="left:170px;top:16px;width:740px" />
-        <p id="name" style="position:absolute;left:0;right:0;top:1200px;text-align:center;font-size:30px;font-weight:700;letter-spacing:0.16em;color:#f5c542">MARKET MOVERS · MARHATAL, JABALPUR</p>
+        <p id="name" style="position:absolute;left:0;right:0;top:1140px;text-align:center;font-size:30px;font-weight:700;letter-spacing:0.16em;color:#f5c542">MARHATAL, JABALPUR</p>
       </section>
       <!-- a 12 s cut of the song Chanakya (66.37 s to 78.37 s), its drop on the first coin -->
       <audio id="music" src="assets/audio/chanakya-clip.wav" data-start="0" data-duration="12" data-track-index="10" data-volume="1"></audio>
@@ -169,7 +170,9 @@
           // end card on the closing bell
           tl.set("#end", { opacity: 0 }, 0); tl.set("#end", { opacity: 1 }, T.end);
           tl.fromTo("#badge", { scale: 0, rotation: -120 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(1.7)" }, T.end);
-          tl.fromTo("#e1", { scale: 1.9, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "power4.out" }, T.end + 0.15);
+          tl.to("#toran", { y: -300, duration: 0.35, ease: "power3.inOut" }, T.end - 0.05);
+          tl.fromTo("#brand", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: "power3.out" }, T.end + 0.1);
+          tl.fromTo("#e1", { scale: 1.9, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "power4.out" }, T.end + 0.3);
           tl.fromTo("#e2", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: "power3.out" }, T.end + 0.45);
           tl.fromTo("#name", { opacity: 0 }, { opacity: 1, duration: 0.3 }, T.end + 0.6);
           tl.fromTo("#stage", { scale: 1 }, { scale: 1.03, duration: 12 - T.end, ease: "none" }, T.end);
