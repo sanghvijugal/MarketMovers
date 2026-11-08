@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Market Movers Diwali pipeline</title>
+    <script src="assets/js/gsap.min.js"></script>
+    <script src="assets/js/mm.js"></script>
+    <style>
+      @font-face { font-family: "Geist"; src: url("assets/fonts/geist.woff2") format("woff2"); font-weight: 100 900; }
+      @font-face { font-family: "Plex Hindi"; src: url("assets/fonts/ibm-plex-sans-devanagari-devanagari-600-normal.woff2") format("woff2"); font-weight: 600; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #070b1f; }
+      body { font-family: "Geist", sans-serif; -webkit-font-smoothing: antialiased; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: linear-gradient(180deg, #050816 0%, #0d1838 55%, #1a1230 100%); }
+      .clip { position: absolute; inset: 0; overflow: hidden; }
+      svg { position: absolute; overflow: visible; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="15" data-width="1080" data-height="1920">
+      <section id="stage" class="clip" data-start="0" data-duration="15" data-track-index="1">
+        <div id="warm" style="position:absolute;inset:0;background:radial-gradient(circle at 50% 62%, rgb(255 170 60 / 0.55), rgb(255 120 40 / 0.18) 45%, rgb(0 0 0 / 0) 75%);opacity:0"></div>
+        <svg id="sc" width="1080" height="1920" viewBox="0 0 1080 1920" style="left:0;top:0"></svg>
+        <div id="flash" style="position:absolute;inset:0;background:#fff3c4;opacity:0"></div>
+        <div id="end"></div>
+      </section>
+      <!-- "Happy Diwali" (Home Delivery), 121.0 s to 136.0 s: soft verse, near-silence from about 127 s, the hit at 129.76 s (8.76 s here) lights the house -->
+      <audio id="song" src="assets/audio/song.wav" data-start="0" data-duration="15" data-track-index="10" data-volume="1"></audio>
+    </div>
+    <script>
+      (function () {
+        var el = MM.el, sc = document.getElementById("sc");
+        var HIT = 8.76, H2 = 9.38, H3 = 9.76, H4 = 11.1, SHRINK = 12.25, END = 13.06;
+        var defs = el("defs", {}, sc);
+        var gl = el("filter", { id: "glow", x: "-50%", y: "-50%", width: "200%", height: "200%" }, defs);
+        el("feGaussianBlur", { stdDeviation: 9, result: "b" }, gl);
+        var mg = el("feMerge", {}, gl); el("feMergeNode", { in: "b" }, mg); el("feMergeNode", { in: "SourceGraphic" }, mg);
+        // stars
+        var stars = [];
+        for (var i = 0; i < 46; i++) stars.push(el("circle", { cx: (MM.rnd(i) * 1080).toFixed(0), cy: (MM.rnd(i + 99) * 470).toFixed(0), r: (1.5 + MM.rnd(i + 7) * 2.5).toFixed(1), fill: "#fbf3e2" }, sc));
+        var house = el("g", {}, sc);
+        // ---- house: roof, two floors, four rooms ----
+        var roof = el("path", { d: "M100 770 L540 500 L980 770 Z", fill: "#1d2448", stroke: "#0c1028", "stroke-width": 8 }, house);
+        var body = el("rect", { x: 150, y: 770, width: 780, height: 740, fill: "#222b55", stroke: "#0c1028", "stroke-width": 8 }, house);
+        el("line", { x1: 150, y1: 1140, x2: 930, y2: 1140, stroke: "#0c1028", "stroke-width": 10 }, house);
+        el("line", { x1: 540, y1: 770, x2: 540, y2: 1510, stroke: "#0c1028", "stroke-width": 10 }, house);
+        var ground = el("rect", { x: -2000, y: 1510, width: 5080, height: 1400, fill: "#120d22" }, house);
+        var ROOMS = [[345, 1325], [735, 1325], [735, 955], [345, 955]]; // BL, BR, TR, TL: the order the pipe reaches them
+        var wins = [], panes = [], diyas = [];
+        ROOMS.forEach(function (r, k) {
+          var w = el("rect", { x: r[0] - 95, y: r[1] - 85, width: 190, height: 150, rx: 10, fill: "#0b1130", stroke: "#0c1028", "stroke-width": 8 }, house);
+          el("line", { x1: r[0], y1: r[1] - 85, x2: r[0], y2: r[1] + 65, stroke: "#0c1028", "stroke-width": 6 }, house);
+          wins.push(w);
+          // a diya on each sill
+          var d = el("g", { transform: "translate(" + r[0] + " " + (r[1] + 98) + ")" }, house);
+          el("path", { d: "M-34 0 Q0 30 34 0 Z", fill: "#b5501f", stroke: "#5a2a0c", "stroke-width": 3 }, d);
+          var fl = el("path", { d: "M0 -34 C12 -18 12 -8 0 -2 C-12 -8 -12 -18 0 -34 Z", fill: "#ffc23a", filter: "url(#glow)" }, d);
+          diyas.push(fl);
+        });
+        // door
+        el("rect", { x: 495, y: 1360, width: 90, height: 150, rx: 6, fill: "#151b3a", stroke: "#0c1028", "stroke-width": 6 }, house);
+        // ---- the pipe: from the main in the street, through every room, up to the roof ----
+        var PTS = [[0, 1650], [250, 1650], [250, 1440], [830, 1440], [830, 1060], [250, 1060], [250, 830], [540, 830], [540, 640]];
+        var dpath = "M" + PTS.map(function (p) { return p.join(" "); }).join(" L");
+        el("path", { d: dpath, fill: "none", stroke: "#3a4366", "stroke-width": 26, "stroke-linejoin": "round" }, house);
+        el("path", { d: dpath, fill: "none", stroke: "#566089", "stroke-width": 16, "stroke-linejoin": "round" }, house);
+        var lit = el("path", { d: dpath, fill: "none", stroke: "#ffb02e", "stroke-width": 14, "stroke-linejoin": "round", "stroke-linecap": "round", filter: "url(#glow)" }, house);
+        var head = el("circle", { r: 16, fill: "#fff3c4", filter: "url(#glow)" }, house);
+        var cum = [0]; for (var j = 1; j < PTS.length; j++) cum.push(cum[j - 1] + Math.hypot(PTS[j][0] - PTS[j - 1][0], PTS[j][1] - PTS[j - 1][1]));
+        var LEN = cum[cum.length - 1];
+        lit.setAttribute("stroke-dasharray", LEN + " " + LEN);
+        function at(len) { for (var j = 1; j < PTS.length; j++) if (len <= cum[j]) { var u = (len - cum[j - 1]) / (cum[j] - cum[j - 1]); return [MM.lerp(PTS[j - 1][0], PTS[j][0], u), MM.lerp(PTS[j - 1][1], PTS[j][1], u)]; } return PTS[PTS.length - 1]; }
+        // when the glow reaches each room (the pipe passes BL at vertex 2, BR at 3, TR at 4, TL at 5)
+        var T0 = 0.7, T1 = 6.0, reach = function (len) { return T0 + (T1 - T0) * len / LEN; };
+        var ROOM_T = [reach(cum[2] + 60), reach(cum[3] - 60), reach(cum[4] - 60), reach(cum[5] - 60)];
+        // ---- hit decorations: string lights on the roof, toran over the door, a lantern at the peak, diyas in front ----
+        var bulbs = [];
+        for (var k = 0; k <= 20; k++) { var u = k / 20, x = MM.lerp(100, 980, u), y = u < 0.5 ? MM.lerp(770, 500, u * 2) : MM.lerp(500, 770, (u - 0.5) * 2); bulbs.push(el("circle", { cx: x.toFixed(0), cy: (y + 14).toFixed(0), r: 11, fill: ["#ffd23a", "#ff5a7a", "#6ee7ff"][k % 3], filter: "url(#glow)" }, house)); }
+        var kandil = el("image", { href: "assets/img/st-kandil.png", x: 470, y: 560, width: 140, height: 216 }, house);
+        var toran = el("image", { href: "assets/img/st-toran.png", x: 420, y: 1320, width: 240, height: 159 }, house);
+        var front = [];
+        for (var k = 0; k < 5; k++) front.push(el("image", { href: "assets/img/st-diya.png", x: 70 + k * 200, y: 1560, width: 140, height: 146 }, house));
+        var endCard = MM.endCard(document.getElementById("end"), 430);
+
+        function render(t) {
+          var on = t >= HIT, k = MM.out3(MM.seg(t, HIT, HIT + 0.35));
+          // pipe glow travels through the house during the soft verse
+          var p = MM.seg(t, T0, T1), len = LEN * MM.inOut(p);
+          lit.setAttribute("stroke-dashoffset", (LEN - len).toFixed(1));
+          // in the near-silence a single spark runs the last stretch to the roof
+          var hp = t < T1 ? at(len) : at(LEN * (0.82 + 0.18 * MM.inOut(MM.seg(t, 7.4, HIT))));
+          head.setAttribute("cx", hp[0].toFixed(1)); head.setAttribute("cy", hp[1].toFixed(1));
+          head.setAttribute("opacity", (t < T0 || on ? 0 : 1).toString());
+          // the house dims as the music drops away, then everything lights on the hit
+          var dim = 1 - 0.55 * MM.seg(t, 6.0, 7.2) * (on ? 0 : 1);
+          lit.setAttribute("opacity", (dim * (on ? 1 : 1)).toFixed(3));
+          ROOMS.forEach(function (r, i) {
+            var pre = MM.seg(t, ROOM_T[i], ROOM_T[i] + 0.4) * 0.45 * dim, full = on ? k : 0;
+            var pulse = on ? 0.06 * Math.max(0, 1 - Math.abs(t - H4 - i * 0.08) / 0.2) : 0;
+            var a = Math.max(pre, full);
+            wins[i].setAttribute("fill", a < 0.01 ? "#0b1130" : "rgb(" + Math.round(MM.lerp(11, 255, a)) + " " + Math.round(MM.lerp(17, 206, a)) + " " + Math.round(MM.lerp(48, 102 + 60 * pulse, a)) + ")");
+            diyas[i].setAttribute("opacity", Math.max(pre * 2, full).toFixed(3));
+            diyas[i].setAttribute("transform", "scale(" + (1 + 0.08 * Math.sin(t * 17 + i)).toFixed(3) + ")");
+          });
+          body.setAttribute("fill", on ? "rgb(" + Math.round(MM.lerp(34, 120, k)) + " " + Math.round(MM.lerp(43, 52, k)) + " " + Math.round(MM.lerp(85, 60, k)) + ")" : "#222b55");
+          roof.setAttribute("fill", on ? "rgb(" + Math.round(MM.lerp(29, 150, k)) + " " + Math.round(MM.lerp(36, 40, k)) + " " + Math.round(MM.lerp(72, 45, k)) + ")" : "#1d2448");
+          document.getElementById("warm").style.opacity = (on ? k : 0).toFixed(3);
+          document.getElementById("flash").style.opacity = (on ? 0.75 * Math.max(0, 1 - (t - HIT) / 0.25) : 0).toFixed(3);
+          stars.forEach(function (s, i) { s.setAttribute("opacity", (0.35 + 0.35 * Math.sin(t * 2 + i) + 0.3 * MM.rnd(i)).toFixed(2)); });
+          bulbs.forEach(function (b, i) { var kb = MM.seg(t, H2 + i * 0.012, H2 + i * 0.012 + 0.05); b.setAttribute("opacity", (kb * (0.75 + 0.25 * Math.sin(t * 8 + i * 1.7))).toFixed(3)); });
+          var kk = MM.back(MM.seg(t, HIT, HIT + 0.4), 1.8); kandil.setAttribute("opacity", on ? 1 : 0);
+          kandil.setAttribute("transform", "translate(540 560) rotate(" + (on ? 4 * Math.sin((t - HIT) * 3) : 0).toFixed(2) + ") scale(" + kk.toFixed(3) + ") translate(-540 -560)");
+          var kt = MM.out3(MM.seg(t, H3, H3 + 0.3)); toran.setAttribute("opacity", t >= H3 ? 1 : 0); toran.setAttribute("transform", "translate(0 " + (-200 * (1 - kt)).toFixed(1) + ")");
+          front.forEach(function (f, i) { var kf = MM.back(MM.seg(t, H3 + i * 0.06, H3 + i * 0.06 + 0.3), 1.8); f.setAttribute("opacity", t >= H3 + i * 0.06 ? 1 : 0); var fx = 140 + i * 200; f.setAttribute("transform", "translate(" + fx + " 1633) scale(" + kf.toFixed(3) + ") translate(" + (-fx) + " -1633)"); });
+          // the lit house settles under the wish
+          var ks = MM.inOut(MM.seg(t, SHRINK, END)), hs = MM.lerp(1, 0.52, ks);
+          house.setAttribute("transform", "translate(540 " + MM.lerp(960, 1505, ks).toFixed(1) + ") scale(" + hs.toFixed(4) + ") translate(-540 -1120)");
+          endCard(t, END);
+        }
+        Promise.all([document.fonts.ready].concat([].map.call(document.images, function (im) { return im.decode ? im.decode().catch(function () {}) : 0; }))).then(function () {
+          var tl = gsap.timeline({ paused: true }), clock = { t: 0 };
+          tl.to(clock, { t: 15, duration: 15, ease: "none", onUpdate: function () { render(clock.t); } }, 0);
+          window.__timelines["main"] = tl;
+          tl.seek(0);
+        });
+      })();
+    </script>
+  </body>
+</html>

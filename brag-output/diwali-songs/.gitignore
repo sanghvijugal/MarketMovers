@@ -1,0 +1,7 @@
+*/assets/audio/
+*/.hyperframes/
+*/snapshots/
+song.wav
+.*.hf-transaction-*/
+work-*/
+send/
