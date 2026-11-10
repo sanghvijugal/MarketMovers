@@ -1,7 +1,7 @@
 """Original soundtracks for the two Nutan Varsh reels, synthesised from the same timings the animations use.
 
-usage: python make_audio.py chopda   -> chopda/assets/audio/chopda.wav   (santoor, shehnai, dholak, bells, fireworks)
-       python make_audio.py drop     -> drop/assets/audio/drop.wav       (rain, water, santoor, flute, tabla)
+usage: python make_audio.py chopda   -> chopda/assets/audio/chopda.wav   (pad, bass, santoor and bells melody, kick, clap, dholak, fireworks)
+       python make_audio.py drop     -> drop/assets/audio/drop.wav       (rain, water, pad, bass, santoor and bells melody, light groove)
 Needs numpy. 120 BPM (a beat every 0.5 s), Sa = D, raag Bhupali (S R G P D) so everything is consonant.
 """
 import os, sys, wave
@@ -130,6 +130,71 @@ def groove(t0, t1, level=1.0):
 
 
 n = lambda name: SA * RAT[name]
+mf = lambda m: 440.0 * 2 ** ((m - 69) / 12)          # MIDI note to Hz
+CH = {"D": (50, [62, 66, 69]), "Bm": (47, [59, 62, 66]), "G": (43, [59, 62, 67]), "A": (45, [57, 61, 64])}
+# an 8-step melody for each chord (MIDI notes on the 0.25 s grid, 0 = rest); pentatonic over D so it sits with the event sounds
+MOT = {"D": [66, 69, 71, 69, 74, 0, 71, 69], "Bm": [66, 71, 74, 71, 78, 0, 74, 71], "G": [74, 71, 67, 71, 74, 0, 76, 74], "A": [76, 73, 69, 73, 76, 0, 78, 76]}
+
+
+def pad(chord, t, dur, level=1.0):
+    """warm sustained chord: detuned partials with a slow swell"""
+    tm = tt(dur + 0.6); s = np.zeros(len(tm))
+    for m in CH[chord][1] + [CH[chord][1][0] + 12]:
+        for det in (0.997, 1.0, 1.004):
+            for k, am in ((1, 1.0), (2, 0.35), (3, 0.12)):
+                s += am * np.sin(2 * np.pi * mf(m) * det * k * tm + rng.uniform(0, 6))
+    env = np.clip(tm / 0.5, 0, 1) * np.clip((dur + 0.6 - tm) / 0.6, 0, 1)
+    put(s / np.max(np.abs(s)) * env, t, 0.5, 0.11 * level, 0.5)
+
+
+def bass(chord, t, dur=0.42, level=1.0):
+    tm = tt(dur); f = mf(CH[chord][0])
+    s = (np.sin(2 * np.pi * f * tm) + 0.35 * np.sin(2 * np.pi * 2 * f * tm) + 0.12 * np.sin(2 * np.pi * 3 * f * tm)) * np.minimum(1, tm / 0.008) * np.exp(-tm * 4.5)
+    put(s, t, 0.5, 0.36 * level, 0.05)
+
+
+def kick(t, level=1.0):
+    tm = tt(0.3); f = 48 + 95 * np.exp(-tm * 38)
+    put(np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-tm * 11), t, 0.5, 0.5 * level, 0.03)
+
+
+def clap(t, level=1.0):
+    s = np.zeros(int(SR * 0.25))
+    for off in (0.0, 0.011, 0.023):
+        c = band_noise(0.2, 900, 5000) * np.exp(-tt(0.2) * 38); i0 = int(off * SR); s[i0:i0 + len(c)] += c[: len(s) - i0]
+    put(s, t, 0.5, 0.2 * level, 0.35)
+
+
+def shaker(t, level=1.0):
+    put(band_noise(0.06, 5000, 12000) * np.exp(-tt(0.06) * 60), t, 0.62, 0.07 * level, 0.1)
+
+
+def glock(freq, length=1.0):
+    tm = tt(length)
+    return (np.sin(2 * np.pi * freq * tm) + 0.35 * np.sin(2 * np.pi * freq * 4.0 * tm) * np.exp(-tm * 12)) * np.exp(-tm * 5) * np.minimum(1, tm / 0.002)
+
+
+def band(bars, melody=1.0, drums=1.0, perc=True):
+    """bars: (start, seconds, chord). Pad and bass per chord, the plucked melody on the 16ths, and a groove."""
+    for t0, d, ch in bars:
+        pad(ch, t0, d, 1.0)
+        steps = int(round(d / 0.25))
+        for i in range(steps):
+            t = t0 + i * 0.25
+            if i % 8 in (0, 3, 6):
+                bass(ch, t, 0.42, 1.0 if i % 8 == 0 else 0.7)
+            m = MOT[ch][i % 8]
+            if m and melody:
+                put(santoor(mf(m), 1.1), t, 0.42, 0.3 * melody, 0.3); put(glock(mf(m + 12), 0.8), t, 0.6, 0.07 * melody, 0.4)
+            if drums:
+                if i % 2 == 0:
+                    kick(t, drums) if i % 4 == 0 else None
+                if i % 8 == 4:
+                    clap(t, drums)
+                if perc:
+                    shaker(t + 0.125, drums); shaker(t, 0.6 * drums)
+        if drums and perc:
+            groove(t0, t0 + d, 0.55 * drums)
 
 if MODE == "chopda":
     T = {"land": 0.5, "open": 1.5, "shubh": 2.0, "labh": 2.5, "sathiya": 3.0, "dots": 4.0, "entries": 4.5, "close": 8.5, "badge": 8.9, "wish": 12.0}
@@ -146,18 +211,17 @@ if MODE == "chopda":
         put(santoor(n(nm), 1.0), T["sathiya"] + i * 0.125, 0.5, 0.36)
     for i in range(4):                                                           # four kumkum dots
         put(bell(SA * 4 * [1, 1.25, 1.5, 2][i], 1.2, 0.6), T["dots"] + i * 0.06, 0.35 + 0.1 * i, 0.16, 0.5)
-    groove(T["entries"], T["close"], 1.0)                                        # dholak under the ledger entries
+    band([(4.5, 2.0, "D"), (6.5, 2.0, "Bm")], melody=0.9, drums=0.9)            # the groove comes in with the ledger entries
+    pad("D", 0.5, 4.0, 0.7)                                                      # a soft bed under the opening
     for i in range(13):                                                          # each brand ticks in: a woodblock and a santoor note
         t = T["entries"] + i * 0.25
         put(np.sin(2 * np.pi * 1250 * tt(0.05)) * np.exp(-tt(0.05) * 90), t, 0.3 + 0.4 * (i % 2), 0.25)
         put(santoor(n(["S", "G", "P", "D", "S'", "D", "P", "G", "R", "G", "P", "D", "S'"][i]), 0.9), t, 0.3 + 0.4 * (i % 2), 0.22)
-    MEL = [(4.5, 0.5, "G"), (5.0, 0.25, "P"), (5.25, 0.25, "D"), (5.5, 0.75, "S'"), (6.25, 0.25, "D"), (6.5, 0.5, "P"), (7.0, 0.25, "G"), (7.25, 0.25, "R"), (7.5, 0.9, "S"),
-           (9.0, 0.45, "S"), (9.5, 0.45, "G"), (10.0, 0.45, "P"), (10.5, 0.45, "D"), (11.0, 0.45, "S'"), (11.5, 0.45, "R'"),
-           (12.0, 1.0, "G'"), (13.0, 0.25, "R'"), (13.25, 0.25, "S'"), (13.5, 0.5, "D"), (14.0, 0.25, "P"), (14.25, 0.25, "D"), (14.5, 1.4, "S'")]
-    put(lead(MEL, "shehnai") * 0.3, 0, 0.5, 1, 0.3)
     put(dholak("ge", 1.3), T["close"], 0.5, 0.7); put(whoosh(0.3), T["close"] - 0.05, 0.5, 0.2)                # the book closes
     put(bell(SA * 2, 2.5, 0.8), T["badge"] + 0.1, 0.5, 0.2, 0.5)                                               # it becomes the logo
-    groove(9.0, 15.5, 1.1)
+    band([(9.0, 2.0, "G"), (11.0, 1.0, "A")], melody=1.0, drums=1.0)             # fireworks: lift to the wish
+    band([(12.0, 2.0, "D"), (14.0, 1.0, "G")], melody=1.0, drums=1.1)
+    pad("D", 15.0, 1.0, 1.2); bass("D", 15.0, 0.9); kick(15.0)
     for i, bt in enumerate(BURSTS):                                              # fireworks: a rising whistle, then a boom and crackle on the beat
         pan = [0.25, 0.75, 0.5, 0.2, 0.8, 0.15, 0.85, 0.3, 0.7, 0.5, 0.25, 0.75][i]
         put(sweep(0.45, 700 + 60 * i, 2600 + 100 * i) * 0.5, bt - 0.45, pan, 0.11, 0.3)
@@ -208,15 +272,11 @@ else:  # drop
     put(bloop(240, 900, 0.3), 10.5, 0.5, 0.7, 0.7); put(bell(SA, 4, 0.7), 10.5, 0.5, 0.3, 0.6)                  # into the urli
     for i, nm in enumerate(["P", "D", "S'"]):                                    # diyas light, pair by pair
         put(bell(n(nm) * 2, 2.2, 0.6), 10.5 + i * 0.5, 0.5, 0.2, 0.6); put(santoor(n(nm) * 2, 1.5), 10.5 + i * 0.5, 0.35 + 0.15 * i, 0.25)
-    MEL = [(2.5, 0.45, "S"), (3.0, 0.45, "R"), (3.5, 0.45, "G"), (4.0, 0.9, "P"), (5.0, 0.45, "G"), (5.5, 0.45, "P"), (6.0, 0.45, "D"), (6.5, 0.95, "S'"),
-           (7.5, 0.25, "D"), (7.75, 0.45, "P"), (8.25, 0.7, "G"), (9.0, 0.45, "R"), (9.5, 0.45, "G"), (10.0, 0.45, "P"), (10.5, 0.45, "D"), (11.0, 0.45, "S'"), (11.5, 0.45, "R'"),
-           (12.0, 1.4, "G'"), (13.5, 0.45, "R'"), (14.0, 0.45, "S'"), (14.5, 1.4, "S'")]
-    put(lead(MEL, "flute") * 0.2, 0, 0.5, 1, 0.45)
-    groove(3.5, 11.9, 0.55)                                                      # light tabla once the journey starts
-    groove(12.0, 15.5, 0.8)
-    for i in range(18):                                                          # a soft santoor pulse on the off-beats
-        tq = 3.25 + i * 0.5
-        put(santoor(n(["S", "P", "G", "P"][i % 4]), 0.8, 0.85), tq, 0.4 + 0.2 * (i % 2), 0.1)
+    pad("D", 0.3, 1.7, 0.7)
+    band([(2.0, 2.0, "D")], melody=0.0, drums=0.0)                               # the fall: chords only
+    band([(4.0, 2.0, "Bm"), (6.0, 2.0, "G"), (8.0, 2.0, "A"), (10.0, 2.0, "D")], melody=0.75, drums=0.6)   # the journey: gentle groove and melody
+    band([(12.0, 2.0, "D"), (14.0, 1.0, "G")], melody=0.9, drums=0.85)           # the wish
+    pad("D", 15.0, 1.0, 1.2); bass("D", 15.0, 0.9); kick(15.0, 0.8)
     put(bell(SA / 2, 4.5), 12.0, 0.5, 0.55, 0.6)                                 # the wish
     for nm in ("S", "G", "P", "S'"):
         put(santoor(n(nm), 2.6), 12.0, 0.5, 0.3)

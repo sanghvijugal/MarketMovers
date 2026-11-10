@@ -37,9 +37,10 @@
       '<svg class="ec-mm" style="position:relative;width:158px;height:auto;overflow:visible"></svg></div>' +
       '<p class="ec-name" style="position:absolute;left:0;right:0;top:' + (top + 185) + 'px;text-align:center;font-size:80px;font-weight:600;letter-spacing:-0.02em;color:#fbf3e2;line-height:1">Market Movers</p>' +
       '<p class="ec-hd" lang="gu" style="position:absolute;left:0;right:0;top:' + (top + 300) + 'px;text-align:center;font-family:\'Baloo Gujarati\',sans-serif;font-size:168px;line-height:1.15;font-weight:800;color:#f5c542;-webkit-text-stroke:6px #2b1a10;paint-order:stroke fill;text-shadow:0 10px 0 #1c0307">સાલ મુબારક</p>' +
-      '<p class="ec-hi" lang="gu" style="position:absolute;left:0;right:0;top:' + (top + 520) + 'px;text-align:center;font-family:\'Baloo Gujarati\',sans-serif;font-size:70px;font-weight:600;color:#fbf3e2;line-height:1.2">નૂતન વર્ષાભિનંદન</p>' +
-      '<p class="ec-vs" style="position:absolute;left:0;right:0;top:' + (top + 640) + 'px;text-align:center;font-size:30px;font-weight:700;letter-spacing:0.16em;color:#f5c542">VIKRAM SAMVAT 2083</p>' +
-      '<p class="ec-loc" style="position:absolute;left:0;right:0;top:' + (top + 692) + 'px;text-align:center;font-size:26px;font-weight:600;letter-spacing:0.16em;color:#fbf3e2">MARHATAL, JABALPUR</p>';
+      '<p class="ec-en" style="position:absolute;left:0;right:0;top:' + (top + 512) + 'px;text-align:center;font-size:92px;font-weight:800;letter-spacing:-0.01em;color:#fbf3e2;line-height:1;-webkit-text-stroke:4px #2b1a10;paint-order:stroke fill">Happy New Year</p>' +
+      '<p class="ec-hi" lang="gu" style="position:absolute;left:0;right:0;top:' + (top + 622) + 'px;text-align:center;font-family:\'Baloo Gujarati\',sans-serif;font-size:56px;font-weight:600;color:#f5c542;line-height:1.2">નૂતન વર્ષાભિનંદન</p>' +
+      '<p class="ec-vs" style="position:absolute;left:0;right:0;top:' + (top + 722) + 'px;text-align:center;font-size:28px;font-weight:700;letter-spacing:0.16em;color:#fbf3e2">VIKRAM SAMVAT 2083</p>' +
+      '<p class="ec-loc" style="position:absolute;left:0;right:0;top:' + (top + 768) + 'px;text-align:center;font-size:26px;font-weight:600;letter-spacing:0.16em;color:#f5c542">MARHATAL, JABALPUR</p>';
     parent.appendChild(wrap);
     MM.markSVG(wrap.querySelector(".ec-mm"), "mmend" + Math.round(top), "#1b1b1b", "#0b5d63");
     var q = function (c) { return wrap.querySelector(c); };
@@ -51,8 +52,9 @@
       q(".ec-badge").style.transform = "scale(" + kb.toFixed(3) + ") rotate(" + (-120 * (1 - MM.out3(MM.seg(t, tb, tb + 0.45)))).toFixed(1) + "deg)";
       var kn = MM.out3(MM.seg(t, tb + 0.15, tb + 0.45)); set(".ec-name", kn, "translateY(" + (24 * (1 - kn)).toFixed(1) + "px)");
       var kh = MM.out3(MM.seg(t, tw, tw + 0.28)); set(".ec-hd", kh, "scale(" + (1.9 - 0.9 * kh).toFixed(3) + ")");
-      var ki = MM.out3(MM.seg(t, tw + 0.5, tw + 0.8)); set(".ec-hi", ki, "translateY(" + (24 * (1 - ki)).toFixed(1) + "px)");
-      set(".ec-vs", MM.seg(t, tw + 1.0, tw + 1.3), "none"); set(".ec-loc", MM.seg(t, tw + 1.25, tw + 1.55), "none");
+      var ke = MM.out3(MM.seg(t, tw + 0.5, tw + 0.78)); set(".ec-en", ke, "scale(" + (1.5 - 0.5 * ke).toFixed(3) + ")");
+      var ki = MM.out3(MM.seg(t, tw + 1.0, tw + 1.3)); set(".ec-hi", ki, "translateY(" + (24 * (1 - ki)).toFixed(1) + "px)");
+      set(".ec-vs", MM.seg(t, tw + 1.5, tw + 1.8), "none"); set(".ec-loc", MM.seg(t, tw + 1.75, tw + 2.05), "none");
     };
   };
   window.MM = MM;
